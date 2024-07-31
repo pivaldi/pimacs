@@ -17,73 +17,21 @@
 
 ;;; Code:
 
-(defun pi/kill-and-join-forward (&optional arg)
-  "If at end of line, join with following; otherwise kill line.
-Passes ARG to command `kill-line' when provided.
-Deletes whitespace at join."
-  (interactive "P")
-  (if (and (eolp) (not (bolp)))
-      (delete-indentation 1)
-    (kill-line arg)))
+(register-definition-prefixes "pi-functions" '("pi/"))
 
-(map! "C-k" 'pi/kill-and-join-forward)
+(map! :desc "If at end of line, join with following; otherwise kill line." "C-k" 'pi/kill-and-join-forward)
 
-;; ---------------------------------------------
-;; * Obtenir le nom complet du fichier courant *
-(defun pi/buffer-file-name (prefix &optional killit)
-  "Show the `buffer-file-name' (if any) and make it
-the latest kill in the kill ring if `killit' is t.
-With prefix, write in the current buffer."
-  (interactive "P")
-  (if buffer-file-name
-      (if prefix
-          (insert buffer-file-name)
-        (if killit
-            (let ((x-select-enable-primary t))
-              (kill-new (message buffer-file-name))
-              (x-select-text (message buffer-file-name)))
-          (message buffer-file-name)))
-    (message "No file-name attached to the bufer")))
-;; F8     : echo filename in the minibuffer
-;; C-u F8 : insert filename in the current buffer
-(map! :desc "echo filename in the minibuffer" "<f8>" 'pi/buffer-file-name)
-;; S-f8   : echo filename in the minibuffer and put in the kill ring.
+;; ;; TODO : Use the package easy-kill
+(map! :desc "filename in the minibuffer, in the buffer with C-u" "<f8>" 'pi/buffer-file-name)
 (map! :desc "echo filename in the minibuffer and put in the kill ring" "<S-f8>"
       (lambda nil
-        "Show the `buffer-file-name' (if any) and make it
-the latest kill in the kill ring."
         (interactive)
         (pi/buffer-file-name nil t)))
 
-;; ------------------------------
-;; * Suppression rapide de mots *
-(defun pi/backward-delete-word (arg)
-  "Delete characters backward until encountering the beginning of a word.
-With argument ARG, do this that many times."
-  (interactive "p")
-  (delete-region (point) (progn (backward-word arg) (point))))
 (map! :desc "Delete characters backward until encountering the beginning of a word."
       "<C-backspace>" 'pi/backward-delete-word)
 
-(defun delete-sexp (&optional arg)
-  "Delete the sexp (balanced expression) following point.
-With ARG, delete that many sexps after point.
-Negative arg -N means delete N sexps before point.
-This command assumes point is not in a string or comment."
-  (interactive "p")
-  (let ((opoint (point)))
-    (forward-sexp (or arg 1))
-    (delete-region opoint (point))))
-
-(defun backward-delete-sexp (&optional arg)
-  "Delete the sexp (balanced expression) preceding point.
-With ARG, delete that many sexps before point.
-Negative arg -N means delete N sexps after point.
-This command assumes point is not in a string or comment."
-  (interactive "p")
-  (delete-sexp (- (or arg 1))))
-
-(map! "<M-backspace>" 'backward-delete-sexp)
+(map! "<M-backspace>" 'pi/backward-delete-sexp)
 (map! "<M-delete>"
       (lambda ()
         (interactive)
@@ -92,14 +40,20 @@ This command assumes point is not in a string or comment."
 
 ;; ------------------------
 ;; * Key for other-window *
-(map! :desc "Select another window in cyclic ordering of windows." "<C-next>"
-      (lambda ()
-        (interactive)
-        (other-window 1 nil)))
-(map! :desc "Select another window in backwards ordering of windows." "<C-prior>"
-      (lambda ()
-        (interactive)
-        (other-window -1 nil)))
+(map!
+ :desc "Select another window in cyclic ordering of windows or with `ace-window`." "<C-next>"
+ (lambda (arg)
+   (interactive "p")
+   (if (functionp 'ace-window)
+       (ace-window arg)
+       (other-window 1 nil))))
+(map!
+ :desc "Select another window in backwards ordering of windows or with `ace-window`." "<C-prior>"
+ (lambda (arg)
+   (interactive "p")
+   (if (functionp 'ace-window)
+       (ace-window arg)
+     (other-window -1 nil))))
 
 ;; -------------------------------------------
 ;; * Filename completion anywhere with S-Tab *
@@ -109,7 +63,6 @@ This command assumes point is not in a string or comment."
 (map! :desc "Dynamically complete the filename under the cursor"
       "<S-iso-lefttab>" #'comint-dynamic-complete-filename
       "<S-tab>" #'comint-dynamic-complete-filename)
-
 
 (map! (:after consult)
       :desc "Open recent file."
@@ -122,8 +75,8 @@ This command assumes point is not in a string or comment."
 (map! (:after vertico)
       :desc "Swith to buffer with vertico in the same workspace."
       "<s-tab>" (lambda ()
-        (interactive)
-        (+vertico/switch-workspace-buffer t)))
+                  (interactive)
+                  (+vertico/switch-workspace-buffer t)))
 
 (map! (:after ido)
       :desc "Swith to buffer with ido."
@@ -139,47 +92,7 @@ This command assumes point is not in a string or comment."
 
 (map! :desc "Browse url at point." "C-c b" #'browse-url-at-point)
 
-(defun pi/kill-window-and-buffer()
-  "* Delete current window and buffer."
-  (interactive)
-  (kill-current-buffer)
-  (condition-case nil (delete-window) (error nil)))
-
 (map! :desc "Delete current window and buffer." "<f12>" 'pi/kill-window-and-buffer)
-
-(defun pi/indent-whole-html-buffer nil
-  "Indent the whole buffer except <pre> part in html mode."
-  (interactive)
-  (save-excursion
-    (beginning-of-buffer)
-    (let ((ppoint (point)))
-      (while (search-forward-regexp "<pre.*?>"  (point-max) t)
-        (indent-region ppoint (point) nil)
-        (search-forward-regexp "</pre>" (point-max) t)
-        (setq ppoint (+ 1 (point))))
-      (indent-region ppoint (point-max) nil))))
-
-;; ---------------------------
-;; * Indent the whole buffer *
-(defun pi/indent-whole-buffer nil
-  "Indent the whole buffer. If the mark `(concat comment-start \"--indent after--\")`
-is found in the buffer the indentation start after the last mark found."
-  (interactive)
-  (save-excursion
-    (if (assoc-string major-mode (list "xhtml-mode" "html-mode" "nxhtml-mode"))
-        (pi/indent-whole-html-buffer)
-      (progn
-        (beginning-of-buffer)
-        (let ((ppoint (point)))
-          (while (search-forward-regexp
-                  (concat
-                   (regexp-quote comment-start)
-                   "*--noindent--") (point-max) t)
-            (previous-line)
-            (indent-region ppoint (point) nil)
-            (next-line 2)
-            (setq ppoint (point)))
-          (indent-region ppoint (point-max) nil))))))
 
 (map! :desc "Delete current window and buffer." "<C-S-iso-lefttab>" 'pi/indent-whole-buffer)
 
@@ -215,25 +128,9 @@ is found in the buffer the indentation start after the last mark found."
 ;;     )
 ;;   )
 
-(defun pi/find-file-root ()
-  "* Find file as root."
-  (interactive)
-  (let ((file (ido-read-file-name "Find file AS ROOT : ")))
-    (find-file (concat "/su::" file))))
 (map! :desc "Find file as root" "C-x C-r" 'pi/find-file-root)
 
-(defun pi/home()
-  "* Move cursor at beginning of line or first non blank character
-depending where the cursor is."
-  (interactive)
-  (let ((pt_indent (point)))
-    (back-to-indentation)
-    (if (eq pt_indent (point))
-        (beginning-of-line))
-    ))
-
 (map! :desc "* Move cursor at beginning of line or first non blank character." "<home>" 'pi/home)
-
 
 ;; ;; TODO : to be tested
 ;; (defun pi/fill ()
@@ -245,25 +142,11 @@ depending where the cursor is."
 ;;       (do-auto-fill))))
 ;; (map! :desc "Use fill line or region as auto-fill-mode does." "M-q" 'pi/fill)
 
-;; See also comment-dwim
-(defun pi-?comment (&optional indentp)
-  "* Comment/Uncomment the entire line and indent if arg INDENTP is t."
-  (interactive)
-  (save-excursion
-    (if mark-active
-        (let ((br (if (< (point) (mark)) (point) (mark)))
-              (be (if (> (point) (mark)) (point) (mark))))
-          (comment-or-uncomment-region br be)
-          (and indentp (indent-region br be)))
-      (let ((br (progn  (back-to-indentation) (point)))
-            (be (progn (end-of-line) (point))))
-        (comment-or-uncomment-region br be)
-        (and indentp (indent-according-to-mode))))))
 
 (map! :desc "Comment/Uncomment the entire line and indent" "C-%" (lambda nil
                                                                    (interactive)
-                                                                   (pi-?comment t)))
-(map! :desc "Comment/Uncomment the entire line but not indent" "C-%" 'pi-?comment)
+                                                                   (pi/?comment t)))
+(map! :desc "Comment/Uncomment the entire line but not indent" "C-ù" 'pi/?comment)
 
 ;; ;; TODO : to be implemented
 ;; ;; Semicolon and comma at the end of the line
@@ -278,42 +161,7 @@ depending where the cursor is."
 ;;       (define-key flyspell-mode-map
 ;;         keyco 'pi-insert-comma-at-end-of-line)))
 
-(defun pi/insert-comment-section ()
-  "* To insert a section comments."
-  (interactive)
-  (let* ((str (if (and mark-active transient-mark-mode)
-                  (prog1
-                      (buffer-substring (region-beginning) (region-end))
-                    (delete-region (region-beginning) (region-end)))
-                (read-string "Section comment: ")))
-         (str_ (if (string= str "") " - " str))
-         (v1 (make-string (- fill-column 15) ?=))
-         (v2 (- fill-column 15 (length str_)))
-         (spce (make-string (floor v2 2) ?.))
-         (pt (progn (beginning-of-line) (point))))
-    (insert (concat "*" v1 "*\n*" spce str_ spce
-                    (unless (= (ceiling v2 2) (/ v2 2)) ".")
-                    "*\n*" v1 "*"))
-    (comment-region pt (point))
-    (next-line)
-    (beginning-of-line)))
 (map! :desc "Insert a section comments." "C-Μ" 'pi/insert-comment-section)
-
-(defun pi/insert-comment-sub-section ()
-  "* To insert a section sub comments"
-  (interactive)
-  (let* ((str (if (and mark-active transient-mark-mode)
-                  (prog1
-                      (buffer-substring (region-beginning) (region-end))
-                    (delete-region (region-beginning) (region-end)))
-                (read-string "Sub section comment: ")))
-         (str_ (if (string= str "") " - " str))
-         (v1 (make-string (+ (length str_) 4) ?-))
-         (pt (progn (beginning-of-line) (point))))
-    (insert (concat  v1 "\n* " str_ " *"))
-    (comment-region pt (point))
-    (next-line)
-    (beginning-of-line)))
 (map! :desc "Insert a section comments." "C-*" 'pi/insert-comment-sub-section)
 
 

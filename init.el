@@ -36,6 +36,7 @@
 
 
 (add-load-path! "pimacs/site-lisp")
+(add-load-path! "pimacs/etc")
 
 ;; (load! "pi-custom-definition")
 
@@ -52,6 +53,11 @@
 (load! "etc/pi-hooks")
 (load! "etc/pi-modes")
 (load! "etc/pi-desktop")
+
+;; (straight-use-package '(etc :type built-in :local-repo "etc"))
+
+(load! "etc/pi-functions")
+
 (load! "etc/pi-keys")
 
 (after! cc
