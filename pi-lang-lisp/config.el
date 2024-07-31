@@ -1,4 +1,4 @@
-;;; Package --- Custom definition of variables used by pimacs
+;;; pimacs/pi-lang-lisp/config.el -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -14,16 +14,29 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;; Code:
+;; Code:
 
-(defcustom pi-auto-fill-mode-hook-alist
-  '(text-mode-hook org-mode-hook)
-  "List of hooks for which we want auto-fill-mode --automatic break of long lines--."
-  :type 'hook
-  :group 'pimacs-coding)
+(after!
+ lisp-mode
+ (add-hook 'lisp-mode-hook 'turn-off-auto-fill))
 
-(provide 'pi-defcustom)
-;;; pi-defcustom.el ends here
+;; ;; TODO : add this face to others programming langages !!
+(after!
+ 'pi-theme
+ (add-hook 'emacs-lisp-mode-hook
+           (lambda ()
+             (font-lock-add-keywords
+              'nil
+              '(("\\(;; \\*=*\\*$\\)" 1 'pi-comment-section-face t)
+                ("\\(;; \\*\\..*\\.\\*$\\)" 1 'pi-comment-section-face t)
+                ("\\(;; -*\n;; \\*.*\\*$\\)" 1 'pi-comment-sub-section-face t)))))
+ (font-lock-add-keywords
+  'emacs-lisp-mode-hook
+  '(("\\(;; -*\n;; \\*.*\\*$\\)" 1 'pi-comment-sub-section-face t)))
+ )
+
+(provide 'config)
+;;; config.el ends here
 
 ;; Local variables:
 ;; coding: utf-8

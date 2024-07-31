@@ -1,4 +1,4 @@
-;;; Package --- pi hook configuration for general purpoose
+;;; pimacs/default/hook.el -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,6 @@
 
 ;;; Code:
 
-
 (add-hook 'before-save-hook
           (lambda ()
             (when buffer-file-name
@@ -27,21 +26,7 @@
                            (y-or-n-p (format "Directory %s does not exist. Create it ?" dir)))
                   (make-directory dir t))))))
 
-;; Except for makefile-mode…
-(after! make-mode
-        (add-hook
-         'makefile-mode-hook
-         '(lambda()
-            (setq indent-tabs-mode t)
-            )))
-
-(after! lisp-mode
-        (add-hook 'lisp-mode-hook 'turn-off-auto-fill))
-
 (add-hook 'after-save-hook 'pi-make-script-executable)
-
-(provide 'pi-hook)
-;;; pi-hook.el ends here
 
 ;; Local variables:
 ;; coding: utf-8

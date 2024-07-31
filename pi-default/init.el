@@ -1,4 +1,4 @@
-;;; Package --- description here
+;;; Package --- Custom definition of variables used by pimacs
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -16,17 +16,23 @@
 
 ;;; Code:
 
-;; Doom consider some buffers as unreal buffer (like *Message*)
-;; I want to see this buffers !!
-(setq doom-unreal-buffer-functions '(minibufferp))
+;; Set the debug option to enable a backtrace when
+;; problems occur.
+(defvar pi-error-msgs (list)
+  "* List of errors encountered when loading pi-configuration files.")
 
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-zenburn)
+(when (< emacs-major-version 27)
+  (setq inhibit-startup-message t)
+  (error "Configuration not supported on Emacs < 27."))
 
-(provide 'pi-doom)
-;;; pi-doom.el ends here
+(defcustom pi-auto-fill-mode-hook-alist
+  '(text-mode-hook org-mode-hook)
+  "List of hooks for which we want auto-fill-mode --automatic break of long lines--."
+  :type 'hook
+  :group 'pimacs-coding)
+
+(provide 'pi-defcustom)
+;;; pi-defcustom.el ends here
 
 ;; Local variables:
 ;; coding: utf-8
