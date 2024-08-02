@@ -1,4 +1,4 @@
-;;; Package --- pi enabled generic mode by default
+;;; pimacs/default/hook.el -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -18,31 +18,15 @@
 
 ;;; Code:
 
-;; Move cursor by camelCase
-(global-subword-mode 1)
+(add-hook 'before-save-hook
+          (lambda ()
+            (when buffer-file-name
+              (let ((dir (file-name-directory buffer-file-name)))
+                (when (and (not (file-exists-p dir))
+                           (y-or-n-p (format "Directory %s does not exist. Create it ?" dir)))
+                  (make-directory dir t))))))
 
-;; After selecting a region, inserting a new character will overwrite
-;; the whole region
-(delete-selection-mode 1)
-
-;; Show line/column number in the mode line
-(line-number-mode t)
-(column-number-mode t)
-;; Read automatically  .gz and .zip files
-(auto-compression-mode 1)
-
-;; Read images by default
-(auto-image-file-mode t)
-
-(global-whitespace-mode)
-
-;; Enables coloring in all modes
-(when (fboundp 'global-font-lock-mode)
-    (global-font-lock-mode 1))
-
-
-(provide 'pi-modes)
-;;; pi-modes.el ends here
+(add-hook 'after-save-hook 'pim-make-script-executable)
 
 ;; Local variables:
 ;; coding: utf-8

@@ -1,4 +1,4 @@
-;;; pimacs/default/hook.el -*- lexical-binding: t; -*-
+;;; pimacs/pim-default/package.el -*- no-byte-compile: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -14,19 +14,18 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;; Commentary:
+;; Code:
 
-;;; Code:
 
-(add-hook 'before-save-hook
-          (lambda ()
-            (when buffer-file-name
-              (let ((dir (file-name-directory buffer-file-name)))
-                (when (and (not (file-exists-p dir))
-                           (y-or-n-p (format "Directory %s does not exist. Create it ?" dir)))
-                  (make-directory dir t))))))
+;; ----------------------------------------
+;; * HTML rendering for buffers and files *
+;; Just call `htmlize-view-buffer' to show the current buffer in
+;; your web browser.
+(package! htmlize-view)
 
-(add-hook 'after-save-hook 'pi-make-script-executable)
+;; -----------------------
+;; * Remote File Editing *
+(package! tramp)
 
 ;; Local variables:
 ;; coding: utf-8

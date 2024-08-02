@@ -1,4 +1,4 @@
-;;; Package --- Custom definition of variables used by pimacs
+;;; -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -16,23 +16,9 @@
 
 ;;; Code:
 
-;; Set the debug option to enable a backtrace when
-;; problems occur.
-(defvar pi-error-msgs (list)
-  "* List of errors encountered when loading pi-configuration files.")
-
-(when (< emacs-major-version 27)
-  (setq inhibit-startup-message t)
-  (error "Configuration not supported on Emacs < 27."))
-
-(defcustom pi-auto-fill-mode-hook-alist
-  '(text-mode-hook org-mode-hook)
-  "List of hooks for which we want auto-fill-mode --automatic break of long lines--."
-  :type 'hook
-  :group 'pimacs-coding)
-
-(provide 'pi-defcustom)
-;;; pi-defcustom.el ends here
+ ;; Doom consider some buffers as unreal buffer (like *Message*)
+ ;; I want to see this buffers !!
+ (setq doom-unreal-buffer-functions '(minibufferp))
 
 ;; Local variables:
 ;; coding: utf-8

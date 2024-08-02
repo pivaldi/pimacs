@@ -1,4 +1,4 @@
-;;; Package --- pi c/c++ programming langage configuration.
+;;; -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -14,25 +14,18 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;;; Commentary:
-
 ;;; Code:
 
-;; Standardize indentation
-(defun pi/c-indent-setup ()
-  (setq-default c-basic-offset 2)
-  (c-set-offset 'substatement-open '0)
-  (c-set-offset 'brace-list-open '0)
-  (c-set-offset 'arglist-close '0)
-  (c-set-offset 'statement-case-open '0)
-  (c-set-offset 'arglist-cont-nonempty '4)
-  (c-set-offset 'arglist-intro 'c-basic-offset))
+;; Set the debug option to enable a backtrace when
+;; problems occur.
+(defvar pim-error-msgs (list)
+  "* List of errors encountered when loading pim-configuration files.")
 
-;; (add-hook 'c-mode-hook 'pi-c-indent-setup)
-(add-hook 'c++-mode-hook 'pi/c-indent-setup)
-
-(provide 'pi-c)
-;;; pi-c.el ends here
+(defcustom pim-auto-fill-mode-hook-alist
+  '(text-mode-hook org-mode-hook)
+  "List of hooks for which we want auto-fill-mode --automatic break of long lines--."
+  :type 'hook
+  :group 'pimacs-coding)
 
 ;; Local variables:
 ;; coding: utf-8

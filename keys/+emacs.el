@@ -1,6 +1,4 @@
-;;; Package -- pimacs keys configuration
-;;; Copyright (c) 2016, Philippe Ivaldi <www.piprime.fr>
-;; Version: $Id: pi-package.el,v 0.0 2016/03/23 15:51:19 Exp $
+;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -15,9 +13,9 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;; Code:
+;;; Commentary:
 
-(register-definition-prefixes "pi-functions" '("pi/"))
+;;; Code:
 
 (map! :desc "If at end of line, join with following; otherwise kill line." "C-k" 'pi/kill-and-join-forward)
 
@@ -152,14 +150,14 @@
 ;; ;; Semicolon and comma at the end of the line
 ;; (let ((keysm (kbd "C-;"))
 ;;       (keyco (kbd "C-,")))
-;;   (global-set-key keysm 'pi-insert-semicol-at-end-of-line)
+;;   (global-set-key keysm 'pim-insert-semicol-at-end-of-line)
 ;;   (if (boundp 'flyspell-mode-map)
 ;;       (define-key flyspell-mode-map
-;;         keysm 'pi-insert-semicol-at-end-of-line))
-;;   (global-set-key keyco 'pi-insert-comma-at-end-of-line)
+;;         keysm 'pim-insert-semicol-at-end-of-line))
+;;   (global-set-key keyco 'pim-insert-comma-at-end-of-line)
 ;;   (if (boundp 'flyspell-mode-map)
 ;;       (define-key flyspell-mode-map
-;;         keyco 'pi-insert-comma-at-end-of-line)))
+;;         keyco 'pim-insert-comma-at-end-of-line)))
 
 (map! :desc "Insert a section comments." "C-Μ" 'pi/insert-comment-section)
 (map! :desc "Insert a section comments." "C-*" 'pi/insert-comment-sub-section)
@@ -168,9 +166,9 @@
 ;; ;; TODO : Is it needed ?
 ;; ;; --------------------------------------------------------
 ;; ;; * Seeking a makefile recursively in directories higher *
-;; (setq pi-compilation-filenames '("Makefile" "makefile"))
+;; (setq pim-compilation-filenames '("Makefile" "makefile"))
 
-;; (defun pi-get-nearest-compilation-dir ()
+;; (defun pim-get-nearest-compilation-dir ()
 ;;   "Search for the compilation file traversing up the directory tree. Return the directory, not the file !
 ;; Src : http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFromParentDirectory"
 ;;   (let ((dir default-directory)
@@ -178,7 +176,7 @@
 ;; 	(nearest-compilation-dir 'nil))
 ;;     (while (and (not (string= dir parent-dir))
 ;; 		(not nearest-compilation-dir))
-;;       (dolist (filename pi-compilation-filenames)
+;;       (dolist (filename pim-compilation-filenames)
 ;; 	(setq file-path (concat dir filename))
 ;; 	(when (file-readable-p file-path)
 ;; 	  (setq nearest-compilation-dir dir)))
@@ -186,15 +184,15 @@
 ;; 	    parent-dir (file-name-directory (directory-file-name parent-dir))))
 ;;     nearest-compilation-dir))
 
-;; (defun pi-compile-above-makefile ()
+;; (defun pim-compile-above-makefile ()
 ;;   (interactive)
-;;   (let* ((mkf (pi-get-nearest-compilation-dir))
+;;   (let* ((mkf (pim-get-nearest-compilation-dir))
 ;;          (default-directory (directory-file-name mkf)))
 ;;     (if default-directory
 ;;         (progn
 ;;           (cd default-directory)
 ;;           (compile "[ -e ./ovyaproject.rc ] && source ovyaproject.rc; make")))))
-;; (global-set-key (kbd "<f9>") 'pi-compile-above-makefile)
+;; (global-set-key (kbd "<f9>") 'pim-compile-above-makefile)
 
 
 ;; ;; TODO : to be implemented
@@ -202,10 +200,10 @@
 ;; ;; * Scroll down the page rather than the cursor *
 ;; ;; use the key "Scroll Lock Num" ("Num Défil" in french) to toggle.
 ;; ;; C-up et C-down
-;; (autoload 'pi-scroll-lock-mode "pi-scroll-lock" "Toggle pi-scroll-lock-mode." t)
-;; (global-set-key (kbd "<Scroll_Lock>") 'pi-scroll-lock-mode)
+;; (autoload 'pim-scroll-lock-mode "pim-scroll-lock" "Toggle pim-scroll-lock-mode." t)
+;; (global-set-key (kbd "<Scroll_Lock>") 'pim-scroll-lock-mode)
 ;; ;; Switches to hl-line-mode when the cursor is locked.
-;; (setq pi-scroll-hl t)
+;; (setq pim-scroll-hl t)
 
 
 ;; C-/ is undo by default
@@ -232,6 +230,7 @@
 ;;   ;; Raccourci sur [f10]
 ;;   (global-set-key (kbd "<f10>") 'column-highlight-mode))
 
+;; Use https://elpa.gnu.org/packages/jumpc.html
 ;; ;; -----------------------------------
 ;; ;; * Return to the previous position *
 ;; (require 'jumptoprevpos)
@@ -239,17 +238,17 @@
 ;; (global-set-key (kbd "C->") 'jump-to-next-pos)
 
 ;; ;; Define C-x up | C-x down | C-x right | C-x left to resize the windows
-;; (require 'pi-resize-window "pi-resize-window.el" t)
+;; (require 'pim-resize-window "pim-resize-window.el" t)
 
 ;; ;; Default is dabbrev-expand mais hippie-expand est plus généraliste !
-;; (defcustom pi-use-hippie-expand-p nil
+;; (defcustom pim-use-hippie-expand-p nil
 ;;   "When set to true use hippie-expand instead of dabbrev-expand.
 ;; Default key binding is M-/
 ;; "
 ;;   :type 'boolean
 ;;   :group 'pimacs)
 
-;; (if pi-use-hippie-expand-p
+;; (if pim-use-hippie-expand-p
 ;;     (global-set-key "\M-/" 'hippie-expand)
 ;;   (global-set-key "\M-/" 'dabbrev-expand))
 
@@ -278,6 +277,7 @@
 ;; ;; ------------------------
 ;; ;; * Expand M-g goto-xxx *
 ;; (global-set-key (kbd "M-g d") 'beginning-of-defun)
+
 
 
 ;; Local variables:

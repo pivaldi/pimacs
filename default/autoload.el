@@ -1,4 +1,3 @@
-;;; pimacs/default/doom.el -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -14,15 +13,29 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;; Code:
+;; Commentary:
 
-(after!
- default
+;; THANKS:
 
- ;; Doom consider some buffers as unreal buffer (like *Message*)
- ;; I want to see this buffers !!
- (setq doom-unreal-buffer-functions '(minibufferp))
- )
+;; BUGS:
+
+;; INSTALLATION:
+
+;; Code:
+
+;;;###autoload
+(defun pim-make-script-executable ()
+  "If file starts with a shebang, make `buffer-file-name' executable.
+From http://www.emacswiki.org/emacs/MakingScriptsExecutableOnSave"
+  (save-excursion
+    (save-restriction
+      (widen)
+      (goto-char (point-min))
+      (when (and (looking-at "^#!")
+                 (not (file-executable-p buffer-file-name)))
+        (set-file-modes buffer-file-name
+                        (logior (file-modes buffer-file-name) #o100))
+        (message (concat "Made " buffer-file-name " executable"))))))
 
 ;; Local variables:
 ;; coding: utf-8

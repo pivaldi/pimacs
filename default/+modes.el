@@ -1,4 +1,4 @@
-;;; pimacs/pi-lang-make/config.el -*- lexical-binding: t; -*-
+;;; pimacs/default/mode.el -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -14,23 +14,31 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;; Commentary:
+;;; Commentary:
 
-;; THANKS:
+;;; Code:
 
-;; BUGS:
+;; Move cursor by camelCase
+(global-subword-mode 1)
 
-;; INSTALLATION:
+;; After selecting a region, inserting a new character will overwrite
+;; the whole region
+(delete-selection-mode 1)
 
-;; Code:
+;; Show line/column number in the mode line
+(line-number-mode t)
+(column-number-mode t)
+;; Read automatically  .gz and .zip files
+(auto-compression-mode 1)
 
-;; Except for makefile-mode…
-(after! make-mode
-        (add-hook
-         'makefile-mode-hook
-         '(lambda()
-            (setq indent-tabs-mode t)
-            )))
+;; Read images by default
+(auto-image-file-mode t)
+
+(global-whitespace-mode)
+
+;; Enables coloring in all modes
+(when (fboundp 'global-font-lock-mode)
+    (global-font-lock-mode 1))
 
 ;; Local variables:
 ;; coding: utf-8

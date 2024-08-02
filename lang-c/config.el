@@ -1,4 +1,4 @@
-;;; pimacs/pi-lang-lisp/config.el -*- lexical-binding: t; -*-
+;;; Package --- pi c/c++ programming langage configuration.
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -14,29 +14,14 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;; Code:
+;;;; Commentary:
 
-(after!
- lisp-mode
- (add-hook 'lisp-mode-hook 'turn-off-auto-fill))
+;;; Code:
 
-;; ;; TODO : add this face to others programming langages !!
-(after!
- 'pi-theme
- (add-hook 'emacs-lisp-mode-hook
-           (lambda ()
-             (font-lock-add-keywords
-              'nil
-              '(("\\(;; \\*=*\\*$\\)" 1 'pi-comment-section-face t)
-                ("\\(;; \\*\\..*\\.\\*$\\)" 1 'pi-comment-section-face t)
-                ("\\(;; -*\n;; \\*.*\\*$\\)" 1 'pi-comment-sub-section-face t)))))
- (font-lock-add-keywords
-  'emacs-lisp-mode-hook
-  '(("\\(;; -*\n;; \\*.*\\*$\\)" 1 'pi-comment-sub-section-face t)))
- )
+;; (add-hook 'c-mode-hook 'pim-c-indent-setup)
+(add-hook! 'c++-mode-hook 'pim-c-indent-setup)
 
-(provide 'config)
-;;; config.el ends here
+(provide 'pimacs/lang-c)
 
 ;; Local variables:
 ;; coding: utf-8

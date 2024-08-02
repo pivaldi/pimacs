@@ -1,4 +1,5 @@
-;;; Package --- pi-theme configuration
+;;; -*- lexical-binding: t; -*-
+
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 ;; This program is free software ; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as published by
@@ -31,8 +32,7 @@
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 (unless (modulep! +no-font)
-  (after!
-   pi-default
+  (after! pimacs/default
    (if
        (find-font (font-spec :name "TerminessTTF NF"))
        (setq
@@ -42,9 +42,8 @@
         doom-font-increment 1
         doom-font (font-spec :family default-font :foundry "PfEd" :weight 'bold :size default-font-size)
         )
-     (add-to-list 'pi-error-msgs "Please install Terminess TTF Nerd Fond : https://github.com/ryanoasis/nerd-fonts"))
-   )
-  )
+     (add-to-list 'pim-error-msgs "Please install Terminess TTF Nerd Fonts : https://github.com/ryanoasis/nerd-fonts"))
+   ))
 
 (setq-default
  ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -60,16 +59,18 @@
 
 ;; ------------------
 ;; * Comment header *
-(defface pi-comment-section-face
+(defface pim-comment-section-face
   `((t
      ( :foreground "yellow")))
   "Face used to highlighting header of comment section."
-  :group 'pi-comment)
-(defface pi-comment-sub-section-face
+  :group 'pim-comment)
+(defface pim-comment-sub-section-face
   `((t
      ( :foreground "white")))
   "Face used to highlighting header of comment section."
-  :group 'pi-comment)
+  :group 'pim-comment)
+
+(provide 'pimacs/theme)
 
 ;; Local variables:
 ;; coding: utf-8

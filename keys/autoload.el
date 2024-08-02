@@ -1,4 +1,3 @@
-;;; Package --- description here
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -16,21 +15,7 @@
 
 ;;;; Code:
 
-;;;;###autoload
-(defun pi-make-script-executable ()
-  "If file starts with a shebang, make `buffer-file-name' executable
-From http://www.emacswiki.org/emacs/MakingScriptsExecutableOnSave"
-  (save-excursion
-    (save-restriction
-      (widen)
-      (goto-char (point-min))
-      (when (and (looking-at "^#!")
-                 (not (file-executable-p buffer-file-name)))
-        (set-file-modes buffer-file-name
-                        (logior (file-modes buffer-file-name) #o100))
-        (message (concat "Made " buffer-file-name " executable"))))))
-
-;;;;###autoload
+;;;###autoload
 (defun pi/kill-and-join-forward (&optional arg)
   "If at end of line, join with following; otherwise kill line.
 Passes ARG to command `kill-line' when provided.
@@ -40,7 +25,7 @@ Deletes whitespace at join."
       (delete-indentation 1)
     (kill-line arg)))
 
-;;;;###autoload
+;;;###autoload
 (defun pi/buffer-file-name (prefix &optional killit)
   "Show the buffer file name (if any)
 and make it the latest kill in the kill ring if KILLIT is t.
@@ -56,7 +41,7 @@ With PREFIX, write in the current buffer."
           (message buffer-file-name)))
     (message "No file-name attached to the bufer")))
 
-;;;;###autoload
+;;;###autoload
 (defun pi/backward-delete-word (arg)
   "Delete characters backward until encountering the beginning of a word.
 With argument ARG, do this that many times."
@@ -64,7 +49,7 @@ With argument ARG, do this that many times."
   (delete-region (point) (progn (backward-word arg) (point))))
 
 
-;;;;###autoload
+;;;###autoload
 (defun pi/delete-sexp (&optional arg)
   "Delete the sexp (balanced expression) following point.
 With ARG, delete that many sexps after point.
@@ -75,7 +60,7 @@ This command assumes point is not in a string or comment."
     (forward-sexp (or arg 1))
     (delete-region opoint (point))))
 
-;;;;###autoload
+;;;###autoload
 (defun pi/backward-delete-sexp (&optional arg)
   "Delete the sexp (balanced expression) preceding point.
 With ARG, delete that many sexps before point.
@@ -84,12 +69,12 @@ This command assumes point is not in a string or comment."
   (interactive "p")
   (delete-sexp (- (or arg 1))))
 
-;;;;###autoload
+;;;###autoload
 (defun pi/kill-window-and-buffer()
   "* Delete current window and buffer."
   (interactive)
   (let ((wind (selected-window)))
-    (if (window-dedicated-p wind)
+    (if (not (buffer-file-name))
         (progn
           (let ((buffer-modified-p nil))
           (set-window-dedicated-p wind nil)
@@ -111,7 +96,7 @@ This command assumes point is not in a string or comment."
         (setq ppoint (+ 1 (point))))
       (indent-region ppoint (point-max) nil))))
 
-;;;;###autoload
+;;;###autoload
 (defun pi/indent-whole-buffer nil
   "Indent the whole buffer.
 If the mark `(concat comment-start \"--indent after--\")`
@@ -133,14 +118,14 @@ is found in the buffer the indentation start after the last mark found."
             (setq ppoint (point)))
           (indent-region ppoint (point-max) nil))))))
 
-;;;;###autoload
+;;;###autoload
 (defun pi/find-file-root ()
   "Find file as root."
   (interactive)
   (let ((file (read-file-name "Find file as root : ")))
     (find-file (concat "/su::" file))))
 
-;;;;###autoload
+;;;###autoload
 (defun pi/home()
   "Move cursor at beginning of line or first non blank character.
 Depending where the cursor is."
@@ -152,7 +137,7 @@ Depending where the cursor is."
     ))
 
 ;; See also comment-dwim
-;;;;###autoload
+;;;###autoload
 (defun pi/?comment (&optional indentp)
   "Comment/Uncomment the entire line and indent if arg INDENTP is t."
   (interactive)
@@ -167,7 +152,7 @@ Depending where the cursor is."
         (comment-or-uncomment-region br be)
         (and indentp (indent-according-to-mode))))))
 
-;;;;###autoload
+;;;###autoload
 (defun pi/insert-comment-section ()
   "Insert a section comments."
   (interactive)
@@ -188,7 +173,7 @@ Depending where the cursor is."
     (forward-line)
     (beginning-of-line)))
 
-;;;;###autoload
+;;;###autoload
 (defun pi/insert-comment-sub-section ()
   "Insert a section sub comments."
   (interactive)
@@ -205,8 +190,7 @@ Depending where the cursor is."
     (forward-line)
     (beginning-of-line)))
 
-(provide 'pi-functions)
-;;; pi-functions.el ends here
+;;; pim-functions.el ends here
 
 ;; Local variables:
 ;; coding: utf-8

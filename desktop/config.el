@@ -23,25 +23,25 @@
 ;; one session to another
 ;; The first time you save the state of the Emacs session, you must do
 ;; it manually, with the command `M-x desktop-save'.
-(require 'desktop)
-;; The directory in which the desktop file should be saved.
-;; Name of file for Emacs desktop, excluding the directory part.
-(setq desktop-base-file-name (concat ".desktop-" (user-real-login-name))
-      desktop-save t
-      ;; Does not save this files
-      desktop-buffers-not-to-save
-      (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
-              "\\|\\.el\\.gz\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
-              "\\)$")
-      )
-
-(desktop-save-mode 1)
-
-;; Does not save this modes
-(add-to-list 'desktop-modes-not-to-save 'dired-mode)
-(add-to-list 'desktop-modes-not-to-save 'Info-mode)
-(add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
-(add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
+;;;###package desktop
+(use-package! desktop
+ :config
+  ;; The directory in which the desktop file should be saved.
+  ;; Name of file for Emacs desktop, excluding the directory part.
+  (setq desktop-base-file-name (concat ".desktop-" (user-real-login-name))
+        desktop-save t
+        ;; Does not save this files
+        desktop-buffers-not-to-save
+        (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
+                "\\|\\.el\\.gz\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
+                "\\)$")
+        )
+  (desktop-save-mode 1)
+  ;; Does not save this modes
+  (add-to-list 'desktop-modes-not-to-save 'dired-mode)
+  (add-to-list 'desktop-modes-not-to-save 'Info-mode)
+  (add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
+  (add-to-list 'desktop-modes-not-to-save 'fundamental-mode))
 
 ;; Save the place of point
 (require 'saveplace)
@@ -50,9 +50,6 @@
 ;; Save action history.
 (when (require 'savehist "savehist.elc" t) ;; Part of emacs22+
   (savehist-mode t))
-
-(provide 'pi-desktop)
-;;; pi-desktop.el ends here
 
 ;; Local variables:
 ;; coding: utf-8
