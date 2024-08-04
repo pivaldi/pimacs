@@ -74,4 +74,5 @@
 
 ;; Local variables:
 ;; coding: utf-8
+;; eval: (rename-buffer "pimacs/theme/config.el")
 ;; End:

@@ -39,4 +39,5 @@
 
 ;; Local variables:
 ;; coding: utf-8
+;; eval: (rename-buffer "pimacs/lang-lisp/config.el")
 ;; End:

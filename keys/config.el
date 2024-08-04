@@ -22,6 +22,9 @@
    ))
 
 (provide 'pimacs/keys)
- ;; Local variables:
- ;; coding: utf-8
+
+
+;; Local variables:
+;; coding: utf-8
+;; eval: (rename-buffer "pimacs/keys-config.el")
  ;; End:

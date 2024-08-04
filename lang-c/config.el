@@ -25,4 +25,5 @@
 
 ;; Local variables:
 ;; coding: utf-8
+;; eval: (rename-buffer "pimacs/lang-c/config.el")
 ;; End:

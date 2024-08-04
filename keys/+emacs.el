@@ -1,3 +1,4 @@
+;;; Package pimacs/keys --- PIMacs key binding -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -17,19 +18,19 @@
 
 ;;; Code:
 
-(map! :desc "If at end of line, join with following; otherwise kill line." "C-k" 'pi/kill-and-join-forward)
+(map! :desc "If at end of line, join with following; otherwise kill line." "C-k" #'pim/kill-and-join-forward)
 
 ;; ;; TODO : Use the package easy-kill
-(map! :desc "filename in the minibuffer, in the buffer with C-u" "<f8>" 'pi/buffer-file-name)
+(map! :desc "filename in the minibuffer, in the buffer with C-u" "<f8>" #'pim/buffer-file-name)
 (map! :desc "echo filename in the minibuffer and put in the kill ring" "<S-f8>"
       (lambda nil
         (interactive)
-        (pi/buffer-file-name nil t)))
+        (pim/buffer-file-name nil t)))
 
 (map! :desc "Delete characters backward until encountering the beginning of a word."
-      "<C-backspace>" 'pi/backward-delete-word)
+      "<C-backspace>" #'pim/backward-delete-word)
 
-(map! "<M-backspace>" 'pi/backward-delete-sexp)
+(map! "<M-backspace>" #'pim/backward-delete-sexp)
 (map! "<M-delete>"
       (lambda ()
         (interactive)
@@ -90,9 +91,9 @@
 
 (map! :desc "Browse url at point." "C-c b" #'browse-url-at-point)
 
-(map! :desc "Delete current window and buffer." "<f12>" 'pi/kill-window-and-buffer)
+(map! :desc "Delete current window and buffer." "<f12>" 'pim/kill-window-and-buffer)
 
-(map! :desc "Delete current window and buffer." "<C-S-iso-lefttab>" 'pi/indent-whole-buffer)
+(map! :desc "Delete current window and buffer." "<C-S-iso-lefttab>" 'pim/indent-whole-buffer)
 
 ;; ;; Todo : enable this !
 ;; (if (require 'move-text nil t)
@@ -126,41 +127,31 @@
 ;;     )
 ;;   )
 
-(map! :desc "Find file as root" "C-x C-r" 'pi/find-file-root)
+(map! :desc "Find file as root" "C-x C-r" 'pim/find-file-root)
 
-(map! :desc "* Move cursor at beginning of line or first non blank character." "<home>" 'pi/home)
+(map! :desc "* Move cursor at beginning of line or first non blank character." "<home>" 'pim/home)
 
-;; ;; TODO : to be tested
-;; (defun pi/fill ()
-;;   "Use fill line or region as auto-fill-mode does"
-;;   (interactive)
-;;   (save-excursion
-;;     (if mark-active
-;;         (fill-region-as-paragraph (point) (mark))
-;;       (do-auto-fill))))
-;; (map! :desc "Use fill line or region as auto-fill-mode does." "M-q" 'pi/fill)
-
+(map! :desc "Use fill line or region as auto-fill-mode does." "M-q" #'pim/fill)
 
 (map! :desc "Comment/Uncomment the entire line and indent" "C-%" (lambda nil
                                                                    (interactive)
-                                                                   (pi/?comment t)))
-(map! :desc "Comment/Uncomment the entire line but not indent" "C-ù" 'pi/?comment)
+                                                                   (pim/?comment t)))
+(map! :desc "Comment/Uncomment the entire line but not indent" "C-ù" #'pim/?comment)
 
-;; ;; TODO : to be implemented
 ;; ;; Semicolon and comma at the end of the line
-;; (let ((keysm (kbd "C-;"))
-;;       (keyco (kbd "C-,")))
-;;   (global-set-key keysm 'pim-insert-semicol-at-end-of-line)
-;;   (if (boundp 'flyspell-mode-map)
-;;       (define-key flyspell-mode-map
-;;         keysm 'pim-insert-semicol-at-end-of-line))
-;;   (global-set-key keyco 'pim-insert-comma-at-end-of-line)
-;;   (if (boundp 'flyspell-mode-map)
-;;       (define-key flyspell-mode-map
-;;         keyco 'pim-insert-comma-at-end-of-line)))
+(let ((keysm (kbd "C-;"))
+      (keyco (kbd "C-,")))
+  (map! :desc "Fancy insert/delete semicolon at the end of the line." keysm #'pim/insert-semicol-at-end-of-line)
+  (map! :desc "Fancy insert/delete comma at the end of the line." keyco #'pim/insert-comma-at-end-of-line)
+  ;; Rebind flyspell default key-binding
+  (after! flyspell
+          (define-key flyspell-mode-map
+                      keysm 'pim/insert-semicol-at-end-of-line)
+          (define-key flyspell-mode-map
+                      keyco 'pim/insert-comma-at-end-of-line)))
 
-(map! :desc "Insert a section comments." "C-Μ" 'pi/insert-comment-section)
-(map! :desc "Insert a section comments." "C-*" 'pi/insert-comment-sub-section)
+(map! :desc "Insert a section comments." "C-Μ" #'pim/insert-comment-section)
+(map! :desc "Insert a section comments." "C-*" #'pim/insert-comment-sub-section)
 
 
 ;; ;; TODO : Is it needed ?
@@ -207,7 +198,10 @@
 
 
 ;; C-/ is undo by default
-(map! :desc "Redo !" "C-:" 'redo)
+(after!
+ undo-fu
+ (map! :desc "Redo from undo-fu" "C-z" #'undo-fu-only-undo)
+ (map! :desc "Undo from undo-fu" "C-S-z" #'undo-fu-only-redo))
 
 ;; Non-breaking spaces with quotes please.
 (map! :desc "Non-breaking spaces with quotes please." "«"
@@ -236,6 +230,12 @@
 ;; (require 'jumptoprevpos)
 ;; (global-set-key (kbd "C-<") 'jump-to-prev-pos)
 ;; (global-set-key (kbd "C->") 'jump-to-next-pos)
+
+(use-package! jumpc
+ :config
+ (jumpc)
+ (map! :desc "Jump to prev pos" "C-<" #'jumpc-jump-backward)
+ (map! :desc "Jump to next pos" "C->" #'jumpc-jump-forward))
 
 ;; ;; Define C-x up | C-x down | C-x right | C-x left to resize the windows
 ;; (require 'pim-resize-window "pim-resize-window.el" t)
@@ -278,8 +278,7 @@
 ;; ;; * Expand M-g goto-xxx *
 ;; (global-set-key (kbd "M-g d") 'beginning-of-defun)
 
-
-
 ;; Local variables:
 ;; coding: utf-8
+;; eval: (rename-buffer "pimacs/keys/+emacs.el")
 ;; End:

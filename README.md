@@ -1,4 +1,4 @@
-# PIMACS
+# PIMacs
 
 ## Extended Configuration of Emacs on Top of Doom Emacs
 
