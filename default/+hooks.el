@@ -26,6 +26,28 @@
                            (y-or-n-p (format "Directory %s does not exist. Create it ?" dir)))
                   (make-directory dir t))))))
 
+;; ----------------------------------------------------
+;; * Auto-fill: coupure automatique de lignes longues *
+;; So that the auto-fill mode does not cut off at the place of a ":" or ";" etc..
+;; Author: Matieux Moy http://matthieu-moy.fr/spip/?lang=en
+(defun pim-fill-nobreak-predicate ()
+  (save-match-data
+    (or (looking-at "[ \t]*[)}»!?;:]")
+        (looking-at "[ \t]*\\.\\.\\.")
+        (save-excursion
+          (skip-chars-backward " \t")
+          (backward-char 1)
+          (looking-at "[([{«]")))))
+(setq fill-nobreak-predicate (list 'pim-fill-nobreak-predicate))
+
+(after!
+ pimacs/default
+ (dolist (hook pim-auto-fill-mode-hook-alist)
+   (add-hook hook
+             (lambda ()
+               (auto-fill-mode 1))))
+ )
+
 (add-hook 'after-save-hook 'pim-make-script-executable)
 
 ;; Local variables:

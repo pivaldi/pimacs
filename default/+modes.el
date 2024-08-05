@@ -40,6 +40,10 @@
 (when (fboundp 'global-font-lock-mode)
     (global-font-lock-mode 1))
 
+(when (fboundp 'global-display-fill-column-indicator-mode)
+  (global-display-fill-column-indicator-mode 1))
+
+
 ;; Local variables:
 ;; coding: utf-8
 ;; End:

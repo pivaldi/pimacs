@@ -16,41 +16,61 @@
 
 ;;; Code:
 
-(when (require 'recentf "recentf.elc" t)
-  (recentf-mode 1))
+(use-package!
+ recentf
+ :defer t
+ :config
+ (recentf-mode 1))
 
 ;; If desktop saving is turned on, the state of Emacs is saved from
 ;; one session to another
 ;; The first time you save the state of the Emacs session, you must do
 ;; it manually, with the command `M-x desktop-save'.
 ;;;###package desktop
-(use-package! desktop
+(use-package!
+ desktop
+ :defer t
  :config
-  ;; The directory in which the desktop file should be saved.
-  ;; Name of file for Emacs desktop, excluding the directory part.
-  (setq desktop-base-file-name (concat ".desktop-" (user-real-login-name))
-        desktop-save t
-        ;; Does not save this files
-        desktop-buffers-not-to-save
-        (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
-                "\\|\\.el\\.gz\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
-                "\\)$")
-        )
-  (desktop-save-mode 1)
-  ;; Does not save this modes
-  (add-to-list 'desktop-modes-not-to-save 'dired-mode)
-  (add-to-list 'desktop-modes-not-to-save 'Info-mode)
-  (add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
-  (add-to-list 'desktop-modes-not-to-save 'fundamental-mode))
+ ;; The directory in which the desktop file should be saved.
+ ;; Name of file for Emacs desktop, excluding the directory part.
+ (setq desktop-base-file-name (concat ".desktop-" (user-real-login-name))
+       desktop-save t
+       ;; Does not save this files
+       desktop-buffers-not-to-save
+       (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
+               "\\|\\.el\\.gz\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
+               "\\)$")
+       )
+ (desktop-save-mode 1)
+ ;; Does not save this modes
+ (add-to-list 'desktop-modes-not-to-save 'dired-mode)
+ (add-to-list 'desktop-modes-not-to-save 'Info-mode)
+ (add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
+ (add-to-list 'desktop-modes-not-to-save 'fundamental-mode))
 
 ;; Save the place of point
-(require 'saveplace)
-(setq-default save-place t) ;; activation
+;;;###package saveplace
+(use-package!
+ saveplace
+ :defer t
+ :config
+ (setq-default save-place t) ;; activation
+ )
 
-;; Save action history.
-(when (require 'savehist "savehist.elc" t) ;; Part of emacs22+
-  (savehist-mode t))
+(use-package!
+ savehist
+ :defer t
+ :config
+ (savehist-mode t)
+ )
+
+;; (when (fboundp 'doom/quicksave-session)
+;;   ;; runs after 10s of idle time
+;;   (run-with-idle-timer 60 t #'doom/quicksave-session))
+
+(provide 'pimacs/desktop)
 
 ;; Local variables:
 ;; coding: utf-8
+;; eval: (rename-buffer "pimacs/desktop/config.el")
 ;; End:

@@ -67,19 +67,27 @@
       :desc "Open recent file."
       :g "C-S-t" 'consult-recent-file)
 
-(map! (:after vertico)
-      :desc "Swith to buffer with vertico."
-      "<C-tab>" '+vertico/switch-workspace-buffer)
+(cond
+ ((modulep! :completion vertico)
+  (map!
+   :desc "Swith to buffer with the same workspace."
+   "<C-tab>" #'+vertico/switch-workspace-buffer)
+  )
+ ((modulep! :completion helm)
+  (map!
+   :desc "Swith to buffer with the same workspace."
+   "<C-tab>" #'+helm/workspace-mini)
+  )
+ ((modulep! :completion ivy)
+  (map!
+   :desc "Swith to buffer with the same workspace."
+   "<C-tab>" #'+ivy/switch-workspace-buffer)
+  )
+ )
 
-(map! (:after vertico)
-      :desc "Swith to buffer with vertico in the same workspace."
-      "<s-tab>" (lambda ()
-                  (interactive)
-                  (+vertico/switch-workspace-buffer t)))
-
-(map! (:after ido)
-      :desc "Swith to buffer with ido."
-      "<C-tab>" 'ido-switch-buffer)
+(map! (:after consult)
+      :desc "Swith to buffer with support for virtual buffers."
+      "<s-tab>" 'consult-buffer)
 
 ;; ;; TODO : enable it
 ;; ;; ----------------------
@@ -198,10 +206,8 @@
 
 
 ;; C-/ is undo by default
-(after!
- undo-fu
  (map! :desc "Redo from undo-fu" "C-z" #'undo-fu-only-undo)
- (map! :desc "Undo from undo-fu" "C-S-z" #'undo-fu-only-redo))
+ (map! :desc "Undo from undo-fu" "C-S-z" #'undo-fu-only-redo)
 
 ;; Non-breaking spaces with quotes please.
 (map! :desc "Non-breaking spaces with quotes please." "«"
@@ -223,13 +229,6 @@
 ;;   (require 'col-highlight)
 ;;   ;; Raccourci sur [f10]
 ;;   (global-set-key (kbd "<f10>") 'column-highlight-mode))
-
-;; Use https://elpa.gnu.org/packages/jumpc.html
-;; ;; -----------------------------------
-;; ;; * Return to the previous position *
-;; (require 'jumptoprevpos)
-;; (global-set-key (kbd "C-<") 'jump-to-prev-pos)
-;; (global-set-key (kbd "C->") 'jump-to-next-pos)
 
 (use-package! jumpc
  :config

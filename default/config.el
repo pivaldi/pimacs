@@ -88,32 +88,18 @@
  ;; numbers are disabled. For relative line numbers, set this to `relative'.
  display-line-numbers-type nil
  package-native-compile t
- )
+ display-fill-column-indicator-character "│"
+ display-fill-column-indicator t
+)
+
+;; Since Emacs 29:
+(setopt display-fill-column-indicator-column 10)
 
 ;; ---------------------
 ;; * Prefered encoding *
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-language-environment "UTF-8")
-
-;; ----------------------------------------------------
-;; * Auto-fill: coupure automatique de lignes longues *
-;; ;; Pour ne pas que le mode auto-fill coupe à l'endroit d'un ":" ou ";" etc..
-;; ;; Auteur: Matieux Moy http://www-verimag.imag.fr/~moy/emacs/
-;; (defun pim-fill-nobreak-predicate ()
-;;   (save-match-data
-;;     (or (looking-at "[ \t]*[])}»!?;:]")
-;;         (looking-at "[ \t]*\\.\\.\\.")
-;;         (save-excursion
-;;           (skip-chars-backward " \t")
-;;           (backward-char 1)
-;;           (looking-at "[([{«]")))))
-;; (setq fill-nobreak-predicate (list 'pim-fill-nobreak-predicate))
-
-(dolist (hook pim-auto-fill-mode-hook-alist)
-  (add-hook hook
-            (lambda ()
-              (auto-fill-mode 1))))
 
 ;; -----------------------------------------------------
 ;; * Active le serveur Emacs pour utiliser emacsclient *
@@ -261,5 +247,5 @@
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/default-config.el")
+;; eval: (rename-buffer "pimacs/default/config.el")
 ;; End:

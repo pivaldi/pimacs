@@ -32,30 +32,64 @@
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 (unless (modulep! +no-font)
-  (after! pimacs/default
+  (after!
+   pimacs/default
    (if
        (find-font (font-spec :name "TerminessTTF NF"))
-       (setq
-        default-font "TerminessTTF NF"
-        default-font-size 14.0
-        default-nice-size 12.0
-        doom-font-increment 1
-        doom-font (font-spec :family default-font :foundry "PfEd" :weight 'bold :size default-font-size)
-        )
+       (progn
+         (setq
+          doom-font-increment 1
+          doom-font (font-spec :family "TerminessTTF NF" :foundry "PfEd" :weight 'bold :size 19 :foreground "#DCDCCC")
+          )
+         (set-frame-font doom-font nil t))
+
      (add-to-list 'pim-error-msgs "Please install Terminess TTF Nerd Fonts : https://github.com/ryanoasis/nerd-fonts"))
    ))
+
+
+(unless (modulep! +no-zenburn-theme)
+  ;; If you'd like to tweak the theme by changing just a few colors,
+  ;; you can do so by defining new values in the
+  ;; zenburn-override-colors-alist variable before loading the theme.
+  (defvar zenburn-override-colors-alist
+    '(("zenburn-bg-05" . "#303030")))
+
+  (use-package!
+   zenburn-theme
+   :init
+   (setq
+    ;; use variable-pitch fonts for some headings and titles
+    zenburn-use-variable-pitch t
+    ;; scale headings in org-mode
+    zenburn-scale-org-headlines t
+    ;; scale headings in outline-mode
+    zenburn-scale-outline-headlines t
+    zenburn-fg "#dcdccc"
+    )
+
+   :config
+   (load-theme 'zenburn t)
+   )
+  )
 
 (setq-default
  ;; This determines the style of line numbers in effect. If set to `nil', line
  ;; numbers are disabled. For relative line numbers, set this to `relative'.
- display-line-numbers nil)
+ display-line-numbers nil
+ )
+
+;; Disable hl-line-mode in prog-mode and text-mode.
+(use-package!
+ hl-line
+ :config
+ (setq global-hl-line-modes '(special-mode org-agenda-mode dired-mode))
+ )
 
 (unless (modulep! +no-whitespace-style)
   ;; See useless white-spaces
   (set-face-attribute 'trailing-whitespace nil
                       :background "#2F5555")
-  (setq whitespace-style '(face tabs trailing))
-  )
+  (setq whitespace-style '(face tabs trailing)))
 
 ;; ------------------
 ;; * Comment header *
@@ -63,12 +97,12 @@
   `((t
      ( :foreground "yellow")))
   "Face used to highlighting header of comment section."
-  :group 'pim-comment)
+  :group 'faces)
 (defface pim-comment-sub-section-face
   `((t
      ( :foreground "white")))
   "Face used to highlighting header of comment section."
-  :group 'pim-comment)
+  :group 'faces)
 
 (provide 'pimacs/theme)
 
