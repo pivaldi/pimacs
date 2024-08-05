@@ -52,4 +52,5 @@
 
 ;; Local variables:
 ;; coding: utf-8
+;; eval: (rename-buffer "pimacs/default/+hooks.el")
 ;; End:

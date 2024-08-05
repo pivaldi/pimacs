@@ -1,4 +1,4 @@
-;;; pimacs/default/mode.el -*- lexical-binding: t; -*-
+;;; Package pimacs/session --- description here
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -18,33 +18,20 @@
 
 ;;; Code:
 
-;; Move cursor by camelCase
-(global-subword-mode 1)
+;; Restoring workspace
+(when (modulep! :ui workspaces)
+  (add-hook!
+   'window-setup-hook
+   (progn
+     (doom/quickload-session t)
+     (when (+workspace-exists-p "default")
+       (+workspace-switch "default" nil))
+     )))
 
-;; After selecting a region, inserting a new character will overwrite
-;; the whole region
-(delete-selection-mode 1)
-
-;; Show line/column number in the mode line
-(line-number-mode t)
-(column-number-mode t)
-;; Read automatically  .gz and .zip files
-(auto-compression-mode 1)
-
-;; Read images by default
-(auto-image-file-mode t)
-
-(global-whitespace-mode)
-
-;; Enables coloring in all modes
-(when (fboundp 'global-font-lock-mode)
-    (global-font-lock-mode 1))
-
-(when (fboundp 'global-display-fill-column-indicator-mode)
-  (global-display-fill-column-indicator-mode 1))
-
+(provide 'pimacs/session)
+;;; config.el ends here
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/default/+modes.el")
+;; eval: (rename-buffer "pimacs/session/config.el")
 ;; End:

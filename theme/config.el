@@ -39,7 +39,8 @@
        (progn
          (setq
           doom-font-increment 1
-          doom-font (font-spec :family "TerminessTTF NF" :foundry "PfEd" :weight 'bold :size 19 :foreground "#DCDCCC")
+          ;; TODO : Make the default font size an option
+          doom-font (font-spec :family "TerminessTTF NF" :foundry "PfEd" :weight 'bold :size 18 :foreground "#DCDCCC")
           )
          (set-frame-font doom-font nil t))
 
@@ -81,6 +82,7 @@
 ;; Disable hl-line-mode in prog-mode and text-mode.
 (use-package!
  hl-line
+ :defer t
  :config
  (setq global-hl-line-modes '(special-mode org-agenda-mode dired-mode))
  )

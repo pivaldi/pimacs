@@ -64,7 +64,7 @@
       "<S-tab>" #'comint-dynamic-complete-filename)
 
 (map! (:after consult)
-      :desc "Open recent file."
+      :desc "Open recent file à la Chromium/Firefox."
       :g "C-S-t" 'consult-recent-file)
 
 (cond
@@ -80,14 +80,15 @@
   )
  ((modulep! :completion ivy)
   (map!
-   :desc "Swith to buffer with the same workspace."
+   :desc "Swith to buffer with the same workspace. Use 'C-x B' for extended buffer/file list"
    "<C-tab>" #'+ivy/switch-workspace-buffer)
   )
  )
 
-(map! (:after consult)
-      :desc "Swith to buffer with support for virtual buffers."
-      "<s-tab>" 'consult-buffer)
+(when (modulep! :ui workspaces))
+(map!
+ :desc "Swith workspace."
+ "<s-tab>" '+workspace/switch-to)
 
 ;; ;; TODO : enable it
 ;; ;; ----------------------
@@ -230,7 +231,9 @@
 ;;   ;; Raccourci sur [f10]
 ;;   (global-set-key (kbd "<f10>") 'column-highlight-mode))
 
-(use-package! jumpc
+(use-package!
+ jumpc
+ :defer t
  :config
  (jumpc)
  (map! :desc "Jump to prev pos" "C-<" #'jumpc-jump-backward)

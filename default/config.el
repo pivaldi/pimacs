@@ -101,19 +101,15 @@
 (set-default-coding-systems 'utf-8)
 (set-language-environment "UTF-8")
 
-;; -----------------------------------------------------
-;; * Active le serveur Emacs pour utiliser emacsclient *
-(when (string= system-type "gnu/linux")
-  (require 'server)
-  (unless server-process (ignore-errors (server-start))))
-
 ;; -------------------------------------
 ;; * Rendu HTML de buffers et fichiers *
 ;; Just call `htmlize-view-buffer' to show the current buffer in
 ;; your web browser.
 ;;;###package html-view
-(after!
+(use-package!
  htmlize-view
+ :defer t
+ :config
 (setq
  htmlize-convert-nonascii-to-entities nil
  htmlize-html-charset "utf-8")
