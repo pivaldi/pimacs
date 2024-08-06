@@ -233,52 +233,36 @@
 
 (use-package!
  jumpc
- :defer t
+ ;; :defer t ;; does not work when deferred
  :config
  (jumpc)
  (map! :desc "Jump to prev pos" "C-<" #'jumpc-jump-backward)
  (map! :desc "Jump to next pos" "C->" #'jumpc-jump-forward))
 
+;; TODO : To be implemented
 ;; ;; Define C-x up | C-x down | C-x right | C-x left to resize the windows
 ;; (require 'pim-resize-window "pim-resize-window.el" t)
 
-;; ;; Default is dabbrev-expand mais hippie-expand est plus généraliste !
-;; (defcustom pim-use-hippie-expand-p nil
-;;   "When set to true use hippie-expand instead of dabbrev-expand.
-;; Default key binding is M-/
-;; "
-;;   :type 'boolean
-;;   :group 'pimacs)
+;; ----------------------
+;; * disable insert key *
+(map! :desc "Disable overwrite-mode pressing <insert> key." "<insert>"
+ (lambda nil
+   (interactive)
+   (message "Insert is desabled by PIMacs. Use \"M-x overwrite-mode\" instead.")))
 
-;; (if pim-use-hippie-expand-p
-;;     (global-set-key "\M-/" 'hippie-expand)
-;;   (global-set-key "\M-/" 'dabbrev-expand))
+;; ----------------------------
+;; * C-f1 toggle the menu bar *
+(map! :desc "Toggle menu bar" "<C-f1>" #'menu-bar-mode)
 
-;; ;; ----------------------
-;; ;; * disable insert key *
-;; (global-set-key (kbd "<insert>")
-;;                 (lambda nil
-;;                   (interactive)
-;;                   (message "Insert is desabled. Use \"M-x overwrite-mode\" instead")))
+;; ----------------------------------
+;; * Useful binding to create macro *
+(map! :desc "Start the definition of a macro." "S-<f4>" #'kmacro-start-macro)
+(map! :desc "Ending the definition of a macro." "<f4>" #'kmacro-end-or-call-macro)
+(map! :desc "Edit the last defined macro." "<C-f4>" #'kmacro-edit-macro)
 
-;; ;; ----------------------------
-;; ;; * C-f1 toggle the menu bar *
-;; (global-set-key (kbd "<C-f1>") 'menu-bar-mode)
-
-;; ;; ------------------------
-;; ;; * Pour créer une macro *
-;; ;; Début de définition d'une macro
-;; (if (fboundp 'kmacro-start-macro)
-;;     (global-set-key (kbd "S-<f4>") 'kmacro-start-macro)
-;;   ;; Termine la définition en cours sinon execute la dernière.
-;;   (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
-;;   ;; Edite la dernière macro
-;;   (global-set-key (kbd "<C-f4>") 'kmacro-edit-macro))
-
-
-;; ;; ------------------------
-;; ;; * Expand M-g goto-xxx *
-;; (global-set-key (kbd "M-g d") 'beginning-of-defun)
+;; ------------------------
+;; * Expand M-g goto-xxx *
+(map! :desc "Move backward to the beginning of a defun." "M-g d" #'beginning-of-defun)
 
 ;; Local variables:
 ;; coding: utf-8
