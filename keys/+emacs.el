@@ -136,15 +136,18 @@
 ;;     )
 ;;   )
 
-(map! :desc "Find file as root" "C-x C-r" 'pim/find-file-root)
+(map! :desc "Find file as root" "C-x C-r" #'pim/find-file-root)
 
-(map! :desc "* Move cursor at beginning of line or first non blank character." "<home>" 'pim/home)
+(map! :desc "* Move cursor at beginning of line or first non blank character." "<home>" #'pim/home)
+(map! :desc "* Move cursor at beginning of line or first non blank character." "C-M-<prior>" #'pim/home)
+(map! :desc "* Move cursor at end of line." "C-M-<next>" 'end-of-line)
 
 (map! :desc "Use fill line or region as auto-fill-mode does." "M-q" #'pim/fill)
 
-(map! :desc "Comment/Uncomment the entire line and indent" "C-%" (lambda nil
-                                                                   (interactive)
-                                                                   (pim/?comment t)))
+(map! :desc "Comment/Uncomment the entire line and indent" "C-%"
+      (lambda nil
+        (interactive)
+        (pim/?comment t)))
 (map! :desc "Comment/Uncomment the entire line but not indent" "C-ù" #'pim/?comment)
 
 ;; ;; Semicolon and comma at the end of the line
@@ -263,6 +266,35 @@
 ;; ------------------------
 ;; * Expand M-g goto-xxx *
 (map! :desc "Move backward to the beginning of a defun." "M-g d" #'beginning-of-defun)
+
+;; -------------------
+;; * scroll in place *
+(map! :desc "Scroll up keeping the cursor on the same line." "<C-M-up>"
+       (lambda nil
+  (interactive)
+  (let ((scroll-preserve-screen-position t))
+    (scroll-up 1))))
+
+(map! :desc "Scroll down keeping the cursor on the same line" "<C-M-down>"
+       (lambda nil
+  (interactive)
+  (let ((scroll-preserve-screen-position t))
+    (scroll-down 1))))
+
+;; -------------------------
+;; * Navigate in long line *
+(map! :desc "Scrolling up long line." "<C-up>"
+      (lambda nil
+  (interactive)
+  (let ((line-move-visual nil))
+    (forward-line -1))))
+
+(map! :desc "Scrolling down in long line." "<C-down>"
+      (lambda nil
+  (interactive)
+  (let ((line-move-visual nil))
+    (forward-line))))
+
 
 ;; Local variables:
 ;; coding: utf-8
