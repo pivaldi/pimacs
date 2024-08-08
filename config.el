@@ -5,7 +5,7 @@
 
 (setq
  user-full-name "Philippe Ivaldi"
- user-mail-address "xxx@xxx.xx"
+ user-mail-address "emacs@MY_GIT_USER_NAME.me"
  ;; doom-theme 'doom-zenburn
- doom-theme nil
+ doom-theme nil ;; I use a slightly customized Zenburn theme by PIMacs.
  )

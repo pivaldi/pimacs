@@ -1,6 +1,8 @@
 (when (modulep! :editor evil)
-  (error! "PImacs does not provide key configuration for evil mode. Push request is needed."))
+  (warn! "PImacs does not provide good key configuration for evil mode. Push request is needed."))
 
+(when (not (modulep! :pimacs functions))
+  (error! "PIMacs functions module must be enabled to use the PIMacs keys module !"))
 
 ;; Local variables:
 ;; coding: utf-8

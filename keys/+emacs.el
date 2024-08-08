@@ -45,7 +45,7 @@
    (interactive "p")
    (if (functionp 'ace-window)
        (ace-window arg)
-       (other-window 1 nil))))
+     (other-window 1 nil))))
 (map!
  :desc "Select another window in backwards ordering of windows or with `ace-window`." "<C-prior>"
  (lambda (arg)
@@ -157,10 +157,10 @@
   (map! :desc "Fancy insert/delete comma at the end of the line." keyco #'pim/insert-comma-at-end-of-line)
   ;; Rebind flyspell default key-binding
   (after! flyspell
-          (define-key flyspell-mode-map
-                      keysm 'pim/insert-semicol-at-end-of-line)
-          (define-key flyspell-mode-map
-                      keyco 'pim/insert-comma-at-end-of-line)))
+    (define-key flyspell-mode-map
+                keysm 'pim/insert-semicol-at-end-of-line)
+    (define-key flyspell-mode-map
+                keyco 'pim/insert-comma-at-end-of-line)))
 
 (map! :desc "Insert a section comments." "C-Μ" #'pim/insert-comment-section)
 (map! :desc "Insert a section comments." "C-*" #'pim/insert-comment-sub-section)
@@ -210,8 +210,8 @@
 
 
 ;; C-/ is undo by default
- (map! :desc "Redo from undo-fu" "C-z" #'undo-fu-only-undo)
- (map! :desc "Undo from undo-fu" "C-S-z" #'undo-fu-only-redo)
+(map! :desc "Redo from undo-fu" "C-z" #'undo-fu-only-undo)
+(map! :desc "Undo from undo-fu" "C-S-z" #'undo-fu-only-redo)
 
 ;; Non-breaking spaces with quotes please.
 (map! :desc "Non-breaking spaces with quotes please." "«"
@@ -235,12 +235,12 @@
 ;;   (global-set-key (kbd "<f10>") 'column-highlight-mode))
 
 (use-package!
- jumpc
- ;; :defer t ;; does not work when deferred
- :config
- (jumpc)
- (map! :desc "Jump to prev pos" "C-<" #'jumpc-jump-backward)
- (map! :desc "Jump to next pos" "C->" #'jumpc-jump-forward))
+    jumpc
+  ;; :defer t ;; does not work when deferred
+  :config
+  (jumpc)
+  (map! :desc "Jump to prev pos" "C-<" #'jumpc-jump-backward)
+  (map! :desc "Jump to next pos" "C->" #'jumpc-jump-forward))
 
 ;; TODO : To be implemented
 ;; ;; Define C-x up | C-x down | C-x right | C-x left to resize the windows
@@ -249,9 +249,9 @@
 ;; ----------------------
 ;; * disable insert key *
 (map! :desc "Disable overwrite-mode pressing <insert> key." "<insert>"
- (lambda nil
-   (interactive)
-   (message "Insert is desabled by PIMacs. Use \"M-x overwrite-mode\" instead.")))
+      (lambda nil
+        (interactive)
+        (message "Insert is desabled by PIMacs. Use \"M-x overwrite-mode\" instead.")))
 
 ;; ----------------------------
 ;; * C-f1 toggle the menu bar *
@@ -270,30 +270,30 @@
 ;; -------------------
 ;; * scroll in place *
 (map! :desc "Scroll up keeping the cursor on the same line." "<C-M-up>"
-       (lambda nil
-  (interactive)
-  (let ((scroll-preserve-screen-position t))
-    (scroll-up 1))))
+      (lambda nil
+        (interactive)
+        (let ((scroll-preserve-screen-position t))
+          (scroll-up 1))))
 
 (map! :desc "Scroll down keeping the cursor on the same line" "<C-M-down>"
-       (lambda nil
-  (interactive)
-  (let ((scroll-preserve-screen-position t))
-    (scroll-down 1))))
+      (lambda nil
+        (interactive)
+        (let ((scroll-preserve-screen-position t))
+          (scroll-down 1))))
 
 ;; -------------------------
 ;; * Navigate in long line *
 (map! :desc "Scrolling up long line." "<C-up>"
       (lambda nil
-  (interactive)
-  (let ((line-move-visual nil))
-    (forward-line -1))))
+        (interactive)
+        (let ((line-move-visual nil))
+          (forward-line -1))))
 
 (map! :desc "Scrolling down in long line." "<C-down>"
       (lambda nil
-  (interactive)
-  (let ((line-move-visual nil))
-    (forward-line))))
+        (interactive)
+        (let ((line-move-visual nil))
+          (forward-line))))
 
 
 ;; Local variables:

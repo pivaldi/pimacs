@@ -193,3 +193,8 @@
 
 
 (load! "modules/pimacs/init")
+
+;; Local variables:
+;; coding: utf-8
+;; eval: (rename-buffer "pimacs/my.el")
+;; End:

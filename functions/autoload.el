@@ -1,3 +1,4 @@
+;;; Package pimacs-functions --- See README.md -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -15,11 +16,7 @@
 
 ;; Commentary:
 
-;; THANKS:
-
-;; BUGS:
-
-;; INSTALLATION:
+;; Functions used by [PIMacs](https://github.com/pivaldi/pimacs)
 
 ;; Code:
 
@@ -244,9 +241,7 @@ Depending where the cursor is."
   (interactive)
   (pi-insert-str-at-end-of-line "," '(";" ":" "." "#" "%" "/")))
 
-
-
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/default/autoload.el")
+;; eval: (rename-buffer "pimacs/functions/autoload.el")
 ;; End:
