@@ -41,8 +41,8 @@
 * **PIMacs/default**  
   [PIMacs default configuration](default/README.md).
 * **PIMacs/aliases**  
-  [Define useful aliases starting by _](aliases/config.el)
+  [Define useful aliases starting by _](aliases/config.el).
 * **PIMacs/functions**  
-  [Define useful functions used under the hood by PIMacs.](functions/README.md)
+  [Define useful functions used under the hood by PIMacs.](functions/README.md).
 * **PIMacs/session**  
   [Workspace/Session Persistence and Auto Restore Last Session](session/README.md).
