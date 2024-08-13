@@ -122,26 +122,6 @@ See https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when
 (after! which-func
         (which-function-mode 1))
 
-;; (defun next-user-buffer ()
-;;   "Switch to the next user buffer.
-;; User buffers are those whose name does not start with *."
-;;   (interactive)
-;;   (next-buffer)
-;;   (let ((i 0))
-;;     (while (and (string-match "^*" (buffer-name)) (< i 50))
-;;       (setq i (1+ i)) (next-buffer) )))
-
-;; (defun previous-user-buffer ()
-;;   "Switch to the previous user buffer.
-;; User buffers are those whose name does not start with *."
-;;   (interactive)
-;;   (previous-buffer)
-;;   (let ((i 0))
-;;     (while (and (string-match "^*" (buffer-name)) (< i 50))
-;;       (setq i (1+ i)) (previous-buffer) )))
-
-;; (global-set-key (kbd "<mouse-9>") 'next-user-buffer)
-;; (global-set-key (kbd "<mouse-8>") 'previous-user-buffer)
 
 ;; (if (executable-find "rg")
 ;;     (grep-apply-setting
