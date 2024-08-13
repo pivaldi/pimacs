@@ -309,6 +309,7 @@
 
 (map! :leader
       :prefix ("8" . "utf-8")
+      :desc "Choose and insert an emoji glyph #pim" "e" #'emoji-insert
       (:prefix ("1" . "fraction one")
                :desc "Fraction one half #pim" "2" "½"
                :desc "Fraction one third #pim" "3" "⅓"
@@ -322,36 +323,50 @@
                )
 
       (:prefix ("f" . "face")
-               :desc "Slightly Smiling Face 🙂 #pim" "s" "🙂"
-               :desc "Grinning Face 😀 #pim" "g" "😀"
-               :desc "Grimacing Face 😬 #pim" "G" "😬"
-               :desc "Unamused Face 😒 #pim" "u" "😒"
-               :desc "Disappointed Face 😞 #pim" "d" "😞"
-               :desc "Confounded Face 😖 #pim" "c" "😖"
-               :desc "Winking Face 😉 #pim" "w" "😉"
-               :desc "Face with Tears of Joy 😂 #pim" "j" "😂"
-               :desc "Worried Face 😟 #pim" "W" "😟"
-               :desc "Smiling Face Cold Sweat 😅 #pim" "C" "😅"
-               :desc "Face Screaming In Fear 😱 #pim" "S" "😱"
-               :desc "Smiling Face Closed Eyes 😆 #pim" "e" "😆"
-               :desc "Loudly Crying Face 😭 #pim" "l" "😭"
+               :desc "🙂 #pim" "s" "🙂"
+               :desc "😀 #pim" "g" "😀"
+               :desc "😬 #pim" "G" "😬"
+               :desc "😒 #pim" "u" "😒"
+               :desc "😞 #pim" "d" "😞"
+               :desc "😖 #pim" "c" "😖"
+               :desc "😉 #pim" "w" "😉"
+               :desc "😂 #pim" "j" "😂"
+               :desc "😟 #pim" "W" "😟"
+               :desc "😅 #pim" "C" "😅"
+               :desc "😱 #pim" "S" "😱"
+               :desc "😆 #pim" "e" "😆"
+               :desc "😭 #pim" "l" "😭"
                )
 
       (:prefix ("s" . "symbol")
-               :desc "Warning Sign ⚠️ #pim" "w" "⚠️"
-               :desc "Zap Sign ⚡ #pim" "z" "⚡"
+               :desc "⚠️ #pim" "w" "⚠️"
+               :desc "⚡ #pim" "z" "⚡"
+               :desc "• #pim" "b" "•"
+               )
+
+      (:prefix ("b" . "bullet")
+               :desc "• #pim" "b" "•"
+               :desc "‣ #pim" "t" "‣"
+               :desc "⁃ #pim" "h" "⁃"
+               :desc "◘ #pim" "i" "◘"
+               :desc "◦ #pim" "w" "◦"
+               :desc "☑ #pim" "c" "☑"
+               :desc "☒ #pim" "x" "☒"
+               :desc "❧ #pim" "f" "❧"
+               :desc "☙ #pim" "F" "☙"
+               :desc "⦿ #pim" "C" "⦿"
                )
 
       (:prefix ("a" . "arrow")
-               :desc "Upwards Arrow with Equilateral Arrowhead 🠕 #pim" "u" "🠕"
-               :desc "Rightwards Arrow with Equilateral Arrowhead 🠖 #pim" "r" "🠖"
-               :desc "Leftwards Arrow with Equilateral Arrowhead 🠔 #pim" "l" "🠔"
-               :desc "Downwards Arrow with Equilateral Arrowhead 🠗 #pim" "d" "🠗"
+               :desc "🠕 #pim" "u" "🠕"
+               :desc "🠖 #pim" "r" "🠖"
+               :desc "🠔 #pim" "l" "🠔"
+               :desc "🠗 #pim" "d" "🠗"
 
-               :desc "Heavy Upwards Arrow with Equilateral Arrowhead 🠙 #pim" "U" "🠙"
-               :desc "Heavy Rightwards Arrow with Equilateral Arrowhead 🠚 #pim" "R" "🠚"
-               :desc "Heavy Leftwards Arrow with Equilateral Arrowhead 🠘 #pim" "L" "🠘"
-               :desc "Heavy Downwards Arrow with Equilateral Arrowhead 🠛 #pim" "D" "🠛"
+               :desc "🠙 #pim" "U" "🠙"
+               :desc "🠚 #pim" "R" "🠚"
+               :desc "🠘 #pim" "L" "🠘"
+               :desc "🠛 #pim" "D" "🠛"
                )
       )
 
