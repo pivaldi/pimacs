@@ -42,12 +42,12 @@
  ;; We can also set it to 9999 but then there may be stack overflows.
  max-lisp-eval-depth 5000
  max-specpdl-size max-lisp-eval-depth
- ;;permet d'ignorer la case dans le mode d'achévement
+ ;;Ignore the case in completion mode.
  completion-ignore-case t
  read-file-name-completion-ignore-case t
- ;;when the mark is active, the region is highlighted.
+ ;;Highlight the region when the mark is active.
  transient-mark-mode t
- ;; save everything before compiling
+ ;; Save everything before compiling
  compilation-ask-about-save nil
  ;; Size of the compilation window.
  compilation-window-height 12
@@ -65,14 +65,16 @@
  message-log-max 1000
  ;; `apropos' search all
  apropos-do-all t ;; Key binding "C-h a".
- ;; Fill bulleted and indented lines
+ ;; Fill bulleted and indented lines.
  adaptive-fill-mode t
  ;; Do not add a new string to `kill-ring' when it is the same as the last one.
  kill-do-not-save-duplicates t
- ;; split window preferred horizontally
+ ;; Preferred split window horizontally
  split-width-threshold most-positive-fixnum
  ;; Emacs will initiate GC every 20MB allocated because we have a modern machine
  gc-cons-threshold 20000000
+ gc-cons-percentage 1
+ ;; Disabling Global Auto-Revert Mode
  global-auto-revert-mode nil
  ;; Show all process with M-x proced
  ;; https://www.masteringemacs.org/article/displaying-interacting-processes-proced
@@ -88,12 +90,11 @@
  ;; numbers are disabled. For relative line numbers, set this to `relative'.
  display-line-numbers-type nil
  package-native-compile t
+ ;; Configure the fill column indicator.
  display-fill-column-indicator-character "│"
  display-fill-column-indicator t
+ display-fill-column-indicator-column t
 )
-
-;; Since Emacs 29:
-(setopt display-fill-column-indicator-column 10)
 
 ;; ---------------------
 ;; * Prefered encoding *
@@ -105,33 +106,21 @@
 ;; ;; Already configured in Doom…
 ;; (map! :desc "<RET> insert newline and indent in prog-mode." prog-mode-map "RET" 'newline-and-indent)
 
-;; ;; --------------------------------------------------------
-;; ;; * See https://www.emacswiki.org/emacs/GrepPlus#Grep%2b *
-;; (require 'grep+)
-
-
-(defun pim-stop-using-minibuffer ()
-  "Abort the minibuffer when using the mouse.
-See https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html"
-  (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
-    (abort-recursive-edit)))
-
-(add-hook 'mouse-leave-buffer-hook 'pim-stop-using-minibuffer)
 
 ;; See the name of the current function in the mode line.
 (after! which-func
         (which-function-mode 1))
 
 
-;; (if (executable-find "rg")
-;;     (grep-apply-setting
-;;      'grep-find-command
-;;      '("rg -n -H -i --hidden --no-heading -e '' $(git rev-parse --show-toplevel || pwd)" . 39))
-;;   (progn
-;;     (add-to-list 'pim-error-msgs "Please install rg : https://github.com/BurntSushi/ripgrep")
-;;     (grep-apply-setting
-;;      'grep-find-command
-;;      '("find . -type f ! -regex '.*/node_modules/.*' ! -regexp '.*/dist/.*' ! -regex '.*/vendor/.*' ! -regex '.*\\.git/.*' -exec grep -Hni '' {} \\;" . 132))))
+(if (executable-find "rg")
+    (grep-apply-setting
+     'grep-find-command
+     '("rg -n -H -i --hidden --no-heading -e '' $(git rev-parse --show-toplevel || pwd)" . 39))
+  (progn
+    (add-to-list 'pim-error-msgs "Please install rg : https://github.com/BurntSushi/ripgrep")
+    (grep-apply-setting
+     'grep-find-command
+     '("find . -type f ! -regex '.*/node_modules/.*' ! -regexp '.*/dist/.*' ! -regex '.*/vendor/.*' ! -regex '.*\\.git/.*' -exec grep -Hni '' {} \\;" . 132))))
 
 (load! "+doom")
 (load! "+hooks")

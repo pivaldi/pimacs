@@ -14,16 +14,16 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;; Commentary:
+;;; Commentary:
 
 ;; Functions used by [PIMacs](https://github.com/pivaldi/pimacs)
 
-;; Code:
+;;; Code:
 
 ;;;###autoload
 (defun pim-make-script-executable ()
-  "If file starts with a shebang, make `buffer-file-name' executable.
-From http://www.emacswiki.org/emacs/MakingScriptsExecutableOnSave"
+  "If file start with a shebang, make buffer file name executable.
+See http://www.emacswiki.org/emacs/MakingScriptsExecutableOnSave"
   (save-excursion
     (save-restriction
       (widen)
@@ -86,7 +86,7 @@ With ARG, delete that many sexps before point.
 Negative arg -N means delete N sexps after point.
 This command assumes point is not in a string or comment."
   (interactive "p")
-  (delete-sexp (- (or arg 1))))
+  (pim/delete-sexp (- (or arg 1))))
 
 ;;;###autoload
 (defun pim/kill-window-and-buffer()
@@ -95,9 +95,8 @@ This command assumes point is not in a string or comment."
   (let ((wind (selected-window)))
     (if (not (buffer-file-name))
         (progn
-          (let ((buffer-modified-p nil))
           (set-window-dedicated-p wind nil)
-          (kill-buffer-and-window)))
+          (kill-buffer-and-window))
       (progn
         (kill-current-buffer)
         (condition-case nil (delete-window) (error nil))))))
@@ -211,35 +210,63 @@ Depending where the cursor is."
 
 ;;;###autoload
 (defun pim/fill ()
-  "Use fill line or region as auto-fill-mode does.";
+  "Use fill line or region as `auto-fill-mode' does.";
   (interactive)
   (save-excursion
     (if mark-active
         (fill-region-as-paragraph (point) (mark))
       (do-auto-fill))))
 
-(defun pi-insert-str-at-end-of-line (str &optional removeStrList)
+(defun pi-insert-char-at-end-of-line (str &optional removeStrList)
+  "Smartly insert a char at the end of the line.
+Arg STR is the char as string to be inserted.
+Arg REMOVESTRLIST is a list of char to be deleted before removing the STR char."
   (save-excursion
     (end-of-line)
     (while
         (progn
           (when (member (char-to-string (char-before)) removeStrList)
-            (delete-backward-char 1) t
+            (delete-char -1) t
             )
           )
         )
     (if (not (char-equal (char-before) (string-to-char str))) (insert str)
-      (delete-backward-char 1))))
+      (delete-char -1))))
 
 ;;;###autoload
 (defun pim/insert-semicol-at-end-of-line  nil
+  "Smartly insert a semicolumn at the end of the line."
   (interactive)
-  (pi-insert-str-at-end-of-line ";" '("," ":" "." "#" "%" "/")))
+  (pi-insert-char-at-end-of-line ";" '("," ":" "." "#" "%" "/")))
 
 ;;;###autoload
 (defun pim/insert-comma-at-end-of-line nil
+  "Smartly insert a comma at the end of the line."
   (interactive)
-  (pi-insert-str-at-end-of-line "," '(";" ":" "." "#" "%" "/")))
+  (pi-insert-char-at-end-of-line "," '(";" ":" "." "#" "%" "/")))
+
+;;;###autoload
+(defun pim/next-user-buffer ()
+  "Switch to the next user buffer.
+User buffers are those whose name does not start with *."
+  (interactive)
+  (next-buffer)
+  (let ((i 0))
+    (while (and (string-match "^*" (buffer-name)) (< i 50))
+      (setq i (1+ i)) (next-buffer) )))
+
+;;;###autoload
+(defun pim/previous-user-buffer ()
+  "Switch to the previous user buffer.
+User buffers are those whose name does not start with *."
+  (interactive)
+  (previous-buffer)
+  (let ((i 0))
+    (while (and (string-match "^*" (buffer-name)) (< i 50))
+      (setq i (1+ i)) (previous-buffer) )))
+
+(provide 'pimacs/functions/autoload)
+;;; autoload.el ends here
 
 ;; Local variables:
 ;; coding: utf-8

@@ -25,24 +25,24 @@
 ;; the whole region
 (delete-selection-mode 1)
 
-;; Show line/column number in the mode line
+;; Show line/column number in the mode line.
 (line-number-mode t)
 (column-number-mode t)
-;; Read automatically  .gz and .zip files
+;; Read automatically  .gz and .zip files.
 (auto-compression-mode 1)
 
-;; Read images by default
+;; Read images by default.
 (auto-image-file-mode t)
 
+;; Enable whitespace visualization globally.
 (global-whitespace-mode)
 
-;; Enables coloring in all modes
+;; Enables coloring in all modes.
 (when (fboundp 'global-font-lock-mode)
     (global-font-lock-mode 1))
 
 (when (fboundp 'global-display-fill-column-indicator-mode)
   (global-display-fill-column-indicator-mode 1))
-
 
 ;; Local variables:
 ;; coding: utf-8

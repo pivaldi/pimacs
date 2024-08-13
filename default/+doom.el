@@ -20,7 +20,6 @@
  ;; I want to see this buffers !!
  (setq doom-unreal-buffer-functions '(minibufferp))
 
-
 ;; Local variables:
 ;; coding: utf-8
 ;; eval: (rename-buffer "pimacs/default/+doom.el")

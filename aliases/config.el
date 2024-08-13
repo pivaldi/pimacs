@@ -25,14 +25,13 @@
 
 ;;; Code:
 
-
-(defalias '_ll 'longlines-mode)
-(defalias '_rb 'revert-buffer)
-(defalias '_ar 'align-regexp)
-(defalias '_gf 'grep-find)
-(defalias '_ff 'find-name-dired)
-(defalias '_ib 'ibuffer-list-buffers)
-(defalias '_sir 'string-insert-rectangle)
+(defalias '_ll 'visual-line-mode "Long Line Mode.")
+(defalias '_rb 'revert-buffer "Revert the Buffer.")
+(defalias '_ar 'align-regexp "Align Regexp.")
+(defalias '_gf 'grep-find "Fancy Grep Find.")
+(defalias '_ff 'find-name-dired "Search DIR recursively for files matching the globbing.")
+(defalias '_ib 'ibuffer-list-buffers "Display a list of buffers, in another window.")
+(defalias '_sir 'string-insert-rectangle "Insert STRING on each line of region-rectangle, shifting text right.")
 
 ;; Replace yes/no <RET> by y/n.
 (fset 'yes-or-no-p 'y-or-n-p)

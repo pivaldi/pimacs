@@ -26,8 +26,8 @@
                            (y-or-n-p (format "Directory %s does not exist. Create it ?" dir)))
                   (make-directory dir t))))))
 
-;; ----------------------------------------------------
-;; * Auto-fill: coupure automatique de lignes longues *
+;; ----------------------------------------------
+;; * Auto-fill: automatic cutting of long lines *
 ;; So that the auto-fill mode does not cut off at the place of a ":" or ";" etc..
 ;; Author: Matieux Moy http://matthieu-moy.fr/spip/?lang=en
 (defun pim-fill-nobreak-predicate ()
@@ -38,7 +38,7 @@
           (skip-chars-backward " \t")
           (backward-char 1)
           (looking-at "[([{«]")))))
-(setq fill-nobreak-predicate (list 'pim-fill-nobreak-predicate))
+(setq fill-nobreak-predicate (cons #'pim-fill-nobreak-predicate fill-nobreak-predicate))
 
 (after!
  pimacs/default
@@ -47,6 +47,14 @@
              (lambda ()
                (auto-fill-mode 1))))
  )
+
+(defun pim-stop-using-minibuffer ()
+  "Abort the minibuffer when using the mouse.
+See https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html"
+  (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
+    (abort-recursive-edit)))
+
+(add-hook 'mouse-leave-buffer-hook 'pim-stop-using-minibuffer)
 
 (add-hook 'after-save-hook 'pim-make-script-executable)
 

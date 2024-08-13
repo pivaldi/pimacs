@@ -35,16 +35,14 @@
 ```
 **Remember to run `doom sync` after modifying `init.el` !**
 
-## Workspace/Session Persistence and Auto Restore Last Session
 
-The PIMacs module `:pimacs session` permits to automatically restore
-your session and workspaces. Here how to proceed :  
-* Create a workspace named `default` by creating a standard workspace #x (`+workspace/new C-c w c`)  
-  and rename it `default` (*DON'T use `+workspace/new-named C-c w C`*).
-* Open files in this workspace.
-* Create others workspaces as needed with `+workspace/new`
-* Close Emacs
+## Modules
 
-When opening again Emacs, you retrieve the opened buffers in the `default`
-workspaces and the others workspaces are available by `C-c w w` or
-`s-tab` if the module `:pimacs keys` is enabled.
+* **PIMacs/default**  
+  [PIMacs default configuration](default/README.md).
+* **PIMacs/aliases**  
+  [Define useful aliases starting by _](aliases/config.el)
+* **PIMacs/functions**  
+  [Define useful functions used under the hood by PIMacs.](functions/README.md)
+* **PIMacs/session**  
+  [Workspace/Session Persistence and Auto Restore Last Session](session/README.md).
