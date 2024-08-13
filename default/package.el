@@ -40,11 +40,6 @@
 (use-package! boxquote
               :defer t)
 
-(use-package! which-func
-              :commands (which-function-mode)
-              :init (which-function-mode 1)
-              :defer t)
-
 ;; Local variables:
 ;; coding: utf-8
 ;; End:

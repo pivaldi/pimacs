@@ -307,6 +307,42 @@
           (forward-line))))
 
 
+(map! :leader
+      :prefix ("8" . "utf-8")
+      (:prefix ("1" . "fraction one")
+               :desc "Fraction one half" "2" "½"
+               :desc "Fraction one third" "3" "⅓"
+               :desc "Fraction one quarter" "4" "¼"
+               :desc "Fraction one fifth" "5" "⅕"
+               :desc "Fraction one sixth" "6" "⅙"
+               :desc "Fraction one seventh" "7" "⅐"
+               :desc "Fraction one eighth" "8" "⅛"
+               :desc "Fraction one ninth" "9" "⅑"
+               :desc "Fraction one tenth" "0" "⅒"
+               )
+
+      (:prefix ("f" . "face")
+               :desc "Slightly Smiling Face 🙂" "s" "🙂"
+               :desc "Grinning Face 😀" "g" "😀"
+               :desc "Grimacing Face 😬" "G" "😬"
+               :desc "Unamused Face 😒" "u" "😒"
+               :desc "Disappointed Face 😞" "d" "😞"
+               :desc "Confounded Face 😖" "c" "😖"
+               :desc "Winking Face 😉" "w" "😉"
+               :desc "Face with Tears of Joy 😂" "j" "😂"
+               :desc "Worried Face 😟" "W" "😟"
+               :desc "Smiling Face Cold Sweat 😅" "C" "😅"
+               :desc "Face Screaming In Fear 😱" "S" "😱"
+               :desc "Smiling Face Closed Eyes 😆" "e" "😆"
+               :desc "Loudly Crying Face 😭" "l" "😭"
+               )
+
+      (:prefix ("s" . "symbol")
+               :desc "Warning Sign ⚠️" "w" "⚠️"
+               :desc "Zap Sign ⚡" "z" "⚡"
+               )
+      )
+
 ;; Local variables:
 ;; coding: utf-8
 ;; eval: (rename-buffer "pimacs/keys/+emacs.el")

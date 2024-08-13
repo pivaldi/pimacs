@@ -118,23 +118,9 @@ See https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when
 
 (add-hook 'mouse-leave-buffer-hook 'pim-stop-using-minibuffer)
 
-;; ;; Voir le nom de la fonction courante dans la ligne de mode
-;; (which-function-mode 1)
-
-;; ;; http://www.fileformat.info/info/unicode/category/So/list.htm
-;; (global-set-key (kbd "C-x 8") nil)
-;; (global-set-key (kbd "C-x 8 1 / 3") "⅓")
-;; (global-set-key (kbd "C-x 8 1 / 4") "¼") ;; Fraction One Quarter
-;; (global-set-key (kbd "C-x 8 1 / 5") "⅕")
-;; (global-set-key (kbd "C-x 8 1 / 6") "⅙")
-;; (global-set-key (kbd "C-x 8 2 / 3") "⅔")
-;; (global-set-key (kbd "C-x 8 2 / 5") "⅖")
-;; (global-set-key (kbd "C-x 8 3 / 5") "⅗")
-;; (global-set-key (kbd "C-x 8 4 / 5") "⅘")
-;; (global-set-key (kbd "C-x 8 5 / 6") "⅚")
-
-;; (global-set-key (kbd "C-h a") 'apropos)
-;; (global-set-key (kbd "C-x k") 'kill-this-buffer)
+;; See the name of the current function in the mode line.
+(after! which-func
+        (which-function-mode 1))
 
 ;; (defun next-user-buffer ()
 ;;   "Switch to the next user buffer.
