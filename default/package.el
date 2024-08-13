@@ -21,11 +21,29 @@
 ;; * HTML rendering for buffers and files *
 ;; Just call `htmlize-view-buffer' to show the current buffer in
 ;; your web browser.
-(package! htmlize-view)
+;;;###package html-view
+(use-package!
+ htmlize-view
+ :defer t
+ ;; :commands (htmlize-buffer htmlize-file htmlize-many-files
+ ;;                           htmlize-many-files-dired
+ ;;                           htmlize-region htmlize-view-buffer)
+ :config
+(setq
+ htmlize-convert-nonascii-to-entities nil
+ htmlize-html-charset "utf-8")
+ (htmlize-view-add-to-files-menu))
 
-;; -----------------------
-;; * Remote File Editing *
-(package! tramp)
+;; -----------------
+;; * Box some text *
+;; Command M-x boxquote-...
+(use-package! boxquote
+              :defer t)
+
+(use-package! which-func
+              :commands (which-function-mode)
+              :init (which-function-mode 1)
+              :defer t)
 
 ;; Local variables:
 ;; coding: utf-8

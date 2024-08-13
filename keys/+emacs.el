@@ -73,6 +73,7 @@
    :desc "Swith to buffer with the same workspace."
    "<C-tab>" #'+vertico/switch-workspace-buffer)
   )
+
  ((modulep! :completion helm)
   (map!
    :desc "Swith to buffer with the same workspace."
@@ -85,10 +86,20 @@
   )
  )
 
-(when (modulep! :ui workspaces))
-(map!
- :desc "Swith workspace."
- "<s-tab>" '+workspace/switch-to)
+(when (modulep! :ui workspaces)
+  ;; (map!
+  ;;  :desc "Switch to workspace."
+  ;;  "<s-tab>" #'+workspace/switch-to)
+  (map! :leader
+        :prefix ("w" . "workspaces/windows")
+        :desc "Load a workspace" "L" #'+workspace/load)
+
+  (map! :leader
+        :prefix ("TAB" . "switch")
+        :desc "Switch to last workspace"  "TAB"   #'+workspace/other
+        :desc "Switch to workspace"  "w"   #'+workspace/switch-to
+        )
+  )
 
 ;; ;; TODO : enable it
 ;; ;; ----------------------
@@ -157,10 +168,10 @@
   (map! :desc "Fancy insert/delete comma at the end of the line." keyco #'pim/insert-comma-at-end-of-line)
   ;; Rebind flyspell default key-binding
   (after! flyspell
-    (define-key flyspell-mode-map
-                keysm 'pim/insert-semicol-at-end-of-line)
-    (define-key flyspell-mode-map
-                keyco 'pim/insert-comma-at-end-of-line)))
+          (define-key flyspell-mode-map
+                      keysm 'pim/insert-semicol-at-end-of-line)
+          (define-key flyspell-mode-map
+                      keyco 'pim/insert-comma-at-end-of-line)))
 
 (map! :desc "Insert a section comments." "C-Μ" #'pim/insert-comment-section)
 (map! :desc "Insert a section comments." "C-*" #'pim/insert-comment-sub-section)
@@ -235,12 +246,12 @@
 ;;   (global-set-key (kbd "<f10>") 'column-highlight-mode))
 
 (use-package!
-    jumpc
-  ;; :defer t ;; does not work when deferred
-  :config
-  (jumpc)
-  (map! :desc "Jump to prev pos" "C-<" #'jumpc-jump-backward)
-  (map! :desc "Jump to next pos" "C->" #'jumpc-jump-forward))
+ jumpc
+ ;; :defer t ;; does not work when deferred
+ :config
+ (jumpc)
+ (map! :desc "Jump to prev pos" "C-<" #'jumpc-jump-backward)
+ (map! :desc "Jump to next pos" "C->" #'jumpc-jump-forward))
 
 ;; TODO : To be implemented
 ;; ;; Define C-x up | C-x down | C-x right | C-x left to resize the windows

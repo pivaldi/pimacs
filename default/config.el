@@ -101,63 +101,30 @@
 (set-default-coding-systems 'utf-8)
 (set-language-environment "UTF-8")
 
-;; -------------------------------------
-;; * Rendu HTML de buffers et fichiers *
-;; Just call `htmlize-view-buffer' to show the current buffer in
-;; your web browser.
-;;;###package html-view
-(use-package!
- htmlize-view
- :defer t
- :config
-(setq
- htmlize-convert-nonascii-to-entities nil
- htmlize-html-charset "utf-8")
- (htmlize-view-add-to-files-menu))
 
-;; ;; ----------------------------------------------
-;; ;; * Indentation automatique dans certains mode *
-;; ;; à  revoir en définissant une variable "liste de modes" et ajouter un hook sur les modes
-;; (define-key prog-mode-map (kbd "RET") 'newline-and-indent)
-
-;; ;; ----------------------------
-;; ;; * Mettre en boite du texte *
-;; ;; Commande M-x boxquote-...
-;; ;; ,----
-;; ;; | Voici du texte en boite
-;; ;; `----
-;; (require 'boxquote)
+;; ;; Already configured in Doom…
+;; (map! :desc "<RET> insert newline and indent in prog-mode." prog-mode-map "RET" 'newline-and-indent)
 
 ;; ;; --------------------------------------------------------
 ;; ;; * See https://www.emacswiki.org/emacs/GrepPlus#Grep%2b *
 ;; (require 'grep+)
 
 
-;; (defun stop-using-minibuffer ()
-;;   "Kill the minibuffer.
-;; See https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html"
-;;   (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
-;;     (abort-recursive-edit)))
+(defun pim-stop-using-minibuffer ()
+  "Abort the minibuffer when using the mouse.
+See https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html"
+  (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
+    (abort-recursive-edit)))
 
-;; (add-hook 'mouse-leave-buffer-hook 'stop-using-minibuffer)
-
-;; ;; ---------------
-;; ;; * Les ciseaux *
-;; ;; Usage M-x separe <RET> donne
-;; ;; 8<------8<------8<------8<------8<------8<------8<------8<------
-;; (autoload (quote separe) "scissors" "Insert a line of SCISSORS in the buffer" t nil)
+(add-hook 'mouse-leave-buffer-hook 'pim-stop-using-minibuffer)
 
 ;; ;; Voir le nom de la fonction courante dans la ligne de mode
 ;; (which-function-mode 1)
 
-;; ;; http://demo.icu-project.org/icu-bin/ubrowse?scr=55
-;; ;; Symbols http://demo.icu-project.org/icu-bin/ubrowse?scr=55&b=0
-;; ;; ☑
-
 ;; ;; http://www.fileformat.info/info/unicode/category/So/list.htm
 ;; (global-set-key (kbd "C-x 8") nil)
 ;; (global-set-key (kbd "C-x 8 1 / 3") "⅓")
-;; (global-set-key (kbd "C-x 8 1 / 3") "⅓")
+;; (global-set-key (kbd "C-x 8 1 / 4") "¼") ;; Fraction One Quarter
 ;; (global-set-key (kbd "C-x 8 1 / 5") "⅕")
 ;; (global-set-key (kbd "C-x 8 1 / 6") "⅙")
 ;; (global-set-key (kbd "C-x 8 2 / 3") "⅔")
@@ -165,41 +132,6 @@
 ;; (global-set-key (kbd "C-x 8 3 / 5") "⅗")
 ;; (global-set-key (kbd "C-x 8 4 / 5") "⅘")
 ;; (global-set-key (kbd "C-x 8 5 / 6") "⅚")
-
-;; (global-set-key (kbd "C-x 8 <") nil)
-;; (global-set-key (kbd "C-x 8 . >") "→")
-;; (global-set-key (kbd "C-x 8 . <") "←")
-;; (global-set-key (kbd "C-x 8 > >") "↣")
-;; (global-set-key (kbd "C-x 8 < <") "↢")
-;; (global-set-key (kbd "C-x 8 < |") "↤")
-;; (global-set-key (kbd "C-x 8 | >") "↦")
-;; (global-set-key (kbd "C-x 8 < >") "↔")
-
-;; (global-set-key (kbd "C-x 8 c") "♥")
-;; (global-set-key (kbd "C-x 8 )") "☺")
-;; (global-set-key (kbd "C-x 8 (") "☹")
-;; (global-set-key (kbd "C-x 8 E") "★")
-;; (global-set-key (kbd "C-x 8 e") "☆")
-
-;; (global-set-key (kbd "C-x 8 z") "☤")
-;; (global-set-key (kbd "C-x 8 v") "☣")
-;; (global-set-key (kbd "C-x 8 r") "☢")
-;; (global-set-key (kbd "C-x 8 !") "⚠")
-;; (global-set-key (kbd "C-x 8 m") "☠")
-;; (global-set-key (kbd "C-x 8 w") "☡")
-;; (global-set-key (kbd "C-x 8 l") "⚡")
-;; (global-set-key (kbd "C-x 8 RET") "⏎")
-
-;; (global-set-key (kbd "C-x 8 f") "☭")
-;; (global-set-key (kbd "C-x 8 p") "☮")
-;; (global-set-key (kbd "C-x 8 y") "☯")
-;; (global-set-key (kbd "C-x 8 u") "☝")
-;; (global-set-key (kbd "C-x 8 s") "☘")
-;; (global-set-key (kbd "C-x 8 b") "☕")
-;; (global-set-key (kbd "C-x 8 k") "☑")
-
-;; (global-set-key (kbd "C-x 8 T") "☎")
-;; (global-set-key (kbd "C-x 8 t") "☏")
 
 ;; (global-set-key (kbd "C-h a") 'apropos)
 ;; (global-set-key (kbd "C-x k") 'kill-this-buffer)

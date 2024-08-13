@@ -6,13 +6,14 @@
 (doom!
  :pimacs
  default ;; PIMacs default Emacs configuration on top of Doom.
- functions ;; Useful functions. Must be loaded for the keys module
+ functions ;; Useful functions. Must be loaded for the keys module/
  aliases ;; Define aliases starting with `_`. The most useful are `_rb` and `_sir`.
- theme ;; Define some faces and load Zenburn Theme. See the `README.md` in the directory `pimacs/theme`
+ theme ;; Define some faces and load Zenburn Theme. See the `README.md` in the directory `pimacs/theme`.
  keys ;; Define the PIMacs keys binding. See the `refcard.md`.
- session ;; Auto reload the last session at startup through `doom/quickload-session` (no desktop bad practice in Doom)
+ session ;; Auto reload the last session at startup through `doom/quickload-session` (no desktop bad practice in Doom).
 
- calendar-fr
+ calendar-fr ;; French calendar.
+ tramp ;;To “turn off” the backup feature for remote files and fix security issue.
 
  lang-c
  lang-lisp
