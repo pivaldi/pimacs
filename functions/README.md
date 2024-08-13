@@ -1,25 +1,18 @@
 # PIMacs -- functions
 
-Useful interactive functions used by PIMacs.
+Useful interactive functions used by PIMacs.  
+See the docstrings of each function for furthers informations.
 
 * `pim-make-script-executable` : if file start with a shebang, make buffer file name executable.
 * `pim/kill-and-join-forward` : if at end of line, join with following, otherwise kill line.
 * `pim/buffer-file-name` : show the buffer file name (if any) and make it the latest kill in the kill ring if KILLIT is t.
-* `pim/backward-delete-word` : delete characters backward until encountering the beginning of a word.  
+* `pim/backward-delete-word` : delete characters backward until encountering the beginning of a word.
   With argument ARG, do this that many times.
-* `pim/delete-sexp` : delete the sexp (balanced expression) following point.  
-  With ARG, delete that many sexps after point.  
-  Negative arg -N means delete N sexps before point.  
-  This command assumes point is not in a string or comment.  
-* `pim/backward-delete-sexp` : delete the sexp (balanced expression) preceding point.  
-  With ARG, delete that many sexps before point.  
-  Negative arg -N means delete N sexps after point.  
-  This command assumes point is not in a string or comment.
+* `pim/delete-sexp` : delete the sexp (balanced expression) following point.
+* `pim/backward-delete-sexp` : delete the sexp (balanced expression) preceding point.
 * `pim/kill-window-and-buffer` : delete current window and buffer.
-* `pim/indent-whole-html-buffer` : indent the whole buffer except <pre> part in html mode.
-* `pim/indent-whole-buffer` : indent the whole buffer.  
-  If the mark `(concat comment-start --indent after--)`  
-  is found in the buffer the indentation start after the last mark found.
+* `pim/indent-whole-html-buffer` : indent the whole buffer except `<pre>` part in html mode.
+* `pim/indent-whole-buffer` : indent the whole buffer.
 * `pim/find-file-root` : find file as root.
 * `pim/home()` : move cursor at beginning of line or first non blank character depending where the cursor is.
 * `pim/?comment` : comment/Uncomment the entire line and indent if arg INDENTP is t.
