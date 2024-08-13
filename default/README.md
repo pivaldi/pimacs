@@ -2,9 +2,7 @@
 
 The default minimal configuration of Emacs by PIMacs.
 
-## Behaviors
-
-### Setting Variables
+## Setting Variables
 
 * Fix missing `warning-suppress-types` function.
 * Draw block cursor as wide as the glyph under it.
@@ -39,8 +37,10 @@ The default minimal configuration of Emacs by PIMacs.
 * Show by default the contextual function in the modeline (switching with `M-x which-function-mode`).
 * Reconfigure smartly `grep-find-command` depending of the existence or not of [ripgrep(rg)](https://github.com/BurntSushi/ripgrep).  
   If the module `pimacs/aliases` is enabled, short alias of `grep-find` is `_rg` (let it a try).
+* Enable matching whitespace literally (disable lax space matching).
+  [By default searching two spaces also match single space](https://www.gnu.org/software/emacs/manual/html_node/emacs/Special-Isearch.html#Special-Isearch), who want this behavior ??
 
-### Adding Hooks
+## Adding Hooks
 
 * Ask for creating the directory when saving a buffer in an nonexistent directory.  
   `(add-hook 'before-save-hook …)`
@@ -51,7 +51,7 @@ The default minimal configuration of Emacs by PIMacs.
 * Abort the minibuffer when using the mouse.
   See [this article](https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html) for the details.
   
-### Mode Enabled
+## Mode Enabled
 
 * Move cursor by camelCase : `global-subword-mode`.
 * Selecting a region and inserting a new character will overwrite the whole region : `delete-selection-mode`.
@@ -62,7 +62,7 @@ The default minimal configuration of Emacs by PIMacs.
 * Enables coloring in all modes : `global-font-lock-mode`.
 * Display fill column indicator in all modes : `global-display-fill-column-indicator-mode`.
 
-### Customizing Doom It-self
+## Customizing Doom It-self
 
 * Make only the minibuffer as unreal. Use `C-x B` to see all the buffers.  
   Doom consider some buffers as unreal buffer (like *Message*) but I need to see these buffers !!

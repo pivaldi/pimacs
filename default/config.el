@@ -94,7 +94,9 @@
  display-fill-column-indicator-character "│"
  display-fill-column-indicator t
  display-fill-column-indicator-column t
-)
+ ;; Enable matching whitespace literally.
+ search-whitespace-regexp nil
+ )
 
 ;; ---------------------
 ;; * Prefered encoding *
