@@ -221,8 +221,9 @@
 
 
 ;; C-/ is undo by default
-(map! :desc "Redo from undo-fu. #pim" "C-z" #'undo-fu-only-undo)
-(map! :desc "Undo from undo-fu. #pim" "C-S-z" #'undo-fu-only-redo)
+(map! :desc "Undo from undo-fu. #pim" "C-z" #'undo-fu-only-undo)
+(map! :desc "Redo from undo-fu. #pim" "C-S-z" #'undo-fu-only-redo)
+(map! :desc "Redo from undo-fu. #pim" "C-:" #'undo-fu-only-redo) ;; French keyboard
 
 ;; Non-breaking spaces with quotes please.
 (map! :desc "Non-breaking spaces with quotes please. #pim" "«"

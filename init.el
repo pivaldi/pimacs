@@ -15,7 +15,9 @@
  calendar-fr ;; French calendar.
  tramp ;;To “turn off” the backup feature for remote files and fix security issue.
 
- lang-c
+ org ;; Org mode specific configuration.
+
+ ;; lang-c
  lang-lisp
  lang-make
  )
