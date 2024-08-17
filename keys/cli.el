@@ -1,3 +1,4 @@
+#!/usr/bin/env doomscript
 ;;; pimacs/keys/cli.el --- See README.md -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
@@ -22,8 +23,10 @@
 
 (defcli! pim-to-refcard ()
          "Export the PIMacs global-map key bindings into the file key-bindings-refcard.md of the project."
-         (load! "+emacs")
-         (pim-keys-bindings-to-md-refcard global-map 'keys)
+         (let ((byte-compile-current-file t))
+           (require 'doom-start)
+           (pim-keys-bindings-to-md-refcard "global-map" 'keys)
+           )
          )
 
 (provide 'pimacs/keys/cli)
