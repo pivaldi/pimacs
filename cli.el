@@ -39,7 +39,7 @@ KEYMAPNAME (string) is the keymap name to export into the file key-bindings-refc
                (symbol-name module)
                ))
       (dolist (key keys)
-        (setq line (apply #'format "* **%s**%s%s" key))
+        (setq line (apply #'format "* `%s`%s%s" key))
         ;; (print! line)
         (when (string-match ".*#pim *$" line)
           (insert (concat line "\n")))
