@@ -226,14 +226,14 @@
 (map! :desc "Redo from undo-fu. #pim" "C-:" #'undo-fu-only-redo) ;; French keyboard
 
 ;; Non-breaking spaces with quotes please.
-(map! :desc "Non-breaking spaces with quotes please. #pim" "«"
+(map! :desc "Insert proper French quotation with non breaking spaces. #pim" "«"
       (lambda nil
         (interactive)
         (insert
          "« ")(insert
          " »")(backward-char
          2)))
-(map! :desc "Non-breaking spaces with quotes please. #pim" "»" (lambda nil (interactive) (insert " »")))
+(map! :desc "Add non breaking spaces before the closing French quote. #pim" "»" (lambda nil (interactive) (insert " »")))
 
 
 ;; ;; TODO : to be enabled
