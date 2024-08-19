@@ -82,3 +82,8 @@ The default minimal configuration of Emacs by PIMacs.
   such a marking style might be used to show externally included text
   or example code. Usage : `M-x boxquote-…`
 
+
+## Cli
+
+PIMacs provides some usefull commands line ; run the coommand
+`./bin/doom help +pimacs` in order to see his documentation.

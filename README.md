@@ -40,6 +40,8 @@
 
 * **pimacs/pimacs**  
   [PIMacs default configuration](pimacs/README.md).
+* **pimacs/keys**  
+  PIMacs `global-map` configuration. [See the auto-generated key bindings refcard](keys/key-bindings-refcard.md).
 * **PIMacs/aliases**  
   [Define useful aliases starting by _](aliases/config.el).
 * **PIMacs/functions**  
