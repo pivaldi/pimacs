@@ -128,9 +128,9 @@
 (load! "+hooks")
 (load! "+modes")
 
-(provide 'pimacs/default)
+(provide 'pimacs/pimacs)
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/default/config.el")
+;; eval: (rename-buffer "pimacs/pimacs/config.el")
 ;; End:

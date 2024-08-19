@@ -1,5 +1,4 @@
-#!/usr/bin/env doomscript
-;;; pimacs/keys/cli.el --- See README.md -*- lexical-binding: t; -*-
+;;; pimacs/keys/init.el --- See README.md -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -15,22 +14,12 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-:;; Commentary:
-
 ;;; Code:
 
-(load! "../cli.el")
+(add-to-list 'pim-keymapname-alist '("global-map" . 'keys))
 
-(defcli! pim-to-refcard ()
-         "Export the PIMacs global-map key bindings into the file key-bindings-refcard.md of the project."
-         (let ((byte-compile-current-file t))
-           (require 'doom-start)
-           (pim-keys-bindings-to-md-refcard "global-map" 'keys)
-           )
-         )
-
-(provide 'pimacs/keys/cli)
-;;; cli.el ends here
+(provide 'pimacs/keys/init)
+;;; init.el ends here
 
 ;; Local variables:
 ;; coding: utf-8

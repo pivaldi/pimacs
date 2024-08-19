@@ -46,7 +46,7 @@ The default minimal configuration of Emacs by PIMacs.
   `(add-hook 'before-save-hook …)`
 * Abort the minibuffer when using the mouse. More information [here](https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html).  
   `(add-hook 'mouse-leave-buffer-hook 'pim-stop-using-minibuffer)`
-* Enable `auto-fill-mode` in the hook pushed in the variable `pim-auto-fill-mode-hook-alist`.  
+* Enable `auto-fill-mode` in the hook pushed in the variable `pim-auto-fill-mode-hooks`.  
   Reconfigure `fill-nobreak-predicate` to ensure better break (none in `...` for example).
 * Abort the minibuffer when using the mouse.
   See [this article](https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html) for the details.

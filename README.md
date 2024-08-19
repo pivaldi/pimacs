@@ -38,8 +38,8 @@
 
 ## Modules
 
-* **PIMacs/default**  
-  [PIMacs default configuration](default/README.md).
+* **pimacs/pimacs**  
+  [PIMacs default configuration](pimacs/README.md).
 * **PIMacs/aliases**  
   [Define useful aliases starting by _](aliases/config.el).
 * **PIMacs/functions**  

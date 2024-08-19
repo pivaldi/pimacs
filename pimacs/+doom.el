@@ -22,5 +22,5 @@
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/default/+doom.el")
+;; eval: (rename-buffer "pimacs/pimacs/+doom.el")
 ;; End:

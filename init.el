@@ -5,7 +5,7 @@
 
 (doom!
  :pimacs
- default ;; PIMacs default Emacs configuration on top of Doom.
+ pimacs ;; PIMacs default Emacs configuration on top of Doom.
  functions ;; Useful functions. Must be loaded for the keys module/
  aliases ;; Define aliases starting with `_`. The most useful are `_rb` and `_sir`.
  theme ;; Define some faces and load Zenburn Theme. See the `README.md` in the directory `pimacs/theme`.

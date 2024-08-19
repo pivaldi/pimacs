@@ -1,4 +1,4 @@
-;;; -*- lexical-binding: t; -*-
+;;; Package pymacs/defaul --- See README.md -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -16,16 +16,21 @@
 
 ;;; Code:
 
-;; Set the debug option to enable a backtrace when
-;; problems occur.
-(defvar pim-error-msgs (list)
-  "* List of errors encountered when loading pim-configuration files.")
+;;;###autodef
+(defvar pim/scissor-pattern "✂·······"
+  "String pattern to insert in `pim/scissor`.")
 
-(defcustom pim-auto-fill-mode-hook-alist
-  '(text-mode-hook org-mode-hook)
-  "List of hooks for which we want auto-fill-mode --automatic break of long lines--."
-  :type 'hook
-  :group 'pimacs-coding)
+;;;###autoload
+(defun pim/scissor ()
+  "Insert a line of 'pim/scissor-pattern' in the buffer."
+  (interactive)
+  (or (bolp) (beginning-of-line 2))
+  (while (<= (current-column) (- (or fill-column 70) (length pim/scissor-pattern)))
+    (insert pim/scissor-pattern))
+  (newline))
+
+(provide 'pimacs/pimacs/autoload)
+;;; autoload.el ends here
 
 ;; Local variables:
 ;; coding: utf-8
