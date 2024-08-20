@@ -23,3 +23,4 @@ See the docstrings of each function for furthers informations.
 * `pim/insert-comma-at-end-of-line` : smartly insert a comma at the end of the line.
 * `pim/next-user-buffer` : switch to the next real buffer.
 * `pim/previous-user-buffer` : switch to the previous real buffer.
+* `pim/keys-bindings-to-md-refcard` : export all the PIMacs key bindings in md file
