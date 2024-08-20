@@ -1,4 +1,4 @@
-;;; pimacs/pimacs/hook.el -*- lexical-binding: t; -*-
+;;; pimacs/default/hook.el -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@
 (setq fill-nobreak-predicate (cons #'pim-fill-nobreak-predicate fill-nobreak-predicate))
 
 (after!
- pimacs/pimacs
+ pimacs/default
  (dolist (hook pim-auto-fill-mode-hooks)
    (add-hook hook
              (lambda ()
@@ -60,5 +60,5 @@ See https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/pimacs/+hooks.el")
+;; eval: (rename-buffer "pimacs/default/+hooks.el")
 ;; End:

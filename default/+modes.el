@@ -1,4 +1,4 @@
-;;; pimacs/pimacs/mode.el -*- lexical-binding: t; -*-
+;;; pimacs/default/mode.el -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -46,5 +46,5 @@
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/pimacs/+modes.el")
+;; eval: (rename-buffer "pimacs/default/+modes.el")
 ;; End:

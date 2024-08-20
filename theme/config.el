@@ -33,7 +33,7 @@
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 (unless (modulep! +no-font)
   (after!
-   pimacs/pimacs
+   pimacs/default
    (if
        (find-font (font-spec :name "TerminessTTF NF"))
        (progn

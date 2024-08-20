@@ -91,13 +91,13 @@
   ;;  :desc "Switch to workspace. #pim"
   ;;  "<s-tab>" #'+workspace/switch-to)
   (map! :leader
-        :prefix ("w" . "workspaces/windows")
+        :prefix ("w" . "workspaces/windows #pim")
         :desc "Load a workspace. #pim" "L" #'+workspace/load)
 
   (map! :leader
-        :prefix ("TAB" . "switch")
-        :desc "Switch to last workspace. #pim"  "TAB"   #'+workspace/other
-        :desc "Switch to workspace. #pim"  "w"   #'+workspace/switch-to
+        :prefix ("TAB" . "switch #pim")
+        :desc "Switch to last workspace. #pim" "TAB" #'+workspace/other
+        :desc "Switch to workspace. #pim" "w" #'+workspace/switch-to
         )
   )
 
@@ -155,11 +155,20 @@
 
 (map! :desc "Use fill line or region as auto-fill-mode does. #pim" "M-q" #'pim/fill)
 
-(map! :desc "Comment/Uncomment the entire line and indent. #pim" "C-%"
-      (lambda nil
-        (interactive)
-        (pim/?comment t)))
-(map! :desc "Comment/Uncomment the entire line but not indent. #pim" "C-ù" #'pim/?comment)
+(if (modulep! +azerty)
+    (progn
+      (map! :desc "Comment/Uncomment the entire line and indent. #pim" "C-%"
+            (lambda nil
+              (interactive)
+              (pim/?comment t)))
+      (map! :desc "Comment/Uncomment the entire line but not indent. #pim" "C-ù" #'pim/?comment))
+  (progn
+    (map! :desc "Comment/Uncomment the entire line and indent (no indent if C-u prefix). #pim" "C-/"
+          (lambda (arg)
+            (interactive "P")
+               (pim/?comment (not arg))))
+    )
+  )
 
 ;; ;; Semicolon and comma at the end of the line
 (let ((keysm (kbd "C-;"))
@@ -173,8 +182,9 @@
           (define-key flyspell-mode-map
                       keyco 'pim/insert-comma-at-end-of-line)))
 
-(map! :desc "Insert a section comments. #pim" "C-Μ" #'pim/insert-comment-section)
-(map! :desc "Insert a section comments. #pim" "C-*" #'pim/insert-comment-sub-section)
+(map! :desc "Insert a cool section comments. #pim" "C-µ" #'pim/insert-comment-section)
+
+(map! :desc "Insert a cool section comments. #pim" "C-*" #'pim/insert-comment-sub-section)
 
 
 ;; ;; TODO : Is it needed ?
@@ -186,16 +196,16 @@
 ;;   "Search for the compilation file traversing up the directory tree. Return the directory, not the file !
 ;; Src : http://www.emacswiki.org/cgi-bin/wiki/UsingMakefileFromParentDirectory"
 ;;   (let ((dir default-directory)
-;; 	(parent-dir (file-name-directory (directory-file-name default-directory)))
-;; 	(nearest-compilation-dir 'nil))
+;;   (parent-dir (file-name-directory (directory-file-name default-directory)))
+;;   (nearest-compilation-dir 'nil))
 ;;     (while (and (not (string= dir parent-dir))
-;; 		(not nearest-compilation-dir))
+;;     (not nearest-compilation-dir))
 ;;       (dolist (filename pim-compilation-filenames)
-;; 	(setq file-path (concat dir filename))
-;; 	(when (file-readable-p file-path)
-;; 	  (setq nearest-compilation-dir dir)))
+;;   (setq file-path (concat dir filename))
+;;   (when (file-readable-p file-path)
+;;     (setq nearest-compilation-dir dir)))
 ;;       (setq dir parent-dir
-;; 	    parent-dir (file-name-directory (directory-file-name parent-dir))))
+;;       parent-dir (file-name-directory (directory-file-name parent-dir))))
 ;;     nearest-compilation-dir))
 
 ;; (defun pim-compile-above-makefile ()
@@ -220,20 +230,22 @@
 ;; (setq pim-scroll-hl t)
 
 
-;; C-/ is undo by default
 (map! :desc "Undo from undo-fu. #pim" "C-z" #'undo-fu-only-undo)
 (map! :desc "Redo from undo-fu. #pim" "C-S-z" #'undo-fu-only-redo)
-(map! :desc "Redo from undo-fu. #pim" "C-:" #'undo-fu-only-redo) ;; French keyboard
+(when (modulep! +azerty)
+  ;; C-/ is undo by default
+  (map! :desc "Redo from undo-fu for azerty keyboard. #pim" "C-:" #'undo-fu-only-redo))
 
 ;; Non-breaking spaces with quotes please.
-(map! :desc "Insert proper French quotation with non breaking spaces. #pim" "«"
-      (lambda nil
-        (interactive)
-        (insert
-         "« ")(insert
-         " »")(backward-char
-         2)))
-(map! :desc "Add non breaking spaces before the closing French quote. #pim" "»" (lambda nil (interactive) (insert " »")))
+(when (modulep! +azerty)
+  (map! :desc "Insert proper French quotation with non breaking spaces. #pim" "«"
+        (lambda nil
+          (interactive)
+          (insert
+           "« ")(insert
+           " »")(backward-char
+           2)))
+  (map! :desc "Add non breaking spaces before the closing French quote. #pim" "»" (lambda nil (interactive) (insert " »"))))
 
 
 ;; ;; TODO : to be enabled
@@ -246,13 +258,20 @@
 ;;   ;; Raccourci sur [f10]
 ;;   (global-set-key (kbd "<f10>") 'column-highlight-mode))
 
+;;;###package jumpc
 (use-package!
  jumpc
- ;; :defer t ;; does not work when deferred
+ :defer t
  :config
  (jumpc)
- (map! :desc "Jump to prev pos. #pim" "C-<" #'jumpc-jump-backward)
- (map! :desc "Jump to next pos. #pim" "C->" #'jumpc-jump-forward))
+ (if (modulep! +azerty)
+     (progn
+       (map! :desc "Jump to prev cursor position. #pim" "C-<" #'jumpc-jump-backward)
+       (map! :desc "Jump to next cursor position. #pim" "C->" #'jumpc-jump-forward))
+   (progn
+     (map! :desc "Jump to prev cursor position. #pim" "<f8>" #'jumpc-jump-backward)
+     ((map! :desc "Jump to next cursor position. #pim" "<f9>" 'jumpc-jump-forward)))
+   ))
 
 ;; TODO : To be implemented
 ;; ;; Define C-x up | C-x down | C-x right | C-x left to resize the windows
@@ -309,9 +328,9 @@
 
 
 (map! :leader
-      :prefix ("8" . "utf-8")
+      :prefix ("8" . "utf-8 #pim")
       :desc "Choose and insert an emoji glyph #pim" "e" #'emoji-insert
-      (:prefix ("1" . "fraction one")
+      (:prefix ("1" . "fraction one #pim")
                :desc "Fraction one half #pim" "2" "½"
                :desc "Fraction one third #pim" "3" "⅓"
                :desc "Fraction one quarter #pim" "4" "¼"
@@ -323,7 +342,7 @@
                :desc "Fraction one tenth #pim" "0" "⅒"
                )
 
-      (:prefix ("f" . "face")
+      (:prefix ("f" . "face #pim")
                :desc "🙂 #pim" "s" "🙂"
                :desc "😀 #pim" "g" "😀"
                :desc "😬 #pim" "G" "😬"
@@ -339,13 +358,13 @@
                :desc "😭 #pim" "l" "😭"
                )
 
-      (:prefix ("s" . "symbol")
+      (:prefix ("s" . "symbol #pim")
                :desc "⚠️ #pim" "w" "⚠️"
                :desc "⚡ #pim" "z" "⚡"
                :desc "• #pim" "b" "•"
                )
 
-      (:prefix ("b" . "bullet")
+      (:prefix ("b" . "bullet #pim")
                :desc "• #pim" "b" "•"
                :desc "‣ #pim" "t" "‣"
                :desc "⁃ #pim" "h" "⁃"
@@ -358,7 +377,7 @@
                :desc "⦿ #pim" "C" "⦿"
                )
 
-      (:prefix ("a" . "arrow")
+      (:prefix ("a" . "arrow #pim")
                :desc "🠕 #pim" "u" "🠕"
                :desc "🠖 #pim" "r" "🠖"
                :desc "🠔 #pim" "l" "🠔"

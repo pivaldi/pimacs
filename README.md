@@ -24,7 +24,7 @@
  ;; aliases ;; Define aliases starting with `_`. The most useful are `_rb`, `_sir`, `_gf`.
  ;; (theme +no-font) ;; Define some faces and load Zenburn Theme.
                    ;;;; See the `README.md` in the directory `pimacs/theme`
- ;; keys ;; Define the PIMacs keys binding. See the `refcard.md`
+ ;; (keys +azerty) ;; Define the PIMacs keys binding.
  ;; session ;; Auto reload the last session at startup through
           ;;;; `doom/quickload-session` (no desktop bad practice in Doom)
 
@@ -35,16 +35,20 @@
 ```
 **Remember to run `doom sync` after modifying `init.el` !**
 
-
 ## Modules
 
-* **pimacs/pimacs**  
-  [PIMacs default configuration](pimacs/README.md).
-* **pimacs/keys**  
-  PIMacs `global-map` configuration. [See the auto-generated key bindings refcard](keys/key-bindings-refcard.md).
-* **PIMacs/aliases**  
-  [Define useful aliases starting by _](aliases/config.el).
-* **PIMacs/functions**  
-  [Define useful functions used under the hood by PIMacs.](functions/README.md).
-* **PIMacs/session**  
-  [Workspace/Session Persistence and Auto Restore Last Session](session/README.md).
+### pimacs/default
+[PIMacs default configuration](default/README.md).
+
+### pimacs/keys
+[PIMacs `global-map` configuration](keys/README.md).  
+See also the auto-generated [key bindings refcard](keys/key-bindings-refcard.md).
+
+### PIMacs/aliases
+[Define useful aliases starting by `_`](aliases/config.el).
+
+### PIMacs/functions
+[Define useful functions used under the hood by PIMacs](functions/README.md).
+
+### PIMacs/session
+[Workspace/Session Persistence and Auto Restore Last Session](session/README.md).

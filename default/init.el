@@ -1,4 +1,4 @@
-;;; pimacs/pim-default/package.el -*- no-byte-compile: t; -*-
+;;; -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -14,31 +14,23 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;; Code:
+;;; Code:
 
+;; Set the debug option to enable a backtrace when
+;; problems occur.
+(defvar pim-error-msgs (list)
+  "List of errors encountered when loading pim-configuration files.")
 
-;; ----------------------------------------
-;; * HTML rendering for buffers and files *
-;; Just call `htmlize-view-buffer' to show the current buffer in
-;; your web browser.
-;;;###package html-view
-(use-package!
- htmlize-view
- :defer t
- ;; :commands (htmlize-buffer htmlize-file htmlize-many-files
- ;;                           htmlize-many-files-dired
- ;;                           htmlize-region htmlize-view-buffer)
- :config
-(setq
- htmlize-convert-nonascii-to-entities nil
- htmlize-html-charset "utf-8")
- (htmlize-view-add-to-files-menu))
+(defvar pim-keymapname-alist (list)
+  "List of \"keymap name . module name\"  configured by PIMacs.
+If keymap name is not added to this alist by a module, the cli
+generate-KEYMAPNAME--refcard will do nothing.")
 
-;; -----------------
-;; * Box some text *
-;; Command M-x boxquote-...
-(use-package! boxquote
-              :defer t)
+(defcustom pim-auto-fill-mode-hooks
+  '(text-mode-hook org-mode-hook)
+  "List of hooks for which we want auto-fill-mode --automatic break of long lines--."
+  :type 'hook
+  :group 'pimacs-coding)
 
 ;; Local variables:
 ;; coding: utf-8

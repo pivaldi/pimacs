@@ -1,4 +1,4 @@
-;;; Package pymacs/defaul --- See README.md -*- lexical-binding: t; -*-
+;;; pimacs/pim-default/package.el -*- no-byte-compile: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -14,23 +14,13 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;; Code:
+;; Code:
 
-;;;###autodef
-(defvar pim/scissor-pattern "✂·······"
-  "String pattern to insert in `pim/scissor`.")
-
-;;;###autoload
-(defun pim/scissor ()
-  "Insert a line of 'pim/scissor-pattern' in the buffer."
-  (interactive)
-  (or (bolp) (beginning-of-line 2))
-  (while (<= (current-column) (- (or fill-column 70) (length pim/scissor-pattern)))
-    (insert pim/scissor-pattern))
-  (newline))
-
-(provide 'pimacs/pimacs/autoload)
-;;; autoload.el ends here
+;; -----------------
+;; * Box some text *
+;; Command M-x boxquote-...
+;;;###package boxquote
+(package! boxquote)
 
 ;; Local variables:
 ;; coding: utf-8

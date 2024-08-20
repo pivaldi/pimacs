@@ -15,9 +15,9 @@
 
 ;;; Code:
 
-(after! pimacs/pimacs
+(after! pimacs/default
  (if (featurep 'evil)
-     (add-to-list 'pim-error-msgs "PImacs does not provide key configuration for evil mode. Push request is needed.")
+     (add-to-list 'pim-error-msgs "PIMacs does not provide key configuration for evil mode. Push request is needed.")
    (load! "+emacs")
    ))
 

@@ -16,7 +16,7 @@
 
 ;;; Code:
 
-(add-to-list 'pim-keymapname-alist '("global-map" . 'keys))
+(add-to-list 'pim-keymapname-alist '("global-map" . "keys"))
 
 (provide 'pimacs/keys/init)
 ;;; init.el ends here

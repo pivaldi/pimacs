@@ -113,7 +113,6 @@
 (after! which-func
         (which-function-mode 1))
 
-
 (if (executable-find "rg")
     (grep-apply-setting
      'grep-find-command
@@ -124,13 +123,31 @@
      'grep-find-command
      '("find . -type f ! -regex '.*/node_modules/.*' ! -regexp '.*/dist/.*' ! -regex '.*/vendor/.*' ! -regex '.*\\.git/.*' -exec grep -Hni '' {} \\;" . 132))))
 
+;; ----------------------------------------
+;; * HTML rendering for buffers and files *
+;; Just call `htmlize-view-buffer' to show the current buffer in
+;; your web browser.
+;;;###package html-view
+(use-package!
+ htmlize-view
+ :defer t
+ ;; :commands (htmlize-buffer htmlize-file htmlize-many-files
+ ;;                           htmlize-many-files-dired
+ ;;                           htmlize-region htmlize-view-buffer)
+ :config
+(setq
+ htmlize-convert-nonascii-to-entities nil
+ htmlize-html-charset "utf-8")
+ (htmlize-view-add-to-files-menu))
+
+
 (load! "+doom")
 (load! "+hooks")
 (load! "+modes")
 
-(provide 'pimacs/pimacs)
+(provide 'pimacs/default)
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/pimacs/config.el")
+;; eval: (rename-buffer "pimacs/default/config.el")
 ;; End:
