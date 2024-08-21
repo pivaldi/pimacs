@@ -22,9 +22,7 @@
   "List of errors encountered when loading pim-configuration files.")
 
 (defvar pim-keymapname-alist (list)
-  "List of \"keymap name . module name\"  configured by PIMacs.
-If keymap name is not added to this alist by a module, the cli
-generate-KEYMAPNAME--refcard will do nothing.")
+  "List (\"module name\" . '(keymapname1 keymapname2 etc)  configured by PIMacs.")
 
 (defcustom pim-auto-fill-mode-hooks
   '(text-mode-hook org-mode-hook)
@@ -34,4 +32,5 @@ generate-KEYMAPNAME--refcard will do nothing.")
 
 ;; Local variables:
 ;; coding: utf-8
+;; eval: (rename-buffer "pimacs/default/init.el")
 ;; End:

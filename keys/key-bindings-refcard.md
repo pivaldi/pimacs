@@ -19,14 +19,16 @@
 * `C-,` : Fancy insert/delete comma at the end of the line.
 * `C-:` : Redo from undo-fu for azerty keyboard.
 * `C-;` : Fancy insert/delete semicolon at the end of the line.
+* `C-<` : Jump to prev cursor position.
+* `C->` : Jump to next cursor position.
 * `C-k` : If at end of line, join with following; otherwise kill line.
 * `C-x C-r` : Find file as root.
 * `C-z` : Undo from undo-fu.
 * `C-µ` : Insert a cool section comments.
 * `C-ù` : Comment/Uncomment the entire line but not indent.
 * `C-M-<down>` : Scroll down keeping the cursor on the same line.
-* `C-M-<next>` : * Move cursor at end of line.
-* `C-M-<prior>` : * Move cursor at beginning of line or first non blank character.
+* `C-M-<next>` : Move cursor at end of line.
+* `C-M-<prior>` : Move cursor at beginning of line or first non blank character.
 * `C-M-<up>` : Scroll up keeping the cursor on the same line.
 * `C-S-t` : Open recent file à la Chromium/Firefox.
 * `C-S-z` : Redo from undo-fu.
@@ -39,5 +41,8 @@
 * `C-<up>` : Scrolling up long line.
 * `M-q` : Use fill line or region as auto-fill-mode does.
 * `S-<iso-lefttab>` : Dynamically complete the filename under the cursor.
-* `<home>` : * Move cursor at beginning of line or first non blank character.
+* `<home>` : Move cursor at beginning of line or first non blank character.
 * `<insert>` : Disable overwrite-mode pressing <insert> key.
+
+## Keymap general-override-mode-map
+

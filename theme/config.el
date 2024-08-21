@@ -40,7 +40,7 @@
          (setq
           doom-font-increment 1
           ;; TODO : Make the default font size an option
-          doom-font (font-spec :family "TerminessTTF NF" :foundry "PfEd" :weight 'bold :size 18 :foreground "#DCDCCC")
+          doom-font (font-spec :family "TerminessTTF NF" :foundry "PfEd" :weight 'bold :size 20 :foreground "#DCDCCC")
           )
          (set-frame-font doom-font nil t))
 

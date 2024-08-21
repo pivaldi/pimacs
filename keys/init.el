@@ -16,11 +16,12 @@
 
 ;;; Code:
 
-(add-to-list 'pim-keymapname-alist '("global-map" . "keys"))
+(add-to-list 'pim-keymapname-alist '("keys" . ("global-map" "general-override-mode-map")))
 
 (provide 'pimacs/keys/init)
 ;;; init.el ends here
 
 ;; Local variables:
 ;; coding: utf-8
+;; eval: (rename-buffer "pimacs/keys/init.el")
 ;; End:

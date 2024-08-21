@@ -71,20 +71,15 @@
  ((modulep! :completion vertico)
   (map!
    :desc "Swith to buffer with the same workspace. #pim"
-   "<C-tab>" #'+vertico/switch-workspace-buffer)
-  )
-
+   "<C-tab>" #'+vertico/switch-workspace-buffer))
  ((modulep! :completion helm)
   (map!
    :desc "Swith to buffer with the same workspace. #pim"
-   "<C-tab>" #'+helm/workspace-mini)
-  )
+   "<C-tab>" #'+helm/workspace-mini))
  ((modulep! :completion ivy)
   (map!
    :desc "Swith to buffer with the same workspace. Use 'C-x B' for extended buffer/file list. #pim"
-   "<C-tab>" #'+ivy/switch-workspace-buffer)
-  )
- )
+   "<C-tab>" #'+ivy/switch-workspace-buffer)))
 
 (when (modulep! :ui workspaces)
   ;; (map!
@@ -97,9 +92,7 @@
   (map! :leader
         :prefix ("TAB" . "switch #pim")
         :desc "Switch to last workspace. #pim" "TAB" #'+workspace/other
-        :desc "Switch to workspace. #pim" "w" #'+workspace/switch-to
-        )
-  )
+        :desc "Switch to workspace. #pim" "w" #'+workspace/switch-to))
 
 ;; ;; TODO : enable it
 ;; ;; ----------------------
@@ -149,9 +142,9 @@
 
 (map! :desc "Find file as root. #pim" "C-x C-r" #'pim/find-file-root)
 
-(map! :desc "* Move cursor at beginning of line or first non blank character. #pim" "<home>" #'pim/home)
-(map! :desc "* Move cursor at beginning of line or first non blank character. #pim" "C-M-<prior>" #'pim/home)
-(map! :desc "* Move cursor at end of line. #pim" "C-M-<next>" 'end-of-line)
+(map! :desc "Move cursor at beginning of line or first non blank character. #pim" "<home>" #'pim/home)
+(map! :desc "Move cursor at beginning of line or first non blank character. #pim" "C-M-<prior>" #'pim/home)
+(map! :desc "Move cursor at end of line. #pim" "C-M-<next>" 'end-of-line)
 
 (map! :desc "Use fill line or region as auto-fill-mode does. #pim" "M-q" #'pim/fill)
 
@@ -166,7 +159,7 @@
     (map! :desc "Comment/Uncomment the entire line and indent (no indent if C-u prefix). #pim" "C-/"
           (lambda (arg)
             (interactive "P")
-               (pim/?comment (not arg))))
+            (pim/?comment (not arg))))
     )
   )
 
@@ -177,10 +170,10 @@
   (map! :desc "Fancy insert/delete comma at the end of the line. #pim" keyco #'pim/insert-comma-at-end-of-line)
   ;; Rebind flyspell default key-binding
   (after! flyspell
-          (define-key flyspell-mode-map
-                      keysm 'pim/insert-semicol-at-end-of-line)
-          (define-key flyspell-mode-map
-                      keyco 'pim/insert-comma-at-end-of-line)))
+    (define-key flyspell-mode-map
+                keysm 'pim/insert-semicol-at-end-of-line)
+    (define-key flyspell-mode-map
+                keyco 'pim/insert-comma-at-end-of-line)))
 
 (map! :desc "Insert a cool section comments. #pim" "C-µ" #'pim/insert-comment-section)
 
@@ -260,18 +253,18 @@
 
 ;;;###package jumpc
 (use-package!
- jumpc
- :defer t
- :config
- (jumpc)
- (if (modulep! +azerty)
-     (progn
-       (map! :desc "Jump to prev cursor position. #pim" "C-<" #'jumpc-jump-backward)
-       (map! :desc "Jump to next cursor position. #pim" "C->" #'jumpc-jump-forward))
-   (progn
-     (map! :desc "Jump to prev cursor position. #pim" "<f8>" #'jumpc-jump-backward)
-     ((map! :desc "Jump to next cursor position. #pim" "<f9>" 'jumpc-jump-forward)))
-   ))
+    jumpc
+  :defer t
+  :config
+  (jumpc)
+  (if (modulep! +azerty)
+      (progn
+        (map! :desc "Jump to prev cursor position. #pim" "C-<" #'jumpc-jump-backward)
+        (map! :desc "Jump to next cursor position. #pim" "C->" #'jumpc-jump-forward))
+    (progn
+      (map! :desc "Jump to prev cursor position. #pim" "<f8>" #'jumpc-jump-backward)
+      ((map! :desc "Jump to next cursor position. #pim" "<f9>" 'jumpc-jump-forward)))
+    ))
 
 ;; TODO : To be implemented
 ;; ;; Define C-x up | C-x down | C-x right | C-x left to resize the windows
@@ -327,68 +320,68 @@
           (forward-line))))
 
 
-(map! :leader
-      :prefix ("8" . "utf-8 #pim")
-      :desc "Choose and insert an emoji glyph #pim" "e" #'emoji-insert
-      (:prefix ("1" . "fraction one #pim")
-               :desc "Fraction one half #pim" "2" "½"
-               :desc "Fraction one third #pim" "3" "⅓"
-               :desc "Fraction one quarter #pim" "4" "¼"
-               :desc "Fraction one fifth #pim" "5" "⅕"
-               :desc "Fraction one sixth #pim" "6" "⅙"
-               :desc "Fraction one seventh #pim" "7" "⅐"
-               :desc "Fraction one eighth #pim" "8" "⅛"
-               :desc "Fraction one ninth #pim" "9" "⅑"
-               :desc "Fraction one tenth #pim" "0" "⅒"
-               )
+;; (map! :leader
+;;       :prefix ("8" . "utf-8 #pim")
+;;       :desc "Choose and insert an emoji glyph #pim" "e" #'emoji-insert
+;;       (:prefix ("1" . "fraction one #pim")
+;;        :desc "Fraction one half #pim" "2" "½"
+;;        :desc "Fraction one third #pim" "3" "⅓"
+;;        :desc "Fraction one quarter #pim" "4" "¼"
+;;        :desc "Fraction one fifth #pim" "5" "⅕"
+;;        :desc "Fraction one sixth #pim" "6" "⅙"
+;;        :desc "Fraction one seventh #pim" "7" "⅐"
+;;        :desc "Fraction one eighth #pim" "8" "⅛"
+;;        :desc "Fraction one ninth #pim" "9" "⅑"
+;;        :desc "Fraction one tenth #pim" "0" "⅒"
+;;        )
 
-      (:prefix ("f" . "face #pim")
-               :desc "🙂 #pim" "s" "🙂"
-               :desc "😀 #pim" "g" "😀"
-               :desc "😬 #pim" "G" "😬"
-               :desc "😒 #pim" "u" "😒"
-               :desc "😞 #pim" "d" "😞"
-               :desc "😖 #pim" "c" "😖"
-               :desc "😉 #pim" "w" "😉"
-               :desc "😂 #pim" "j" "😂"
-               :desc "😟 #pim" "W" "😟"
-               :desc "😅 #pim" "C" "😅"
-               :desc "😱 #pim" "S" "😱"
-               :desc "😆 #pim" "e" "😆"
-               :desc "😭 #pim" "l" "😭"
-               )
+;;       (:prefix ("f" . "face #pim")
+;;        :desc "🙂 #pim" "s" "🙂"
+;;        :desc "😀 #pim" "g" "😀"
+;;        :desc "😬 #pim" "G" "😬"
+;;        :desc "😒 #pim" "u" "😒"
+;;        :desc "😞 #pim" "d" "😞"
+;;        :desc "😖 #pim" "c" "😖"
+;;        :desc "😉 #pim" "w" "😉"
+;;        :desc "😂 #pim" "j" "😂"
+;;        :desc "😟 #pim" "W" "😟"
+;;        :desc "😅 #pim" "C" "😅"
+;;        :desc "😱 #pim" "S" "😱"
+;;        :desc "😆 #pim" "e" "😆"
+;;        :desc "😭 #pim" "l" "😭"
+;;        )
 
-      (:prefix ("s" . "symbol #pim")
-               :desc "⚠️ #pim" "w" "⚠️"
-               :desc "⚡ #pim" "z" "⚡"
-               :desc "• #pim" "b" "•"
-               )
+;;       (:prefix ("s" . "symbol #pim")
+;;        :desc "⚠️ #pim" "w" "⚠️"
+;;        :desc "⚡ #pim" "z" "⚡"
+;;        :desc "• #pim" "b" "•"
+;;        )
 
-      (:prefix ("b" . "bullet #pim")
-               :desc "• #pim" "b" "•"
-               :desc "‣ #pim" "t" "‣"
-               :desc "⁃ #pim" "h" "⁃"
-               :desc "◘ #pim" "i" "◘"
-               :desc "◦ #pim" "w" "◦"
-               :desc "☑ #pim" "c" "☑"
-               :desc "☒ #pim" "x" "☒"
-               :desc "❧ #pim" "f" "❧"
-               :desc "☙ #pim" "F" "☙"
-               :desc "⦿ #pim" "C" "⦿"
-               )
+;;       (:prefix ("b" . "bullet #pim")
+;;        :desc "• #pim" "b" "•"
+;;        :desc "‣ #pim" "t" "‣"
+;;        :desc "⁃ #pim" "h" "⁃"
+;;        :desc "◘ #pim" "i" "◘"
+;;        :desc "◦ #pim" "w" "◦"
+;;        :desc "☑ #pim" "c" "☑"
+;;        :desc "☒ #pim" "x" "☒"
+;;        :desc "❧ #pim" "f" "❧"
+;;        :desc "☙ #pim" "F" "☙"
+;;        :desc "⦿ #pim" "C" "⦿"
+;;        )
 
-      (:prefix ("a" . "arrow #pim")
-               :desc "🠕 #pim" "u" "🠕"
-               :desc "🠖 #pim" "r" "🠖"
-               :desc "🠔 #pim" "l" "🠔"
-               :desc "🠗 #pim" "d" "🠗"
+;;       (:prefix ("a" . "arrow #pim")
+;;        :desc "🠕 #pim" "u" "🠕"
+;;        :desc "🠖 #pim" "r" "🠖"
+;;        :desc "🠔 #pim" "l" "🠔"
+;;        :desc "🠗 #pim" "d" "🠗"
 
-               :desc "🠙 #pim" "U" "🠙"
-               :desc "🠚 #pim" "R" "🠚"
-               :desc "🠘 #pim" "L" "🠘"
-               :desc "🠛 #pim" "D" "🠛"
-               )
-      )
+;;        :desc "🠙 #pim" "U" "🠙"
+;;        :desc "🠚 #pim" "R" "🠚"
+;;        :desc "🠘 #pim" "L" "🠘"
+;;        :desc "🠛 #pim" "D" "🠛"
+;;        )
+;;       )
 
 (map! :desc "Switch to the next user buffer. #pim" "<mouse-9>" #'pim/next-user-buffer)
 (map! :desc "Switch to the previous user buffer. #pim" "<mouse-8>" #'pim/previous-user-buffer)
