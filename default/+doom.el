@@ -16,9 +16,14 @@
 
 ;;; Code:
 
- ;; Doom consider some buffers as unreal buffer (like *Message*)
- ;; I want to see this buffers !!
- (setq doom-unreal-buffer-functions '(minibufferp))
+;; Doom consider some buffers as unreal buffer (like *Message*)
+;; I want to see this buffers !!
+(setq doom-unreal-buffer-functions '(minibufferp))
+
+;; Add Persp Workspace name in the Doom modeline.
+;; https://github.com/doomemacs/doomemacs/issues/314#issuecomment-470381785
+(after! doom-modeline
+  (setq doom-modeline-persp-name t))
 
 ;; Local variables:
 ;; coding: utf-8

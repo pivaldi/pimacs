@@ -39,6 +39,7 @@
 * `C-<prior>` : Select another window in backwards ordering of windows or with `ace-window`.
 * `C-<tab>` : Swith to buffer with the same workspace.
 * `C-<up>` : Scrolling up long line.
+* `M-RET` : Like <return> but escape from continuing coment.
 * `M-q` : Use fill line or region as auto-fill-mode does.
 * `S-<iso-lefttab>` : Dynamically complete the filename under the cursor.
 * `<home>` : Move cursor at beginning of line or first non blank character.

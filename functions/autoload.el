@@ -277,7 +277,7 @@ If KEYMAPNAMES is nil, use the variable `pim-keymapname-alist' instead."
          (line nil)
          (pim-regexp "\\(.*\\)#pim *$")
          (keyboard (if (modulep! :pimacs keys +azerty) " (with option +azerty)" ""))
-         (keys nil)
+         (keys '())
          (keymap nil))
     (unless keymapnames
       (setq keymapnames '())

@@ -229,6 +229,14 @@
   ;; C-/ is undo by default
   (map! :desc "Redo from undo-fu for azerty keyboard. #pim" "C-:" #'undo-fu-only-redo))
 
+
+(map!
+ :desc "Like <return> but escape from continuing coment. #pim" "<M-RET>"
+ (lambda nil
+   (interactive)
+   (let ((+default-want-RET-continue-comments nil))
+     (newline-and-indent))))
+
 ;; Non-breaking spaces with quotes please.
 (when (modulep! +azerty)
   (map! :desc "Insert proper French quotation with non breaking spaces. #pim" "«"
@@ -319,6 +327,9 @@
         (let ((line-move-visual nil))
           (forward-line))))
 
+(map! :leader
+      :prefix ("8" . "utf-8 #pim")
+      :desc "Choose and insert an emoji glyph #pim" "i" #'emoji-insert)
 
 ;; (map! :leader
 ;;       :prefix ("8" . "utf-8 #pim")

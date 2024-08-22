@@ -39,6 +39,7 @@ The default minimal configuration of Emacs by PIMacs.
   If the module `pimacs/aliases` is enabled, short alias of `grep-find` is `_rg` (let it a try).
 * Enable matching whitespace literally (disable lax space matching).
   [By default searching two spaces also match single space](https://www.gnu.org/software/emacs/manual/html_node/emacs/Special-Isearch.html#Special-Isearch), who want this behavior ??
+* Add Workspace name in the Doom modeline.
 
 ## Adding Hooks
 

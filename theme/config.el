@@ -33,19 +33,19 @@
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 (unless (modulep! +no-font)
   (after!
-   pimacs/default
-   (if
-       (find-font (font-spec :name "TerminessTTF NF"))
-       (progn
-         (setq
-          doom-font-increment 1
-          ;; TODO : Make the default font size an option
-          doom-font (font-spec :family "TerminessTTF NF" :foundry "PfEd" :weight 'bold :size 20 :foreground "#DCDCCC")
-          )
-         (set-frame-font doom-font nil t))
+    pimacs/default
+    (if
+        (find-font (font-spec :name "TerminessTTF NF"))
+        (progn
+          (setq
+           doom-font-increment 1
+           ;; TODO : Make the default font size an option
+           doom-font (font-spec :family "TerminessTTF NF" :foundry "PfEd" :weight 'bold :size 20 :foreground "#DCDCCC")
+           )
+          (set-frame-font doom-font nil t))
 
-     (add-to-list 'pim-error-msgs "Please install Terminess TTF Nerd Fonts : https://github.com/ryanoasis/nerd-fonts"))
-   ))
+      (add-to-list 'pim-error-msgs "Please install Terminess TTF Nerd Fonts : https://github.com/ryanoasis/nerd-fonts"))
+    ))
 
 
 (unless (modulep! +no-zenburn-theme)
@@ -56,21 +56,22 @@
     '(("zenburn-bg-05" . "#303030")))
 
   (use-package!
-   zenburn-theme
-   :init
-   (setq
-    ;; use variable-pitch fonts for some headings and titles
-    zenburn-use-variable-pitch t
-    ;; scale headings in org-mode
-    zenburn-scale-org-headlines t
-    ;; scale headings in outline-mode
-    zenburn-scale-outline-headlines t
-    zenburn-fg "#dcdccc"
-    )
+      zenburn-theme
+    :init
+    (setq
+     ;; use variable-pitch fonts for some headings and titles
+     zenburn-use-variable-pitch t
+     ;; scale headings in org-mode
+     zenburn-scale-org-headlines t
+     ;; scale headings in outline-mode
+     zenburn-scale-outline-headlines t
+     zenburn-fg "#dcdccc"
+     )
 
-   :config
-   (load-theme 'zenburn t)
-   )
+    :config
+    (load-theme 'zenburn t)
+    (set-face-attribute 'completions-annotations nil :foreground "#A9A999")
+    )
   )
 
 (setq-default
@@ -81,11 +82,11 @@
 
 ;; Disable hl-line-mode in prog-mode and text-mode.
 (use-package!
- hl-line
- :defer t
- :config
- (setq global-hl-line-modes '(special-mode org-agenda-mode dired-mode))
- )
+    hl-line
+  :defer t
+  :config
+  (setq global-hl-line-modes '(special-mode org-agenda-mode dired-mode))
+  )
 
 (unless (modulep! +no-whitespace-style)
   ;; See useless white-spaces

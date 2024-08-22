@@ -60,9 +60,11 @@
                (modulename nil)
                (module nil)
                (byte-compile-current-file t) ;; Needed by doom-start to enable the map! macro
+               ;; (noninteractive nil)
                )
            (require 'doom-start)
            (require 'which-key)
+           (general-override-mode)
            (dolist (km pim-keymapname-alist)
              (progn
                (setq
