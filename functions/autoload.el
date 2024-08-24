@@ -271,7 +271,7 @@ User buffers are those whose name does not start with *."
 KEYMAPNAMES (list of string) is the list of keymap names to export into
 the file FNAME.
 If KEYMAPNAMES is nil, use the variable `pim-keymapname-alist' instead."
-  (interactive "P\nFExport to file :")
+  ;; TODO : make it interactive
   (require 'which-key)
   (let* ((which-key-max-description-length 1000)
          (line nil)
@@ -299,6 +299,33 @@ If KEYMAPNAMES is nil, use the variable `pim-keymapname-alist' instead."
           (when (string-match-p pim-regexp line)
             (insert (concat (s-trim (replace-regexp-in-string pim-regexp "\\1" line)) "\n"))
             ))))))
+
+;;;###autoload
+(defun pim/modules-key-bindings-to-md-refcard (modulenames fname)
+  "Export the PIMacs key bindings in md file.
+MODULENAMES (list of string) is the list of PIMacs modules names that create key bindings.
+Export the refcard to FNAME.
+If MODULENAMES is nil, use the variable `pim-keymapname-alist' instead."
+  (interactive
+   (list
+    (completing-read-multiple
+     (format "Binding module (separator regexp is comma) : " crm-separator)
+     (append (list "All PIMacs Modules)")
+             (mapcar (lambda (m) (format ":pimacs %s" (car m))) pim-keymapname-alist))
+     nil t nil nil)
+    (car (find-file-read-args "Export to file : " nil))))
+  (let ((allkeymapnames '()))
+    (when modulenames
+      (catch 'exit
+        (dolist (mname modulenames)
+          (let* ((mrealname (string-trim mname ":pimacs "))
+                 (keymapnames (cdr (assoc mrealname pim-keymapname-alist))))
+            (if keymapnames
+                (setq allkeymapnames (append allkeymapnames keymapnames))
+              (progn
+                (setq allkeymapnames nil)
+                (throw 'foo allkeymapnames)))))))
+    (pim/keys-bindings-to-md-refcard allkeymapnames fname)))
 
 (provide 'pimacs/functions/autoload)
 ;;; autoload.el ends here

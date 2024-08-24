@@ -4,14 +4,18 @@
 
 ## Keymap global-map
 
+* `<` : Like  Remove Doom advice `+default--newline-indent-and-continue-comments-a on
 * `C-c b` : Browse url at point.
 * `M-g d` : Move backward to the beginning of a defun.
+* `E S C - R E T` : Remove Doom advice `+default--newline-indent-and-continue-comments-a on
 * `«` : Insert proper French quotation with non breaking spaces.
 * `»` : Add non breaking spaces before the closing French quote.
 * `S-<f8>` : echo filename in the minibuffer and put in the kill ring.
 * `C-<f1>` : Toggle menu bar.
 * `S-<f4>` : Start the definition of a macro.
 * `C-<f4>` : Edit the last defined macro.
+* `M-<f1>` : Toggle locally the modeline.
+* `s-<f1>` : Toggle globally the modeline.
 * `<f4>` : Ending the definition of a macro.
 * `<f12>` : Delete current window and buffer.
 * `C-%` : Comment/Uncomment the entire line and indent.
@@ -39,7 +43,7 @@
 * `C-<prior>` : Select another window in backwards ordering of windows or with `ace-window`.
 * `C-<tab>` : Swith to buffer with the same workspace.
 * `C-<up>` : Scrolling up long line.
-* `M-RET` : Like <return> but escape from continuing coment.
+* `M-RET` : Remove Doom advice `+default--newline-indent-and-continue-comments-a on
 * `M-q` : Use fill line or region as auto-fill-mode does.
 * `S-<iso-lefttab>` : Dynamically complete the filename under the cursor.
 * `<home>` : Move cursor at beginning of line or first non blank character.
@@ -47,3 +51,8 @@
 
 ## Keymap general-override-mode-map
 
+* `C-c TAB TAB` : Switch to last workspace.
+* `C-c b` : Browse url at point.
+* `C-c 8 i` : Choose and insert an emoji glyph
+* `C-c w L` : Load a workspace.
+* `C-c TAB w` : Switch to workspace.

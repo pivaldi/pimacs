@@ -64,7 +64,7 @@
                )
            (require 'doom-start)
            (require 'which-key)
-           (general-override-mode)
+           (general-override-mode +1)
            (dolist (km pim-keymapname-alist)
              (progn
                (setq
