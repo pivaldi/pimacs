@@ -264,20 +264,28 @@
 ;;   ;; Raccourci sur [f10]
 ;;   (global-set-key (kbd "<f10>") 'column-highlight-mode))
 
-;;;###package jumpc
-(use-package!
-    jumpc
-  ;; :defer t ;; defered does not work…
-  :config
-  (jumpc)
-  (if (modulep! +azerty)
-      (progn
-        (map! :desc "Jump to prev cursor position. #pim" "C-<" #'jumpc-jump-backward)
-        (map! :desc "Jump to next cursor position. #pim" "C->" #'jumpc-jump-forward))
-    (progn
-      (map! :desc "Jump to prev cursor position. #pim" "<f8>" #'jumpc-jump-backward)
-      ((map! :desc "Jump to next cursor position. #pim" "<f9>" 'jumpc-jump-forward)))
-    ))
+;; ;;;###package jumpc
+;; (use-package!
+;;     jumpc
+;;   ;; :defer t ;; defered does not work…
+;;   :config
+;;   (jumpc)
+;;   (if (modulep! +azerty)
+;;       (progn
+;;         (map! :desc "Jump to prev cursor position. #pim" "C-<" #'jumpc-jump-backward)
+;;         (map! :desc "Jump to next cursor position. #pim" "C->" #'jumpc-jump-forward))
+;;     (progn
+;;       (map! :desc "Jump to prev cursor position. #pim" "<f8>" #'jumpc-jump-backward)
+;;       ((map! :desc "Jump to next cursor position. #pim" "<f9>" 'jumpc-jump-forward)))
+;;     ))
+
+(map!
+ :after better-jumper
+ :desc "Jump to prev cursor position. #pim" "C-<" #'better-jumper-jump-backward)
+
+(map!
+ :after better-jumper
+ :desc "Jump to next cursor position. #pim" "C->" #'better-jumper-jump-forward)
 
 ;; TODO : To be implemented
 ;; ;; Define C-x up | C-x down | C-x right | C-x left to resize the windows
