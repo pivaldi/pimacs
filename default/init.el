@@ -22,7 +22,7 @@
   "List of errors encountered when loading pim-configuration files.")
 
 (defvar pim-keymapname-alist (list)
-  "List (\"module name\" . '(keymapname1 keymapname2 etc)  configured by PIMacs.")
+  "List (\"module name\" . '((keymapname1 . provided-by1) (keymapname2 . provided-by2) etc)  configured by PIMacs.")
 
 (defcustom pim-auto-fill-mode-hooks
   '(text-mode-hook org-mode-hook)

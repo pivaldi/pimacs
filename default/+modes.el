@@ -37,9 +37,13 @@
 ;; Enable whitespace visualization globally.
 (global-whitespace-mode)
 
+;; Disabling Global Auto-Revert Mode
+(global-auto-revert-mode -1)
+
+
 ;; Enables coloring in all modes.
 (when (fboundp 'global-font-lock-mode)
-    (global-font-lock-mode 1))
+  (global-font-lock-mode 1))
 
 (when (fboundp 'global-display-fill-column-indicator-mode)
   (global-display-fill-column-indicator-mode 1))

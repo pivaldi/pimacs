@@ -237,6 +237,11 @@
    (let ((+default-want-RET-continue-comments nil))
      (newline-and-indent))))
 
+(map!
+ :desc "Toggle locally the modeline. #pim" "<M-f1>" #'hide-mode-line-mode)
+(map!
+ :desc "Toggle globally the modeline. #pim" "<s-f1>" #'global-hide-mode-line-mode)
+
 ;; Non-breaking spaces with quotes please.
 (when (modulep! +azerty)
   (map! :desc "Insert proper French quotation with non breaking spaces. #pim" "«"
@@ -262,7 +267,7 @@
 ;;;###package jumpc
 (use-package!
     jumpc
-  :defer t
+  ;; :defer t ;; defered does not work…
   :config
   (jumpc)
   (if (modulep! +azerty)

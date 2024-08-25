@@ -74,8 +74,6 @@
  ;; Emacs will initiate GC every 20MB allocated because we have a modern machine
  gc-cons-threshold 20000000
  gc-cons-percentage 1
- ;; Disabling Global Auto-Revert Mode
- global-auto-revert-mode nil
  ;; Show all process with M-x proced
  ;; https://www.masteringemacs.org/article/displaying-interacting-processes-proced
  proced-filter 'all
@@ -111,7 +109,7 @@
 
 ;; See the name of the current function in the mode line.
 (after! which-func
-        (which-function-mode 1))
+  (which-function-mode 1))
 
 (if (executable-find "rg")
     (grep-apply-setting
@@ -129,16 +127,16 @@
 ;; your web browser.
 ;;;###package html-view
 (use-package!
- htmlize-view
- :defer t
- ;; :commands (htmlize-buffer htmlize-file htmlize-many-files
- ;;                           htmlize-many-files-dired
- ;;                           htmlize-region htmlize-view-buffer)
- :config
-(setq
- htmlize-convert-nonascii-to-entities nil
- htmlize-html-charset "utf-8")
- (htmlize-view-add-to-files-menu))
+    htmlize-view
+  :defer t
+  ;; :commands (htmlize-buffer htmlize-file htmlize-many-files
+  ;;                           htmlize-many-files-dired
+  ;;                           htmlize-region htmlize-view-buffer)
+  :config
+  (setq
+   htmlize-convert-nonascii-to-entities nil
+   htmlize-html-charset "utf-8")
+  (htmlize-view-add-to-files-menu))
 
 
 (load! "+doom")

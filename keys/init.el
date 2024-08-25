@@ -16,7 +16,11 @@
 
 ;;; Code:
 
-(add-to-list 'pim-keymapname-alist '("keys" . ("global-map" "general-override-mode-map")))
+(add-to-list 'pim-keymapname-alist '("keys" . (("global-map" . nil) ("general-override-mode-map" . general))))
+
+;; (setq pim-keymapname-alist
+;;       (list '("keys" . (("global-map" . nil) ("general-override-mode-map" . general)))
+;;             '("default" . (("go-mode-map" . go-mode)))))
 
 (provide 'pimacs/keys/init)
 ;;; init.el ends here
