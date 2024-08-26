@@ -93,7 +93,7 @@
 * `C-t r` : image-dired-delete-tag
 * `% r` : dired-do-rename-regexp
 * `% R` : dired-do-rename-regexp
-* `R` : Use `wdired-change-to-wdired-mode' if multiple files are marked otherwise use `dired-do-rename'.
+* `R` : Use `wdired-change-to-wdired-mode' if multiple files are marked otherwise use `dired-do-rename'. #pim
 * `* s` : dired-mark-subdir-files
 * `: s` : epa-dired-do-sign
 * `s` : dired-sort-toggle-or-edit

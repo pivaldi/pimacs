@@ -4,4 +4,4 @@
 
 ## Keymap dired-mode-map
 
-* `R` : Use `wdired-change-to-wdired-mode' if multiple files are marked otherwise use `dired-do-rename'.
+* `R` : Use `wdired-change-to-wdired-mode' if multiple files are marked otherwise use `dired-do-rename'. #pim

@@ -38,8 +38,10 @@
 (global-whitespace-mode)
 
 ;; Disabling Global Auto-Revert Mode
-(global-auto-revert-mode -1)
-
+(use-package! autorevert
+  :config
+  (global-auto-revert-mode -1)
+  )
 
 ;; Enables coloring in all modes.
 (when (fboundp 'global-font-lock-mode)

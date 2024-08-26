@@ -4,53 +4,53 @@
 
 ## Keymap global-map
 
-* `C-c b` : Browse url at point.
-* `M-g d` : Move backward to the beginning of a defun.
-* `s-<tab> w` : Switch to choose workspace.
-* `«` : Insert proper French quotation with non breaking spaces.
-* `»` : Add non breaking spaces before the closing French quote.
-* `S-<f8>` : echo filename in the minibuffer and put in the kill ring.
-* `M-<f1>` : Toggle locally the modeline.
-* `s-<f1>` : Toggle globally the modeline.
-* `C-<f1>` : Toggle menu bar.
-* `S-<f4>` : Start the definition of a macro.
-* `C-<f4>` : Edit the last defined macro.
-* `<f4>` : Ending the definition of a macro.
-* `<f12>` : Delete current window and buffer.
-* `C-$` : Insert a cool section comments.
-* `C-%` : Comment/Uncomment the entire line and indent.
-* `C-*` : Insert a cool section comments.
-* `C-,` : Fancy insert/delete comma at the end of the line.
-* `C-:` : Redo from undo-fu for azerty keyboard.
-* `C-;` : Fancy insert/delete semicolon at the end of the line.
-* `C-<` : Jump to prev cursor position.
-* `C->` : Jump to next cursor position.
-* `C-k` : If at end of line, join with following; otherwise kill line.
-* `C-x C-r` : Find file as root.
-* `C-z` : Undo from undo-fu.
-* `C-ù` : Comment/Uncomment the entire line but not indent.
-* `C-M-<down>` : Scroll down keeping the cursor on the same line.
-* `C-M-<next>` : Move cursor at end of line.
-* `C-M-<prior>` : Move cursor at beginning of line or first non blank character.
-* `C-M-<up>` : Scroll up keeping the cursor on the same line.
-* `C-S-t` : Open recent file à la Chromium/Firefox.
-* `C-S-z` : Redo from undo-fu.
-* `C-S-<iso-lefttab>` : Delete current window and buffer.
-* `C-<backspace>` : Delete characters backward until encountering the beginning of a word.
-* `C-<down>` : Scrolling down in long line.
-* `C-<next>` : Select another window in cyclic ordering of windows or with `ace-window`.
-* `C-<prior>` : Select another window in backwards ordering of windows or with `ace-window`.
-* `C-<tab>` : Swith to buffer with the same workspace.
-* `C-<up>` : Scrolling up long line.
-* `M-RET` : Like <return> but escape from continuing coment.
-* `M-q` : Use fill line or region as auto-fill-mode does.
-* `S-<iso-lefttab>` : Dynamically complete the filename under the cursor.
-* `<home>` : Move cursor at beginning of line or first non blank character.
-* `<insert>` : Disable overwrite-mode pressing <insert> key.
-* `s-<tab> <tab>` : Switch to last workspace.
+* `C-c b` : Browse url at point. #pim
+* `M-g d` : Move backward to the beginning of a defun. #pim
+* `s-<tab> w` : Switch to choose workspace. #pim
+* `«` : Insert proper French quotation with non breaking spaces. #pim
+* `»` : Add non breaking spaces before the closing French quote. #pim
+* `S-<f8>` : echo filename in the minibuffer and put in the kill ring. #pim
+* `M-<f1>` : Toggle locally the modeline. #pim
+* `s-<f1>` : Toggle globally the modeline. #pim
+* `C-<f1>` : Toggle menu bar. #pim
+* `S-<f4>` : Start the definition of a macro. #pim
+* `C-<f4>` : Edit the last defined macro. #pim
+* `<f4>` : Ending the definition of a macro. #pim
+* `<f12>` : Delete current window and buffer. #pim
+* `C-$` : Insert a cool section comments. #pim
+* `C-%` : Comment/Uncomment the entire line and indent. #pim
+* `C-*` : Insert a cool section comments. #pim
+* `C-,` : Fancy insert/delete comma at the end of the line. #pim
+* `C-:` : Redo from undo-fu for azerty keyboard. #pim
+* `C-;` : Fancy insert/delete semicolon at the end of the line. #pim
+* `C-<` : Jump to prev cursor position. #pim
+* `C->` : Jump to next cursor position. #pim
+* `C-k` : If at end of line, join with following; otherwise kill line. #pim
+* `C-x C-r` : Find file as root. #pim
+* `C-z` : Undo from undo-fu. #pim
+* `C-ù` : Comment/Uncomment the entire line but not indent. #pim
+* `C-M-<down>` : Scroll down keeping the cursor on the same line. #pim
+* `C-M-<next>` : Move cursor at end of line. #pim
+* `C-M-<prior>` : Move cursor at beginning of line or first non blank character. #pim
+* `C-M-<up>` : Scroll up keeping the cursor on the same line. #pim
+* `C-S-t` : Open recent file à la Chromium/Firefox. #pim
+* `C-S-z` : Redo from undo-fu. #pim
+* `C-S-<iso-lefttab>` : Delete current window and buffer. #pim
+* `C-<backspace>` : Delete characters backward until encountering the beginning of a word. #pim
+* `C-<down>` : Scrolling down in long line. #pim
+* `C-<next>` : Select another window in cyclic ordering of windows or with `ace-window`. #pim
+* `C-<prior>` : Select another window in backwards ordering of windows or with `ace-window`. #pim
+* `C-<tab>` : Swith to buffer with the same workspace. #pim
+* `C-<up>` : Scrolling up long line. #pim
+* `M-RET` : Like <return> but escape from continuing coment. #pim
+* `M-q` : Use fill line or region as auto-fill-mode does. #pim
+* `S-<iso-lefttab>` : Dynamically complete the filename under the cursor. #pim
+* `<home>` : Move cursor at beginning of line or first non blank character. #pim
+* `<insert>` : Disable overwrite-mode pressing <insert> key. #pim
+* `s-<tab> <tab>` : Switch to last workspace. #pim
 
 ## Keymap general-override-mode-map
 
-* `C-c b` : Browse url at point.
-* `C-c 8 i` : Choose and insert an emoji glyph
-* `C-c w L` : Load a workspace.
+* `C-c b` : Browse url at point. #pim
+* `C-c 8 i` : Choose and insert an emoji glyph #pim
+* `C-c w L` : Load a workspace. #pim

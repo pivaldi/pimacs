@@ -99,7 +99,7 @@ If KEYMAPS-ALIST is nil, use the variable `pim-keymapname-alist' instead."
                       (apply #'format "%s%s%s" (pim-format-to-inline-code (pop key) ext) key) ext))
           ;; (print! line)
           (when (or all (string-match-p pim-regexp line))
-            (insert (concat (s-trim (replace-regexp-in-string pim-regexp "\\1" line)) "\n"))
+            (insert (concat line "\n"))
             ))))))
 
 ;;;###autoload

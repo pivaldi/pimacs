@@ -92,7 +92,7 @@
 * `C-h A` : apropos-documentation
 * `f1 A` : apropos-documentation
 * `help A` : apropos-documentation
-* `C-c b` : Browse url at point.
+* `C-c b` : Browse url at point. #pim
 * `C-h d b` : doom/report-bug
 * `C-h b b` : describe-bindings
 * `C-x C-k b` : kmacro-bind-to-key
@@ -141,7 +141,7 @@
 * `C-x r d` : delete-rectangle
 * `C-x t d` : dired-other-tab
 * `C-x v d` : vc-dir
-* `M-g d` : Move backward to the beginning of a defun.
+* `M-g d` : Move backward to the beginning of a defun. #pim
 * `f1 d p d` : doom/goto-private-packages-file
 * `f1 d d` : doom-debug-mode
 * `help d p d` : doom/goto-private-packages-file
@@ -428,7 +428,7 @@
 * `C-x r w` : window-configuration-to-register
 * `M-s w` : isearch-forward-word
 * `M-s h w` : hi-lock-write-interactive-patterns
-* `s-<tab> w` : Switch to choose workspace.
+* `s-<tab> w` : Switch to choose workspace. #pim
 * `f1 w` : where-is
 * `help w` : where-is
 * `C-h W` : +default/man-or-woman
@@ -450,30 +450,30 @@
 * `C-x {` : shrink-window-horizontally
 * `C-x }` : enlarge-window-horizontally
 * `C-x v ~` : vc-revision-other-window
-* `«` : Insert proper French quotation with non breaking spaces.
-* `»` : Add non breaking spaces before the closing French quote.
+* `«` : Insert proper French quotation with non breaking spaces. #pim
+* `»` : Add non breaking spaces before the closing French quote. #pim
 * `M-f10` : toggle-frame-maximized
 * `S-f10` : context-menu-open
 * `C-f10` : buffer-menu-open
 * `C-f9` : treemacs-find-file
-* `S-<f8>` : echo filename in the minibuffer and put in the kill ring.
-* `M-<f1>` : Toggle locally the modeline.
-* `s-<f1>` : Toggle globally the modeline.
-* `C-<f1>` : Toggle menu bar.
-* `S-<f4>` : Start the definition of a macro.
-* `C-<f4>` : Edit the last defined macro.
+* `S-<f8>` : echo filename in the minibuffer and put in the kill ring. #pim
+* `M-<f1>` : Toggle locally the modeline. #pim
+* `s-<f1>` : Toggle globally the modeline. #pim
+* `C-<f1>` : Toggle menu bar. #pim
+* `S-<f4>` : Start the definition of a macro. #pim
+* `C-<f4>` : Edit the last defined macro. #pim
 * `help f1` : help-for-help
 * `f1 f1` : help-for-help
 * `C-h f1` : help-for-help
 * `f2 f2` : 2C-two-columns
 * `C-x 6 f2` : 2C-two-columns
 * `f3` : kmacro-start-macro-or-insert-counter
-* `<f4>` : Ending the definition of a macro.
+* `<f4>` : Ending the definition of a macro. #pim
 * `f9` : +treemacs/toggle
 * `f10` : menu-bar-open
 * `ESC f10` : toggle-frame-maximized
 * `f11` : toggle-frame-fullscreen
-* `<f12>` : Delete current window and buffer.
+* `<f12>` : Delete current window and buffer. #pim
 * `f16` : clipboard-kill-ring-save
 * `f18` : clipboard-yank
 * `f20` : clipboard-kill-region
@@ -481,12 +481,12 @@
 * `C-SPC` : set-mark-command
 * `C-x C-SPC` : pop-global-mark
 * `C-x r C-SPC` : point-to-register
-* `C-$` : Insert a cool section comments.
-* `C-%` : Comment/Uncomment the entire line and indent.
+* `C-$` : Insert a cool section comments. #pim
+* `C-%` : Comment/Uncomment the entire line and indent. #pim
 * `C-'` : imenu
-* `C-*` : Insert a cool section comments.
+* `C-*` : Insert a cool section comments. #pim
 * `C-x C-+` : text-scale-adjust
-* `C-,` : Fancy insert/delete comma at the end of the line.
+* `C-,` : Fancy insert/delete comma at the end of the line. #pim
 * `C-x C--` : text-scale-adjust
 * `C--` : negative-argument
 * `C-/` : undo
@@ -501,13 +501,13 @@
 * `C-7` : digit-argument
 * `C-8` : digit-argument
 * `C-9` : digit-argument
-* `C-:` : Redo from undo-fu for azerty keyboard.
+* `C-:` : Redo from undo-fu for azerty keyboard. #pim
 * `C-x C-;` : comment-line
-* `C-;` : Fancy insert/delete semicolon at the end of the line.
-* `C-<` : Jump to prev cursor position.
+* `C-;` : Fancy insert/delete semicolon at the end of the line. #pim
+* `C-<` : Jump to prev cursor position. #pim
 * `C-x C-=` : text-scale-adjust
 * `C-=` : er/expand-region
-* `C->` : Jump to next cursor position.
+* `C->` : Jump to next cursor position. #pim
 * `C-?` : undo-redo
 * `C-@` : set-mark-command
 * `C-x C-@` : pop-global-mark
@@ -559,7 +559,7 @@
 * `C-x C-j` : dired-jump
 * `C-x 4 C-j` : dired-jump-other-window
 * `C-h C-k` : describe-key-briefly
-* `C-k` : If at end of line, join with following; otherwise kill line.
+* `C-k` : If at end of line, join with following; otherwise kill line. #pim
 * `C-x C-k C-k` : kmacro-end-or-call-macro-repeat
 * `f1 C-k` : describe-key-briefly
 * `help C-k` : describe-key-briefly
@@ -594,7 +594,7 @@
 * `f1 C-q` : help-quick-toggle
 * `help C-q` : help-quick-toggle
 * `C-r` : isearch-backward
-* `C-x C-r` : Find file as root.
+* `C-x C-r` : Find file as root. #pim
 * `C-x t C-r` : find-file-read-only-other-tab
 * `C-h C-s` : search-forward-help-for-help
 * `C-s` : isearch-forward
@@ -621,9 +621,9 @@
 * `C-x C-x` : exchange-point-and-mark
 * `C-y` : yank
 * `C-x C-z` : suspend-frame
-* `C-z` : Undo from undo-fu.
+* `C-z` : Undo from undo-fu. #pim
 * `C-~` : +popup/raise
-* `C-ù` : Comment/Uncomment the entire line but not indent.
+* `C-ù` : Comment/Uncomment the entire line but not indent. #pim
 * `C-M-SPC` : mark-sexp
 * `C-M-%` : query-replace-regexp
 * `C-x C-M-+` : global-text-scale-adjust
@@ -671,27 +671,27 @@
 * `C-M-S-v` : scroll-other-window-down
 * `C-M-backspace` : backward-kill-sexp
 * `C-M-delete` : backward-kill-sexp
-* `C-M-<down>` : Scroll down keeping the cursor on the same line.
+* `C-M-<down>` : Scroll down keeping the cursor on the same line. #pim
 * `C-M-end` : end-of-defun
 * `C-M-home` : beginning-of-defun
 * `C-M-left` : backward-sexp
-* `C-M-<next>` : Move cursor at end of line.
-* `C-M-<prior>` : Move cursor at beginning of line or first non blank character.
+* `C-M-<next>` : Move cursor at end of line. #pim
+* `C-M-<prior>` : Move cursor at beginning of line or first non blank character. #pim
 * `C-M-right` : forward-sexp
-* `C-M-<up>` : Scroll up keeping the cursor on the same line.
+* `C-M-<up>` : Scroll up keeping the cursor on the same line. #pim
 * `C-S-RET` : +default/newline-above
 * `C-S-r` : vertico-repeat
-* `C-S-t` : Open recent file à la Chromium/Firefox.
-* `C-S-z` : Redo from undo-fu.
+* `C-S-t` : Open recent file à la Chromium/Firefox. #pim
+* `C-S-z` : Redo from undo-fu. #pim
 * `C-S-backspace` : kill-whole-line
-* `C-S-<iso-lefttab>` : Delete current window and buffer.
+* `C-S-<iso-lefttab>` : Delete current window and buffer. #pim
 * `C-S-return` : +default/newline-above
 * `ESC C-backspace` : backward-kill-sexp
-* `C-<backspace>` : Delete characters backward until encountering the beginning of a word.
+* `C-<backspace>` : Delete characters backward until encountering the beginning of a word. #pim
 * `ESC C-delete` : backward-kill-sexp
 * `C-delete` : kill-word
 * `ESC C-down` : down-list
-* `C-<down>` : Scrolling down in long line.
+* `C-<down>` : Scrolling down in long line. #pim
 * `ESC C-end` : end-of-defun
 * `C-end` : end-of-buffer
 * `ESC C-home` : beginning-of-defun
@@ -701,17 +701,17 @@
 * `C-x C-left` : previous-buffer
 * `ESC C-left` : backward-sexp
 * `C-left` : left-word
-* `C-<next>` : Select another window in cyclic ordering of windows or with `ace-window`.
-* `C-<prior>` : Select another window in backwards ordering of windows or with `ace-window`.
+* `C-<next>` : Select another window in cyclic ordering of windows or with `ace-window`. #pim
+* `C-<prior>` : Select another window in backwards ordering of windows or with `ace-window`. #pim
 * `C-return` : +default/newline-below
 * `C-x C-right` : next-buffer
 * `ESC C-right` : forward-sexp
 * `C-right` : right-word
-* `C-<tab>` : Swith to buffer with the same workspace.
+* `C-<tab>` : Swith to buffer with the same workspace. #pim
 * `ESC C-up` : backward-up-list
-* `C-<up>` : Scrolling up long line.
+* `C-<up>` : Scrolling up long line. #pim
 * `M-DEL` : backward-kill-word
-* `M-RET` : Like <return> but escape from continuing coment.
+* `M-RET` : Like <return> but escape from continuing coment. #pim
 * `M-SPC` : cycle-spacing
 * `M-!` : shell-command
 * `M-$` : ispell-word
@@ -754,7 +754,7 @@
 * `M-m` : back-to-indentation
 * `M-g M-n` : next-error
 * `M-g M-p` : previous-error
-* `M-q` : Use fill line or region as auto-fill-mode does.
+* `M-q` : Use fill line or region as auto-fill-mode does. #pim
 * `M-r` : move-to-window-line-top-bottom
 * `M-t` : transpose-words
 * `M-u` : upcase-word
@@ -784,7 +784,7 @@
 * `S-delete` : kill-region
 * `S-insert` : yank
 * `S-insertchar` : yank
-* `S-<iso-lefttab>` : Dynamically complete the filename under the cursor.
+* `S-<iso-lefttab>` : Dynamically complete the filename under the cursor. #pim
 * `S-tab` : comint-dynamic-complete-filename
 * `ESC 0..9` : digit-argument
 * `again` : repeat-complex-command
@@ -805,8 +805,8 @@
 * `f1 help` : help-for-help
 * `help help` : help-for-help
 * `ESC home` : beginning-of-buffer-other-window
-* `<home>` : Move cursor at beginning of line or first non blank character.
-* `<insert>` : Disable overwrite-mode pressing <insert> key.
+* `<home>` : Move cursor at beginning of line or first non blank character. #pim
+* `<insert>` : Disable overwrite-mode pressing <insert> key. #pim
 * `insertchar` : overwrite-mode
 * `insertline` : open-line
 * `C-x left` : previous-buffer
@@ -826,7 +826,7 @@
 * `right` : right-char
 * `<Scroll_Lock>` : scroll-lock-mode
 * `tab-bar` : +prefix
-* `s-<tab> <tab>` : Switch to last workspace.
+* `s-<tab> <tab>` : Switch to last workspace. #pim
 * `tool-bar` : +prefix
 * `undo` : undo
 * `up` : previous-line
@@ -861,7 +861,7 @@
 * `C-c t b` : Big mode
 * `C-c o b` : Browser
 * `C-c s b` : Search buffer
-* `C-c b` : Browse url at point.
+* `C-c b` : Browse url at point. #pim
 * `C-c v B` : Magit blame
 * `C-c s B` : Search all open buffers
 * `C-c w c` : Create workspace
@@ -917,7 +917,7 @@
 * `C-c v g` : Magit status
 * `C-c v G` : Magit status here
 * `C-c v o h` : Browse homepage
-* `C-c 8 i` : Choose and insert an emoji glyph
+* `C-c 8 i` : Choose and insert an emoji glyph #pim
 * `C-c v c i` : Issue
 * `C-c v l i` : List issues
 * `C-c v o i` : Browse an issue
@@ -943,7 +943,7 @@
 * `C-c s l` : Jump to visible link
 * `C-c f l` : Locate file
 * `C-c c l` : LSP
-* `C-c w L` : Load a workspace.
+* `C-c w L` : Load a workspace. #pim
 * `C-c v L` : Magit buffer log
 * `C-c q L` : Restore session from file
 * `C-c s L` : Jump to link
