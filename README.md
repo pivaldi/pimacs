@@ -52,3 +52,7 @@ See also the auto-generated [key bindings refcard](keys/key-bindings-refcard.md)
 
 ### PIMacs/session
 [Workspace/Session Persistence and Auto Restore Last Session](session/README.md).
+
+### PIMACS/doc
+[Generated PIMacs Documentation](doc/README.org). Contains all the Doom and
+PIMacs fundamental key bindings refcards classed by key bindings prefixes.

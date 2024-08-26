@@ -309,7 +309,7 @@ EXT, a string, can be org, md or txt."
 
 
 (defun pim-keys-bindings-to-refcard (keymaps-alist fname)
-  "Export the PIMacs key bindings in md file.
+  "Export the PIMacs key bindings in file (org, md and txt format supported).
 KEYMAPS-ALIST (list of (string . provide-symbol)) is the list of keymap names to export into
 the file FNAME.
 If KEYMAPS-ALIST is nil, use the variable `pim-keymapname-alist' instead."
@@ -351,7 +351,7 @@ If KEYMAPS-ALIST is nil, use the variable `pim-keymapname-alist' instead."
 
 ;;;###autoload
 (defun pim/modules-key-bindings-to-refcard (modulenames fname)
-  "Export the PIMacs key bindings in md file.
+  "Export the PIMacs key bindings in file (org, md and txt format supported).
 MODULENAMES (list of string) is the list of PIMacs modules names that create key bindings.
 Export the refcard to FNAME.
 If MODULENAMES is nil, use the variable `pim-keymapname-alist' instead."

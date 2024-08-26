@@ -1,6 +1,6 @@
 ;;; -*- no-byte-compile: t; -*-
 
-;; (package! jumpc)
+(package! jumpc)
 
 ;; Local variables:
 ;; coding: utf-8

@@ -20,6 +20,8 @@
  ;; lang-c
  lang-lisp
  lang-make
+
+ doc ;; Generated documentation, fundamental keys binding for example.
  )
 
 ;; Local variables:

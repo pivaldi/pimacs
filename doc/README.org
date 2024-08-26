@@ -1,0 +1,12 @@
+#+title: PIMacs -- doc
+
+* Doom/PIMacs Key Bindings Refcards
+- [[doom-refcard-.org][All Fundamental Key Bindings]]
+- [[doom-refcard-C-c.org][Fundamental Key Bindings Prefixed by C-c]]
+- [[doom-refcard-C-x.org.org][Fundamental Key Bindings Prefixed by C-x]]
+- [[doom-refcard-C-h.org.org][Fundamental Key Bindings Prefixed by C-h]]
+- [[doom-refcard-M-g.org.org][Fundamental Key Bindings Prefixed by M-g]]
+
+* Autoloaded Functions
+- =pim/which-key-export-bindings-recursively-to-file= : export bindings
+  recursively by key prefix into a file with org formatting.
