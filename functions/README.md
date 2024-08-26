@@ -1,4 +1,4 @@
-# PIMacs -- functions
+# PIMacs/functions Doom Module
 
 Useful interactive functions used by PIMacs.  
 See the docstrings of each function for furthers informations.

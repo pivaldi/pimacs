@@ -1,4 +1,4 @@
-;;; pimacs/doc/config.el -*- lexical-binding: t; -*-
+;;; pimacs/dired/config.el -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -18,11 +18,21 @@
 
 ;;; Code:
 
-(provide 'pimacs/doc)
+(doom!
+ :emacs
+ dired)
 
+(use-package! dired
+  :config
+  (map!
+   :map dired-mode-map
+   :desc "Use `wdired-change-to-wdired-mode' if multiple files are marked otherwise use `dired-do-rename'. #pim"
+   "R" #'pim/dired-rename))
+
+(provide 'pimacs/dired)
 ;;; config.el ends here
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/doc/config.el")
+;; eval: (rename-buffer "pimacs/dired/config.el")
 ;; End:

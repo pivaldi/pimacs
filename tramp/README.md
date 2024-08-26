@@ -1,4 +1,4 @@
-# PIMacs -- Tramp
+# PIMacs/tramp Doom Module
 
 Turn off the backup feature for remote files and stop `tramp` saving
 backup files owned by ‘root’ to locations accessible by others.  

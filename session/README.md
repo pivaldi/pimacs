@@ -1,4 +1,4 @@
-# PIMacs -- Session
+# PIMacs/session Doom Module
 
 The PIMacs module `:pimacs session` permits to automatically restore
 your session and workspaces. Here how to proceed :  

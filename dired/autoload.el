@@ -1,4 +1,5 @@
-;;; pimacs/doc/config.el -*- lexical-binding: t; -*-
+;;; pimacs/dired/autoload.el -*- lexical-binding: t; -*-
+
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -18,11 +19,23 @@
 
 ;;; Code:
 
-(provide 'pimacs/doc)
+;;;###autoload
+(defun pim/dired-rename ()
+  "Use multiple renaming if multiple files are marked.
+Otherwise, use a buffer in which all the names of files are editable."
+  (interactive)
+  (require 'wdired)
+  (if (nth 1 (save-excursion
+               (dired-map-over-marks
+                (dired-get-filename nil t)
+                nil nil t)))
+      (dired-do-rename) ;; au moins un fichier marqué.
+    (wdired-change-to-wdired-mode)))
 
-;;; config.el ends here
+(provide 'pimacs/dired)
+;;; autoloaded.el ends here
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/doc/config.el")
+;; eval: (rename-buffer "pimacs/dired/autoload.el")
 ;; End:

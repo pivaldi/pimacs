@@ -16,7 +16,7 @@
  tramp ;;To “turn off” the backup feature for remote files and fix security issue.
 
  org ;; Org mode specific configuration.
-
+ dired ;; Dired mode specific configuration.
  ;; lang-c
  lang-lisp
  lang-make

@@ -1,4 +1,5 @@
-;;; pimacs/doc/config.el -*- lexical-binding: t; -*-
+;;; pimacs/dired/init.el -*- lexical-binding: t; -*-
+
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -18,11 +19,12 @@
 
 ;;; Code:
 
-(provide 'pimacs/doc)
+(add-to-list 'pim-keymapname-alist '("dired" . (("dired-mode-map" . dired))))
 
-;;; config.el ends here
+(provide 'pimacs/dired/init)
+;;; init.el ends here
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/doc/config.el")
+;; eval: (rename-buffer "pimacs/dired/init.el")
 ;; End:

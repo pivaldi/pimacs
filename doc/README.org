@@ -1,4 +1,4 @@
-#+title: PIMacs -- doc
+#+title: PIMacs/doc Doom Module
 
 * Doom/PIMacs Key Bindings Refcards
 - [[doom-refcard-.org][All Fundamental Key Bindings]]

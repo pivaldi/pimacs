@@ -1,8 +1,12 @@
-# PIMacs Theme Module
+# PIMacs/theme Doom Module
 
-* Use `TerminessTTF` Nerd Font by default.
-* (Re)Define some faces (`trailing-whitespace` for example).
-* Load a slightly customized [Zenburn Theme](https://github.com/bbatsov/zenburn-emacs).
+* Use `TerminessTTF` Nerd Font by default (use option `+no-font` to disable this
+  feature).
+* (Re)Define some faces, `trailing-whitespace` for example (use option
+  `+no-whitespace-style` to disable this feature).
+* Load a slightly customized [Zenburn
+  Theme](https://github.com/bbatsov/zenburn-emacs) (use option
+  `+no-zenburn-theme` to disable this feature).
 * Disable `hl-line` in non special modes.
 * Remove line numbering because we have this information into the mode-line.
 

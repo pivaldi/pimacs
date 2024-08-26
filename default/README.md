@@ -1,4 +1,4 @@
-# PIMacs -- Default
+# PIMacs/default Doom Module
 
 The default minimal configuration of Emacs by PIMacs.
 
