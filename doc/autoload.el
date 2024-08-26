@@ -186,7 +186,6 @@ PREFIX should be a string suitable for `kbd'."
       (setq fname (format "%s/doom-refcard-%s.org" (doom-module-locate-path :pimacs 'doc) prefix))
       (pim/which-key-export-bindings-recursively-to-file prefix fname))))
 
-
 ;;;###autoload
 (defun pim-generate-all-modules-key-bindings-refcards ()
   "PIMacs internal use only. User should use `pim/modules-key-bindings-to-refcard' instead."

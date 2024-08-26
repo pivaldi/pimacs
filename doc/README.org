@@ -9,4 +9,8 @@
 
 * Autoloaded Functions
 - =pim/which-key-export-bindings-recursively-to-file= : export bindings
-  recursively by key prefix into a file with org formatting.
+  recursively by key prefix into a file *with org formatting*.
+- =pim-keys-bindings-to-refcard= : export the PIMacs key bindings from keymaps in a file (org,
+  md and txt format supported).
+- =pim/modules-key-bindings-to-refcard= : export the PIMacs key bindings from
+  module names in a file (org, md and txt format supported).
