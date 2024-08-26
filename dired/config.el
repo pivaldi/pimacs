@@ -26,7 +26,7 @@
   :config
   (map!
    :map dired-mode-map
-   :desc "Use `wdired-change-to-wdired-mode' if multiple files are marked otherwise use `dired-do-rename'. #pim"
+   :desc "Use `wdired-change-to-wdired-mode` if multiple files are marked otherwise use `dired-do-rename`. #pim"
    "R" #'pim/dired-rename))
 
 (provide 'pimacs/dired)

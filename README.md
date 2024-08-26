@@ -56,7 +56,7 @@ See also the auto-generated
 [Workspace/Session Persistence and Auto Restore Last Session](session/README.md).
 
 ### PIMacs/dired
-[Dired mode specific configuration](dired/README.org).
+[Dired mode specific configuration](dired/README.org).  
 See also the auto-generated
 [dired-mode-map key bindings refcard](dired/all-key-bindings-refcard.md) and the
 [dired-mode-map PIMacs key bindings refcard](dired/pimacs-key-bindings-refcard.md).
