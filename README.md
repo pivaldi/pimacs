@@ -58,8 +58,8 @@ See also the auto-generated
 ### PIMacs/dired
 [Dired mode specific configuration](dired/README.org).
 See also the auto-generated
-[dired-mode-map key bindings refcard](keys/all-key-bindings-refcard.md) and the
-[dired-mode-map PIMacs key bindings refcard](keys/pimacs-key-bindings-refcard.md).
+[dired-mode-map key bindings refcard](dired/all-key-bindings-refcard.md) and the
+[dired-mode-map PIMacs key bindings refcard](dired/pimacs-key-bindings-refcard.md).
 
 ### PIMACS/doc
 [Generated PIMacs Documentation](doc/README.org). Contains all the Doom and
