@@ -138,7 +138,6 @@
    htmlize-html-charset "utf-8")
   (htmlize-view-add-to-files-menu))
 
-
 (load! "+doom")
 (load! "+hooks")
 (load! "+modes")

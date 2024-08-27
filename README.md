@@ -46,21 +46,21 @@ See also the auto-generated
 [global-map key bindings refcard](keys/all-key-bindings-refcard.md) and the
 [global-map PIMacs key bindings refcard](keys/pimacs-key-bindings-refcard.md).
 
-### PIMacs/aliases
+### pimacs/aliases
 [Define useful aliases starting by `_`](aliases/config.el).
 
-### PIMacs/functions
+### pimacs/functions
 [Define useful functions used under the hood by PIMacs](functions/README.md).
 
-### PIMacs/session
+### pimacs/session
 [Workspace/Session Persistence and Auto Restore Last Session](session/README.md).
 
-### PIMacs/dired
+### pimacs/dired
 [Dired mode specific configuration](dired/README.org).  
 See also the auto-generated
 [dired-mode-map key bindings refcard](dired/all-key-bindings-refcard.md) and the
 [dired-mode-map PIMacs key bindings refcard](dired/pimacs-key-bindings-refcard.md).
 
-### PIMACS/doc
+### pimacs/doc
 [Generated PIMacs Documentation](doc/README.org). Contains all the Doom and
 PIMacs fundamental key bindings refcards classed by key bindings prefixes.

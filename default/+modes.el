@@ -41,6 +41,13 @@
 (use-package! autorevert
   :config
   (global-auto-revert-mode -1)
+  ;; Doom uses auto-revert in an unconventional way, to bypass performances
+  ;; issues with conventional use.
+  ;; See https://www.reddit.com/r/DoomEmacs/comments/ms1vf8/how_to_disable_autoreverting_buffers/
+  (remove-hook 'focus-in-hook #'doom-auto-revert-buffers-h)
+  (remove-hook 'after-save-hook #'doom-auto-revert-buffers-h)
+  (remove-hook 'doom-switch-buffer-hook #'doom-auto-revert-buffer-h)
+  (remove-hook 'doom-switch-window-hook #'doom-auto-revert-buffer-h)
   )
 
 ;; Enables coloring in all modes.

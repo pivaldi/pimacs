@@ -23,7 +23,8 @@ The default minimal configuration of Emacs by PIMacs.
 * Do not add a new string to `kill-ring` when it is the same as the last one.
 * Preferred split window horizontally
 * Increase the number of bytes of consing between garbage collections because we have modern machines.
-* Disable Global Auto-Revert Mode.
+* Disable Global Auto-Revert Mode because it offers more flexibility to choose
+  to revert or not.
 * `M-x proced` show all process, without filter by default.
 * Show trailing whitespace and leading whitespace.
 * Show no breaking char.
