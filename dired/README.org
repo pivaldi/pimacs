@@ -1,5 +1,8 @@
 #+title: PIMacs/dired Doom Module
 
+- Rebind =R= for a fancy rename feature.
+- Rebind =s= for a [[http://yummymelon.com/devnull/enhancing-dired-sorting-with-transient.html][fancy "Dired Sort By"]] (see the refcard for details).
+
 * Key bindings
 
 - [[all-key-bindings-refcard.md][dired-mode-map key bindings refcard]]

@@ -93,10 +93,10 @@
 * `C-t r` : image-dired-delete-tag
 * `% r` : dired-do-rename-regexp
 * `% R` : dired-do-rename-regexp
-* `R` : Use `wdired-change-to-wdired-mode' if multiple files are marked otherwise use `dired-do-rename'. #pim
+* `R` : Use `wdired-change-to-wdired-mode` if multiple files are marked otherwise use `dired-do-rename`. #pim
 * `* s` : dired-mark-subdir-files
 * `: s` : epa-dired-do-sign
-* `s` : dired-sort-toggle-or-edit
+* `s` : Sort with Charles Choi fancy sort or the native Dired sort if prefix or double prefix. #pim
 * `% S` : dired-do-symlink-regexp
 * `S` : dired-do-symlink
 * `C-t t` : image-dired-tag-files
