@@ -70,9 +70,14 @@
 
     :config
     (load-theme 'zenburn t)
-    (set-face-attribute 'completions-annotations nil :foreground "#A9A999")
-    )
-  )
+    (set-face-attribute 'completions-annotations nil :foreground "#A9A999"))
+
+  (after! avy
+    (set-face-attribute 'avy-lead-face nil :foreground "#93E0E3" :background "#50A0A0")
+    (set-face-attribute 'avy-lead-face-0 nil :foreground "#93E0E3" :background "#50A0A0")
+    (set-face-attribute 'avy-lead-face-1 nil :foreground "#93E0E3" :background "#50A0A0")
+    (set-face-attribute 'avy-lead-face-2 nil :foreground "#93E0E3" :background "#50A0A0")))
+
 
 (setq-default
  ;; This determines the style of line numbers in effect. If set to `nil', line
