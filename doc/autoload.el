@@ -189,15 +189,11 @@ PREFIX should be a string suitable for `kbd'."
 ;;;###autoload
 (defun pim-generate-all-modules-key-bindings-refcards ()
   "PIMacs internal use only. User should use `pim/modules-key-bindings-to-refcard' instead."
+  (interactive)
   (let ((fname "")
         (keymapnames nil)
         (modulename nil)
-        (module nil)
-        (byte-compile-current-file t) ;; Needed by doom-start to enable the map! macro
-        ;; (noninteractive nil)
-        )
-    (require 'doom-start)
-    (require 'which-key)
+        (module nil))
     (general-override-mode +1)
     (dolist (all (list nil t))
       (dolist (km pim-keymapname-alist)

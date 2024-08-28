@@ -1,0 +1,9 @@
+#+title: PIMacs/avy Doom Module
+
+* Create key bindings for avy (Doom does not provide them) with prefix
+Create key bindings for avy (Doom does not provide them) with prefix :
+- =M-g a= for =avy-goto= functions.
+- =C-S-W= for =avy-kill-ring= killing functions (mnemo =C-w= for killing). :TODO:
+- =M-S-W= for =avy-kill-ring= saving functions (mnemo =M-w= for saving). :TODO:
+
+See the refcards… :TODO:

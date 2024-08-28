@@ -11,6 +11,7 @@
  theme ;; Define some faces and load Zenburn Theme. See the `README.md` in the directory `pimacs/theme`.
  (keys +azerty) ;; Define the PIMacs keys binding. See the `refcard.md`.
  session ;; Auto reload the last session at startup through `doom/quickload-session` (no desktop bad practice in Doom).
+ avy ;; usefull key bindings for avy because Doom does not provide then.
 
  calendar-fr ;; French calendar.
  tramp ;;To “turn off” the backup feature for remote files and fix security issue.

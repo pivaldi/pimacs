@@ -74,9 +74,9 @@
 
   (after! avy
     (set-face-attribute 'avy-lead-face nil :foreground "#93E0E3" :background "#50A0A0")
-    (set-face-attribute 'avy-lead-face-0 nil :foreground "#93E0E3" :background "#50A0A0")
-    (set-face-attribute 'avy-lead-face-1 nil :foreground "#93E0E3" :background "#50A0A0")
-    (set-face-attribute 'avy-lead-face-2 nil :foreground "#93E0E3" :background "#50A0A0")))
+    (set-face-attribute 'avy-lead-face-0 nil :foreground "#93E0E3")
+    (set-face-attribute 'avy-lead-face-1 nil :foreground "#93E0E3")
+    (set-face-attribute 'avy-lead-face-2 nil :foreground "#93E0E3")))
 
 
 (setq-default
