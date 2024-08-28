@@ -63,9 +63,9 @@
       "S-<iso-lefttab>" #'comint-dynamic-complete-filename
       "S-<tab>" #'comint-dynamic-complete-filename)
 
-(map! (:after consult)
-      :desc "Open recent file à la Chromium/Firefox. #pim"
-      :g "C-S-t" 'consult-recent-file)
+(map!
+ :desc "Open recent file à la Chromium/Firefox. #pim"
+ :g "C-S-t" #'consult-recent-file)
 
 (cond
  ((modulep! :completion vertico)
@@ -143,12 +143,11 @@
 ;;     )
 ;;   )
 
-(map! :desc "Find file as root. #pim" "C-x C-r" #'pim/find-file-root)
-
-(map! :desc "Move cursor at beginning of line or first non blank character. #pim" "<home>" #'pim/home)
-(map! :desc "Move cursor at beginning of line or first non blank character. #pim" "C-M-<prior>" #'pim/home)
-(map! :desc "Move cursor at end of line. #pim" "C-M-<next>" 'end-of-line)
-
+(map! :desc "Find file as root. #pim" "C-x C-r" #'doom/sudo-find-file)
+(map! :desc "Jump/switch between the indentation column and the beginning of the line. #pim" "<home>" #'doom/backward-to-bol-or-indent)
+(map! :desc "Jump/switch between the indentation column and the beginning of the line. #pim" "C-M-<prior>" #'doom/backward-to-bol-or-indent)
+(map! :desc "Jump/switch between the last non-blank, non-comment character and the end of the line. #pim" "C-M-<next>" #'doom/forward-to-last-non-comment-or-eol)
+(map! :desc "Jump/switch between the last non-blank, non-comment character and the end of the line. #pim" "<end>" #'doom/forward-to-last-non-comment-or-eol)
 (map! :desc "Use fill line or region as auto-fill-mode does. #pim" "M-q" #'pim/fill)
 
 (if (modulep! +azerty)
@@ -226,35 +225,46 @@
 ;; (setq pim-scroll-hl t)
 
 
-(map! :desc "Undo from undo-fu. #pim" "C-z" #'undo-fu-only-undo)
-(map! :desc "Redo from undo-fu. #pim" "C-S-z" #'undo-fu-only-redo)
+(map! :desc "Undo from undo-fu. #pim" "C-z" #'undo-fu-only-undo
+      :desc "Redo from undo-fu. #pim" "C-S-z" #'undo-fu-only-redo)
 (when (modulep! +azerty)
   ;; C-/ is undo by default
   (map! :desc "Redo from undo-fu for azerty keyboard. #pim" "C-:" #'undo-fu-only-redo))
 
+(defun pim-newline-and-indent (&optional continue-comment)
+  "Like `newline-and-indent' but handle Doom advice to handle `delete-selection-mode'."
+  (interactive "P")
+  (let ((+default-want-RET-continue-comments continue-comment))
+    (when (and delete-selection-mode (region-active-p))
+      (delete-active-region))
+    (newline-and-indent)
+    ))
 
 (map!
- :desc "Like <return> but escape from continuing coment. #pim" "<M-RET>"
+ :desc "Like <return> but enable continuing coment. #pim" "M-<RET>"
  (lambda nil
    (interactive)
-   (let ((+default-want-RET-continue-comments nil))
-     (newline-and-indent))))
+   (pim-newline-and-indent t))
+ :desc "Newline and indent but escape from continuing comment (use M-<ret> for continuing comment). #pim" "<RET>"
+ (lambda nil
+   (interactive)
+   (pim-newline-and-indent nil)))
 
 (map!
- :desc "Toggle locally the modeline. #pim" "<M-f1>" #'hide-mode-line-mode)
-(map!
+ :desc "Toggle locally the modeline. #pim" "<M-f1>" #'hide-mode-line-mode
  :desc "Toggle globally the modeline. #pim" "<s-f1>" #'global-hide-mode-line-mode)
 
 ;; Non-breaking spaces with quotes please.
 (when (modulep! +azerty)
-  (map! :desc "Insert proper French quotation with non breaking spaces. #pim" "«"
-        (lambda nil
-          (interactive)
-          (insert
-           "« ")(insert
-           " »")(backward-char
-           2)))
-  (map! :desc "Add non breaking spaces before the closing French quote. #pim" "»" (lambda nil (interactive) (insert " »"))))
+  (map!
+   :desc "Insert proper French quotation with non breaking spaces. #pim" "«"
+   (lambda nil
+     (interactive)
+     (insert
+      "« ")(insert
+      " »")(backward-char
+      2))
+   :desc "Add non breaking spaces before the closing French quote. #pim" "»" (lambda nil (interactive) (insert " »"))))
 
 
 ;; ;; TODO : to be enabled
@@ -271,8 +281,8 @@
 (use-package!
     jumpc
   ;; :defer t ;; defered does not work…
-  :config
-  (jumpc)
+  ;; :commands (jumpc-jump-backward jumpc-jump-forward)
+  :preface
   (if (modulep! +azerty)
       (progn
         (map! :desc "Jump to prev cursor position. #pim" "C-<" #'jumpc-jump-backward)
@@ -280,7 +290,9 @@
     (progn
       (map! :desc "Jump to prev cursor position. #pim" "<f8>" #'jumpc-jump-backward)
       ((map! :desc "Jump to next cursor position. #pim" "<f9>" 'jumpc-jump-forward)))
-    ))
+    )
+  :config
+  (jumpc))
 
 ;; (map!
 ;;  :after better-jumper
@@ -307,9 +319,9 @@
 
 ;; ----------------------------------
 ;; * Useful binding to create macro *
-(map! :desc "Start the definition of a macro. #pim" "S-<f4>" #'kmacro-start-macro)
-(map! :desc "Ending the definition of a macro. #pim" "<f4>" #'kmacro-end-or-call-macro)
-(map! :desc "Edit the last defined macro. #pim" "<C-f4>" #'kmacro-edit-macro)
+(map! :desc "Start the definition of a macro. #pim" "S-<f4>" #'kmacro-start-macro
+      :desc "Ending the definition of a macro. #pim" "<f4>" #'kmacro-end-or-call-macro
+      :desc "Edit the last defined macro. #pim" "<C-f4>" #'kmacro-edit-macro)
 
 ;; ------------------------
 ;; * Expand M-g goto-xxx *
