@@ -96,7 +96,9 @@
 (unless (modulep! +no-whitespace-style)
   ;; See useless white-spaces
   (set-face-attribute 'trailing-whitespace nil
-                      :background "#2F5555")
+                      :background "#4F6666")
+  (set-face-attribute 'whitespace-trailing nil :background "#4F6666")
+  (set-face-attribute 'whitespace-tab nil :background "#4F6666")
   (setq whitespace-style '(face tabs trailing)))
 
 ;; ------------------

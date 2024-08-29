@@ -136,13 +136,14 @@
 - [[#c-m-end--end-of-defun][=C-M-<end>= : end-of-defun]]
 - [[#c-m-home--beginning-of-defun][=C-M-<home>= : beginning-of-defun]]
 - [[#c-m-left--backward-sexp][=C-M-<left>= : backward-sexp]]
-- [[#c-m-next--move-cursor-at-end-of-line-pim][=C-M-<next>= : Move cursor at end of line. #pim]]
-- [[#c-m-prior--move-cursor-at-beginning-of-line-or-first-non-blank-character-pim][=C-M-<prior>= : Move cursor at beginning of line or first non blank character. #pim]]
+- [[#c-m-next--jumpswitch-between-the-last-non-blank-non-comment-character-and-the-end-of-the-line-pim][=C-M-<next>= : Jump/switch between the last non-blank, non-comment character and the end of the line. #pim]]
+- [[#c-m-prior--jumpswitch-between-the-indentation-column-and-the-beginning-of-the-line-pim][=C-M-<prior>= : Jump/switch between the indentation column and the beginning of the line. #pim]]
 - [[#c-m-right--forward-sexp][=C-M-<right>= : forward-sexp]]
 - [[#c-m-up--scroll-up-keeping-the-cursor-on-the-same-line-pim][=C-M-<up>= : Scroll up keeping the cursor on the same line. #pim]]
 - [[#c-s-ret--defaultnewline-above][=C-S-<RET>= : +default/newline-above]]
 - [[#c-s-r--vertico-repeat][=C-S-r= : vertico-repeat]]
 - [[#c-s-t--open-recent-file-à-la-chromiumfirefox-pim][=C-S-t= : Open recent file à la Chromium/Firefox. #pim]]
+- [[#c-s-w--avy-kill-functions-pim][=C-S-w= : +Avy kill functions. #pim]]
 - [[#c-s-z--redo-from-undo-fu-pim][=C-S-z= : Redo from undo-fu. #pim]]
 - [[#c-s-backspace--kill-whole-line][=C-S-<backspace>= : kill-whole-line]]
 - [[#c-s-iso-lefttab--delete-current-window-and-buffer-pim][=C-S-<iso>-<lefttab>= : Delete current window and buffer. #pim]]
@@ -170,7 +171,7 @@
 - [[#c-up--backward-up-list][=C-<up>= : backward-up-list]]
 - [[#c-up--scrolling-up-long-line-pim][=C-<up>= : Scrolling up long line. #pim]]
 - [[#m-del--backward-kill-word][=M-<DEL>= : backward-kill-word]]
-- [[#m-ret--like-return-but-escape-from-continuing-coment-pim][=M-<RET>= : Like <return> but escape from continuing coment. #pim]]
+- [[#m-ret--like-ret-but-enable-continuing-comment-pim][=M-<RET>= : Like <RET> but enable continuing comment. #pim]]
 - [[#m-spc--cycle-spacing][=M-<SPC>= : cycle-spacing]]
 - [[#m---shell-command][=M-!= : shell-command]]
 - [[#m---ispell-word][=M-$= : ispell-word]]
@@ -215,6 +216,7 @@
 - [[#m-u--upcase-word][=M-u= : upcase-word]]
 - [[#m-v--scroll-down-command][=M-v= : scroll-down-command]]
 - [[#m-w--kill-ring-save][=M-w= : kill-ring-save]]
+- [[#m-w--avy-kill-save-functions-pim][=M-W= : +Avy kill save functions. #pim]]
 - [[#m-x--execute-extended-command][=M-x= : execute-extended-command]]
 - [[#m-x--execute-extended-command-for-buffer][=M-X= : execute-extended-command-for-buffer]]
 - [[#m-y--yank-pop][=M-y= : yank-pop]]
@@ -256,13 +258,13 @@
 - [[#deleteline--kill-line][=<deleteline>= : kill-line]]
 - [[#down--next-line][=<down>= : next-line]]
 - [[#end--end-of-buffer-other-window][=<end>= : end-of-buffer-other-window]]
-- [[#end--move-end-of-line][=<end>= : move-end-of-line]]
+- [[#end--jumpswitch-between-the-last-non-blank-non-comment-character-and-the-end-of-the-line-pim][=<end>= : Jump/switch between the last non-blank, non-comment character and the end of the line. #pim]]
 - [[#execute--execute-extended-command][=<execute>= : execute-extended-command]]
 - [[#find--search-forward][=<find>= : search-forward]]
 - [[#header-line--prefix][=<header>-<line>= : +prefix]]
 - [[#help--help-command][=<help>= : +help-command]]
 - [[#home--beginning-of-buffer-other-window][=<home>= : beginning-of-buffer-other-window]]
-- [[#home--move-cursor-at-beginning-of-line-or-first-non-blank-character-pim][=<home>= : Move cursor at beginning of line or first non blank character. #pim]]
+- [[#home--jumpswitch-between-the-indentation-column-and-the-beginning-of-the-line-pim][=<home>= : Jump/switch between the indentation column and the beginning of the line. #pim]]
 - [[#insert--disable-overwrite-mode-pressing-insert-key-pim][=<insert>= : Disable overwrite-mode pressing <insert> key. #pim]]
 - [[#insertchar--overwrite-mode][=<insertchar>= : overwrite-mode]]
 - [[#insertline--open-line][=<insertline>= : open-line]]
@@ -414,7 +416,7 @@
 
 ** =<ESC> M-<DEL>= : backward-kill-word
 
-** =<ESC> M-<RET>= : Like <return> but escape from continuing coment. #pim
+** =<ESC> M-<RET>= : Like <RET> but enable continuing comment. #pim
 
 ** =<ESC> M-<SPC>= : cycle-spacing
 
@@ -503,6 +505,8 @@
 ** =<ESC> M-v= : scroll-down-command
 
 ** =<ESC> M-w= : kill-ring-save
+
+** =<ESC> M-W= : +Avy kill save functions. #pim
 
 ** =<ESC> M-x= : execute-extended-command
 
@@ -2148,6 +2152,46 @@
 
 *** =C-x x u= : rename-uniquely
 
+** =C-x X= : +prefix
+
+*** =C-x X <SPC>= : edebug-step-mode
+
+*** =C-x X == : edebug-display-freq-count
+
+*** =C-x X a= : abort-recursive-edit
+
+*** =C-x X b= : edebug-set-breakpoint
+
+*** =C-x X c= : edebug-continue-mode
+
+*** =C-x X C= : edebug-Continue-fast-mode
+
+*** =C-x X D= : edebug-toggle-disable-breakpoint
+
+*** =C-x X g= : edebug-go-mode
+
+*** =C-x X G= : edebug-Go-nonstop-mode
+
+*** =C-x X q= : top-level
+
+*** =C-x X Q= : edebug-top-level-nonstop
+
+*** =C-x X t= : edebug-trace-mode
+
+*** =C-x X T= : edebug-Trace-fast-mode
+
+*** =C-x X u= : edebug-unset-breakpoint
+
+*** =C-x X U= : edebug-unset-breakpoints
+
+*** =C-x X w= : edebug-where
+
+*** =C-x X W= : edebug-toggle-save-windows
+
+*** =C-x X x= : edebug-set-conditional-breakpoint
+
+*** =C-x X X= : edebug-set-global-break-condition
+
 ** =C-x z= : repeat
 
 ** =C-x {= : shrink-window-horizontally
@@ -2378,9 +2422,9 @@
 
 * =C-M-<left>= : backward-sexp
 
-* =C-M-<next>= : Move cursor at end of line. #pim
+* =C-M-<next>= : Jump/switch between the last non-blank, non-comment character and the end of the line. #pim
 
-* =C-M-<prior>= : Move cursor at beginning of line or first non blank character. #pim
+* =C-M-<prior>= : Jump/switch between the indentation column and the beginning of the line. #pim
 
 * =C-M-<right>= : forward-sexp
 
@@ -2391,6 +2435,12 @@
 * =C-S-r= : vertico-repeat
 
 * =C-S-t= : Open recent file à la Chromium/Firefox. #pim
+
+* =C-S-w= : +Avy kill functions. #pim
+
+** =C-S-w l= : Avy kill whole line. #pim
+
+** =C-S-w r= : Avy kill region. #pim
 
 * =C-S-z= : Redo from undo-fu. #pim
 
@@ -2446,7 +2496,7 @@
 
 * =M-<DEL>= : backward-kill-word
 
-* =M-<RET>= : Like <return> but escape from continuing coment. #pim
+* =M-<RET>= : Like <RET> but enable continuing comment. #pim
 
 * =M-<SPC>= : cycle-spacing
 
@@ -2511,6 +2561,52 @@
 * =M-g= : +prefix
 
 ** =M-g <TAB>= : move-to-column
+
+** =M-g a= : +Avy goto. #pim
+
+*** =M-g a c= : +Avy goto char. #pim
+
+**** =M-g a c 1= : avy-goto-char : jump to the visible CHAR. #pim
+
+**** =M-g a c 2= : avy-goto-char-2 : jump to the visible CHAR1 followed by CHAR2. #pim
+
+**** =M-g a c a= : avy-goto-char-char-2-above : scoped version of avy-goto-char-2. #pim
+
+**** =M-g a c b= : avy-goto-char-2-below scoped version of avy-goto-char-2. #pim
+
+**** =M-g a c l= : avy-goto-char-in-line : jump to the visible CHAR in the current line. #pim
+
+**** =M-g a c t= : avy-goto-char-timer : read one or many consecutive chars. #pim
+
+*** =M-g a l= : +Avy goto line. #pim
+
+**** =M-g a l a= : avy-goto-line-above : scoped version of avy-goto-line. #pim
+
+**** =M-g a l b= : avy-goto-line-below : scoped version of avy-goto-line. #pim
+
+**** =M-g a l l= : avy-goto-line : jump to a line start in current buffer. #pim
+
+*** =M-g a s= : +Avy goto sub-word. #pim
+
+**** =M-g a s B= : avy-goto-word-or-subword-1 : forward to avy-goto-subword-1 or avy-goto-word-1. #pim
+
+**** =M-g a s s= : avy-goto-subword-0 : jump to a word or subword start. #pim
+
+**** =M-g a s S= : avy-goto-subword-1 : jump to the visible CHAR at a subword start. #pim
+
+*** =M-g a w= : +Avy goto word and sub-word. #pim
+
+**** =M-g a w 0= : avy-goto-word-0 : jump to a word start. #pim
+
+**** =M-g a w a= : avy-goto-word-0-above : scoped version. #pim
+
+**** =M-g a w A= : avy-goto-word-1-above : scoped version. #pim
+
+**** =M-g a w b= : avy-goto-word-0-below : scoped version. #pim
+
+**** =M-g a w B= : avy-goto-word-1-below : scoped version. #pim
+
+**** =M-g a w l= : avy-goto-word-1 : jump to the visible CHAR at a word start. #pim
 
 ** =M-g c= : goto-char
 
@@ -2583,6 +2679,12 @@
 * =M-v= : scroll-down-command
 
 * =M-w= : kill-ring-save
+
+* =M-W= : +Avy kill save functions. #pim
+
+** =M-W l= : Avy kill-ring save whole line. #pim
+
+** =M-W r= : Avy kill-ring save region. #pim
 
 * =M-x= : execute-extended-command
 
@@ -2670,7 +2772,7 @@
 
 * =<end>= : end-of-buffer-other-window
 
-* =<end>= : move-end-of-line
+* =<end>= : Jump/switch between the last non-blank, non-comment character and the end of the line. #pim
 
 * =<execute>= : execute-extended-command
 
@@ -2868,7 +2970,7 @@
 
 * =<home>= : beginning-of-buffer-other-window
 
-* =<home>= : Move cursor at beginning of line or first non blank character. #pim
+* =<home>= : Jump/switch between the indentation column and the beginning of the line. #pim
 
 * =<insert>= : Disable overwrite-mode pressing <insert> key. #pim
 

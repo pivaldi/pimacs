@@ -2,8 +2,10 @@
 
 * Create key bindings for avy (Doom does not provide them) with prefix
 Create key bindings for avy (Doom does not provide them) with prefix :
-- =M-g a= for =avy-goto= functions.
-- =C-S-W= for =avy-kill-ring= killing functions (mnemo =C-w= for killing). :TODO:
-- =M-S-W= for =avy-kill-ring= saving functions (mnemo =M-w= for saving). :TODO:
+- Prefix =M-g a= for =avy-goto= functions.
+- Prefix =C-S-w= (aka =C-W=) for =avy-kill-ring= killing functions (mnemo =C-w=
+  for kill ring killing).
+- Prefix =M-S-w= (aka =M-W=) for =avy-kill-ring= saving functions (mnemo =M-w=
+  for kill ring saving).
 
 See the refcards… :TODO:

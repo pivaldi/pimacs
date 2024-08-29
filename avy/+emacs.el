@@ -54,6 +54,16 @@
  :map isearch-mode-map
  :desc "avy-isearch : jump to one of the current isearch candidates. #pim" "C-a" #'avy-isearch)
 
+(map!
+ :prefix ("C-S-w" . "Avy kill functions. #pim")
+ :desc "Avy kill region. #pim"     "r"  #'avy-kill-region
+ :desc "Avy kill whole line. #pim" "l"  #'avy-kill-whole-line)
+
+(map! ;; TODO : does not work :(
+ :prefix ("M-W" . "Avy kill save functions. #pim")
+ :desc "Avy kill-ring save region. #pim"     "r" #'avy-kill-ring-save-region
+ :desc "Avy kill-ring save whole line. #pim" "l" #'avy-kill-ring-save-whole-line)
+
 (provide 'pimacs/avy/+emacs)
 ;; +emacs.el ends here
 ;;

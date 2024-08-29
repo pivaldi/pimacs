@@ -150,7 +150,7 @@
 (map! :desc "Jump/switch between the last non-blank, non-comment character and the end of the line. #pim" "<end>" #'doom/forward-to-last-non-comment-or-eol)
 (map! :desc "Use fill line or region as auto-fill-mode does. #pim" "M-q" #'pim/fill)
 
-(if (modulep! +azerty)
+(if pim-azertyp
     (progn
       (map! :desc "Comment/Uncomment the entire line and indent. #pim" "C-%"
             (lambda nil
@@ -227,35 +227,41 @@
 
 (map! :desc "Undo from undo-fu. #pim" "C-z" #'undo-fu-only-undo
       :desc "Redo from undo-fu. #pim" "C-S-z" #'undo-fu-only-redo)
-(when (modulep! +azerty)
+(when pim-azertyp
   ;; C-/ is undo by default
   (map! :desc "Redo from undo-fu for azerty keyboard. #pim" "C-:" #'undo-fu-only-redo))
 
-(defun pim-newline-and-indent (&optional continue-comment)
-  "Like `newline-and-indent' but handle Doom advice to handle `delete-selection-mode'."
-  (interactive "P")
-  (let ((+default-want-RET-continue-comments continue-comment))
-    (when (and delete-selection-mode (region-active-p))
-      (delete-active-region))
-    (newline-and-indent)
-    ))
+(advice-remove 'newline-and-indent #'+default--newline-indent-and-continue-comments-a)
+
+;; (defun pim-newline-and-indent (&optional continue-comment)
+;;   "Like `newline-and-indent' but handle Doom advice to handle `delete-selection-mode'."
+;;   (interactive "P")
+;;   (let ((+default-want-RET-continue-comments continue-comment))
+;;     (when (and delete-selection-mode (region-active-p))
+;;       (delete-active-region))
+;;     (newline-and-indent)
+;;     ))
 
 (map!
- :desc "Like <return> but enable continuing coment. #pim" "M-<RET>"
- (lambda nil
-   (interactive)
-   (pim-newline-and-indent t))
- :desc "Newline and indent but escape from continuing comment (use M-<ret> for continuing comment). #pim" "<RET>"
- (lambda nil
-   (interactive)
-   (pim-newline-and-indent nil)))
+ :desc "Like <RET> but enable continuing comment. #pim" "M-<RET>"
+ (lambda (&optional arg)
+   (interactive "*")
+   (+default--newline-indent-and-continue-comments-a arg)
+   ;; (pim-newline-and-indent t)
+   )
+ ;; :desc "Newline and indent but escape from continuing comment (use M-<ret> for continuing comment). #pim" "<RET>"
+ ;; (lambda nil
+ ;;   (interactive)
+ ;;   (pim-newline-and-indent nil))
+ )
+
 
 (map!
  :desc "Toggle locally the modeline. #pim" "<M-f1>" #'hide-mode-line-mode
  :desc "Toggle globally the modeline. #pim" "<s-f1>" #'global-hide-mode-line-mode)
 
 ;; Non-breaking spaces with quotes please.
-(when (modulep! +azerty)
+(when pim-azertyp
   (map!
    :desc "Insert proper French quotation with non breaking spaces. #pim" "«"
    (lambda nil
@@ -283,7 +289,7 @@
   ;; :defer t ;; defered does not work…
   ;; :commands (jumpc-jump-backward jumpc-jump-forward)
   :preface
-  (if (modulep! +azerty)
+  (if pim-azertyp
       (progn
         (map! :desc "Jump to prev cursor position. #pim" "C-<" #'jumpc-jump-backward)
         (map! :desc "Jump to next cursor position. #pim" "C->" #'jumpc-jump-forward))
@@ -424,6 +430,7 @@
 
 (map! :desc "Switch to the next user buffer. #pim" "<mouse-9>" #'pim/next-user-buffer)
 (map! :desc "Switch to the previous user buffer. #pim" "<mouse-8>" #'pim/previous-user-buffer)
+;; +emacs.el ends here.
 
 ;; Local variables:
 ;; coding: utf-8

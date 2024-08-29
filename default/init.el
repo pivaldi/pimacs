@@ -21,6 +21,21 @@
 (defvar pim-error-msgs (list)
   "List of errors encountered when loading pim-configuration files.")
 
+(defvar pim-keyboard-type
+  (cond
+   ((modulep! +azerty)
+    "azerty")
+   ((modulep! +qwerty)
+    "qwerty")
+   (t (error "Keyboard option is missing or not supported.
+Supported keyboard options are +azerty and +qwerty for now")))
+  "The brand of keyboard you are using.
+This variable is used to define proper key bindins.
+Only azerty and qwerty are supported for now.")
+
+(defvar pim-azertyp (equal pim-keyboard-type "azerty"))
+(defvar pim-qwertyp (equal pim-keyboard-type "qwerty"))
+
 (defvar pim-keymapname-alist (list)
   "List (\"module name\" . '((keymapname1 . provided-by1) (keymapname2 . provided-by2) etc)  configured by PIMacs.")
 

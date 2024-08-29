@@ -1,6 +1,16 @@
 # PIMacs/default Doom Module
 
-The default minimal configuration of Emacs by PIMacs.
+The default minimal configuration of Emacs by PIMacs.  
+**This module must be loaded with your keyboard configuration**, `+azerty` and
+`+qwerty` are supported for now.  
+All others PIMacs modules will consider this option making when needed the best
+ergonomic key bindings depending of the keyboard disposition.
+
+
+## Important Note
+
+Actually only Emacs (not Evil) key binding are supported.  
+**Pull request is need to support Evil key bindings** 🙏.
 
 ## Setting Variables
 

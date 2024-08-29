@@ -43,8 +43,8 @@
 ### pimacs/keys
 [PIMacs `global-map` configuration](keys/README.md).  
 See also the auto-generated
-[global-map key bindings refcard](keys/all-key-bindings-refcard.md) and the
-[global-map PIMacs key bindings refcard](keys/pimacs-key-bindings-refcard.md).
+[global-map key bindings refcard](keys/all-key-bindings-refcard.org) and the
+[global-map PIMacs key bindings refcard](keys/pimacs-key-bindings-refcard.org).
 
 ### pimacs/aliases
 [Define useful aliases starting by `_`](aliases/config.el).
@@ -58,8 +58,8 @@ See also the auto-generated
 ### pimacs/dired
 [Dired mode specific configuration](dired/README.org).  
 See also the auto-generated
-[dired-mode-map key bindings refcard](dired/all-key-bindings-refcard.md) and the
-[dired-mode-map PIMacs key bindings refcard](dired/pimacs-key-bindings-refcard.md).
+[dired-mode-map key bindings refcard](dired/all-key-bindings-refcard.org) and the
+[dired-mode-map PIMacs key bindings refcard](dired/pimacs-key-bindings-refcard.org).
 
 ### pimacs/doc
 [Generated PIMacs Documentation](doc/README.org). Contains all the Doom and

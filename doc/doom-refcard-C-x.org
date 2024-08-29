@@ -58,6 +58,7 @@
 - [[#c-x-v--vc-prefix-map][=C-x v= : +vc-prefix-map]]
 - [[#c-x-w--prefix][=C-x w= : +prefix]]
 - [[#c-x-x--prefix][=C-x x= : +prefix]]
+- [[#c-x-x--prefix][=C-x X= : +prefix]]
 - [[#c-x-z--repeat][=C-x z= : repeat]]
 - [[#c-x---shrink-window-horizontally][=C-x {= : shrink-window-horizontally]]
 - [[#c-x---enlarge-window-horizontally][=C-x }= : enlarge-window-horizontally]]
@@ -560,6 +561,46 @@
 ** =C-x x t= : toggle-truncate-lines
 
 ** =C-x x u= : rename-uniquely
+
+* =C-x X= : +prefix
+
+** =C-x X <SPC>= : edebug-step-mode
+
+** =C-x X == : edebug-display-freq-count
+
+** =C-x X a= : abort-recursive-edit
+
+** =C-x X b= : edebug-set-breakpoint
+
+** =C-x X c= : edebug-continue-mode
+
+** =C-x X C= : edebug-Continue-fast-mode
+
+** =C-x X D= : edebug-toggle-disable-breakpoint
+
+** =C-x X g= : edebug-go-mode
+
+** =C-x X G= : edebug-Go-nonstop-mode
+
+** =C-x X q= : top-level
+
+** =C-x X Q= : edebug-top-level-nonstop
+
+** =C-x X t= : edebug-trace-mode
+
+** =C-x X T= : edebug-Trace-fast-mode
+
+** =C-x X u= : edebug-unset-breakpoint
+
+** =C-x X U= : edebug-unset-breakpoints
+
+** =C-x X w= : edebug-where
+
+** =C-x X W= : edebug-toggle-save-windows
+
+** =C-x X x= : edebug-set-conditional-breakpoint
+
+** =C-x X X= : edebug-set-global-break-condition
 
 * =C-x z= : repeat
 
