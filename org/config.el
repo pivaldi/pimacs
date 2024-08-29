@@ -26,6 +26,8 @@
       ))
   )
 
+(after! org (setq org-link-descriptive nil))
+
 (provide 'pimacs/org-mode)
 ;;; config.el ends here
 
