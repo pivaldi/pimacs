@@ -2,15 +2,16 @@
 
 * Doom/PIMacs Key Bindings Refcards
 - [[doom-refcard-.org][All Fundamental Key Bindings]]
-- [[doom-refcard-C-c.org][Fundamental Key Bindings Prefixed by C-c]]
+- [[doom-refcard-C-c.org][Fundamental Key Bindings Prefixed by C-c (Doom leader prefix)]]
 - [[doom-refcard-C-x.org][Fundamental Key Bindings Prefixed by C-x]]
-- [[doom-refcard-C-h.org][Fundamental Key Bindings Prefixed by C-h]]
-- [[doom-refcard-M-g.org][Fundamental Key Bindings Prefixed by M-g]]
+- [[doom-refcard-C-h.org][Fundamental Key Bindings Prefixed by C-h (help)]]
+- [[doom-refcard-M-g.org][Fundamental Key Bindings Prefixed by M-g (goto map)]]
+- [[doom-refcard-M-s.org][Fundamental Key Bindings Prefixed by M-S (isearch map)]]
 
 * Autoloaded Functions
 - =pim/which-key-export-bindings-recursively-to-file= : export bindings
   recursively by key prefix into a file *with org formatting*.
-- =pim-keys-bindings-to-refcard= : export the PIMacs key bindings from keymaps in a file (org,
+- =pim-keys-bindings-to-refcard= : export the PIMacs key bindings from keymaps in a file (org,
   md and txt format supported).
-- =pim/modules-key-bindings-to-refcard= : export the PIMacs key bindings from
+- =pim/modules-key-bindings-to-refcard= : export the PIMacs key bindings from
   module names in a file (org, md and txt format supported).
