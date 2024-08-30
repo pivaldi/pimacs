@@ -150,6 +150,11 @@
 ;;                        :debounce 1 "<up>" "<down>"
 ;;                        :debounce 2 any)))
 
+(after! which-key
+  :config
+  (setq which-key-max-description-length 50)
+  )
+
 (load! "+doom")
 (load! "+hooks")
 (load! "+modes")
