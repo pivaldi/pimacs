@@ -24,6 +24,16 @@
 (setq pim-doc-key-binding-prefixes-to-export
       (list "" "C-c" "C-x" "C-h" "M-g" "M-s"))
 
+(defvar pim-doc-keymaps-to-export (list)
+  "List of keymaps to be exported by `pim-generate-all-keymaps'.")
+(setq pim-doc-keymaps-to-export
+      (list '("org-mode-map" . org) '("go-mode-map" . go-mode)
+            '("dired-mode-map" . dired) '("isearch-mode-map" . isearch)
+            '("magit-mode-map" . magit) '("projectile-mode-map" . projectile)
+            '("ctl-x-map" . nil) '("doom-leader-workspaces/windows-map" . nil)))
+
+
+
 (provide `pimacs/doc/init)
 ;;; init.el ends here
 
