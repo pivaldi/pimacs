@@ -164,7 +164,7 @@ If MODULENAMES is nil, use the variable `pim-keymapname-alist' instead."
 LEVEL represent the deep of the heading."
   (require 'which-key)
   (let* ((which-key-max-description-length 1000)
-         (keys (if subkeys subkeys (which-key--get-bindings (kbd prefix) global-map)))
+         (keys (if subkeys subkeys (which-key--get-bindings (kbd prefix))))
          (isPrefix (not (null keys)))
          (result "")
          (level1part (if (or nil (eq 1 level))
@@ -172,7 +172,7 @@ LEVEL represent the deep of the heading."
          )
     (dolist (key keys)
       (let* ((prefixn (s-trim (format "%s %s" prefix (pim-keystring-kbd-consolidate (pop key)))))
-             (sub-keys (which-key--get-bindings (kbd prefixn) global-map))
+             (sub-keys (which-key--get-bindings (kbd prefixn)))
              (isSubKeyPrefix (not (null sub-keys)))
              (section-s (if isSubKeyPrefix (make-string (+ 1 level) ?*) "-"))
              (line (apply #'format "%s %s=%s=%s%s\n" section-s (if isSubKeyPrefix "Prefix " "") prefixn key)))
