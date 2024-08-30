@@ -138,16 +138,17 @@
    htmlize-html-charset "utf-8")
   (htmlize-view-add-to-files-menu))
 
-(use-package!
-    consult
-  :defer t
-  :config
-  ;; Preview immediately on C-SPC, on up/down after 1s, on any other key after 2s
-  (consult-customize consult-theme
-                     :preview-key
-                     '("C-SPC"
-                       :debounce 1 "<up>" "<down>"
-                       :debounce 2 any)))
+;; Does not work actually
+;; (use-package!
+;;     consult
+;;   :defer t
+;;   :config
+;;   ;; Preview immediately on C-SPC, on up/down after 1s, on any other key after 2s
+;;   (consult-customize consult-theme
+;;                      :preview-key
+;;                      '("C-SPC"
+;;                        :debounce 1 "<up>" "<down>"
+;;                        :debounce 2 any)))
 
 (load! "+doom")
 (load! "+hooks")
