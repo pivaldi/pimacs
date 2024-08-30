@@ -16,7 +16,11 @@
 
 ;;; Code:
 
-(add-to-list 'pim-keymapname-alist '("keys" . (("global-map" . nil) ("general-override-mode-map" . general))))
+(add-to-list 'pim-keymapname-alist
+             '("keys" .
+               (("global-map" . nil)
+                ("general-override-mode-map" . general)
+                ("which-key-C-h-map" . which-key))))
 
 ;; (setq pim-keymapname-alist
 ;;       (list '("keys" . (("global-map" . nil) ("general-override-mode-map" . general)))

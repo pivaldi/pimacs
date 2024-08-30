@@ -20,19 +20,6 @@
 
 ;;; Code:
 
-;;;###autoload
-(defun pim-make-script-executable ()
-  "If file start with a shebang, make buffer file name executable.
-See http://www.emacswiki.org/emacs/MakingScriptsExecutableOnSave"
-  (save-excursion
-    (save-restriction
-      (widen)
-      (goto-char (point-min))
-      (when (and (looking-at "^#!")
-                 (not (file-executable-p buffer-file-name)))
-        (set-file-modes buffer-file-name
-                        (logior (file-modes buffer-file-name) #o100))
-        (message (concat "Made " buffer-file-name " executable"))))))
 
 ;;;###autoload
 (defun pim/kill-and-join-forward (&optional arg)

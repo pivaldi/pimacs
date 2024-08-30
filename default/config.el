@@ -103,10 +103,6 @@
 (set-language-environment "UTF-8")
 
 
-;; ;; Already configured in Doom…
-;; (map! :desc "<RET> insert newline and indent in prog-mode." prog-mode-map "RET" 'newline-and-indent)
-
-
 ;; See the name of the current function in the mode line.
 (after! which-func
   (which-function-mode 1))
@@ -153,6 +149,7 @@
 (after! which-key
   :config
   (setq which-key-max-description-length 50)
+  (setq max-mini-window-height 0.33)
   )
 
 (load! "+doom")

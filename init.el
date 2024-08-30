@@ -6,7 +6,7 @@
 (doom!
  :pimacs
  (default +azerty) ;; PIMacs default Emacs configuration on top of Doom with
- ;; azerty keyboard type.
+ azerty keyboard type.
  functions ;; Useful functions. Must be loaded for the keys module/
  aliases ;; Define aliases starting with `_`. The most useful are `_rb` and `_sir`.
  theme ;; Define some faces and load Zenburn Theme. See the `README.md` in the directory `pimacs/theme`.
@@ -19,7 +19,7 @@
 
  org ;; Org mode specific configuration.
  dired ;; Dired mode specific configuration.
- ;; lang-c
+ lang-c
  lang-lisp
  lang-make
 
