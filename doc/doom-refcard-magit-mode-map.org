@@ -7,93 +7,93 @@
   - [[#prefix-c-c--prefix][Prefix =C-c= : +prefix]]
 
 * Root Prefix =[empty]= on Keymap =magit-mode-map=
-- =<DEL>= : magit-diff-show-or-scroll-down
-- =<RET>= : magit-visit-thing
+- =<DEL>= calls =magit-diff-show-or-scroll-down= : update the commit or diff buffer for the thing at point.
+- =<RET>= calls =magit-visit-thing= : this is a placeholder command, which may signal an error if called.
 - =<SPC>= : <leader>
-- =<TAB>= : magit-section-toggle
-- =!= : magit-run
-- =$= : magit-process-buffer
-- =%= : magit-worktree
-- =+= : magit-diff-more-context
-- =-= : magit-diff-less-context
-- =0= : magit-diff-default-context
-- =1= : magit-section-show-level-1
-- =2= : magit-section-show-level-2
-- =3= : magit-section-show-level-3
-- =4= : magit-section-show-level-4
-- =:= : magit-git-command
-- =>= : magit-sparse-checkout
-- =?= : magit-dispatch
-- =^= : magit-section-up
-- =a= : magit-cherry-apply
-- =A= : magit-cherry-pick
-- =b= : magit-branch
-- =B= : magit-bisect
-- =c= : magit-commit
-- =C= : magit-clone
-- =d= : magit-diff
-- =D= : magit-diff-refresh
-- =e= : magit-ediff-dwim
-- =E= : magit-ediff
-- =f= : magit-fetch
-- =F= : magit-pull
-- =g= : magit-refresh
-- =G= : magit-refresh-all
-- =h= : magit-dispatch
-- =H= : magit-describe-section
-- =i= : magit-gitignore
-- =I= : magit-init
-- =j= : magit-status-quick
-- =J= : magit-display-repository-buffer
-- =k= : magit-delete-thing
-- =K= : magit-file-untrack
-- =l= : magit-log
-- =L= : magit-log-refresh
-- =m= : magit-merge
-- =M= : magit-remote
-- =n= : magit-section-forward
-- =o= : magit-submodule
-- =O= : magit-subtree
-- =p= : magit-section-backward
-- =P= : magit-push
-- =q= : +magit/quit
-- =Q= : +magit/quit-all
-- =r= : magit-rebase
-- =R= : magit-file-rename
-- =s= : magit-stage-file
-- =S= : magit-stage-modified
-- =t= : magit-tag
-- =T= : magit-notes
-- =u= : magit-unstage-file
-- =U= : magit-unstage-all
-- =v= : magit-revert-no-commit
-- =V= : magit-revert
-- =w= : magit-am
-- =W= : magit-patch
-- =x= : magit-reset-quickly
-- =X= : magit-reset
-- =y= : magit-show-refs
-- =Y= : magit-cherry
-- =z= : magit-stash
-- =Z= : magit-worktree
-- =C-w= : magit-copy-section-value
-- =C-M-i= : magit-dired-jump
-- =C-<return>= : magit-visit-thing
-- =C-<tab>= : magit-section-cycle
-- =M-1= : magit-section-show-level-1-all
-- =M-2= : magit-section-show-level-2-all
-- =M-3= : magit-section-show-level-3-all
-- =M-4= : magit-section-show-level-4-all
-- =M-n= : magit-section-forward-sibling
-- =M-p= : magit-section-backward-sibling
-- =M-w= : magit-copy-buffer-revision
-- =M-<tab>= : magit-section-cycle-diffs
-- =S-<SPC>= : magit-diff-show-or-scroll-down
-- =<backtab>= : magit-section-cycle-global
+- =<TAB>= calls =magit-section-toggle= : toggle visibility of the body of the current section.
+- =!= calls =magit-run= : run git or another command, or launch a graphical utility.
+- =$= calls =magit-process-buffer= : display the current repository's process buffer.
+- =%= calls =magit-worktree= : act on a worktree.
+- =+= calls =magit-diff-more-context= : increase the context for diff hunks by COUNT lines.
+- =-= calls =magit-diff-less-context= : decrease the context for diff hunks by COUNT lines.
+- =0= calls =magit-diff-default-context= : reset context for diff hunks to the default height.
+- =1= calls =magit-section-show-level-1= : show surrounding sections on first level.
+- =2= calls =magit-section-show-level-2= : show surrounding sections up to second level.
+- =3= calls =magit-section-show-level-3= : show surrounding sections up to third level.
+- =4= calls =magit-section-show-level-4= : show surrounding sections up to fourth level.
+- =:= calls =magit-git-command= : execute COMMAND asynchronously; display output.
+- =>= calls =magit-sparse-checkout= (not described)
+- =?= calls =magit-dispatch= : invoke a Magit command from a list of available commands.
+- =^= calls =magit-section-up= : move to the beginning of the parent section.
+- =a= calls =magit-cherry-apply= : apply the changes in COMMITS but do not commit them.
+- =A= calls =magit-cherry-pick= : apply or transplant commits.
+- =b= calls =magit-branch= : add, configure or remove a branch.
+- =B= calls =magit-bisect= : narrow in on the commit that introduced a bug.
+- =c= calls =magit-commit= : create a new commit or replace an existing commit.
+- =C= calls =magit-clone= : clone a repository.
+- =d= calls =magit-diff= : show changes between different versions.
+- =D= calls =magit-diff-refresh= : change the arguments used for the diff(s) in the current buffer.
+- =e= calls =magit-ediff-dwim= : compare, stage, or resolve using Ediff.
+- =E= calls =magit-ediff= (not described)
+- =f= calls =magit-fetch= : fetch from another repository.
+- =F= calls =magit-pull= : pull from another repository.
+- =g= calls =magit-refresh= : refresh some buffers belonging to the current repository.
+- =G= calls =magit-refresh-all= : refresh all buffers belonging to the current repository.
+- =h= calls =magit-dispatch= : invoke a Magit command from a list of available commands.
+- =H= calls =magit-describe-section= : show information about the section at point.
+- =i= calls =magit-gitignore= (not described)
+- =I= calls =magit-init= : initialize a Git repository, then show its status.
+- =j= calls =magit-status-quick= : show the status of the current Git repository, maybe without refreshing.
+- =J= calls =magit-display-repository-buffer= : display a Magit buffer belonging to the current Git repository.
+- =k= calls =magit-delete-thing= : this is a placeholder command, which signals an error if called.
+- =K= calls =magit-file-untrack= : untrack the selected FILES or one file read in the minibuffer.
+- =l= calls =magit-log= : show a commit or reference log.
+- =L= calls =magit-log-refresh= : change the arguments used for the log(s) in the current buffer.
+- =m= calls =magit-merge= : merge branches.
+- =M= calls =magit-remote= : add, configure or remove a remote.
+- =n= calls =magit-section-forward= : move to the beginning of the next visible section.
+- =o= calls =magit-submodule= : act on a submodule.
+- =O= calls =magit-subtree= (not described)
+- =p= calls =magit-section-backward= : move to the beginning of the current or the previous visible section.
+- =P= calls =magit-push= : push to another repository.
+- =q= calls =+magit/quit= : bury the current magit buffer.
+- =Q= calls =+magit/quit-all= : kill all magit buffers for the current repository.
+- =r= calls =magit-rebase= : transplant commits and/or modify existing commits.
+- =R= calls =magit-file-rename= : rename or move FILE to NEWNAME.
+- =s= calls =magit-stage-file= : read one or more files and stage all changes in those files.
+- =S= calls =magit-stage-modified= : stage all changes to files modified in the worktree.
+- =t= calls =magit-tag= : create or delete a tag.
+- =T= calls =magit-notes= : edit notes attached to commits.
+- =u= calls =magit-unstage-file= : read one or more files and unstage all changes to those files.
+- =U= calls =magit-unstage-all= : remove all changes from the staging area.
+- =v= calls =magit-revert-no-commit= : revert COMMIT by applying it in reverse to the worktree.
+- =V= calls =magit-revert= : revert existing commits, with or without creating new commits.
+- =w= calls =magit-am= : apply patches received by email.
+- =W= calls =magit-patch= (not described)
+- =x= calls =magit-reset-quickly= : reset the `HEAD' and index to COMMIT, and possibly the working tree.
+- =X= calls =magit-reset= : reset the `HEAD', index and/or worktree to a previous state.
+- =y= calls =magit-show-refs= : list and compare references in a dedicated buffer.
+- =Y= calls =magit-cherry= : show commits in a branch that are not merged in the upstream branch.
+- =z= calls =magit-stash= : stash uncommitted changes.
+- =Z= calls =magit-worktree= : act on a worktree.
+- =C-w= calls =magit-copy-section-value= : save the value of the current section for later use.
+- =C-M-i= calls =magit-dired-jump= : visit file at point using Dired.
+- =C-<return>= calls =magit-visit-thing= : this is a placeholder command, which may signal an error if called.
+- =C-<tab>= calls =magit-section-cycle= : cycle visibility of current section and its children.
+- =M-1= calls =magit-section-show-level-1-all= : show all sections on first level.
+- =M-2= calls =magit-section-show-level-2-all= : show all sections up to second level.
+- =M-3= calls =magit-section-show-level-3-all= : show all sections up to third level.
+- =M-4= calls =magit-section-show-level-4-all= : show all sections up to fourth level.
+- =M-n= calls =magit-section-forward-sibling= : move to the beginning of the next sibling section.
+- =M-p= calls =magit-section-backward-sibling= : move to the beginning of the previous sibling section.
+- =M-w= calls =magit-copy-buffer-revision= : save the revision of the current buffer for later use.
+- =M-<tab>= calls =magit-section-cycle-diffs= : cycle visibility of diff-related sections in the current buffer.
+- =S-<SPC>= calls =magit-diff-show-or-scroll-down= : update the commit or diff buffer for the thing at point.
+- =<backtab>= calls =magit-section-cycle-global= : cycle visibility of all sections in the current buffer.
 - =<left>-<fringe>= : +prefix
 ** Prefix =C-c= : +prefix
-- =C-c <TAB>= : magit-section-cycle
-- =C-c C-c= : magit-dispatch
-- =C-c C-e= : magit-edit-thing
-- =C-c C-o= : magit-browse-thing
-- =C-c C-w= : magit-copy-thing
+- =C-c <TAB>= calls =magit-section-cycle= : cycle visibility of current section and its children.
+- =C-c C-c= calls =magit-dispatch= : invoke a Magit command from a list of available commands.
+- =C-c C-e= calls =magit-edit-thing= : this is a placeholder command, which may signal an error if called.
+- =C-c C-o= calls =magit-browse-thing= : this is a placeholder command, which may signal an error if called.
+- =C-c C-w= calls =magit-copy-thing= : this is a placeholder command, which signals an error if called.

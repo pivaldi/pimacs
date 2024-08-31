@@ -8,358 +8,358 @@
   - [[#prefix-c-x--prefix][Prefix =C-x= : +prefix]]
 
 * Root Prefix =[empty]= on Keymap =org-mode-map=
-- =<RET>= : org-return
-- =<TAB>= : org-cycle
-- =|= : org-force-self-insert
-- =C-<RET>= : +org/insert-item-below
-- =C-#= : org-table-rotate-recalc-marks
-- =C-'= : org-cycle-agenda-files
-- =C-,= : org-cycle-agenda-files
-- =C-j= : org-return-and-maybe-indent
-- =C-M-<RET>= : org-insert-subheading
-- =C-M-i= : ispell-complete-word
-- =C-M-t= : org-transpose-element
-- =C-M-S-<left>= : org-decrease-number-at-point
-- =C-M-S-<right>= : org-increase-number-at-point
-- =C-M-<return>= : org-insert-subheading
-- =C-S-<RET>= : +org/insert-item-above
-- =C-S-<down>= : org-shiftcontroldown
-- =C-S-<left>= : org-shiftcontrolleft
-- =C-S-<return>= : +org/insert-item-above
-- =C-S-<right>= : org-shiftcontrolright
-- =C-S-<up>= : org-shiftcontrolup
-- =C-<return>= : +org/insert-item-below
+- =<RET>= calls =org-return= : goto next table row or insert a newline.
+- =<TAB>= calls =org-cycle= : tAB-action and visibility cycling for Org mode.
+- =|= calls =org-force-self-insert= : needed to enforce self-insert under remapping.
+- =C-<RET>= calls =+org/insert-item-below= : inserts a new heading, table cell or item below the current one.
+- =C-#= calls =org-table-rotate-recalc-marks= : rotate the recalculation mark in the first column.
+- =C-'= calls =org-cycle-agenda-files= : cycle through the files in `org-agenda-files'.
+- =C-,= calls =org-cycle-agenda-files= : cycle through the files in `org-agenda-files'.
+- =C-j= calls =org-return-and-maybe-indent= : goto next table row, or insert a newline, maybe indented.
+- =C-M-<RET>= calls =org-insert-subheading= : insert a new subheading and demote it.
+- =C-M-i= calls =ispell-complete-word= : try to complete the word before or at point.
+- =C-M-t= calls =org-transpose-element= : transpose current and previous elements, keeping blank lines between.
+- =C-M-S-<left>= calls =org-decrease-number-at-point= : decrement the number at point.
+- =C-M-S-<right>= calls =org-increase-number-at-point= : increment the number at point.
+- =C-M-<return>= calls =org-insert-subheading= : insert a new subheading and demote it.
+- =C-S-<RET>= calls =+org/insert-item-above= : inserts a new heading, table cell or item above the current one.
+- =C-S-<down>= calls =org-shiftcontroldown= : change timestamps synchronously down in CLOCK log lines.
+- =C-S-<left>= calls =org-shiftcontrolleft= : switch to previous TODO set.
+- =C-S-<return>= calls =+org/insert-item-above= : inserts a new heading, table cell or item above the current one.
+- =C-S-<right>= calls =org-shiftcontrolright= : switch to next TODO set.
+- =C-S-<up>= calls =org-shiftcontrolup= : change timestamps synchronously up in CLOCK log lines.
+- =C-<return>= calls =+org/insert-item-below= : inserts a new heading, table cell or item below the current one.
 - =M-<RET>= : Like <RET> but enable continuing comment. #pim
-- =M-h= : org-mark-element
-- =M-{= : org-backward-element
-- =M-}= : org-forward-element
-- =M-S-<RET>= : org-insert-todo-heading
-- =M-S-<down>= : org-shiftmetadown
-- =M-S-<left>= : org-shiftmetaleft
-- =M-S-<return>= : org-insert-todo-heading
-- =M-S-<right>= : org-shiftmetaright
-- =M-S-<up>= : org-shiftmetaup
-- =M-<down>= : org-metadown
-- =M-<left>= : org-metaleft
-- =M-<right>= : org-metaright
-- =M-<up>= : org-metaup
-- =S-<RET>= : +org/shift-return
-- =S-<TAB>= : org-shifttab
-- =S-<down>= : org-shiftdown
-- =S-<down>= : org-shiftmetadown
-- =S-<left>= : org-shiftleft
-- =S-<left>= : org-shiftmetaleft
-- =S-<return>= : org-table-copy-down
-- =S-<right>= : org-shiftright
-- =S-<right>= : org-shiftmetaright
-- =S-<up>= : org-shiftup
-- =S-<up>= : org-shiftmetaup
-- =<backtab>= : org-shifttab
-- =<down>= : org-metadown
-- =<left>= : org-metaleft
-- =<right>= : org-metaright
-- =<up>= : org-metaup
+- =M-h= calls =org-mark-element= : put point at beginning of this element, mark at end.
+- =M-{= calls =org-backward-element= : move backward by one element.
+- =M-}= calls =org-forward-element= : move forward by one element.
+- =M-S-<RET>= calls =org-insert-todo-heading= : insert a new heading with the same level and TODO state as current heading.
+- =M-S-<down>= calls =org-shiftmetadown= : drag the line at point down.
+- =M-S-<left>= calls =org-shiftmetaleft= : promote subtree or delete table column.
+- =M-S-<return>= calls =org-insert-todo-heading= : insert a new heading with the same level and TODO state as current heading.
+- =M-S-<right>= calls =org-shiftmetaright= : demote subtree or insert table column.
+- =M-S-<up>= calls =org-shiftmetaup= : drag the line at point up.
+- =M-<down>= calls =org-metadown= : move subtree down or move table row down.
+- =M-<left>= calls =org-metaleft= : promote heading, list item at point or move table column left.
+- =M-<right>= calls =org-metaright= : demote heading, list item at point or move table column right.
+- =M-<up>= calls =org-metaup= : move subtree up or move table row up.
+- =S-<RET>= calls =+org/shift-return= : insert a literal newline, or dwim in tables.
+- =S-<TAB>= calls =org-shifttab= : global visibility cycling or move to previous table field.
+- =S-<down>= calls =org-shiftdown= : act on current element according to context.
+- =S-<down>= calls =org-shiftmetadown= : drag the line at point down.
+- =S-<left>= calls =org-shiftleft= : act on current element according to context.
+- =S-<left>= calls =org-shiftmetaleft= : promote subtree or delete table column.
+- =S-<return>= calls =org-table-copy-down= : copy the value of the current field one row below.
+- =S-<right>= calls =org-shiftright= : act on the current element according to context.
+- =S-<right>= calls =org-shiftmetaright= : demote subtree or insert table column.
+- =S-<up>= calls =org-shiftup= : act on current element according to context.
+- =S-<up>= calls =org-shiftmetaup= : drag the line at point up.
+- =<backtab>= calls =org-shifttab= : global visibility cycling or move to previous table field.
+- =<down>= calls =org-metadown= : move subtree down or move table row down.
+- =<left>= calls =org-metaleft= : promote heading, list item at point or move table column left.
+- =<right>= calls =org-metaright= : demote heading, list item at point or move table column right.
+- =<up>= calls =org-metaup= : move subtree up or move table row up.
 ** Prefix =C-c= : +prefix
-- =C-c <RET>= : org-ctrl-c-ret
-- =C-c <TAB>= : org-toggle-inline-images
+- =C-c <RET>= calls =org-ctrl-c-ret= : call `org-table-hline-and-move' or `org-insert-heading'.
+- =C-c <TAB>= calls =org-toggle-inline-images= : toggle the display of inline images.
 - =C-c != : checkers
-- =C-c #= : org-update-statistics-cookies
-- =C-c $= : org-archive-subtree
-- =C-c %= : org-mark-ring-push
+- =C-c #= calls =org-update-statistics-cookies= : update the statistics cookie, either from TODO or from checkboxes.
+- =C-c $= calls =org-archive-subtree= : move the current subtree to the archive.
+- =C-c %= calls =org-mark-ring-push= : put the current position into the mark ring and rotate it.
 - =C-c &= : snippets
-- =C-c '= : org-edit-special
-- =C-c *= : org-ctrl-c-star
-- =C-c += : org-table-sum
-- =C-c ,= : org-priority
-- =C-c -= : org-ctrl-c-minus
-- =C-c .= : org-timestamp
-- =C-c /= : org-sparse-tree
-- =C-c := : org-toggle-fixed-width
-- =C-c ;= : org-toggle-comment
-- =C-c <= : org-date-from-calendar
-- =C-c == : org-table-eval-formula
-- =C-c >= : org-goto-calendar
-- =C-c ?= : org-table-field-info
-- =C-c @= : org-mark-subtree
-- =C-c [= : org-agenda-file-to-front
-- =C-c \= : org-match-sparse-tree
-- =C-c ]= : org-remove-file
-- =C-c ^= : org-sort
-- =C-c `= : org-table-edit-field
-- =C-c {= : org-table-toggle-formula-debugger
-- =C-c |= : org-table-create-or-convert-from-region
-- =C-c }= : org-table-toggle-coordinate-overlays
-- =C-c ~= : org-table-create-with-table.el
-- =C-c C-*= : org-list-make-subtree
-- =C-c C-,= : org-insert-structure-template
-- =C-c C-<= : outline-promote
-- =C-c C->= : outline-demote
-- =C-c C-^= : org-up-element
-- =C-c C-_= : org-down-element
-- =C-c C-a= : org-attach
-- =C-c C-b= : org-backward-heading-same-level
-- =C-c C-c= : org-ctrl-c-ctrl-c
-- =C-c C-d= : org-deadline
-- =C-c C-e= : org-export-dispatch
+- =C-c '= calls =org-edit-special= : call a special editor for the element at point.
+- =C-c *= calls =org-ctrl-c-star= : compute table, or change heading status of lines.
+- =C-c += calls =org-table-sum= : sum numbers in region of current table column.
+- =C-c ,= calls =org-priority= : change the priority of an item.
+- =C-c -= calls =org-ctrl-c-minus= : insert separator line in table or modify bullet status of line.
+- =C-c .= calls =org-timestamp= : prompt for a date/time and insert a time stamp.
+- =C-c /= calls =org-sparse-tree= : create a sparse tree, prompt for the details.
+- =C-c := calls =org-toggle-fixed-width= : toggle fixed-width markup.
+- =C-c ;= calls =org-toggle-comment= : change the COMMENT state of an entry.
+- =C-c <= calls =org-date-from-calendar= : insert time stamp corresponding to cursor date in *Calendar* buffer.
+- =C-c == calls =org-table-eval-formula= : replace the table field value at the cursor by the result of a calculation.
+- =C-c >= calls =org-goto-calendar= : go to the Emacs calendar at the current date.
+- =C-c ?= calls =org-table-field-info= : show info about the current field, and highlight any reference at point.
+- =C-c @= calls =org-mark-subtree= : mark the current subtree.
+- =C-c [= calls =org-agenda-file-to-front= : move/add the current file to the top of the agenda file list.
+- =C-c \= calls =org-match-sparse-tree= : create a sparse tree according to tags string MATCH.
+- =C-c ]= calls =org-remove-file= : remove current file from the list of files in variable `org-agenda-files'.
+- =C-c ^= calls =org-sort= : call `org-sort-entries', `org-table-sort-lines' or `org-sort-list'.
+- =C-c `= calls =org-table-edit-field= : edit table field in a different window.
+- =C-c {= calls =org-table-toggle-formula-debugger= : toggle the formula debugger in tables.
+- =C-c |= calls =org-table-create-or-convert-from-region= : convert region to table, or create an empty table.
+- =C-c }= calls =org-table-toggle-coordinate-overlays= : toggle the display of Row/Column numbers in tables.
+- =C-c ~= calls =org-table-create-with-table.el= : use the table.el package to insert a new table.
+- =C-c C-*= calls =org-list-make-subtree= : convert the plain list at point into a subtree.
+- =C-c C-,= calls =org-insert-structure-template= : insert a block structure of the type #+begin_foo/#+end_foo.
+- =C-c C-<= calls =outline-promote= : promote headings higher up the tree.
+- =C-c C->= calls =outline-demote= : demote headings lower down the tree.
+- =C-c C-^= calls =org-up-element= : move to upper element.
+- =C-c C-_= calls =org-down-element= : move to inner element.
+- =C-c C-a= calls =org-attach= : the dispatcher for attachment commands.
+- =C-c C-b= calls =org-backward-heading-same-level= : move backward to the ARG'th subheading at same level as this one.
+- =C-c C-c= calls =org-ctrl-c-ctrl-c= : set tags in headline, or update according to changed information at point.
+- =C-c C-d= calls =org-deadline= : insert a "DEADLINE:" string with a timestamp to make a deadline.
+- =C-c C-e= calls =org-export-dispatch= : export dispatcher for Org mode.
 - =C-c C-f= : fold
-- =C-c C-j= : org-goto
-- =C-c C-k= : org-kill-note-or-show-branches
-- =C-c C-l= : org-insert-link
-- =C-c C-n= : outline-next-visible-heading
-- =C-c C-o= : org-open-at-point
-- =C-c C-p= : outline-previous-visible-heading
-- =C-c C-q= : org-set-tags-command
-- =C-c C-r= : org-fold-reveal
-- =C-c C-s= : org-schedule
-- =C-c C-t= : org-todo
-- =C-c C-u= : outline-up-heading
-- =C-c C-w= : org-refile
-- =C-c C-y= : org-evaluate-time-range
-- =C-c C-z= : org-add-note
-- =C-c C-M-l= : org-insert-all-links
-- =C-c C-M-w= : org-refile-reverse
-- =C-c C-S-l= : +org/remove-link
-- =C-c C-<tab>= : org-cycle-force-archived
-- =C-c M-b= : org-previous-block
-- =C-c M-f= : org-next-block
-- =C-c M-l= : org-insert-last-stored-link
-- =C-c M-w= : org-refile-copy
+- =C-c C-j= calls =org-goto= : look up a different location in the current file, keeping current visibility.
+- =C-c C-k= calls =org-kill-note-or-show-branches= : abort storing current note, or show just branches.
+- =C-c C-l= calls =org-insert-link= : insert a link.  At the prompt, enter the link.
+- =C-c C-n= calls =outline-next-visible-heading= : move to the next visible heading line.
+- =C-c C-o= calls =org-open-at-point= : open thing at point.
+- =C-c C-p= calls =outline-previous-visible-heading= : move to the previous heading line.
+- =C-c C-q= calls =org-set-tags-command= : set the tags for the current visible entry.
+- =C-c C-r= calls =org-fold-reveal= : show current entry, hierarchy above it, and the following headline.
+- =C-c C-s= calls =org-schedule= : insert a "SCHEDULED:" string with a timestamp to schedule an item.
+- =C-c C-t= calls =org-todo= : change the TODO state of an item.
+- =C-c C-u= calls =outline-up-heading= : move to the visible heading line of which the present line is a subheading.
+- =C-c C-w= calls =org-refile= : move the entry or entries at point to another heading.
+- =C-c C-y= calls =org-evaluate-time-range= : evaluate a time range by computing the difference between start and end.
+- =C-c C-z= calls =org-add-note= : add a note to the current entry.
+- =C-c C-M-l= calls =org-insert-all-links= : insert all links in `org-stored-links'.
+- =C-c C-M-w= calls =org-refile-reverse= : refile while temporarily toggling `org-reverse-note-order'.
+- =C-c C-S-l= calls =+org/remove-link= : unlink the text at point.
+- =C-c C-<tab>= calls =org-cycle-force-archived= : cycle subtree even if it is archived.
+- =C-c M-b= calls =org-previous-block= : jump to the previous block.
+- =C-c M-f= calls =org-next-block= : jump to the next block.
+- =C-c M-l= calls =org-insert-last-stored-link= : insert the last link stored in `org-stored-links'.
+- =C-c M-w= calls =org-refile-copy= : like `org-refile', but preserve the refiled subtree.
 *** Prefix =C-c "= : +prefix
-- =C-c " a= : orgtbl-ascii-plot
-- =C-c " g= : org-plot/gnuplot
+- =C-c " a= calls =orgtbl-ascii-plot= : draw an ASCII bar plot in a column.
+- =C-c " g= calls =org-plot/gnuplot= : plot table using gnuplot.  Gnuplot options can be specified with PARAMS.
 *** Prefix =C-c l= : +<localleader>
-- =C-c l #= : org-update-statistics-cookies
-- =C-c l '= : org-edit-special
-- =C-c l *= : org-ctrl-c-star
-- =C-c l += : org-ctrl-c-minus
-- =C-c l ,= : org-switchb
-- =C-c l .= : consult-org-heading
-- =C-c l /= : consult-org-agenda
-- =C-c l @= : org-cite-insert
-- =C-c l A= : org-archive-subtree-default
-- =C-c l e= : org-export-dispatch
-- =C-c l f= : org-footnote-action
-- =C-c l h= : org-toggle-heading
-- =C-c l i= : org-toggle-item
-- =C-c l I= : org-id-get-create
-- =C-c l k= : org-babel-remove-result
-- =C-c l K= : +org/remove-result-blocks
-- =C-c l n= : org-store-link
-- =C-c l o= : org-set-property
-- =C-c l q= : org-set-tags-command
-- =C-c l t= : org-todo
-- =C-c l T= : org-todo-list
-- =C-c l x= : org-toggle-checkbox
+- =C-c l #= calls =org-update-statistics-cookies= : update the statistics cookie, either from TODO or from checkboxes.
+- =C-c l '= calls =org-edit-special= : call a special editor for the element at point.
+- =C-c l *= calls =org-ctrl-c-star= : compute table, or change heading status of lines.
+- =C-c l += calls =org-ctrl-c-minus= : insert separator line in table or modify bullet status of line.
+- =C-c l ,= calls =org-switchb= : switch between Org buffers.
+- =C-c l .= calls =consult-org-heading= : jump to an Org heading.
+- =C-c l /= calls =consult-org-agenda= : jump to an Org agenda heading.
+- =C-c l @= calls =org-cite-insert= : insert a citation at point.
+- =C-c l A= calls =org-archive-subtree-default= : archive the current subtree with the default command.
+- =C-c l e= calls =org-export-dispatch= : export dispatcher for Org mode.
+- =C-c l f= calls =org-footnote-action= : do the right thing for footnotes.
+- =C-c l h= calls =org-toggle-heading= : convert headings to normal text, or items or text to headings.
+- =C-c l i= calls =org-toggle-item= : convert headings or normal lines to items, items to normal lines.
+- =C-c l I= calls =org-id-get-create= : create an ID for the current entry and return it.
+- =C-c l k= calls =org-babel-remove-result= : remove the result of the current source block.
+- =C-c l K= calls =+org/remove-result-blocks= : remove all result blocks located after current point.
+- =C-c l n= calls =org-store-link= : store a link to the current location.
+- =C-c l o= calls =org-set-property= : in the current entry, set PROPERTY to VALUE.
+- =C-c l q= calls =org-set-tags-command= : set the tags for the current visible entry.
+- =C-c l t= calls =org-todo= : change the TODO state of an item.
+- =C-c l T= calls =org-todo-list= : show all (not done) TODO entries from all agenda files in a single list.
+- =C-c l x= calls =org-toggle-checkbox= : toggle the checkbox in the current line.
 **** Prefix =C-c l a= : +prefix
-- =C-c l a a= : org-attach
-- =C-c l a d= : org-attach-delete-one
-- =C-c l a D= : org-attach-delete-all
-- =C-c l a f= : +org/find-file-in-attachments
-- =C-c l a l= : +org/attach-file-and-insert-link
-- =C-c l a n= : org-attach-new
-- =C-c l a o= : org-attach-open
-- =C-c l a O= : org-attach-open-in-emacs
+- =C-c l a a= calls =org-attach= : the dispatcher for attachment commands.
+- =C-c l a d= calls =org-attach-delete-one= (not described)
+- =C-c l a D= calls =org-attach-delete-all= (not described)
+- =C-c l a f= calls =+org/find-file-in-attachments= : open a file from `org-attach-id-dir'.
+- =C-c l a l= calls =+org/attach-file-and-insert-link= : downloads the file at PATH and insert an org link at point.
+- =C-c l a n= calls =org-attach-new= (not described)
+- =C-c l a o= calls =org-attach-open= (not described)
+- =C-c l a O= calls =org-attach-open-in-emacs= (not described)
 - =C-c l a r= : org-attach-reveal
-- =C-c l a R= : org-attach-reveal-in-emacs
-- =C-c l a s= : org-attach-set-directory
-- =C-c l a S= : org-attach-sync
-- =C-c l a u= : org-attach-url
+- =C-c l a R= calls =org-attach-reveal-in-emacs= (not described)
+- =C-c l a s= calls =org-attach-set-directory= (not described)
+- =C-c l a S= calls =org-attach-sync= (not described)
+- =C-c l a u= calls =org-attach-url= (not described)
 **** Prefix =C-c l b= : +prefix
-- =C-c l b -= : org-table-insert-hline
-- =C-c l b a= : org-table-align
-- =C-c l b b= : org-table-blank-field
-- =C-c l b c= : org-table-create-or-convert-from-region
-- =C-c l b e= : org-table-edit-field
-- =C-c l b f= : org-table-edit-formulas
-- =C-c l b h= : org-table-field-info
-- =C-c l b r= : org-table-recalculate
-- =C-c l b R= : org-table-recalculate-buffer-tables
-- =C-c l b s= : org-table-sort-lines
+- =C-c l b -= calls =org-table-insert-hline= : insert a horizontal-line below the current line into the table.
+- =C-c l b a= calls =org-table-align= : align the table at point by aligning all vertical bars.
+- =C-c l b b= calls =org-table-blank-field= : blank the current table field or active region.
+- =C-c l b c= calls =org-table-create-or-convert-from-region= : convert region to table, or create an empty table.
+- =C-c l b e= calls =org-table-edit-field= : edit table field in a different window.
+- =C-c l b f= calls =org-table-edit-formulas= : edit the formulas of the current table in a separate buffer.
+- =C-c l b h= calls =org-table-field-info= : show info about the current field, and highlight any reference at point.
+- =C-c l b r= calls =org-table-recalculate= : recalculate the current table line by applying all stored formulas.
+- =C-c l b R= calls =org-table-recalculate-buffer-tables= : recalculate all tables in the current buffer.
+- =C-c l b s= calls =org-table-sort-lines= : sort table lines according to the column at point.
 ***** Prefix =C-c l b d= : +prefix
-- =C-c l b d c= : org-table-delete-column
-- =C-c l b d r= : org-table-kill-row
+- =C-c l b d c= calls =org-table-delete-column= : delete a column from the table.
+- =C-c l b d r= calls =org-table-kill-row= : delete the current row or horizontal line from the table.
 ***** Prefix =C-c l b i= : +prefix
-- =C-c l b i c= : org-table-insert-column
-- =C-c l b i h= : org-table-insert-hline
-- =C-c l b i H= : org-table-hline-and-move
-- =C-c l b i r= : org-table-insert-row
+- =C-c l b i c= calls =org-table-insert-column= : insert a new column into the table.
+- =C-c l b i h= calls =org-table-insert-hline= : insert a horizontal-line below the current line into the table.
+- =C-c l b i H= calls =org-table-hline-and-move= : insert a hline and move to the row below that line.
+- =C-c l b i r= calls =org-table-insert-row= : insert a new row above the current line into the table.
 ***** Prefix =C-c l b t= : +prefix
-- =C-c l b t f= : org-table-toggle-formula-debugger
-- =C-c l b t o= : org-table-toggle-coordinate-overlays
+- =C-c l b t f= calls =org-table-toggle-formula-debugger= : toggle the formula debugger in tables.
+- =C-c l b t o= calls =org-table-toggle-coordinate-overlays= : toggle the display of Row/Column numbers in tables.
 **** Prefix =C-c l c= : +prefix
 - =C-c l c -= : org-clock-timestamps-down
 - =C-c l c == : org-clock-timestamps-up
-- =C-c l c c= : org-clock-cancel
+- =C-c l c c= calls =org-clock-cancel= : cancel the running clock by removing the start timestamp.
 - =C-c l c d= : org-clock-mark-default-task
-- =C-c l c e= : org-clock-modify-effort-estimate
-- =C-c l c E= : org-set-effort
-- =C-c l c g= : org-clock-goto
+- =C-c l c e= calls =org-clock-modify-effort-estimate= : add to or set the effort estimate of the item currently being clocked.
+- =C-c l c E= calls =org-set-effort= : set the effort property of the current entry.
+- =C-c l c g= calls =org-clock-goto= : go to the currently clocked-in entry, or to the most recently clocked one.
 - =C-c l c G= : closure
-- =C-c l c i= : org-clock-in
-- =C-c l c I= : org-clock-in-last
-- =C-c l c l= : +org/toggle-last-clock
-- =C-c l c o= : org-clock-out
-- =C-c l c r= : org-resolve-clocks
-- =C-c l c R= : org-clock-report
-- =C-c l c t= : org-evaluate-time-range
+- =C-c l c i= calls =org-clock-in= : start the clock on the current item.
+- =C-c l c I= calls =org-clock-in-last= : clock in the last closed clocked item.
+- =C-c l c l= calls =+org/toggle-last-clock= : toggles last clocked item.
+- =C-c l c o= calls =org-clock-out= : stop the currently running clock.
+- =C-c l c r= calls =org-resolve-clocks= : resolve all currently open Org clocks.
+- =C-c l c R= calls =org-clock-report= : update or create a table containing a report about clocked time.
+- =C-c l c t= calls =org-evaluate-time-range= : evaluate a time range by computing the difference between start and end.
 **** Prefix =C-c l d= : +prefix
-- =C-c l d d= : org-deadline
-- =C-c l d s= : org-schedule
-- =C-c l d t= : org-time-stamp
-- =C-c l d T= : org-time-stamp-inactive
+- =C-c l d d= calls =org-deadline= : insert a "DEADLINE:" string with a timestamp to make a deadline.
+- =C-c l d s= calls =org-schedule= : insert a "SCHEDULED:" string with a timestamp to schedule an item.
+- =C-c l d t= calls =org-time-stamp= : prompt for a date/time and insert a time stamp.
+- =C-c l d T= calls =org-time-stamp-inactive= : insert an inactive time stamp.
 **** Prefix =C-c l g= : +prefix
-- =C-c l g c= : org-clock-goto
+- =C-c l g c= calls =org-clock-goto= : go to the currently clocked-in entry, or to the most recently clocked one.
 - =C-c l g C= : closure
-- =C-c l g g= : consult-org-heading
-- =C-c l g G= : consult-org-agenda
-- =C-c l g i= : org-id-goto
-- =C-c l g r= : org-refile-goto-last-stored
-- =C-c l g v= : +org/goto-visible
-- =C-c l g x= : org-capture-goto-last-stored
+- =C-c l g g= calls =consult-org-heading= : jump to an Org heading.
+- =C-c l g G= calls =consult-org-agenda= : jump to an Org agenda heading.
+- =C-c l g i= calls =org-id-goto= : switch to the buffer containing the entry with id ID.
+- =C-c l g r= calls =org-refile-goto-last-stored= : go to the location where the last refile was stored.
+- =C-c l g v= calls =+org/goto-visible= : tODO
+- =C-c l g x= calls =org-capture-goto-last-stored= : go to the location where the last capture note was stored.
 **** Prefix =C-c l l= : +prefix
-- =C-c l l c= : org-cliplink
-- =C-c l l d= : +org/remove-link
-- =C-c l l i= : org-id-store-link
-- =C-c l l l= : org-insert-link
-- =C-c l l L= : org-insert-all-links
-- =C-c l l s= : org-store-link
-- =C-c l l S= : org-insert-last-stored-link
-- =C-c l l t= : org-toggle-link-display
-- =C-c l l y= : +org/yank-link
+- =C-c l l c= calls =org-cliplink= : takes a URL from the clipboard and inserts an org-mode link
+- =C-c l l d= calls =+org/remove-link= : unlink the text at point.
+- =C-c l l i= calls =org-id-store-link= : store a link to the current entry, using its ID.
+- =C-c l l l= calls =org-insert-link= : insert a link.  At the prompt, enter the link.
+- =C-c l l L= calls =org-insert-all-links= : insert all links in `org-stored-links'.
+- =C-c l l s= calls =org-store-link= : store a link to the current location.
+- =C-c l l S= calls =org-insert-last-stored-link= : insert the last link stored in `org-stored-links'.
+- =C-c l l t= calls =org-toggle-link-display= : toggle the literal or descriptive display of links in current buffer.
+- =C-c l l y= calls =+org/yank-link= : copy the url at point to the clipboard.
 **** Prefix =C-c l p= : +prefix
-- =C-c l p d= : org-priority-down
-- =C-c l p p= : org-priority
-- =C-c l p u= : org-priority-up
+- =C-c l p d= calls =org-priority-down= : decrease the priority of the current item.
+- =C-c l p p= calls =org-priority= : change the priority of an item.
+- =C-c l p u= calls =org-priority-up= : increase the priority of the current item.
 **** Prefix =C-c l P= : +prefix
-- =C-c l P a= : org-publish-all
-- =C-c l P f= : org-publish-current-file
-- =C-c l P p= : org-publish
-- =C-c l P P= : org-publish-current-project
+- =C-c l P a= calls =org-publish-all= : publish all projects.
+- =C-c l P f= calls =org-publish-current-file= : publish the current file.
+- =C-c l P p= calls =org-publish= : publish PROJECT.
+- =C-c l P P= calls =org-publish-current-project= : publish the project associated with the current file.
 - =C-c l P s= : org-publish-sitemap
 **** Prefix =C-c l r= : +prefix
-- =C-c l r .= : +org/refile-to-current-file
-- =C-c l r c= : +org/refile-to-running-clock
-- =C-c l r f= : +org/refile-to-file
-- =C-c l r l= : +org/refile-to-last-location
-- =C-c l r o= : +org/refile-to-other-window
-- =C-c l r O= : +org/refile-to-other-buffer
-- =C-c l r r= : org-refile
-- =C-c l r R= : org-refile-reverse
-- =C-c l r v= : +org/refile-to-visible
+- =C-c l r .= calls =+org/refile-to-current-file= : refile current heading to elsewhere in the current buffer.
+- =C-c l r c= calls =+org/refile-to-running-clock= : refile current heading to the currently clocked in task.
+- =C-c l r f= calls =+org/refile-to-file= : refile current heading to a particular org file.
+- =C-c l r l= calls =+org/refile-to-last-location= : refile current heading to the last node you refiled to.
+- =C-c l r o= calls =+org/refile-to-other-window= : refile current heading to an org buffer visible in another window.
+- =C-c l r O= calls =+org/refile-to-other-buffer= : refile current heading to another, living org buffer.
+- =C-c l r r= calls =org-refile= : move the entry or entries at point to another heading.
+- =C-c l r R= calls =org-refile-reverse= : refile while temporarily toggling `org-reverse-note-order'.
+- =C-c l r v= calls =+org/refile-to-visible= : refile current heading as first child of visible heading selected with Avy.
 **** Prefix =C-c l s= : +prefix
-- =C-c l s a= : org-toggle-archive-tag
-- =C-c l s A= : org-archive-subtree-default
-- =C-c l s b= : org-tree-to-indirect-buffer
-- =C-c l s c= : org-clone-subtree-with-time-shift
-- =C-c l s d= : org-cut-subtree
-- =C-c l s h= : org-promote-subtree
-- =C-c l s j= : org-move-subtree-down
-- =C-c l s k= : org-move-subtree-up
-- =C-c l s l= : org-demote-subtree
-- =C-c l s n= : org-narrow-to-subtree
-- =C-c l s N= : widen
-- =C-c l s r= : org-refile
-- =C-c l s s= : org-sparse-tree
-- =C-c l s S= : org-sort
+- =C-c l s a= calls =org-toggle-archive-tag= : toggle the archive tag for the current headline.
+- =C-c l s A= calls =org-archive-subtree-default= : archive the current subtree with the default command.
+- =C-c l s b= calls =org-tree-to-indirect-buffer= : create indirect buffer and narrow it to current subtree.
+- =C-c l s c= calls =org-clone-subtree-with-time-shift= : clone the task (subtree) at point N times.
+- =C-c l s d= calls =org-cut-subtree= : cut the current subtree into the clipboard.
+- =C-c l s h= calls =org-promote-subtree= : promote the entire subtree.
+- =C-c l s j= calls =org-move-subtree-down= : move the current subtree down past ARG headlines of the same level.
+- =C-c l s k= calls =org-move-subtree-up= : move the current subtree up past ARG headlines of the same level.
+- =C-c l s l= calls =org-demote-subtree= : demote the entire subtree.
+- =C-c l s n= calls =org-narrow-to-subtree= : narrow buffer to the current subtree.
+- =C-c l s N= calls =widen= : remove restrictions (narrowing) from current buffer.
+- =C-c l s r= calls =org-refile= : move the entry or entries at point to another heading.
+- =C-c l s s= calls =org-sparse-tree= : create a sparse tree, prompt for the details.
+- =C-c l s S= calls =org-sort= : call `org-sort-entries', `org-table-sort-lines' or `org-sort-list'.
 *** Prefix =C-c C-v= : +prefix
-- =C-c C-v <TAB>= : org-babel-view-src-block-info
-- =C-c C-v a= : org-babel-sha1-hash
-- =C-c C-v b= : org-babel-execute-buffer
-- =C-c C-v c= : org-babel-check-src-block
-- =C-c C-v d= : org-babel-demarcate-block
-- =C-c C-v e= : org-babel-execute-maybe
-- =C-c C-v f= : org-babel-tangle-file
-- =C-c C-v g= : org-babel-goto-named-src-block
-- =C-c C-v h= : org-babel-describe-bindings
-- =C-c C-v i= : org-babel-lob-ingest
-- =C-c C-v I= : org-babel-view-src-block-info
-- =C-c C-v j= : org-babel-insert-header-arg
-- =C-c C-v k= : org-babel-remove-result-one-or-many
-- =C-c C-v l= : org-babel-load-in-session
-- =C-c C-v n= : org-babel-next-src-block
-- =C-c C-v o= : org-babel-open-src-block-result
-- =C-c C-v p= : org-babel-previous-src-block
-- =C-c C-v r= : org-babel-goto-named-result
-- =C-c C-v s= : org-babel-execute-subtree
-- =C-c C-v t= : org-babel-tangle
-- =C-c C-v u= : org-babel-goto-src-block-head
-- =C-c C-v v= : org-babel-expand-src-block
-- =C-c C-v x= : org-babel-do-key-sequence-in-edit-buffer
-- =C-c C-v z= : org-babel-switch-to-session-with-code
-- =C-c C-v C-a= : org-babel-sha1-hash
-- =C-c C-v C-b= : org-babel-execute-buffer
-- =C-c C-v C-c= : org-babel-check-src-block
-- =C-c C-v C-d= : org-babel-demarcate-block
-- =C-c C-v C-e= : org-babel-execute-maybe
-- =C-c C-v C-f= : org-babel-tangle-file
-- =C-c C-v C-j= : org-babel-insert-header-arg
-- =C-c C-v C-l= : org-babel-load-in-session
-- =C-c C-v C-n= : org-babel-next-src-block
-- =C-c C-v C-o= : org-babel-open-src-block-result
-- =C-c C-v C-p= : org-babel-previous-src-block
-- =C-c C-v C-r= : org-babel-goto-named-result
-- =C-c C-v C-s= : org-babel-execute-subtree
-- =C-c C-v C-t= : org-babel-tangle
-- =C-c C-v C-u= : org-babel-goto-src-block-head
-- =C-c C-v C-v= : org-babel-expand-src-block
-- =C-c C-v C-x= : org-babel-do-key-sequence-in-edit-buffer
-- =C-c C-v C-z= : org-babel-switch-to-session
-- =C-c C-v C-M-h= : org-babel-mark-block
+- =C-c C-v <TAB>= calls =org-babel-view-src-block-info= : display information on the current source block.
+- =C-c C-v a= calls =org-babel-sha1-hash= : generate a sha1 hash based on the value of INFO.
+- =C-c C-v b= calls =org-babel-execute-buffer= : execute source code blocks in a buffer.
+- =C-c C-v c= calls =org-babel-check-src-block= : check for misspelled header arguments in the current code block.
+- =C-c C-v d= calls =org-babel-demarcate-block= : wrap or split the code in an active region or at point.
+- =C-c C-v e= calls =org-babel-execute-maybe= : execute src block or babel call at point.
+- =C-c C-v f= calls =org-babel-tangle-file= : extract the bodies of source code blocks in FILE.
+- =C-c C-v g= calls =org-babel-goto-named-src-block= : go to a source-code block with NAME.
+- =C-c C-v h= calls =org-babel-describe-bindings= : describe all keybindings behind `org-babel-key-prefix'.
+- =C-c C-v i= calls =org-babel-lob-ingest= : add all named source blocks defined in FILE to `org-babel-library-of-babel'.
+- =C-c C-v I= calls =org-babel-view-src-block-info= : display information on the current source block.
+- =C-c C-v j= calls =org-babel-insert-header-arg= : insert a header argument and its value.
+- =C-c C-v k= calls =org-babel-remove-result-one-or-many= : remove the result of the current source block.
+- =C-c C-v l= calls =org-babel-load-in-session= : load the body of the current source-code block.
+- =C-c C-v n= calls =org-babel-next-src-block= : jump to the next source block.
+- =C-c C-v o= calls =org-babel-open-src-block-result= : open results of source block at point.
+- =C-c C-v p= calls =org-babel-previous-src-block= : jump to the previous source block.
+- =C-c C-v r= calls =org-babel-goto-named-result= : go to a result with NAME.
+- =C-c C-v s= calls =org-babel-execute-subtree= : execute source code blocks in a subtree.
+- =C-c C-v t= calls =org-babel-tangle= : write code blocks to source-specific files.
+- =C-c C-v u= calls =org-babel-goto-src-block-head= : go to the beginning of the current code block.
+- =C-c C-v v= calls =org-babel-expand-src-block= : expand the current source code block or block specified by INFO.
+- =C-c C-v x= calls =org-babel-do-key-sequence-in-edit-buffer= : read key sequence KEY and execute the command in edit buffer.
+- =C-c C-v z= calls =org-babel-switch-to-session-with-code= : switch to code buffer and display session.
+- =C-c C-v C-a= calls =org-babel-sha1-hash= : generate a sha1 hash based on the value of INFO.
+- =C-c C-v C-b= calls =org-babel-execute-buffer= : execute source code blocks in a buffer.
+- =C-c C-v C-c= calls =org-babel-check-src-block= : check for misspelled header arguments in the current code block.
+- =C-c C-v C-d= calls =org-babel-demarcate-block= : wrap or split the code in an active region or at point.
+- =C-c C-v C-e= calls =org-babel-execute-maybe= : execute src block or babel call at point.
+- =C-c C-v C-f= calls =org-babel-tangle-file= : extract the bodies of source code blocks in FILE.
+- =C-c C-v C-j= calls =org-babel-insert-header-arg= : insert a header argument and its value.
+- =C-c C-v C-l= calls =org-babel-load-in-session= : load the body of the current source-code block.
+- =C-c C-v C-n= calls =org-babel-next-src-block= : jump to the next source block.
+- =C-c C-v C-o= calls =org-babel-open-src-block-result= : open results of source block at point.
+- =C-c C-v C-p= calls =org-babel-previous-src-block= : jump to the previous source block.
+- =C-c C-v C-r= calls =org-babel-goto-named-result= : go to a result with NAME.
+- =C-c C-v C-s= calls =org-babel-execute-subtree= : execute source code blocks in a subtree.
+- =C-c C-v C-t= calls =org-babel-tangle= : write code blocks to source-specific files.
+- =C-c C-v C-u= calls =org-babel-goto-src-block-head= : go to the beginning of the current code block.
+- =C-c C-v C-v= calls =org-babel-expand-src-block= : expand the current source code block or block specified by INFO.
+- =C-c C-v C-x= calls =org-babel-do-key-sequence-in-edit-buffer= : read key sequence KEY and execute the command in edit buffer.
+- =C-c C-v C-z= calls =org-babel-switch-to-session= : switch to the session of the current code block or block defined by INFO.
+- =C-c C-v C-M-h= calls =org-babel-mark-block= : mark current source block.
 *** Prefix =C-c C-x= : +prefix
-- =C-c C-x <TAB>= : org-clock-in
-- =C-c C-x != : org-reload
-- =C-c C-x ,= : org-timer-pause-or-continue
-- =C-c C-x -= : org-timer-item
-- =C-c C-x .= : org-timer
-- =C-c C-x 0= : org-timer-start
-- =C-c C-x ;= : org-timer-set-timer
-- =C-c C-x <= : org-agenda-set-restriction-lock
-- =C-c C-x >= : org-agenda-remove-restriction-lock
-- =C-c C-x @= : org-cite-insert
-- =C-c C-x [= : org-reftex-citation
-- =C-c C-x \= : org-toggle-pretty-entities
-- =C-c C-x _= : org-timer-stop
-- =C-c C-x a= : org-toggle-archive-tag
-- =C-c C-x A= : org-archive-to-archive-sibling
-- =C-c C-x b= : org-tree-to-indirect-buffer
-- =C-c C-x c= : org-clone-subtree-with-time-shift
-- =C-c C-x d= : org-insert-drawer
-- =C-c C-x e= : org-set-effort
-- =C-c C-x E= : org-inc-effort
-- =C-c C-x f= : org-footnote-action
-- =C-c C-x g= : org-feed-update-all
-- =C-c C-x G= : org-feed-goto-inbox
-- =C-c C-x I= : org-info-find-node
-- =C-c C-x o= : org-toggle-ordered-property
-- =C-c C-x p= : org-set-property
-- =C-c C-x P= : org-set-property-and-value
-- =C-c C-x q= : org-toggle-tags-groups
-- =C-c C-x v= : org-copy-visible
-- =C-c C-x x= : org-dynamic-block-insert-dblock
-- =C-c C-x C-a= : org-archive-subtree-default
-- =C-c C-x C-b= : org-toggle-checkbox
-- =C-c C-x C-c= : org-columns
-- =C-c C-x C-d= : org-clock-display
-- =C-c C-x C-f= : org-emphasize
-- =C-c C-x C-j= : org-clock-goto
-- =C-c C-x C-l= : org-latex-preview
-- =C-c C-x C-n= : org-next-link
-- =C-c C-x C-o= : org-clock-out
-- =C-c C-x C-p= : org-previous-link
-- =C-c C-x C-q= : org-clock-cancel
-- =C-c C-x C-r= : org-toggle-radio-button
-- =C-c C-x C-s= : org-archive-subtree
-- =C-c C-x C-t= : org-toggle-timestamp-overlays
-- =C-c C-x C-u= : org-dblock-update
-- =C-c C-x C-v= : org-toggle-inline-images
-- =C-c C-x C-w= : org-cut-special
-- =C-c C-x C-x= : org-clock-in-last
-- =C-c C-x C-y= : org-paste-special
-- =C-c C-x C-z= : org-resolve-clocks
-- =C-c C-x C-M-v= : org-redisplay-inline-images
-- =C-c C-x M-w= : org-copy-special
+- =C-c C-x <TAB>= calls =org-clock-in= : start the clock on the current item.
+- =C-c C-x != calls =org-reload= : reload all Org Lisp files.
+- =C-c C-x ,= calls =org-timer-pause-or-continue= : pause or continue the relative or countdown timer.
+- =C-c C-x -= calls =org-timer-item= : insert a description-type item with the current timer value.
+- =C-c C-x .= calls =org-timer= : insert a H:MM:SS string from the timer into the buffer.
+- =C-c C-x 0= calls =org-timer-start= : set the starting time for the relative timer to now.
+- =C-c C-x ;= calls =org-timer-set-timer= : prompt for a duration in minutes or hh:mm:ss and set a timer.
+- =C-c C-x <= calls =org-agenda-set-restriction-lock= : set restriction lock for agenda to current subtree or file.
+- =C-c C-x >= calls =org-agenda-remove-restriction-lock= : remove agenda restriction lock.
+- =C-c C-x @= calls =org-cite-insert= : insert a citation at point.
+- =C-c C-x [= calls =org-reftex-citation= : use `reftex-citation' to insert a citation into the buffer.
+- =C-c C-x \= calls =org-toggle-pretty-entities= : toggle the composition display of entities as UTF8 characters.
+- =C-c C-x _= calls =org-timer-stop= : stop the relative or countdown timer.
+- =C-c C-x a= calls =org-toggle-archive-tag= : toggle the archive tag for the current headline.
+- =C-c C-x A= calls =org-archive-to-archive-sibling= : archive the current heading by moving it under the archive sibling.
+- =C-c C-x b= calls =org-tree-to-indirect-buffer= : create indirect buffer and narrow it to current subtree.
+- =C-c C-x c= calls =org-clone-subtree-with-time-shift= : clone the task (subtree) at point N times.
+- =C-c C-x d= calls =org-insert-drawer= : insert a drawer at point.
+- =C-c C-x e= calls =org-set-effort= : set the effort property of the current entry.
+- =C-c C-x E= calls =org-inc-effort= : increment the value of the effort property in the current entry.
+- =C-c C-x f= calls =org-footnote-action= : do the right thing for footnotes.
+- =C-c C-x g= calls =org-feed-update-all= : get inbox items from all feeds in `org-feed-alist'.
+- =C-c C-x G= calls =org-feed-goto-inbox= : go to the inbox that captures the feed named FEED.
+- =C-c C-x I= calls =org-info-find-node= : find Info documentation NODENAME or Org documentation according context.
+- =C-c C-x o= calls =org-toggle-ordered-property= : toggle the ORDERED property of the current entry.
+- =C-c C-x p= calls =org-set-property= : in the current entry, set PROPERTY to VALUE.
+- =C-c C-x P= calls =org-set-property-and-value= : allow setting [PROPERTY]: [value] direction from prompt.
+- =C-c C-x q= calls =org-toggle-tags-groups= : toggle support for group tags.
+- =C-c C-x v= calls =org-copy-visible= : copy the visible parts of the region.
+- =C-c C-x x= calls =org-dynamic-block-insert-dblock= : insert a dynamic block of type TYPE.
+- =C-c C-x C-a= calls =org-archive-subtree-default= : archive the current subtree with the default command.
+- =C-c C-x C-b= calls =org-toggle-checkbox= : toggle the checkbox in the current line.
+- =C-c C-x C-c= calls =org-columns= : turn on column view on an Org mode file.
+- =C-c C-x C-d= calls =org-clock-display= : show subtree times in the entire buffer.
+- =C-c C-x C-f= calls =org-emphasize= : insert or change an emphasis, i.e. a font like bold or italic.
+- =C-c C-x C-j= calls =org-clock-goto= : go to the currently clocked-in entry, or to the most recently clocked one.
+- =C-c C-x C-l= calls =org-latex-preview= : toggle preview of the LaTeX fragment at point.
+- =C-c C-x C-n= calls =org-next-link= : move forward to the next link.
+- =C-c C-x C-o= calls =org-clock-out= : stop the currently running clock.
+- =C-c C-x C-p= calls =org-previous-link= : move backward to the previous link.
+- =C-c C-x C-q= calls =org-clock-cancel= : cancel the running clock by removing the start timestamp.
+- =C-c C-x C-r= calls =org-toggle-radio-button= : toggle off all checkboxes and toggle on the one at point.
+- =C-c C-x C-s= calls =org-archive-subtree= : move the current subtree to the archive.
+- =C-c C-x C-t= calls =org-toggle-timestamp-overlays= : toggle the use of custom time stamp formats.
+- =C-c C-x C-u= calls =org-dblock-update= : user command for updating dynamic blocks.
+- =C-c C-x C-v= calls =org-toggle-inline-images= : toggle the display of inline images.
+- =C-c C-x C-w= calls =org-cut-special= : cut region in table or cut current subtree.
+- =C-c C-x C-x= calls =org-clock-in-last= : clock in the last closed clocked item.
+- =C-c C-x C-y= calls =org-paste-special= : paste rectangular region into table, or past subtree relative to level.
+- =C-c C-x C-z= calls =org-resolve-clocks= : resolve all currently open Org clocks.
+- =C-c C-x C-M-v= calls =org-redisplay-inline-images= : assure display of inline images and refresh them.
+- =C-c C-x M-w= calls =org-copy-special= : copy region in table or copy current subtree.
 ** Prefix =C-x= : +prefix
 *** Prefix =C-x n= : +prefix
-- =C-x n b= : org-narrow-to-block
-- =C-x n e= : org-narrow-to-element
-- =C-x n s= : org-narrow-to-subtree
+- =C-x n b= calls =org-narrow-to-block= : narrow buffer to the current block.
+- =C-x n e= calls =org-narrow-to-element= : narrow buffer to current element.
+- =C-x n s= calls =org-narrow-to-subtree= : narrow buffer to the current subtree.

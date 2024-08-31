@@ -4,7 +4,7 @@
 
 * Table of Content :TOC_2:
 - [[#root-prefix-empty-on-keymap-isearch--saved-overriding-local-map][Root Prefix =[empty]= on Keymap =isearch--saved-overriding-local-map=]]
-  - [[#prefix-esc--isearch-cancel][Prefix =<ESC>= : isearch-cancel]]
+  - [[#prefix-esc-calls-isearch-cancel--terminate-the-search-and-go-back-to-the-starting-point][Prefix =<ESC>= calls =isearch-cancel= : terminate the search and go back to the starting point.]]
   - [[#prefix-f1--prefix][Prefix =<f1>= : +prefix]]
   - [[#prefix-c-h--prefix][Prefix =C-h= : +prefix]]
   - [[#prefix-c-x--prefix][Prefix =C-x= : +prefix]]
@@ -12,104 +12,104 @@
   - [[#prefix-help--prefix][Prefix =<help>= : +prefix]]
 
 * Root Prefix =[empty]= on Keymap =isearch--saved-overriding-local-map=
-- =<DEL>= : isearch-delete-char
-- =<RET>= : isearch-exit
-- =<SPC>..~= : isearch-printing-char
-- =<TAB>..C-j= : isearch-printing-char
-- =C-\= : isearch-toggle-input-method
-- =C-^= : isearch-toggle-specified-input-method
+- =<DEL>= calls =isearch-delete-char= : undo last input item during a search.
+- =<RET>= calls =isearch-exit= : exit search normally.
+- =<SPC>..~= calls =isearch-printing-char= : add this ordinary printing CHAR to the search string and search.
+- =<TAB>..C-j= calls =isearch-printing-char= : add this ordinary printing CHAR to the search string and search.
+- =C-\= calls =isearch-toggle-input-method= : toggle input method in interactive search.
+- =C-^= calls =isearch-toggle-specified-input-method= : select an input method and turn it on in interactive search.
 - =C-a= : avy-isearch : jump to one of the current isearch candidates. #pim
-- =C-g= : isearch-abort
-- =C-q= : isearch-quote-char
-- =C-r= : isearch-repeat-backward
-- =C-s= : isearch-repeat-forward
-- =C-w= : isearch-yank-word-or-char
-- =C-y= : isearch-yank-kill
-- =C-M-%= : isearch-query-replace-regexp
-- =C-M-d= : isearch-del-char
-- =C-M-i= : isearch-complete
-- =C-M-r= : isearch-repeat-backward
-- =C-M-s= : isearch-repeat-forward
-- =C-M-w= : isearch-yank-symbol-or-char
-- =C-M-y= : isearch-yank-char
-- =C-M-z= : isearch-yank-until-char
-- =M-%= : isearch-query-replace
-- =M-c= : isearch-toggle-case-fold
-- =M-e= : isearch-edit-string
-- =M-n= : isearch-ring-advance
-- =M-p= : isearch-ring-retreat
-- =M-r= : isearch-toggle-regexp
-- =M-y= : isearch-yank-pop-only
-- =S-<SPC>= : isearch-printing-char
-- =<backspace>= : undefined
-- =<return>= : isearch-exit
-- =<xterm>-<paste>= : isearch-xterm-paste
-- =Â€..ÿ= : isearch-printing-char
-** Prefix =<ESC>= : isearch-cancel
-- =<ESC> C-M-%= : isearch-query-replace-regexp
-- =<ESC> C-M-d= : isearch-del-char
-- =<ESC> C-M-i= : isearch-complete
-- =<ESC> C-M-r= : isearch-repeat-backward
-- =<ESC> C-M-s= : isearch-repeat-forward
-- =<ESC> C-M-w= : isearch-yank-symbol-or-char
-- =<ESC> C-M-y= : isearch-yank-char
-- =<ESC> C-M-z= : isearch-yank-until-char
-- =<ESC> M-%= : isearch-query-replace
-- =<ESC> M-c= : isearch-toggle-case-fold
-- =<ESC> M-e= : isearch-edit-string
-- =<ESC> M-n= : isearch-ring-advance
-- =<ESC> M-p= : isearch-ring-retreat
-- =<ESC> M-r= : isearch-toggle-regexp
+- =C-g= calls =isearch-abort= : abort incremental search mode if searching is successful, signaling quit.
+- =C-q= calls =isearch-quote-char= : quote special characters for incremental search.
+- =C-r= calls =isearch-repeat-backward= : repeat incremental search backwards.
+- =C-s= calls =isearch-repeat-forward= : repeat incremental search forwards.
+- =C-w= calls =isearch-yank-word-or-char= : pull next character or word from buffer into search string.
+- =C-y= calls =isearch-yank-kill= : pull string from kill ring into search string.
+- =C-M-%= calls =isearch-query-replace-regexp= : start `query-replace-regexp' with string to replace from last search string.
+- =C-M-d= calls =isearch-del-char= : delete character from end of search string and search again.
+- =C-M-i= calls =isearch-complete= : complete the search string from the strings on the search ring.
+- =C-M-r= calls =isearch-repeat-backward= : repeat incremental search backwards.
+- =C-M-s= calls =isearch-repeat-forward= : repeat incremental search forwards.
+- =C-M-w= calls =isearch-yank-symbol-or-char= : pull next character or symbol from buffer into search string.
+- =C-M-y= calls =isearch-yank-char= : pull next character from buffer into search string.
+- =C-M-z= calls =isearch-yank-until-char= : pull everything until next instance of CHAR from buffer into search string.
+- =M-%= calls =isearch-query-replace= : start `query-replace' with string to replace from last search string.
+- =M-c= calls =isearch-toggle-case-fold= : toggle case-fold searching on or off.
+- =M-e= calls =isearch-edit-string= : edit the search string in the minibuffer.
+- =M-n= calls =isearch-ring-advance= : advance to the next search string in the ring.
+- =M-p= calls =isearch-ring-retreat= : retreat to the previous search string in the ring.
+- =M-r= calls =isearch-toggle-regexp= : toggle regexp searching on or off.
+- =M-y= calls =isearch-yank-pop-only= : replace just-yanked search string with previously killed string.
+- =S-<SPC>= calls =isearch-printing-char= : add this ordinary printing CHAR to the search string and search.
+- =<backspace>= calls =undefined= : beep to tell the user this binding is undefined.
+- =<return>= calls =isearch-exit= : exit search normally.
+- =<xterm>-<paste>= calls =isearch-xterm-paste= : pull terminal paste into search string.
+- =Â€..ÿ= calls =isearch-printing-char= : add this ordinary printing CHAR to the search string and search.
+** Prefix =<ESC>= calls =isearch-cancel= : terminate the search and go back to the starting point.
+- =<ESC> C-M-%= calls =isearch-query-replace-regexp= : start `query-replace-regexp' with string to replace from last search string.
+- =<ESC> C-M-d= calls =isearch-del-char= : delete character from end of search string and search again.
+- =<ESC> C-M-i= calls =isearch-complete= : complete the search string from the strings on the search ring.
+- =<ESC> C-M-r= calls =isearch-repeat-backward= : repeat incremental search backwards.
+- =<ESC> C-M-s= calls =isearch-repeat-forward= : repeat incremental search forwards.
+- =<ESC> C-M-w= calls =isearch-yank-symbol-or-char= : pull next character or symbol from buffer into search string.
+- =<ESC> C-M-y= calls =isearch-yank-char= : pull next character from buffer into search string.
+- =<ESC> C-M-z= calls =isearch-yank-until-char= : pull everything until next instance of CHAR from buffer into search string.
+- =<ESC> M-%= calls =isearch-query-replace= : start `query-replace' with string to replace from last search string.
+- =<ESC> M-c= calls =isearch-toggle-case-fold= : toggle case-fold searching on or off.
+- =<ESC> M-e= calls =isearch-edit-string= : edit the search string in the minibuffer.
+- =<ESC> M-n= calls =isearch-ring-advance= : advance to the next search string in the ring.
+- =<ESC> M-p= calls =isearch-ring-retreat= : retreat to the previous search string in the ring.
+- =<ESC> M-r= calls =isearch-toggle-regexp= : toggle regexp searching on or off.
 - =<ESC> M-s= : +prefix
-- =<ESC> M-y= : isearch-yank-pop-only
-*** Prefix =<ESC> <ESC>= : isearch-cancel
-- =<ESC> <ESC> <ESC>= : isearch-cancel
+- =<ESC> M-y= calls =isearch-yank-pop-only= : replace just-yanked search string with previously killed string.
+*** Prefix =<ESC> <ESC>= calls =isearch-cancel= : terminate the search and go back to the starting point.
+- =<ESC> <ESC> <ESC>= calls =isearch-cancel= : terminate the search and go back to the starting point.
 ** Prefix =<f1>= : +prefix
-- =<f1> ?= : isearch-help-for-help
+- =<f1> ?= calls =isearch-help-for-help= : display Isearch help menu.
 - =<f1> b= : bindings
-- =<f1> k= : isearch-describe-key
-- =<f1> m= : isearch-describe-mode
-- =<f1> q= : help-quit
-- =<f1> <f1>= : isearch-help-for-help
-- =<f1> C-h= : isearch-help-for-help
-- =<f1> <help>= : isearch-help-for-help
+- =<f1> k= calls =isearch-describe-key= : display documentation of the function invoked by isearch key.
+- =<f1> m= calls =isearch-describe-mode= : display documentation of Isearch mode.
+- =<f1> q= calls =help-quit= : just exit from the Help command's command loop.
+- =<f1> <f1>= calls =isearch-help-for-help= : display Isearch help menu.
+- =<f1> C-h= calls =isearch-help-for-help= : display Isearch help menu.
+- =<f1> <help>= calls =isearch-help-for-help= : display Isearch help menu.
 ** Prefix =C-h= : +prefix
-- =C-h ?= : isearch-help-for-help
+- =C-h ?= calls =isearch-help-for-help= : display Isearch help menu.
 - =C-h b= : bindings
-- =C-h k= : isearch-describe-key
-- =C-h m= : isearch-describe-mode
-- =C-h q= : help-quit
-- =C-h <f1>= : isearch-help-for-help
-- =C-h C-h= : isearch-help-for-help
-- =C-h <help>= : isearch-help-for-help
+- =C-h k= calls =isearch-describe-key= : display documentation of the function invoked by isearch key.
+- =C-h m= calls =isearch-describe-mode= : display documentation of Isearch mode.
+- =C-h q= calls =help-quit= : just exit from the Help command's command loop.
+- =C-h <f1>= calls =isearch-help-for-help= : display Isearch help menu.
+- =C-h C-h= calls =isearch-help-for-help= : display Isearch help menu.
+- =C-h <help>= calls =isearch-help-for-help= : display Isearch help menu.
 ** Prefix =C-x= : +prefix
-- =C-x \= : isearch-transient-input-method
+- =C-x \= calls =isearch-transient-input-method= : activate transient input method in interactive search.
 *** Prefix =C-x 8= : +prefix
-- =C-x 8 <RET>= : isearch-char-by-name
+- =C-x 8 <RET>= calls =isearch-char-by-name= : read a character by its Unicode name and add it to the search string.
 **** Prefix =C-x 8 e= : +prefix
-- =C-x 8 e <RET>= : isearch-emoji-by-name
+- =C-x 8 e <RET>= calls =isearch-emoji-by-name= : read an Emoji name and add it to the search string COUNT times.
 ** Prefix =M-s= : +prefix
-- =M-s <SPC>= : isearch-toggle-lax-whitespace
-- =M-s '= : isearch-toggle-char-fold
-- =M-s _= : isearch-toggle-symbol
-- =M-s c= : isearch-toggle-case-fold
-- =M-s e= : isearch-edit-string
-- =M-s i= : isearch-toggle-invisible
-- =M-s o= : isearch-occur
-- =M-s r= : isearch-toggle-regexp
-- =M-s w= : isearch-toggle-word
-- =M-s C-e= : isearch-yank-line
-- =M-s M-<= : isearch-beginning-of-buffer
-- =M-s M->= : isearch-end-of-buffer
+- =M-s <SPC>= calls =isearch-toggle-lax-whitespace= : toggle lax-whitespace searching on or off.
+- =M-s '= calls =isearch-toggle-char-fold= : toggle char-fold searching on or off.
+- =M-s _= calls =isearch-toggle-symbol= : toggle symbol searching on or off.
+- =M-s c= calls =isearch-toggle-case-fold= : toggle case-fold searching on or off.
+- =M-s e= calls =isearch-edit-string= : edit the search string in the minibuffer.
+- =M-s i= calls =isearch-toggle-invisible= : toggle invisible searching on or off.
+- =M-s o= calls =isearch-occur= : run `occur' using the last search string as the regexp.
+- =M-s r= calls =isearch-toggle-regexp= : toggle regexp searching on or off.
+- =M-s w= calls =isearch-toggle-word= : toggle word searching on or off.
+- =M-s C-e= calls =isearch-yank-line= : pull rest of line from buffer into search string.
+- =M-s M-<= calls =isearch-beginning-of-buffer= : go to the first occurrence of the current search string.
+- =M-s M->= calls =isearch-end-of-buffer= : go to the last occurrence of the current search string.
 *** Prefix =M-s h= : +prefix
-- =M-s h l= : isearch-highlight-lines-matching-regexp
-- =M-s h r= : isearch-highlight-regexp
+- =M-s h l= calls =isearch-highlight-lines-matching-regexp= : exit Isearch mode and call `highlight-lines-matching-regexp'.
+- =M-s h r= calls =isearch-highlight-regexp= : exit Isearch mode and call `highlight-regexp'.
 ** Prefix =<help>= : +prefix
-- =<help> ?= : isearch-help-for-help
+- =<help> ?= calls =isearch-help-for-help= : display Isearch help menu.
 - =<help> b= : bindings
-- =<help> k= : isearch-describe-key
-- =<help> m= : isearch-describe-mode
-- =<help> q= : help-quit
-- =<help> <f1>= : isearch-help-for-help
-- =<help> C-h= : isearch-help-for-help
-- =<help> <help>= : isearch-help-for-help
+- =<help> k= calls =isearch-describe-key= : display documentation of the function invoked by isearch key.
+- =<help> m= calls =isearch-describe-mode= : display documentation of Isearch mode.
+- =<help> q= calls =help-quit= : just exit from the Help command's command loop.
+- =<help> <f1>= calls =isearch-help-for-help= : display Isearch help menu.
+- =<help> C-h= calls =isearch-help-for-help= : display Isearch help menu.
+- =<help> <help>= calls =isearch-help-for-help= : display Isearch help menu.

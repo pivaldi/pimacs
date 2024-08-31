@@ -13,154 +13,154 @@
   - [[#prefix-m-s--prefix][Prefix =M-s= : +prefix]]
 
 * Root Prefix =[empty]= on Keymap =dired-mode-map=
-- =<DEL>= : dired-unmark-backward
-- =<RET>= : dired-find-file
+- =<DEL>= calls =dired-unmark-backward= : in Dired, move up lines and remove marks or deletion flags there.
+- =<RET>= calls =dired-find-file= : in Dired, visit the file or directory named on this line.
 - =<SPC>= : <leader>
-- =!= : dired-do-shell-command
-- =#= : dired-flag-auto-save-files
-- =$= : dired-hide-subdir
-- =&= : dired-do-async-shell-command
-- =(= : dired-hide-details-mode
-- =)= : dired-git-info-mode
-- =+= : dired-create-directory
-- =-= : negative-argument
-- =.= : dired-clean-directory
-- =0= : digit-argument
-- =1= : digit-argument
-- =2= : digit-argument
-- =3= : digit-argument
-- =4= : digit-argument
-- =5= : digit-argument
-- =6= : digit-argument
-- =7= : digit-argument
-- =8= : digit-argument
-- =9= : digit-argument
-- =<= : dired-prev-dirline
-- === : dired-diff
-- =>= : dired-next-dirline
-- =?= : dired-summary
-- =^= : dired-up-directory
-- =a= : dired-find-alternate-file
-- =A= : dired-do-find-regexp
-- =B= : dired-do-byte-compile
-- =c= : dired-do-compress-to
-- =C= : dired-do-copy
-- =d= : dired-flag-file-deletion
-- =D= : dired-do-delete
-- =F= : dired-do-find-marked-files
-- =g= : revert-buffer
-- =G= : dired-do-chgrp
-- =h= : describe-mode
-- =H= : dired-do-hardlink
-- =i= : dired-maybe-insert-subdir
-- =I= : dired-do-info
-- =j= : dired-goto-file
-- =k= : dired-do-kill-lines
-- =l= : dired-do-redisplay
-- =L= : dired-do-load
-- =m= : dired-mark
-- =M= : dired-do-chmod
-- =n= : dired-next-line
-- =N= : dired-do-man
-- =o= : dired-find-file-other-window
-- =O= : dired-do-chown
-- =p= : dired-previous-line
-- =P= : dired-do-print
-- =q= : +dired/quit-all
-- =Q= : dired-do-find-regexp-and-replace
+- =!= calls =dired-do-shell-command= : run a shell command COMMAND on the marked files.
+- =#= calls =dired-flag-auto-save-files= : flag for deletion files whose names suggest they are auto save files.
+- =$= calls =dired-hide-subdir= : hide or unhide the current subdirectory and move to next directory.
+- =&= calls =dired-do-async-shell-command= : run a shell command COMMAND on the marked files asynchronously.
+- =(= calls =dired-hide-details-mode= : toggle visibility of detailed information in current Dired buffer.
+- =)= calls =dired-git-info-mode= : toggle git message info in current dired buffer.
+- =+= calls =dired-create-directory= : create a directory called DIRECTORY.
+- =-= calls =negative-argument= : begin a negative numeric argument for the next command.
+- =.= calls =dired-clean-directory= : flag numerical backups for deletion.
+- =0= calls =digit-argument= : part of the numeric argument for the next command.
+- =1= calls =digit-argument= : part of the numeric argument for the next command.
+- =2= calls =digit-argument= : part of the numeric argument for the next command.
+- =3= calls =digit-argument= : part of the numeric argument for the next command.
+- =4= calls =digit-argument= : part of the numeric argument for the next command.
+- =5= calls =digit-argument= : part of the numeric argument for the next command.
+- =6= calls =digit-argument= : part of the numeric argument for the next command.
+- =7= calls =digit-argument= : part of the numeric argument for the next command.
+- =8= calls =digit-argument= : part of the numeric argument for the next command.
+- =9= calls =digit-argument= : part of the numeric argument for the next command.
+- =<= calls =dired-prev-dirline= : goto ARGth previous directory file line.
+- === calls =dired-diff= : compare file at point with FILE using `diff'.
+- =>= calls =dired-next-dirline= : goto ARGth next directory file line.
+- =?= calls =dired-summary= : summarize basic Dired commands and show recent Dired errors.
+- =^= calls =dired-up-directory= : run Dired on parent directory of current directory.
+- =a= calls =dired-find-alternate-file= : in Dired, visit file or directory on current line via `find-alternate-file'.
+- =A= calls =dired-do-find-regexp= : find all matches for REGEXP in all marked files.
+- =B= calls =dired-do-byte-compile= : byte compile marked (or next ARG) Emacs Lisp files.
+- =c= calls =dired-do-compress-to= : compress selected files and directories to an archive.
+- =C= calls =dired-do-copy= : copy all marked (or next ARG) files, or copy the current file.
+- =d= calls =dired-flag-file-deletion= : in Dired, flag the current line's file for deletion.
+- =D= calls =dired-do-delete= : delete all marked (or next ARG) files.
+- =F= calls =dired-do-find-marked-files= : find all marked files displaying all of them simultaneously.
+- =g= calls =revert-buffer= : replace current buffer text with the text of the visited file on disk.
+- =G= calls =dired-do-chgrp= : change the group of the marked (or next ARG) files.
+- =h= calls =describe-mode= : display documentation of current major mode and minor modes.
+- =H= calls =dired-do-hardlink= : add names (hard links) current file or all marked (or next ARG) files.
+- =i= calls =dired-maybe-insert-subdir= : insert this subdirectory into the same Dired buffer.
+- =I= calls =dired-do-info= : in Dired, run `info' on this file.
+- =j= calls =dired-goto-file= : go to line describing file FILE in this Dired buffer.
+- =k= calls =dired-do-kill-lines= : remove all marked lines, or the next ARG lines.
+- =l= calls =dired-do-redisplay= : redisplay all marked (or next ARG) files.
+- =L= calls =dired-do-load= : load the marked (or next ARG) Emacs Lisp files.
+- =m= calls =dired-mark= : mark the file at point in the Dired buffer.
+- =M= calls =dired-do-chmod= : change the mode of the marked (or next ARG) files.
+- =n= calls =dired-next-line= : move down lines then position at filename.
+- =N= calls =dired-do-man= : in Dired, run `man' on this file.
+- =o= calls =dired-find-file-other-window= : in Dired, visit this file or directory in another window.
+- =O= calls =dired-do-chown= : change the owner of the marked (or next ARG) files.
+- =p= calls =dired-previous-line= : move up lines then position at filename.
+- =P= calls =dired-do-print= : print the marked (or next ARG) files.
+- =q= calls =+dired/quit-all= : kill all `dired-mode' buffers.
+- =Q= calls =dired-do-find-regexp-and-replace= : replace matches of FROM with TO, in all marked files.
 - =R= : Use `wdired-change-to-wdired-mode` if multiple files are marked otherwise use `dired-do-rename`. #pim
 - =s= : Sort with Charles Choi fancy sort or the native Dired sort if prefix or double prefix. #pim
-- =S= : dired-do-symlink
-- =t= : dired-toggle-marks
-- =T= : dired-do-touch
-- =u= : dired-unmark
-- =U= : dired-unmark-all-marks
-- =v= : dired-view-file
-- =V= : dired-do-run-mail
-- =w= : dired-copy-filename-as-kill
-- =W= : browse-url-of-dired-file
-- =x= : dired-do-flagged-delete
-- =X= : dired-do-shell-command
-- =y= : dired-show-file-type
-- =Y= : dired-do-relsymlink
-- =Z= : dired-do-compress
-- =~= : dired-flag-backup-files
-- =C-o= : dired-display-file
-- =C-M-d= : dired-tree-down
-- =C-M-n= : dired-next-subdir
-- =C-M-p= : dired-prev-subdir
-- =C-M-u= : dired-tree-up
-- =M-<DEL>= : dired-unmark-all-files
-- =M-!= : dired-smart-shell-command
-- =M-$= : dired-hide-all
-- =M-(= : dired-mark-sexp
-- =M-G= : dired-goto-subdir
-- =M-{= : dired-prev-marked-file
-- =M-}= : dired-next-marked-file
-- =S-<SPC>= : dired-previous-line
+- =S= calls =dired-do-symlink= : make symbolic links to current file or all marked (or next ARG) files.
+- =t= calls =dired-toggle-marks= : toggle marks: marked files become unmarked, and vice versa.
+- =T= calls =dired-do-touch= : change the timestamp of the marked (or next ARG) files.
+- =u= calls =dired-unmark= : unmark the file at point in the Dired buffer.
+- =U= calls =dired-unmark-all-marks= : remove all marks from all files in the Dired buffer.
+- =v= calls =dired-view-file= : in Dired, examine a file in view mode, returning to Dired when done.
+- =V= calls =dired-do-run-mail= : visit the current file as a mailbox, using VM or RMAIL.
+- =w= calls =dired-copy-filename-as-kill= : copy names of marked (or next ARG) files into the kill ring.
+- =W= calls =browse-url-of-dired-file= : in Dired, ask a WWW browser to display the file named on this line.
+- =x= calls =dired-do-flagged-delete= : in Dired, delete the files flagged for deletion.
+- =X= calls =dired-do-shell-command= : run a shell command COMMAND on the marked files.
+- =y= calls =dired-show-file-type= : print the type of FILE, according to the `file' command.
+- =Y= calls =dired-do-relsymlink= : relative symlink all marked (or next ARG) files into a directory.
+- =Z= calls =dired-do-compress= : compress or uncompress marked (or next ARG) files.
+- =~= calls =dired-flag-backup-files= : flag all backup files (names ending with `~') for deletion.
+- =C-o= calls =dired-display-file= : in Dired, display this file or directory in another window.
+- =C-M-d= calls =dired-tree-down= : go down in the Dired tree.
+- =C-M-n= calls =dired-next-subdir= : go to next subdirectory, regardless of level.
+- =C-M-p= calls =dired-prev-subdir= : go to previous subdirectory, regardless of level.
+- =C-M-u= calls =dired-tree-up= : go up ARG levels in the Dired tree.
+- =M-<DEL>= calls =dired-unmark-all-files= : remove a specific mark (or any mark) from every file.
+- =M-!= calls =dired-smart-shell-command= : like function `shell-command', but in the current Virtual Dired directory.
+- =M-$= calls =dired-hide-all= : hide all subdirectories, leaving only their header lines.
+- =M-(= calls =dired-mark-sexp= : mark files for which PREDICATE returns non-nil.
+- =M-G= calls =dired-goto-subdir= : go to end of header line of inserted directory DIR in this Dired buffer.
+- =M-{= calls =dired-prev-marked-file= : move to the ARGth previous marked file.
+- =M-}= calls =dired-next-marked-file= : move to the ARGth next marked file.
+- =S-<SPC>= calls =dired-previous-line= : move up lines then position at filename.
 - =<follow>-<link>= : mouse-face
-- =e..f= : dired-find-file
+- =e..f= calls =dired-find-file= : in Dired, visit the file or directory named on this line.
 ** Prefix =%= : +prefix
-- =% &= : dired-flag-garbage-files
-- =% C= : dired-do-copy-regexp
-- =% d= : dired-flag-files-regexp
-- =% g= : dired-mark-files-containing-regexp
-- =% H= : dired-do-hardlink-regexp
-- =% l= : dired-downcase
-- =% m= : dired-mark-files-regexp
-- =% r= : dired-do-rename-regexp
-- =% R= : dired-do-rename-regexp
-- =% S= : dired-do-symlink-regexp
-- =% u= : dired-upcase
-- =% Y= : dired-do-relsymlink-regexp
+- =% &= calls =dired-flag-garbage-files= : flag for deletion all files that match `dired-garbage-files-regexp'.
+- =% C= calls =dired-do-copy-regexp= : copy selected files whose names match REGEXP to NEWNAME.
+- =% d= calls =dired-flag-files-regexp= : in Dired, flag all files containing the specified REGEXP for deletion.
+- =% g= calls =dired-mark-files-containing-regexp= : mark all files with contents containing REGEXP for use in later commands.
+- =% H= calls =dired-do-hardlink-regexp= : hardlink selected files whose names match REGEXP to NEWNAME.
+- =% l= calls =dired-downcase= : rename all marked (or next ARG) files to lower case.
+- =% m= calls =dired-mark-files-regexp= : mark all files matching REGEXP for use in later commands.
+- =% r= calls =dired-do-rename-regexp= : rename selected files whose names match REGEXP to NEWNAME.
+- =% R= calls =dired-do-rename-regexp= : rename selected files whose names match REGEXP to NEWNAME.
+- =% S= calls =dired-do-symlink-regexp= : symlink selected files whose names match REGEXP to NEWNAME.
+- =% u= calls =dired-upcase= : rename all marked (or next ARG) files to upper case.
+- =% Y= calls =dired-do-relsymlink-regexp= : relSymlink all marked files containing REGEXP to NEWNAME.
 ** Prefix =*= : +prefix
-- =* <DEL>= : dired-unmark-backward
-- =* != : dired-unmark-all-marks
-- =* %= : dired-mark-files-regexp
-- =* (= : dired-mark-sexp
-- =* *= : dired-mark-executables
-- =* .= : dired-mark-extension
-- =* /= : dired-mark-directories
-- =* ?= : dired-unmark-all-files
-- =* @= : dired-mark-symlinks
-- =* c= : dired-change-marks
-- =* m= : dired-mark
-- =* N= : dired-number-of-marked-files
-- =* O= : dired-mark-omitted
-- =* s= : dired-mark-subdir-files
-- =* t= : dired-toggle-marks
-- =* u= : dired-unmark
-- =* C-n= : dired-next-marked-file
-- =* C-p= : dired-prev-marked-file
+- =* <DEL>= calls =dired-unmark-backward= : in Dired, move up lines and remove marks or deletion flags there.
+- =* != calls =dired-unmark-all-marks= : remove all marks from all files in the Dired buffer.
+- =* %= calls =dired-mark-files-regexp= : mark all files matching REGEXP for use in later commands.
+- =* (= calls =dired-mark-sexp= : mark files for which PREDICATE returns non-nil.
+- =* *= calls =dired-mark-executables= : mark all executable files.
+- =* .= calls =dired-mark-extension= : mark all files with a certain EXTENSION for use in later commands.
+- =* /= calls =dired-mark-directories= : mark all directory file lines except `.' and `..'.
+- =* ?= calls =dired-unmark-all-files= : remove a specific mark (or any mark) from every file.
+- =* @= calls =dired-mark-symlinks= : mark all symbolic links.
+- =* c= calls =dired-change-marks= : change all OLD marks to NEW marks.
+- =* m= calls =dired-mark= : mark the file at point in the Dired buffer.
+- =* N= calls =dired-number-of-marked-files= : display the number and total size of the marked files.
+- =* O= calls =dired-mark-omitted= : mark files matching `dired-omit-files' and `dired-omit-extensions'.
+- =* s= calls =dired-mark-subdir-files= : mark all files except `.' and `..' in current subdirectory.
+- =* t= calls =dired-toggle-marks= : toggle marks: marked files become unmarked, and vice versa.
+- =* u= calls =dired-unmark= : unmark the file at point in the Dired buffer.
+- =* C-n= calls =dired-next-marked-file= : move to the ARGth next marked file.
+- =* C-p= calls =dired-prev-marked-file= : move to the ARGth previous marked file.
 ** Prefix =:= : +prefix
-- =: d= : epa-dired-do-decrypt
-- =: e= : epa-dired-do-encrypt
-- =: s= : epa-dired-do-sign
-- =: v= : epa-dired-do-verify
+- =: d= calls =epa-dired-do-decrypt= : decrypt marked files.
+- =: e= calls =epa-dired-do-encrypt= : encrypt marked files.
+- =: s= calls =epa-dired-do-sign= : sign marked files.
+- =: v= calls =epa-dired-do-verify= : verify marked files.
 ** Prefix =C-c= : +prefix
-- =C-c C-e= : wdired-change-to-wdired-mode
-- =C-c C-r= : dired-rsync
+- =C-c C-e= calls =wdired-change-to-wdired-mode= : put a Dired buffer in Writable Dired (WDired) mode.
+- =C-c C-r= calls =dired-rsync= : asynchronously copy files in dired to `DEST' using rsync.
 *** Prefix =C-c l= : +<localleader>
-- =C-c l h= : dired-omit-mode
+- =C-c l h= calls =dired-omit-mode= : toggle omission of uninteresting files in Dired (Dired-Omit mode).
 ** Prefix =C-t= : +prefix
-- =C-t .= : image-dired-display-thumb
-- =C-t a= : image-dired-display-thumbs-append
-- =C-t c= : image-dired-dired-comment-files
-- =C-t d= : image-dired-display-thumbs
-- =C-t e= : image-dired-dired-edit-comment-and-tags
-- =C-t f= : image-dired-mark-tagged-files
-- =C-t i= : image-dired-dired-display-image
-- =C-t j= : image-dired-jump-thumbnail-buffer
-- =C-t r= : image-dired-delete-tag
-- =C-t t= : image-dired-tag-files
-- =C-t x= : image-dired-dired-display-external
-- =C-t C-t= : image-dired-dired-toggle-marked-thumbs
+- =C-t .= calls =image-dired-display-thumb= : shorthand for `image-dired-display-thumbs' with prefix argument.
+- =C-t a= calls =image-dired-display-thumbs-append= : append thumbnails to `image-dired-thumbnail-buffer'.
+- =C-t c= calls =image-dired-dired-comment-files= : add comment to current or marked files in Dired.
+- =C-t d= calls =image-dired-display-thumbs= : display thumbnails of all marked files, in `image-dired-thumbnail-buffer'.
+- =C-t e= calls =image-dired-dired-edit-comment-and-tags= : edit comment and tags of current or marked image files.
+- =C-t f= calls =image-dired-mark-tagged-files= : mark files whose tag matches REGEXP.
+- =C-t i= calls =image-dired-dired-display-image= : display current image file.
+- =C-t j= calls =image-dired-jump-thumbnail-buffer= : jump to thumbnail buffer.
+- =C-t r= calls =image-dired-delete-tag= : remove tag for selected file(s).
+- =C-t t= calls =image-dired-tag-files= : tag file(s) which are marked in a Dired buffer.
+- =C-t x= calls =image-dired-dired-display-external= : display file at point using an external viewer.
+- =C-t C-t= calls =image-dired-dired-toggle-marked-thumbs= : toggle thumbnails in front of marked file names in the Dired buffer.
 ** Prefix =C-x= : +prefix
-- =C-x M-o= : dired-omit-mode
+- =C-x M-o= calls =dired-omit-mode= : toggle omission of uninteresting files in Dired (Dired-Omit mode).
 ** Prefix =M-s= : +prefix
 *** Prefix =M-s a= : +prefix
-- =M-s a C-s= : dired-do-isearch
-- =M-s a C-M-s= : dired-do-isearch-regexp
+- =M-s a C-s= calls =dired-do-isearch= : search for a string through all marked files using Isearch.
+- =M-s a C-M-s= calls =dired-do-isearch-regexp= : search for a regexp through all marked files using Isearch.
 *** Prefix =M-s f= : +prefix
-- =M-s f C-s= : dired-isearch-filenames
-- =M-s f C-M-s= : dired-isearch-filenames-regexp
+- =M-s f C-s= calls =dired-isearch-filenames= : search for a string using Isearch only in file names in the Dired buffer.
+- =M-s f C-M-s= calls =dired-isearch-filenames-regexp= : search for a regexp using Isearch only in file names in the Dired buffer.

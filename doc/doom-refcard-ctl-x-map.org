@@ -4,7 +4,7 @@
 
 * Table of Content :TOC_2:
 - [[#root-prefix-empty-on-keymap-ctl-x-map][Root Prefix =[empty]= on Keymap =ctl-x-map=]]
-  - [[#prefix-esc--repeat-complex-command][Prefix =<ESC>= : repeat-complex-command]]
+  - [[#prefix-esc-calls-repeat-complex-command--edit-and-re-evaluate-last-complex-command-or-argth-from-last][Prefix =<ESC>= calls =repeat-complex-command= : edit and re-evaluate last complex command, or ARGth from last.]]
   - [[#prefix-ret--prefix][Prefix =<RET>= : +prefix]]
   - [[#prefix-4--ctl-x-4-prefix][Prefix =4= : +ctl-x-4-prefix]]
   - [[#prefix-5--ctl-x-5-prefix][Prefix =5= : +ctl-x-5-prefix]]
@@ -12,6 +12,7 @@
   - [[#prefix-8--prefix][Prefix =8= : +prefix]]
   - [[#prefix-a--prefix][Prefix =a= : +prefix]]
   - [[#prefix-n--prefix][Prefix =n= : +prefix]]
+  - [[#prefix-p--prefix][Prefix =p= : +prefix]]
   - [[#prefix-r--prefix][Prefix =r= : +prefix]]
   - [[#prefix-t--prefix][Prefix =t= : +prefix]]
   - [[#prefix-v--vc-prefix-map][Prefix =v= : +vc-prefix-map]]
@@ -21,315 +22,333 @@
   - [[#prefix-c-k--kmacro-keymap][Prefix =C-k= : +kmacro-keymap]]
 
 * Root Prefix =[empty]= on Keymap =ctl-x-map=
-- =<DEL>= : backward-kill-sentence
+- =<DEL>= calls =backward-kill-sentence= : kill back from point to start of sentence.
 - =<SPC>= : <leader>
-- =<TAB>= : indent-rigidly
-- =#= : server-edit
-- =$= : set-selective-display
-- ='= : expand-abbrev
-- =(= : kmacro-start-macro
-- =)= : kmacro-end-macro
-- =*= : calc-dispatch
-- =+= : balance-windows
-- =-= : shrink-window-if-larger-than-buffer
-- =.= : set-fill-prefix
-- =0= : delete-window
-- =1= : delete-other-windows
-- =2= : split-window-below
-- =3= : split-window-right
-- =;= : comment-set-column
-- =<= : scroll-left
-- === : what-cursor-position
-- =>= : scroll-right
-- =[= : backward-page
-- =\= : activate-transient-input-method
-- =]= : forward-page
-- =^= : enlarge-window
-- =`= : next-error
-- =b= : persp-switch-to-buffer
-- =B= : switch-to-buffer
-- =d= : dired
-- =e= : kmacro-end-and-call-macro
-- =f= : set-fill-column
-- =g= : magit-status
-- =h= : mark-whole-buffer
-- =i= : insert-file
-- =k= : kill-buffer
-- =K= : doom/kill-this-buffer-in-all-windows
-- =l= : count-lines-page
-- =m= : compose-mail
-- =o= : other-window
-- =p= : +popup/other
-- =q= : kbd-macro-query
-- =s= : save-some-buffers
-- =u= : undo
-- =z= : repeat
-- ={= : shrink-window-horizontally
-- =}= : enlarge-window-horizontally
-- =C-<SPC>= : pop-global-mark
-- =C-+= : text-scale-adjust
-- =C--= : text-scale-adjust
-- =C-0= : text-scale-adjust
-- =C-;= : comment-line
-- =C-== : text-scale-adjust
-- =C-@= : pop-global-mark
-- =C-b= : ibuffer
-- =C-c= : save-buffers-kill-terminal
-- =C-d= : list-directory
-- =C-e= : eval-last-sexp
-- =C-f= : find-file
-- =C-j= : dired-jump
-- =C-l= : downcase-region
-- =C-n= : set-goal-column
-- =C-o= : delete-blank-lines
-- =C-p= : mark-page
-- =C-q= : read-only-mode
-- =C-r= : doom/sudo-find-file
-- =C-s= : save-buffer
-- =C-t= : transpose-lines
-- =C-u= : upcase-region
-- =C-v= : find-alternate-file
-- =C-w= : write-file
-- =C-x= : exchange-point-and-mark
-- =C-z= : suspend-frame
-- =C-M-+= : global-text-scale-adjust
-- =C-M--= : global-text-scale-adjust
-- =C-M-0= : global-text-scale-adjust
-- =C-M-== : global-text-scale-adjust
-- =C-<left>= : previous-buffer
-- =C-<right>= : next-buffer
-- =M-:= : repeat-complex-command
-- =M-g= : magit-dispatch
-- =<left>= : previous-buffer
-- =<right>= : next-buffer
-** Prefix =<ESC>= : repeat-complex-command
-- =<ESC> <ESC>= : repeat-complex-command
-- =<ESC> C-M-+= : global-text-scale-adjust
-- =<ESC> C-M--= : global-text-scale-adjust
-- =<ESC> C-M-0= : global-text-scale-adjust
-- =<ESC> C-M-== : global-text-scale-adjust
-- =<ESC> M-:= : repeat-complex-command
-- =<ESC> M-g= : magit-dispatch
+- =<TAB>= calls =indent-rigidly= : indent all lines starting in the region.
+- =#= calls =server-edit= : switch to next server editing buffer; say "Done" for current buffer.
+- =$= calls =set-selective-display= : set `selective-display' to ARG; clear it if no arg.
+- ='= calls =expand-abbrev= : expand the abbrev before point, if there is an abbrev there.
+- =(= calls =kmacro-start-macro= : record subsequent keyboard input, defining a keyboard macro.
+- =)= calls =kmacro-end-macro= : finish defining a keyboard macro.
+- =*= calls =calc-dispatch= : invoke the GNU Emacs Calculator.  See \[calc-dispatch-help] for details.
+- =+= calls =balance-windows= : balance the sizes of windows of WINDOW-OR-FRAME.
+- =-= calls =shrink-window-if-larger-than-buffer= : shrink height of WINDOW if its buffer doesn't need so many lines.
+- =.= calls =set-fill-prefix= : set the fill prefix to the current line up to point.
+- =0= calls =delete-window= : delete specified WINDOW.
+- =1= calls =delete-other-windows= : make WINDOW fill its frame.
+- =2= calls =split-window-below= : split WINDOW-TO-SPLIT into two windows, one above the other.
+- =3= calls =split-window-right= : split WINDOW-TO-SPLIT into two side-by-side windows.
+- =;= calls =comment-set-column= : set the comment column based on point.
+- =<= calls =scroll-left= : scroll selected window display ARG columns left.
+- === calls =what-cursor-position= : print info on cursor position (on screen and within buffer).
+- =>= calls =scroll-right= : scroll selected window display ARG columns right.
+- =[= calls =backward-page= : move backward to page boundary.  With arg, repeat, or go fwd if negative.
+- =\= calls =activate-transient-input-method= : select and enable a transient input method for the current buffer.
+- =]= calls =forward-page= : move forward to page boundary.  With arg, repeat, or go back if negative.
+- =^= calls =enlarge-window= : make the selected window DELTA lines taller.
+- =`= calls =next-error= : visit next `next-error' message and corresponding source code.
+- =b= calls =persp-switch-to-buffer= : switch to buffer, read buffer with restriction to current perspective.
+- =B= calls =switch-to-buffer= : display buffer BUFFER-OR-NAME in the selected window.
+- =d= calls =dired= : "Edit" directory DIRNAME--delete, rename, print, etc. some files in it.
+- =e= calls =kmacro-end-and-call-macro= : call last keyboard macro, ending it first if currently being defined.
+- =f= calls =set-fill-column= : set `fill-column' to specified argument.
+- =g= calls =magit-status= : show the status of the current Git repository in a buffer.
+- =h= calls =mark-whole-buffer= : put point at beginning and mark at end of buffer.
+- =i= calls =insert-file= : insert contents of file FILENAME into buffer after point.
+- =k= calls =kill-buffer= : kill the buffer specified by BUFFER-OR-NAME.
+- =K= calls =doom/kill-this-buffer-in-all-windows= : kill BUFFER globally and ensure all windows previously showing this buffer
+- =l= calls =count-lines-page= : report number of lines on current page, and how many are before or after point.
+- =m= calls =compose-mail= : start composing a mail message to send.
+- =o= calls =other-window= : select another window in cyclic ordering of windows.
+- =q= calls =kbd-macro-query= : query user during kbd macro execution.
+- =s= calls =save-some-buffers= : save some modified file-visiting buffers.  Asks user about each one.
+- =u= calls =undo= : undo some previous changes.
+- =z= calls =repeat= : repeat most recently executed command.
+- ={= calls =shrink-window-horizontally= : make selected window DELTA columns narrower.
+- =}= calls =enlarge-window-horizontally= : make selected window DELTA columns wider.
+- =C-<SPC>= calls =pop-global-mark= : pop off global mark ring and jump to the top location.
+- =C-+= calls =text-scale-adjust= : adjust the font size in the current buffer by INC steps.
+- =C--= calls =text-scale-adjust= : adjust the font size in the current buffer by INC steps.
+- =C-0= calls =text-scale-adjust= : adjust the font size in the current buffer by INC steps.
+- =C-;= calls =comment-line= : comment or uncomment current line and leave point after it.
+- =C-== calls =text-scale-adjust= : adjust the font size in the current buffer by INC steps.
+- =C-@= calls =pop-global-mark= : pop off global mark ring and jump to the top location.
+- =C-b= calls =ibuffer= : begin using Ibuffer to edit a list of buffers.
+- =C-c= calls =save-buffers-kill-terminal= : offer to save each buffer, then kill the current connection.
+- =C-d= calls =list-directory= : display a list of files in or matching DIRNAME, a la `ls'.
+- =C-e= calls =eval-last-sexp= : evaluate sexp before point; print value in the echo area.
+- =C-f= calls =find-file= : edit file FILENAME.
+- =C-j= calls =dired-jump= : jump to Dired buffer corresponding to current buffer.
+- =C-l= calls =downcase-region= : convert the region to lower case.  In programs, wants two arguments.
+- =C-n= calls =set-goal-column= : set the current horizontal position as a goal column.
+- =C-o= calls =delete-blank-lines= : on blank line, delete all surrounding blank lines, leaving just one.
+- =C-p= calls =mark-page= : put mark at end of page, point at beginning.
+- =C-q= calls =read-only-mode= : change whether the current buffer is read-only.
+- =C-r= calls =doom/sudo-find-file= : open FILE as root.
+- =C-s= calls =save-buffer= : save current buffer in visited file if modified.
+- =C-t= calls =transpose-lines= : exchange current line and previous line, leaving point after both.
+- =C-u= calls =upcase-region= : convert the region to upper case.  In programs, wants two arguments.
+- =C-v= calls =find-alternate-file= : find file FILENAME, select its buffer, kill previous buffer.
+- =C-w= calls =write-file= : write current buffer into file FILENAME.
+- =C-x= calls =exchange-point-and-mark= : put the mark where point is now, and point where the mark is now.
+- =C-z= calls =suspend-frame= : do whatever is right to suspend the current frame.
+- =C-M-+= calls =global-text-scale-adjust= : change (a.k.a. "adjust") the font size of all faces by INCREMENT.
+- =C-M--= calls =global-text-scale-adjust= : change (a.k.a. "adjust") the font size of all faces by INCREMENT.
+- =C-M-0= calls =global-text-scale-adjust= : change (a.k.a. "adjust") the font size of all faces by INCREMENT.
+- =C-M-== calls =global-text-scale-adjust= : change (a.k.a. "adjust") the font size of all faces by INCREMENT.
+- =C-<left>= calls =previous-buffer= : in selected window switch to ARGth previous buffer.
+- =C-<right>= calls =next-buffer= : in selected window switch to ARGth next buffer.
+- =M-:= calls =repeat-complex-command= : edit and re-evaluate last complex command, or ARGth from last.
+- =M-g= calls =magit-dispatch= : invoke a Magit command from a list of available commands.
+- =<left>= calls =previous-buffer= : in selected window switch to ARGth previous buffer.
+- =<right>= calls =next-buffer= : in selected window switch to ARGth next buffer.
+** Prefix =<ESC>= calls =repeat-complex-command= : edit and re-evaluate last complex command, or ARGth from last.
+- =<ESC> <ESC>= calls =repeat-complex-command= : edit and re-evaluate last complex command, or ARGth from last.
+- =<ESC> C-M-+= calls =global-text-scale-adjust= : change (a.k.a. "adjust") the font size of all faces by INCREMENT.
+- =<ESC> C-M--= calls =global-text-scale-adjust= : change (a.k.a. "adjust") the font size of all faces by INCREMENT.
+- =<ESC> C-M-0= calls =global-text-scale-adjust= : change (a.k.a. "adjust") the font size of all faces by INCREMENT.
+- =<ESC> C-M-== calls =global-text-scale-adjust= : change (a.k.a. "adjust") the font size of all faces by INCREMENT.
+- =<ESC> M-:= calls =repeat-complex-command= : edit and re-evaluate last complex command, or ARGth from last.
+- =<ESC> M-g= calls =magit-dispatch= : invoke a Magit command from a list of available commands.
 ** Prefix =<RET>= : +prefix
-- =<RET> c= : universal-coding-system-argument
-- =<RET> f= : set-buffer-file-coding-system
-- =<RET> F= : set-file-name-coding-system
-- =<RET> k= : set-keyboard-coding-system
-- =<RET> l= : set-language-environment
-- =<RET> p= : set-buffer-process-coding-system
-- =<RET> r= : revert-buffer-with-coding-system
-- =<RET> t= : set-terminal-coding-system
-- =<RET> x= : set-selection-coding-system
-- =<RET> X= : set-next-selection-coding-system
-- =<RET> C-\= : set-input-method
+- =<RET> c= calls =universal-coding-system-argument= : execute an I/O command using the specified CODING-SYSTEM.
+- =<RET> f= calls =set-buffer-file-coding-system= : set the file coding-system of the current buffer to CODING-SYSTEM.
+- =<RET> F= calls =set-file-name-coding-system= : set coding system for decoding and encoding file names to CODING-SYSTEM.
+- =<RET> k= calls =set-keyboard-coding-system= : set coding system for keyboard input on TERMINAL to CODING-SYSTEM.
+- =<RET> l= calls =set-language-environment= : set up multilingual environment for using LANGUAGE-NAME.
+- =<RET> p= calls =set-buffer-process-coding-system= : set coding systems for the process associated with the current buffer.
+- =<RET> r= calls =revert-buffer-with-coding-system= : visit the current buffer's file again using coding system CODING-SYSTEM.
+- =<RET> t= calls =set-terminal-coding-system= : set coding system of terminal output to CODING-SYSTEM.
+- =<RET> x= calls =set-selection-coding-system= : make CODING-SYSTEM used for communicating with other X clients.
+- =<RET> X= calls =set-next-selection-coding-system= : use CODING-SYSTEM for next communication with other window system clients.
+- =<RET> C-\= calls =set-input-method= : select and activate input method INPUT-METHOD for the current buffer.
 ** Prefix =4= : +ctl-x-4-prefix
-- =4 .= : xref-find-definitions-other-window
-- =4 0= : kill-buffer-and-window
-- =4 1= : same-window-prefix
-- =4 4= : other-window-prefix
-- =4 a= : add-change-log-entry-other-window
-- =4 b= : switch-to-buffer-other-window
-- =4 B= : switch-to-buffer-other-window
-- =4 c= : clone-indirect-buffer-other-window
-- =4 d= : dired-other-window
-- =4 f= : find-file-other-window
-- =4 m= : compose-mail-other-window
-- =4 p= : project-other-window-command
-- =4 r= : find-file-read-only-other-window
-- =4 C-f= : find-file-other-window
-- =4 C-j= : dired-jump-other-window
-- =4 C-o= : display-buffer
+- =4 .= calls =xref-find-definitions-other-window= : like `xref-find-definitions' but switch to the other window.
+- =4 0= calls =kill-buffer-and-window= : kill the current buffer and delete the selected window.
+- =4 1= calls =same-window-prefix= : display the buffer of the next command in the same window.
+- =4 4= calls =other-window-prefix= : display the buffer of the next command in a new window.
+- =4 a= calls =add-change-log-entry-other-window= : find change log file in other window and add entry and item.
+- =4 b= calls =switch-to-buffer-other-window= : select the buffer specified by BUFFER-OR-NAME in another window.
+- =4 B= calls =switch-to-buffer-other-window= : select the buffer specified by BUFFER-OR-NAME in another window.
+- =4 c= calls =clone-indirect-buffer-other-window= : like `clone-indirect-buffer' but display in another window.
+- =4 d= calls =dired-other-window= : "Edit" directory DIRNAME.  Like `dired' but select in another window.
+- =4 f= calls =find-file-other-window= : edit file FILENAME, in another window.
+- =4 m= calls =compose-mail-other-window= : like \[compose-mail], but edit the outgoing message in another window.
+- =4 p= calls =project-other-window-command= : run project command, displaying resultant buffer in another window.
+- =4 r= calls =find-file-read-only-other-window= : edit file FILENAME in another window but don't allow changes.
+- =4 C-f= calls =find-file-other-window= : edit file FILENAME, in another window.
+- =4 C-j= calls =dired-jump-other-window= : like \[dired-jump] (`dired-jump') but in other window.
+- =4 C-o= calls =display-buffer= : display BUFFER-OR-NAME in some window, without selecting it.
 ** Prefix =5= : +ctl-x-5-prefix
-- =5 .= : xref-find-definitions-other-frame
-- =5 0= : delete-frame
-- =5 1= : delete-other-frames
-- =5 2= : make-frame-command
-- =5 5= : other-frame-prefix
-- =5 b= : switch-to-buffer-other-frame
-- =5 c= : clone-frame
-- =5 d= : dired-other-frame
-- =5 f= : find-file-other-frame
-- =5 m= : compose-mail-other-frame
-- =5 o= : other-frame
-- =5 p= : project-other-frame-command
-- =5 r= : find-file-read-only-other-frame
-- =5 u= : undelete-frame
-- =5 C-f= : find-file-other-frame
-- =5 C-o= : display-buffer-other-frame
+- =5 .= calls =xref-find-definitions-other-frame= : like `xref-find-definitions' but switch to the other frame.
+- =5 0= calls =delete-frame= : delete FRAME, eliminating it from use.
+- =5 1= calls =delete-other-frames= : delete all frames on FRAME's terminal, except FRAME.
+- =5 2= calls =make-frame-command= : make a new frame, on the same terminal as the selected frame.
+- =5 5= calls =other-frame-prefix= : display the buffer of the next command in a new frame.
+- =5 b= calls =switch-to-buffer-other-frame= : switch to buffer BUFFER-OR-NAME in another frame.
+- =5 c= calls =clone-frame= : make a new frame with the same parameters and windows as FRAME.
+- =5 d= calls =dired-other-frame= : "Edit" directory DIRNAME.  Like `dired' but make a new frame.
+- =5 f= calls =find-file-other-frame= : edit file FILENAME, in another frame.
+- =5 m= calls =compose-mail-other-frame= : like \[compose-mail], but edit the outgoing message in another frame.
+- =5 o= calls =other-frame= : select the ARGth different visible frame on current display, and raise it.
+- =5 p= calls =project-other-frame-command= : run project command, displaying resultant buffer in another frame.
+- =5 r= calls =find-file-read-only-other-frame= : edit file FILENAME in another frame but don't allow changes.
+- =5 u= calls =undelete-frame= : undelete a frame deleted with `delete-frame'.
+- =5 C-f= calls =find-file-other-frame= : edit file FILENAME, in another frame.
+- =5 C-o= calls =display-buffer-other-frame= : display buffer BUFFER preferably in another frame.
 ** Prefix =6= : +2C-command
-- =6 2= : 2C-two-columns
-- =6 b= : 2C-associate-buffer
-- =6 s= : 2C-split
-- =6 <f2>= : 2C-two-columns
+- =6 2= calls =2C-two-columns= : split current window vertically for two-column editing.
+- =6 b= calls =2C-associate-buffer= : associate another BUFFER with this one in two-column minor mode.
+- =6 s= calls =2C-split= : split a two-column text at point, into two buffers in two-column minor mode.
+- =6 <f2>= calls =2C-two-columns= : split current window vertically for two-column editing.
 ** Prefix =8= : +prefix
-- =8 <RET>= : insert-char
+- =8 <RET>= calls =insert-char= : insert COUNT copies of CHARACTER.
 *** Prefix =8 e= : +prefix
-- =8 e += : emoji-zoom-increase
-- =8 e -= : emoji-zoom-decrease
-- =8 e 0= : emoji-zoom-reset
-- =8 e d= : emoji-describe
-- =8 e e= : emoji-insert
-- =8 e i= : emoji-insert
-- =8 e l= : emoji-list
-- =8 e r= : emoji-recent
-- =8 e s= : emoji-search
+- =8 e += calls =emoji-zoom-increase= : increase the size of the character under point.
+- =8 e -= calls =emoji-zoom-decrease= : decrease the size of the character under point.
+- =8 e 0= calls =emoji-zoom-reset= : reset the size of the character under point.
+- =8 e d= calls =emoji-describe= : display the name of the grapheme cluster composed from GLYPH.
+- =8 e e= calls =emoji-insert= : choose and insert an emoji glyph.
+- =8 e i= calls =emoji-insert= : choose and insert an emoji glyph.
+- =8 e l= calls =emoji-list= : list emojis and allow selecting and inserting one of them.
+- =8 e r= calls =emoji-recent= : choose and insert one of the recently-used emoji glyphs.
+- =8 e s= calls =emoji-search= : choose and insert an emoji glyph by typing its Unicode name.
 ** Prefix =a= : +prefix
-- =a '= : expand-abbrev
-- =a += : add-mode-abbrev
-- =a -= : inverse-add-global-abbrev
-- =a e= : expand-abbrev
-- =a g= : add-global-abbrev
-- =a l= : add-mode-abbrev
-- =a n= : expand-jump-to-next-slot
-- =a p= : expand-jump-to-previous-slot
-- =a C-a= : add-mode-abbrev
+- =a '= calls =expand-abbrev= : expand the abbrev before point, if there is an abbrev there.
+- =a += calls =add-mode-abbrev= : define a mode-specific abbrev whose expansion is the last word before point.
+- =a -= calls =inverse-add-global-abbrev= : define the word before point as a global (mode-independent) abbreviation.
+- =a e= calls =expand-abbrev= : expand the abbrev before point, if there is an abbrev there.
+- =a g= calls =add-global-abbrev= : define a global (all modes) abbrev whose expansion is last word before point.
+- =a l= calls =add-mode-abbrev= : define a mode-specific abbrev whose expansion is the last word before point.
+- =a n= calls =expand-jump-to-next-slot= : move the cursor to the next slot in the last abbrev expansion.
+- =a p= calls =expand-jump-to-previous-slot= : move the cursor to the previous slot in the last abbrev expansion.
+- =a C-a= calls =add-mode-abbrev= : define a mode-specific abbrev whose expansion is the last word before point.
 *** Prefix =a i= : +prefix
-- =a i g= : inverse-add-global-abbrev
-- =a i l= : inverse-add-mode-abbrev
+- =a i g= calls =inverse-add-global-abbrev= : define the word before point as a global (mode-independent) abbreviation.
+- =a i l= calls =inverse-add-mode-abbrev= : define the word before point as a mode-specific abbreviation.
 ** Prefix =n= : +prefix
-- =n d= : narrow-to-defun
-- =n g= : goto-line-relative
-- =n n= : narrow-to-region
-- =n p= : narrow-to-page
-- =n w= : widen
+- =n d= calls =narrow-to-defun= : make text outside current defun invisible.
+- =n g= calls =goto-line-relative= : go to LINE, counting from line at (point-min).
+- =n n= calls =narrow-to-region= : restrict editing in this buffer to the current region.
+- =n p= calls =narrow-to-page= : make text outside current page invisible.
+- =n w= calls =widen= : remove restrictions (narrowing) from current buffer.
+** Prefix =p= : +prefix
+- =p != calls =project-shell-command= : run `shell-command' in the current project's root directory.
+- =p &= calls =project-async-shell-command= : run `async-shell-command' in the current project's root directory.
+- =p b= calls =project-switch-to-buffer= : display buffer BUFFER-OR-NAME in the selected window.
+- =p c= calls =project-compile= : run `compile' in the project root.
+- =p d= calls =project-find-dir= : start Dired in a directory inside the current project.
+- =p D= calls =project-dired= : start Dired in the current project's root.
+- =p e= calls =project-eshell= : start Eshell in the current project's root directory.
+- =p f= calls =project-find-file= : visit a file (with completion) in the current project.
+- =p F= calls =project-or-external-find-file= : visit a file (with completion) in the current project or external roots.
+- =p g= calls =project-find-regexp= : find all matches for REGEXP in the current project's roots.
+- =p G= calls =project-or-external-find-regexp= : find all matches for REGEXP in the project roots or external roots.
+- =p k= calls =project-kill-buffers= : kill the buffers belonging to the current project.
+- =p p= calls =project-switch-project= : "Switch" to another project by running an Emacs command.
+- =p r= calls =project-query-replace-regexp= : query-replace REGEXP in all the files of the project.
+- =p s= calls =project-shell= : start an inferior shell in the current project's root directory.
+- =p v= calls =project-vc-dir= : run VC-Dir in the current project's root.
+- =p x= calls =project-execute-extended-command= : execute an extended command in project root.
+- =p C-b= calls =project-list-buffers= : display a list of project buffers.
 ** Prefix =r= : +prefix
-- =r <SPC>= : point-to-register
-- =r += : increment-register
-- =r b= : bookmark-jump
-- =r c= : clear-rectangle
-- =r d= : delete-rectangle
-- =r f= : frameset-to-register
-- =r g= : insert-register
-- =r i= : insert-register
-- =r j= : jump-to-register
-- =r k= : kill-rectangle
-- =r l= : bookmark-bmenu-list
-- =r m= : bookmark-set
-- =r M= : bookmark-set-no-overwrite
-- =r n= : number-to-register
-- =r N= : rectangle-number-lines
-- =r o= : open-rectangle
-- =r r= : copy-rectangle-to-register
-- =r s= : copy-to-register
-- =r t= : string-rectangle
-- =r w= : window-configuration-to-register
-- =r x= : copy-to-register
-- =r y= : yank-rectangle
-- =r C-<SPC>= : point-to-register
-- =r C-@= : point-to-register
-- =r M-w= : copy-rectangle-as-kill
+- =r <SPC>= calls =point-to-register= : store current location of point in REGISTER.
+- =r += calls =increment-register= : augment contents of REGISTER using PREFIX.
+- =r b= calls =bookmark-jump= : jump to bookmark BOOKMARK (a point in some file).
+- =r c= calls =clear-rectangle= : blank out the region-rectangle.
+- =r d= calls =delete-rectangle= : delete (don't save) text in the region-rectangle.
+- =r f= calls =frameset-to-register= : store the current frameset in register REGISTER.
+- =r g= calls =insert-register= : insert contents of REGISTER at point.
+- =r i= calls =insert-register= : insert contents of REGISTER at point.
+- =r j= calls =jump-to-register= : go to location stored in REGISTER, or restore configuration stored there.
+- =r k= calls =kill-rectangle= : delete the region-rectangle and save it as the last killed one.
+- =r l= calls =bookmark-bmenu-list= : display a list of existing bookmarks.
+- =r m= calls =bookmark-set= : set a bookmark named NAME at the current location.
+- =r M= calls =bookmark-set-no-overwrite= : set a bookmark named NAME at the current location.
+- =r n= calls =number-to-register= : store NUMBER in REGISTER.
+- =r N= calls =rectangle-number-lines= : insert numbers in front of the region-rectangle.
+- =r o= calls =open-rectangle= : blank out the region-rectangle, shifting text right.
+- =r r= calls =copy-rectangle-to-register= : copy rectangular region of text between START and END into REGISTER.
+- =r s= calls =copy-to-register= : copy region of text between START and END into REGISTER.
+- =r t= calls =string-rectangle= : replace rectangle contents with STRING on each line.
+- =r w= calls =window-configuration-to-register= : store the window configuration of the selected frame in REGISTER.
+- =r x= calls =copy-to-register= : copy region of text between START and END into REGISTER.
+- =r y= calls =yank-rectangle= : yank the last killed rectangle with upper left corner at point.
+- =r C-<SPC>= calls =point-to-register= : store current location of point in REGISTER.
+- =r C-@= calls =point-to-register= : store current location of point in REGISTER.
+- =r M-w= calls =copy-rectangle-as-kill= : copy the region-rectangle and save it as the last killed one.
 ** Prefix =t= : +prefix
-- =t <RET>= : tab-switch
-- =t 0= : tab-close
-- =t 1= : tab-close-other
-- =t 2= : tab-new
-- =t b= : switch-to-buffer-other-tab
-- =t d= : dired-other-tab
-- =t f= : find-file-other-tab
-- =t G= : tab-group
-- =t m= : tab-move
-- =t M= : tab-move-to
-- =t n= : tab-duplicate
-- =t N= : tab-new-to
-- =t o= : tab-next
-- =t O= : tab-previous
-- =t p= : project-other-tab-command
-- =t r= : tab-rename
-- =t t= : other-tab-prefix
-- =t u= : tab-undo
-- =t C-f= : find-file-other-tab
-- =t C-r= : find-file-read-only-other-tab
+- =t <RET>= calls =tab-switch= : switch to the tab by NAME.
+- =t 0= calls =tab-close= : close the tab specified by its absolute position TAB-NUMBER.
+- =t 1= calls =tab-close-other= : close all tabs on the selected frame, except the tab TAB-NUMBER.
+- =t 2= calls =tab-new= : create a new tab ARG positions to the right.
+- =t b= calls =switch-to-buffer-other-tab= : switch to buffer BUFFER-OR-NAME in another tab.
+- =t d= calls =dired-other-tab= : "Edit" directory DIRNAME.  Like `dired' but make a new tab.
+- =t f= calls =find-file-other-tab= : edit file FILENAME, in another tab.
+- =t G= calls =tab-group= : add the tab specified by its absolute position TAB-NUMBER to GROUP-NAME.
+- =t m= calls =tab-move= : move the current tab ARG positions to the right.
+- =t M= calls =tab-move-to= : move tab from FROM-NUMBER position to new position at TO-NUMBER.
+- =t n= calls =tab-duplicate= : clone the current tab to ARG positions to the right.
+- =t N= calls =tab-new-to= : add a new tab at the absolute position TAB-NUMBER.
+- =t o= calls =tab-next= : switch to ARGth next tab.
+- =t O= calls =tab-previous= : switch to ARGth previous tab.
+- =t p= calls =project-other-tab-command= : run project command, displaying resultant buffer in a new tab.
+- =t r= calls =tab-rename= : give the tab specified by its absolute position TAB-NUMBER a new NAME.
+- =t t= calls =other-tab-prefix= : display the buffer of the next command in a new tab.
+- =t u= calls =tab-undo= : restore the most recently closed tab.
+- =t C-f= calls =find-file-other-tab= : edit file FILENAME, in another tab.
+- =t C-r= calls =find-file-read-only-other-tab= : edit file FILENAME, in another tab, but don't allow changes.
 *** Prefix =t ^= : +prefix
-- =t ^ f= : tab-detach
+- =t ^ f= calls =tab-detach= : move tab number FROM-NUMBER to a new frame.
 ** Prefix =v= : +vc-prefix-map
-- =v != : vc-edit-next-command
-- =v += : vc-update
-- =v == : vc-diff
-- =v a= : vc-update-change-log
-- =v d= : vc-dir
-- =v D= : vc-root-diff
-- =v g= : vc-annotate
-- =v G= : vc-ignore
-- =v h= : vc-region-history
-- =v i= : vc-register
-- =v I= : vc-log-incoming
-- =v l= : vc-print-log
-- =v L= : vc-print-root-log
-- =v m= : vc-merge
-- =v O= : vc-log-outgoing
-- =v P= : vc-push
-- =v r= : vc-retrieve-tag
-- =v s= : vc-create-tag
-- =v u= : vc-revert
-- =v v= : vc-next-action
-- =v x= : vc-delete-file
-- =v ~= : vc-revision-other-window
+- =v != calls =vc-edit-next-command= : request editing the next VC shell command before execution.
+- =v += calls =vc-update= : update the current fileset or branch.
+- =v == calls =vc-diff= : display diffs between file revisions.
+- =v a= calls =vc-update-change-log= : find change log file and add entries from recent version control logs.
+- =v d= calls =vc-dir= : show the VC status for "interesting" files in and below DIR.
+- =v D= calls =vc-root-diff= : display diffs between VC-controlled whole tree revisions.
+- =v g= calls =vc-annotate= : display the edit history of the current FILE using colors.
+- =v G= calls =vc-ignore= : ignore FILE under the VCS of DIRECTORY.
+- =v h= calls =vc-region-history= : show the history of the region between FROM and TO.
+- =v i= calls =vc-register= : register into a version control system.
+- =v I= calls =vc-log-incoming= : show log of changes that will be received with pull from REMOTE-LOCATION.
+- =v l= calls =vc-print-log= : show in another window the VC change history of the current fileset.
+- =v L= calls =vc-print-root-log= : show in another window VC change history of the current VC controlled tree.
+- =v m= calls =vc-merge= : perform a version control merge operation.
+- =v O= calls =vc-log-outgoing= : show log of changes that will be sent with a push operation to REMOTE-LOCATION.
+- =v P= calls =vc-push= : push the current branch.
+- =v r= calls =vc-retrieve-tag= : for each file in or below DIR, retrieve their version identified by tag NAME.
+- =v s= calls =vc-create-tag= : descending recursively from DIR, make a tag called NAME.
+- =v u= calls =vc-revert= : revert working copies of the selected fileset to their repository contents.
+- =v v= calls =vc-next-action= : do the next logical version control operation on the current fileset.
+- =v x= calls =vc-delete-file= : delete file and mark it as such in the version control system.
+- =v ~= calls =vc-revision-other-window= : visit revision REV of the current file in another window.
 *** Prefix =v b= : +prefix
-- =v b c= : vc-create-branch
-- =v b l= : vc-print-branch-log
-- =v b s= : vc-switch-branch
+- =v b c= calls =vc-create-branch= : make a branch called NAME in directory DIR.
+- =v b l= calls =vc-print-branch-log= : show the change log for BRANCH in another window.
+- =v b s= calls =vc-switch-branch= : switch to the branch NAME in the directory DIR.
 *** Prefix =v M= : +prefix
-- =v M D= : vc-diff-mergebase
-- =v M L= : vc-log-mergebase
+- =v M D= calls =vc-diff-mergebase= : report diffs between the merge base of REV1 and REV2 revisions.
+- =v M L= calls =vc-log-mergebase= : show a log of changes between the merge base of revisions REV1 and REV2.
 ** Prefix =w= : +prefix
-- =w -= : fit-window-to-buffer
-- =w 0= : delete-windows-on
-- =w 2= : split-root-window-below
-- =w 3= : split-root-window-right
-- =w s= : window-toggle-side-windows
+- =w -= calls =fit-window-to-buffer= : adjust size of WINDOW to display its buffer's contents exactly.
+- =w 0= calls =delete-windows-on= : delete all windows showing BUFFER-OR-NAME.
+- =w 2= calls =split-root-window-below= : split root window of current frame in two.
+- =w 3= calls =split-root-window-right= : split root window of current frame into two side-by-side windows.
+- =w s= calls =window-toggle-side-windows= : toggle display of side windows on specified FRAME.
 *** Prefix =w ^= : +prefix
-- =w ^ f= : tear-off-window
-- =w ^ t= : tab-window-detach
+- =w ^ f= calls =tear-off-window= : delete the selected window, and create a new frame displaying its buffer.
+- =w ^ t= calls =tab-window-detach= : move the selected window to a new tab.
 ** Prefix =x= : +prefix
-- =x f= : font-lock-update
-- =x g= : revert-buffer-quick
-- =x i= : insert-buffer
-- =x n= : clone-buffer
-- =x r= : rename-buffer
-- =x t= : toggle-truncate-lines
-- =x u= : rename-uniquely
+- =x f= calls =font-lock-update= : update the syntax highlighting in this buffer.
+- =x g= calls =revert-buffer-quick= : like `revert-buffer', but asks for less confirmation.
+- =x i= calls =insert-buffer= : insert after point the contents of BUFFER.
+- =x n= calls =clone-buffer= : create and return a twin copy of the current buffer.
+- =x r= calls =rename-buffer= : change current buffer's name to NEWNAME (a string).
+- =x t= calls =toggle-truncate-lines= : toggle truncating of long lines for the current buffer.
+- =x u= calls =rename-uniquely= : rename current buffer to a similar name not already taken.
 ** Prefix =X= : +prefix
-- =X <SPC>= : edebug-step-mode
-- =X == : edebug-display-freq-count
-- =X a= : abort-recursive-edit
-- =X b= : edebug-set-breakpoint
-- =X c= : edebug-continue-mode
-- =X C= : edebug-Continue-fast-mode
-- =X D= : edebug-toggle-disable-breakpoint
-- =X g= : edebug-go-mode
-- =X G= : edebug-Go-nonstop-mode
-- =X q= : top-level
-- =X Q= : edebug-top-level-nonstop
-- =X t= : edebug-trace-mode
-- =X T= : edebug-Trace-fast-mode
-- =X u= : edebug-unset-breakpoint
-- =X U= : edebug-unset-breakpoints
-- =X w= : edebug-where
-- =X W= : edebug-toggle-save-windows
-- =X x= : edebug-set-conditional-breakpoint
-- =X X= : edebug-set-global-break-condition
+- =X <SPC>= calls =edebug-step-mode= : proceed to next stop point.
+- =X == calls =edebug-display-freq-count= : display the frequency count data for each line of the current definition.
+- =X a= calls =abort-recursive-edit= : abort the command that requested this recursive edit or minibuffer input.
+- =X b= calls =edebug-set-breakpoint= : set the breakpoint of nearest sexp.
+- =X c= calls =edebug-continue-mode= : begin continue mode.
+- =X C= calls =edebug-Continue-fast-mode= : trace with no wait at each step.
+- =X D= calls =edebug-toggle-disable-breakpoint= : toggle whether the breakpoint near point is disabled.
+- =X g= calls =edebug-go-mode= : go, evaluating until break.
+- =X G= calls =edebug-Go-nonstop-mode= : go, evaluating without debugging.
+- =X q= calls =top-level= : exit all recursive editing levels.
+- =X Q= calls =edebug-top-level-nonstop= : set mode to Go-nonstop, and exit to top-level.
+- =X t= calls =edebug-trace-mode= : begin trace mode.
+- =X T= calls =edebug-Trace-fast-mode= : trace with no wait at each step.
+- =X u= calls =edebug-unset-breakpoint= : clear the breakpoint of nearest sexp.
+- =X U= calls =edebug-unset-breakpoints= : unset all the breakpoints in the current form.
+- =X w= calls =edebug-where= : show the debug windows and where we stopped in the program.
+- =X W= calls =edebug-toggle-save-windows= : toggle the saving and restoring of windows.
+- =X x= calls =edebug-set-conditional-breakpoint= : set a conditional breakpoint at nearest sexp.
+- =X X= calls =edebug-set-global-break-condition= : set `edebug-global-break-condition' to EXPRESSION.
 ** Prefix =C-k= : +kmacro-keymap
-- =C-k <RET>= : kmacro-edit-macro
-- =C-k <SPC>= : kmacro-step-edit-macro
-- =C-k <TAB>= : kmacro-insert-counter
-- =C-k b= : kmacro-bind-to-key
-- =C-k d= : kmacro-redisplay
-- =C-k e= : edit-kbd-macro
-- =C-k l= : kmacro-edit-lossage
-- =C-k n= : kmacro-name-last-macro
-- =C-k q= : kbd-macro-query
-- =C-k r= : apply-macro-to-region-lines
-- =C-k s= : kmacro-start-macro
-- =C-k x= : kmacro-to-register
-- =C-k C-a= : kmacro-add-counter
-- =C-k C-c= : kmacro-set-counter
-- =C-k C-d= : kmacro-delete-ring-head
-- =C-k C-e= : kmacro-edit-macro-repeat
-- =C-k C-f= : kmacro-set-format
-- =C-k C-k= : kmacro-end-or-call-macro-repeat
-- =C-k C-l= : kmacro-call-ring-2nd-repeat
-- =C-k C-n= : kmacro-cycle-ring-next
-- =C-k C-p= : kmacro-cycle-ring-previous
-- =C-k C-s= : kmacro-start-macro
-- =C-k C-t= : kmacro-swap-ring
-- =C-k C-v= : kmacro-view-macro-repeat
+- =C-k <RET>= calls =kmacro-edit-macro= : as edit last keyboard macro, but without kmacro-repeat property.
+- =C-k <SPC>= calls =kmacro-step-edit-macro= : step edit and execute last keyboard macro.
+- =C-k <TAB>= calls =kmacro-insert-counter= : insert current value of `kmacro-counter', then increment it by ARG.
+- =C-k b= calls =kmacro-bind-to-key= : when not defining or executing a macro, offer to bind last macro to a key.
+- =C-k d= calls =kmacro-redisplay= : force redisplay during keyboard macro execution.
+- =C-k e= calls =edit-kbd-macro= : edit a keyboard macro.
+- =C-k l= calls =kmacro-edit-lossage= : edit most recent 300 keystrokes as a keyboard macro.
+- =C-k n= calls =kmacro-name-last-macro= : assign a name to the last keyboard macro defined.
+- =C-k q= calls =kbd-macro-query= : query user during kbd macro execution.
+- =C-k r= calls =apply-macro-to-region-lines= : apply last keyboard macro to all lines in the region.
+- =C-k s= calls =kmacro-start-macro= : record subsequent keyboard input, defining a keyboard macro.
+- =C-k x= calls =kmacro-to-register= : store the last keyboard macro in register R.
+- =C-k C-a= calls =kmacro-add-counter= : add the value of numeric prefix arg (prompt if missing) to `kmacro-counter'.
+- =C-k C-c= calls =kmacro-set-counter= : set the value of `kmacro-counter' to ARG, or prompt for value if no argument.
+- =C-k C-d= calls =kmacro-delete-ring-head= : delete current macro from keyboard macro ring.
+- =C-k C-e= calls =kmacro-edit-macro-repeat= : edit last keyboard macro.
+- =C-k C-f= calls =kmacro-set-format= : set the format of `kmacro-counter' to FORMAT.
+- =C-k C-k= calls =kmacro-end-or-call-macro-repeat= : as `kmacro-end-or-call-macro' but allow repeat without repeating prefix.
+- =C-k C-l= calls =kmacro-call-ring-2nd-repeat= : execute second keyboard macro in macro ring.
+- =C-k C-n= calls =kmacro-cycle-ring-next= : move to next keyboard macro in keyboard macro ring.
+- =C-k C-p= calls =kmacro-cycle-ring-previous= : move to previous keyboard macro in keyboard macro ring.
+- =C-k C-s= calls =kmacro-start-macro= : record subsequent keyboard input, defining a keyboard macro.
+- =C-k C-t= calls =kmacro-swap-ring= : swap first two elements on keyboard macro ring.
+- =C-k C-v= calls =kmacro-view-macro-repeat= : display the last keyboard macro.

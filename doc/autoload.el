@@ -159,6 +159,20 @@ If MODULENAMES is nil, use the variable `pim-keymapname-alist' instead."
     (s-replace-regexp "\\(\[a-zA-Z0-9]\\{2,\\}\\)" "<\\1>" keystr)))
   )
 
+(defun pim-function-check (x)
+  "Test an object is a function.
+Comes from https://stackoverflow.com/a/38173593"
+  (if (symbolp x)
+      (fboundp x)
+    (functionp x)))
+
+(defun pim-downcase-first-char (&optional string)
+  "Donwcase only the first character of the input STRING."
+  (when (and string (> (length string) 0))
+    (let ((first-char (substring string nil 1))
+          (rest-str   (substring string 1)))
+      (concat (downcase first-char) rest-str))))
+
 (defun pim-which-key-get-bindings-recursively-org (keymap prefix level &optional subkeys)
   "Insert recursively all key bindings with prefix PREFIX with org formating.
 LEVEL represent the deep of the heading."
@@ -178,7 +192,23 @@ LEVEL represent the deep of the heading."
              (sub-keys (which-key--get-bindings (kbd prefixn) keymap))
              (isSubKeyPrefix (not (null sub-keys)))
              (section-s (if isSubKeyPrefix (make-string (+ 1 level) ?*) "-"))
-             (line (apply #'format "%s %s=%s=%s%s\n" section-s (if isSubKeyPrefix "Prefix " "") prefixn key)))
+             (keydesc (apply #'format "%s" (cdr key)))
+             (callable (and (not (string-match " " keydesc)) (pim-function-check (intern keydesc))))
+             (docstring "")
+             (line "")
+             (separator " : "))
+        (when callable
+          (progn
+            (setq docstring (helpful--docstring (intern keydesc) t) )
+            (if docstring
+                (progn
+                  (setq docstring (format " : %s" (pim-downcase-first-char docstring)))
+                  (setq docstring (s-replace-regexp "\n.*" "" docstring))
+                  )
+              (setq docstring " (not described)"))
+            (setq keydesc (format "=%s=" keydesc))
+            (setq separator " calls ")))
+        (setq line (format "%s %s=%s=%s%s%s\n" section-s (if isSubKeyPrefix "Prefix " "") prefixn separator keydesc docstring))
         (if (and isPrefix (not isSubKeyPrefix))
             (setq level1part (concat level1part line))
           (setq result (concat result line)))

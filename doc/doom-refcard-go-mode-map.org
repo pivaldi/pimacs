@@ -9,55 +9,55 @@
 
 * Root Prefix =[empty]= on Keymap =go-mode-map=
 ** Prefix =C-c= : +prefix
-- =C-c C-a= : go-import-add
-- =C-c C-d= : godef-describe
-- =C-c C-j= : godef-jump
+- =C-c C-a= calls =go-import-add= : add a new IMPORT to the list of imports.
+- =C-c C-d= calls =godef-describe= : describe the expression at POINT.
+- =C-c C-j= calls =godef-jump= : jump to the definition of the expression at POINT.
 *** Prefix =C-c l= : +<localleader>
-- =C-c l a= : go-tag-add
-- =C-c l d= : go-tag-remove
-- =C-c l e= : +go/play-buffer-or-region
-- =C-c l i= : go-goto-imports
+- =C-c l a= calls =go-tag-add= : add field TAGS for struct fields.
+- =C-c l d= calls =go-tag-remove= : remove field TAGS for struct fields.
+- =C-c l e= calls =+go/play-buffer-or-region= : evaluate active selection or buffer in the Go playground.
+- =C-c l i= calls =go-goto-imports= : move point to the block of imports.
 **** Prefix =C-c l b= : +prefix
 - =C-c l b b= : closure
 - =C-c l b c= : closure
 - =C-c l b r= : closure
 **** Prefix =C-c l h= : +prefix
-- =C-c l h .= : godoc-at-point
-- =C-c l h c= : go-guru-callers
-- =C-c l h C= : go-guru-callees
-- =C-c l h d= : go-guru-describe
-- =C-c l h e= : go-guru-whicherrs
-- =C-c l h i= : go-guru-implements
-- =C-c l h p= : go-guru-peers
-- =C-c l h P= : go-guru-pointsto
-- =C-c l h r= : go-guru-referrers
-- =C-c l h v= : go-guru-freevars
+- =C-c l h .= calls =godoc-at-point= : show Go documentation for the identifier at POINT.
+- =C-c l h c= calls =go-guru-callers= : show the set of callers of the function containing the current point.
+- =C-c l h C= calls =go-guru-callees= : show possible callees of the function call at the current point.
+- =C-c l h d= calls =go-guru-describe= : describe the selected syntax, its kind, type and methods.
+- =C-c l h e= calls =go-guru-whicherrs= : show globals, constants and types to which the selected
+- =C-c l h i= calls =go-guru-implements= : describe the 'implements' relation for types in the package
+- =C-c l h p= calls =go-guru-peers= : enumerate the set of possible corresponding sends/receives for
+- =C-c l h P= calls =go-guru-pointsto= : show what the selected expression points to.
+- =C-c l h r= calls =go-guru-referrers= : enumerate all references to the object denoted by the selected
+- =C-c l h v= calls =go-guru-freevars= : enumerate the free variables of the current selection.
 - =C-c l h w= : go-guru-what
 **** Prefix =C-c l r= : +prefix
 ***** Prefix =C-c l r i= : +prefix
-- =C-c l r i a= : go-import-add
-- =C-c l r i r= : go-remove-unused-imports
+- =C-c l r i a= calls =go-import-add= : add a new IMPORT to the list of imports.
+- =C-c l r i r= calls =go-remove-unused-imports= : remove all unused imports.
 **** Prefix =C-c l t= : +prefix
-- =C-c l t a= : +go/test-all
-- =C-c l t e= : go-gen-test-exported
-- =C-c l t f= : +go/test-file
-- =C-c l t g= : go-gen-test-dwim
-- =C-c l t G= : go-gen-test-all
-- =C-c l t n= : +go/test-nested
-- =C-c l t s= : +go/test-single
-- =C-c l t t= : +go/test-rerun
+- =C-c l t a= calls =+go/test-all= : run all tests for this project.
+- =C-c l t e= calls =go-gen-test-exported= : generate tests for all exported functions.
+- =C-c l t f= calls =+go/test-file= : run all tests in current file.
+- =C-c l t g= calls =go-gen-test-dwim= : generate tests for functions you want to.
+- =C-c l t G= calls =go-gen-test-all= : generate tests for all functions.
+- =C-c l t n= calls =+go/test-nested= : run all tests in current directory and below, recursively.
+- =C-c l t s= calls =+go/test-single= : run single test at point.
+- =C-c l t t= calls =+go/test-rerun= : rerun last run test.
 ***** Prefix =C-c l t b= : +prefix
-- =C-c l t b a= : +go/bench-all
-- =C-c l t b s= : +go/bench-single
+- =C-c l t b a= calls =+go/bench-all= : run all benchmarks in project.
+- =C-c l t b s= calls =+go/bench-single= : run benchmark at point.
 *** Prefix =C-c C-f= : +fold
-- =C-c C-f a= : go-goto-arguments
-- =C-c C-f d= : go-goto-docstring
-- =C-c C-f f= : go-goto-function
-- =C-c C-f i= : go-goto-imports
-- =C-c C-f m= : go-goto-method-receiver
-- =C-c C-f n= : go-goto-function-name
-- =C-c C-f r= : go-goto-return-values
+- =C-c C-f a= calls =go-goto-arguments= : go to the arguments of the current function.
+- =C-c C-f d= calls =go-goto-docstring= : go to the top of the docstring of the current function.
+- =C-c C-f f= calls =go-goto-function= : go to the function definition (named or anonymous) surrounding point.
+- =C-c C-f i= calls =go-goto-imports= : move point to the block of imports.
+- =C-c C-f m= calls =go-goto-method-receiver= : go to the receiver of the current method.
+- =C-c C-f n= calls =go-goto-function-name= : go to the name of the current function.
+- =C-c C-f r= calls =go-goto-return-values= : go to the return value declaration of the current function.
 ** Prefix =C-x= : +prefix
 *** Prefix =C-x 4= : +prefix
 **** Prefix =C-x 4 C-c= : +prefix
-- =C-x 4 C-c C-j= : godef-jump-other-window
+- =C-x 4 C-c C-j= calls =godef-jump-other-window= (not described)
