@@ -182,11 +182,10 @@ LEVEL represent the deep of the heading."
          (isPrefix (not (null keys)))
          (result "")
          (keymapname (help-fns-find-keymap-name keymap))
-         (level1part (if (or nil (eq 1 level))
-                         (format
-                          "* Root Prefix =%s= on Keymap =%s=\n"
-                          (if (equal prefix "") "[empty]" prefix) keymapname) ""))
-         )
+         (prefixf (if (equal prefix "") "" (format "Prefix =%s=" prefix)))
+         (prekeymapf (if (equal prefix "") "" " on "))
+         (keymapf (if keymap (format "%sKeymap =%s=" prekeymapf keymapname)))
+         (level1part (if (or nil (eq 1 level)) (format "* %s%s\n" prefixf keymapf) "")))
     (dolist (key keys)
       (let* ((prefixn (s-trim (format "%s %s" prefix (pim-keystring-kbd-consolidate (pop key)))))
              (sub-keys (which-key--get-bindings (kbd prefixn) keymap))
@@ -201,10 +200,8 @@ LEVEL represent the deep of the heading."
           (progn
             (setq docstring (helpful--docstring (intern keydesc) t) )
             (if docstring
-                (progn
-                  (setq docstring (format " : %s" (pim-downcase-first-char docstring)))
-                  (setq docstring (s-replace-regexp "\n.*" "" docstring))
-                  )
+                (setq docstring
+                      (format " : %s" (pim-downcase-first-char (s-replace-regexp "\n.*" "" docstring))))
               (setq docstring " (not described)"))
             (setq keydesc (format "=%s=" keydesc))
             (setq separator " calls ")))
