@@ -1,9 +1,8 @@
 # PIMacs/Keys Doom Module
 
-This module configure useful key bindings in `global-map`. 
-See [all global-map key bindings refcard](all-key-bindings-refcard.org) and 
-[PIMacs restriction of global-map key bindings refcard](pimacs-key-bindings-refcard.org)
-generated with **`+azerty` keyboard**.
+This module configure useful key bindings in `global-map`.  
+See [the key bindings refcard added by this module](keys-key-bindings-refcard.org)
+with **`+azerty` keyboard**.
 
 ## Notes
 

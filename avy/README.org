@@ -8,6 +8,4 @@ Create key bindings for avy (Doom does not provide them) with prefix :
 - Prefix =M-S-w= (aka =M-W=) for =avy-kill-ring= saving functions (mnemo =M-w=
   for kill ring saving).
 
-See the refcards :
-- [[file:all-key-bindings-refcard.org][All key bindings in the keymaps modified by this module]].
-- [[file:pimacs-key-bindings-refcard.org][Pimacs key bindings added by this module]].
+See [[file:avy-key-bindings-refcard.org][Key bindings refcard added by this module]].

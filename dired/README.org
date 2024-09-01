@@ -5,8 +5,7 @@
 
 * Key bindings
 
-- [[all-key-bindings-refcard.org][dired-mode-map key bindings refcard]]
-- [[pimacs-key-bindings-refcard.org][dired-mode-map PIMacs key bindings refcard]]
+See [[dired-key-bindings-refcard.org][dired-mode-map key bindings refcard added by this module]].
 
 * Autoloaded Functions
 
