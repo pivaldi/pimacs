@@ -24,35 +24,35 @@
  (:prefix
   ("a" . "Avy goto. #pim")
   (:prefix ("c" . "Avy goto char. #pim")
-   :desc "avy-goto-char : jump to the visible CHAR. #pim" "1" #'avy-goto-char
-   :desc "avy-goto-char-2 : jump to the visible CHAR1 followed by CHAR2. #pim" "2" #'avy-goto-char-2
-   :desc "avy-goto-char-timer : read one or many consecutive chars. #pim" "t" #'avy-goto-char-timer
-   :desc "avy-goto-char-char-2-above : scoped version of avy-goto-char-2. #pim" "a" #'avy-goto-char-2-above
-   :desc "avy-goto-char-2-below scoped version of avy-goto-char-2. #pim" "b" #'avy-goto-char-2-below
-   :desc "avy-goto-char-in-line : jump to the visible CHAR in the current line. #pim" "l" #'avy-goto-char-in-line
+   :desc "Jump to the visible CHAR. #pim" "1" #'avy-goto-char
+   :desc "Jump to the visible CHAR1 followed by CHAR2. #pim" "2" #'avy-goto-char-2
+   :desc "Read one or many consecutive chars. #pim" "t" #'avy-goto-char-timer
+   :desc "Jump above to the visible CHAR1 followed by CHAR2. #pim" "a" #'avy-goto-char-2-above
+   :desc "Jump below to the visible CHAR1 followed by CHAR2. #pim" "b" #'avy-goto-char-2-below
+   :desc "Jump to the visible CHAR in the current line. #pim" "l" #'avy-goto-char-in-line
    )
   (:prefix ("l" . "Avy goto line. #pim")
-   :desc "avy-goto-line : jump to a line start in current buffer. #pim" "l" #'avy-goto-line
-   :desc "avy-goto-line-above : scoped version of avy-goto-line. #pim" "a" #'avy-goto-line-above
-   :desc "avy-goto-line-below : scoped version of avy-goto-line. #pim" "b" #'avy-goto-line-below
+   :desc "Jump to a line start in current buffer. #pim" "l" #'avy-goto-line
+   :desc "Jump above to a line start in current buffer. #pim" "a" #'avy-goto-line-above
+   :desc "Jump below to a line start in current buffer. #pim" "b" #'avy-goto-line-below
    )
   (:prefix ("w" . "Avy goto word and sub-word. #pim")
    :desc "avy-goto-word-0 : jump to a word start. #pim" "0" #'avy-goto-word-0
-   :desc "avy-goto-word-0-above : scoped version. #pim" "a" #'avy-goto-word-0-above
-   :desc "avy-goto-word-0-below : scoped version. #pim" "b" #'avy-goto-word-0-below
-   :desc "avy-goto-word-1 : jump to the visible CHAR at a word start. #pim" "l" #'avy-goto-word-1
-   :desc "avy-goto-word-1-above : scoped version. #pim" "A" #'avy-goto-word-1-above
-   :desc "avy-goto-word-1-below : scoped version. #pim" "B" #'avy-goto-word-1-below
+   :desc "Jump above to a word start. #pim" "a" #'avy-goto-word-0-above
+   :desc "jump below to a word start. #pim" "b" #'avy-goto-word-0-below
+   :desc "Jump to the visible CHAR at a word start. #pim" "l" #'avy-goto-word-1
+   :desc "Jump above to the visible CHAR at a word start. #pim" "A" #'avy-goto-word-1-above
+   :desc "Jump below to the visible CHAR at a word start. #pim" "B" #'avy-goto-word-1-below
    )
   (:prefix ("s" . "Avy goto sub-word. #pim")
-   :desc "avy-goto-subword-0 : jump to a word or subword start. #pim" "s" #'avy-goto-subword-0
-   :desc "avy-goto-subword-1 : jump to the visible CHAR at a subword start. #pim" "S" #'avy-goto-subword-1
-   :desc "avy-goto-word-or-subword-1 : forward to avy-goto-subword-1 or avy-goto-word-1. #pim" "B" #'avy-goto-word-or-subword-1)))
+   :desc "Jump to a word or subword start. #pim" "s" #'avy-goto-subword-0
+   :desc "Jump to the visible CHAR at a subword start. #pim" "S" #'avy-goto-subword-1
+   :desc "Forward to avy-goto-subword-1 or avy-goto-word-1. #pim" "B" #'avy-goto-word-or-subword-1)))
 
 (map!
  :after isearch
  :map isearch-mode-map
- :desc "avy-isearch : jump to one of the current isearch candidates. #pim" "C-a" #'avy-isearch)
+ :desc "Jump to one of the current isearch candidates. #pim" "C-a" #'avy-isearch)
 
 (map!
  :prefix ("C-S-w" . "Avy kill functions. #pim")

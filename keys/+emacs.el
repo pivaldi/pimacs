@@ -107,7 +107,7 @@
 
 (map! :desc "Browse url at point. #pim" "C-c b" #'browse-url-at-point)
 
-(map! :desc "Delete current window and buffer. #pim" "<f12>" 'pim/kill-window-and-buffer)
+(map! :desc "Kill buffer globally and all windows previously showing this buffer. #pim" "<f12>" 'doom/kill-this-buffer-in-all-windows)
 
 (map! :desc "Delete current window and buffer. #pim" "<C-S-iso-lefttab>" 'pim/indent-whole-buffer)
 

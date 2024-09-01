@@ -41,12 +41,12 @@
 (setq fill-nobreak-predicate (cons #'pim-fill-nobreak-predicate fill-nobreak-predicate))
 
 (after!
- pimacs/default
- (dolist (hook pim-auto-fill-mode-hooks)
-   (add-hook hook
-             (lambda ()
-               (auto-fill-mode 1))))
- )
+  pimacs/default
+  (dolist (hook pim-auto-fill-mode-hooks)
+    (add-hook hook
+              (lambda ()
+                (auto-fill-mode 1))))
+  )
 
 (defun pim-stop-using-minibuffer ()
   "Abort the minibuffer when using the mouse.
@@ -56,7 +56,7 @@ See https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when
 
 (add-hook 'mouse-leave-buffer-hook 'pim-stop-using-minibuffer)
 
-(add-hook 'after-save-hook 'pim-make-script-executable)
+(add-hook 'after-save-hook #'pim-make-script-executable)
 
 ;; Local variables:
 ;; coding: utf-8

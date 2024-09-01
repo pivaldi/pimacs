@@ -48,4 +48,5 @@ See http://www.emacswiki.org/emacs/MakingScriptsExecutableOnSave"
 
 ;; Local variables:
 ;; coding: utf-8
+;; eval: (rename-buffer "pimacs/default/autoload.el")
 ;; End:

@@ -1,0 +1,21 @@
+#+title: PIMacs/bm Doom Module
+
+This module install and configure the package /bm/ : the
+[[https://github.com/joodland/bm][Visual Bookmarks for GNU Emacs ]].\\
+It provides visible and *buffer local* bookmarks with the ability to jump
+forward and backward to the next bookmark in the current buffer.
+
+To navigate across buffers with bookmarks, it's better to use the native Emacs
+bookmark.
+
+* Key Bindings
+
+By default, this module binds the /bm/ commands on the key =f2=, overwriting the
+default Doom bindings for two columns editing (which I don't use).//
+If you don't want this overwriting, add the option =+no-key-bindings= loading this
+module.
+
+- =f2= : jump to next visible buffer local bookmark.
+- =S-<f2>= : jump to previous visible buffer local bookmark.
+- =C-f2= : jump to previous visible buffer local bookmark.
+- =s-<f2>= : toggle visible buffer local persistence.

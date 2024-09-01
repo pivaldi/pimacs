@@ -55,6 +55,10 @@ See also the auto-generated
 ### pimacs/session
 [Workspace/Session Persistence and Auto Restore Last Session](session/README.md).
 
+## pimacs/bm
+[Visible local bookmarks in buffer](bm/README.org) is a simple and useful
+complement to the native Emacs bookmark system.
+
 ### pimacs/dired
 [Dired mode specific configuration](dired/README.org).  
 See also the auto-generated

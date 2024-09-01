@@ -76,19 +76,6 @@ This command assumes point is not in a string or comment."
   (pim/delete-sexp (- (or arg 1))))
 
 ;;;###autoload
-(defun pim/kill-window-and-buffer()
-  "* Delete current window and buffer."
-  (interactive)
-  (let ((wind (selected-window)))
-    (if (not (buffer-file-name))
-        (progn
-          (set-window-dedicated-p wind nil)
-          (kill-buffer-and-window))
-      (progn
-        (kill-current-buffer)
-        (condition-case nil (delete-window) (error nil))))))
-
-;;;###autoload
 (defun pim/indent-whole-html-buffer nil
   "Indent the whole buffer except <pre> part in html mode."
   (interactive)

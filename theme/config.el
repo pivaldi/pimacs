@@ -77,7 +77,14 @@
     (set-face-attribute 'avy-lead-face-0 nil :foreground "#93E0E3")
     (set-face-attribute 'avy-lead-face-1 nil :foreground "#93E0E3")
     (set-face-attribute 'avy-lead-face-2 nil :foreground "#93E0E3")
-    (set-face-attribute 'avy-background-face nil :foreground "#A5A595")))
+    (set-face-attribute 'avy-background-face nil :foreground "#A5A595"))
+
+  (after! bm
+    (set-face-attribute 'bm-fringe-persistent-face nil :background (face-attribute 'fringe :background)  :foreground "#FF3333")
+    (set-face-attribute 'bm-fringe-face nil :background (face-attribute 'fringe :background)  :foreground "#33FFFF")
+    (set-face-attribute 'bm-face nil :background "#111"  :foreground nil)
+    (set-face-attribute 'bm-persistent-face nil :background "#111"  :foreground nil)
+    ))
 
 
 (setq-default
