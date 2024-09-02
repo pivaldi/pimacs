@@ -156,10 +156,12 @@ Comes from https://stackoverflow.com/a/38173593"
       (concat (downcase first-char) rest-str))))
 
 (defun pim-which-key-get-bindings-recursively-org (keymap prefix level &optional subkeys restrict-to-pim)
-  "Insert recursively all key bindings with prefix PREFIX with org formating.
-LEVEL represent the deep of the heading."
+  "Returns all key bindings recursively of KEYMAPNAME with prefix PREFIX with org formating.
+SUBKEYS is used in recursive call to avoidd to compute previous computed keys.
+If RESTRICT-TO-PIM is t, restrict the to the key bindings added by PIMacs."
   (require 'which-key)
   (require 'help-fns)
+  (require 'helpful)
   (when (not prefix) (setq prefix ""))
   (let* ((which-key-max-description-length 1000)
          (keys (if subkeys subkeys (which-key--get-bindings (kbd prefix) keymap)))
