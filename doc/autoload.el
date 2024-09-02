@@ -63,10 +63,11 @@ EXT, a string, can be org, md or txt."
 
 (defun pim-keys-bindings-to-refcard (keymaps-alist &optional all)
   "Export the PIMacs key bindings in file (org, md and txt format supported).
-KEYMAPS-ALIST (list of (keymap-name:string . provide:symbol)) is the list of keymap names to export into
-the file FNAME.
-keymap-name can specify a list of prefix restriction with the forl \"global-map::prefix:M-g a::prefix:C-c x etc…\".
-If KEYMAPS-ALIST is nil, use the variable `pim-keymapname-alist' instead."
+  KEYMAPS-ALIST (list of (keymap-name:string . provide:symbol)) is the list of
+  keymap names to export into the file FNAME.
+  keymap-name can specify a list of prefix restriction with the form
+  \"global-map::prefix:M-g a::prefix:C-c x etc…\".
+  If KEYMAPS-ALIST is nil, use the variable `pim-keymapname-alist' instead."
   ;; TODO : make it interactive
   (let* ((keymap nil)
          (keymapname "")
@@ -155,12 +156,12 @@ Comes from https://stackoverflow.com/a/38173593"
           (rest-str   (substring string 1)))
       (concat (downcase first-char) rest-str))))
 
-(defun pim-which-key-get-bindings-recursively-org (keymap prefix level &optional subkeys restrict-to-pim)
-  "Returns all key bindings recursively of KEYMAPNAME with prefix PREFIX with org formating.
+(defun pim-which-key-get-bindings-recursively-org (keymapname keymap prefix level &optional subkeys restrict-to-pim)
+  "Returns all key bindings recursively of with prefix PREFIX with org formating.
 SUBKEYS is used in recursive call to avoidd to compute previous computed keys.
 If RESTRICT-TO-PIM is t, restrict the to the key bindings added by PIMacs."
   (require 'which-key)
-  (require 'help-fns)
+  ;; (require 'help-fns)
   (require 'helpful)
   (when (not prefix) (setq prefix ""))
   (let* ((which-key-max-description-length 1000)
@@ -168,7 +169,7 @@ If RESTRICT-TO-PIM is t, restrict the to the key bindings added by PIMacs."
          (pim-regexp "\\(.*\\)#pim *$")
          (isPrefix (not (null keys)))
          (result "")
-         (keymapname (help-fns-find-keymap-name keymap))
+         ;; (keymapname (help-fns-find-keymap-name keymap))
          (prefixf (if (equal prefix "") "" (format "Prefix =%s=" prefix)))
          (prekeymapf (if (equal prefix "") "" " on "))
          (keymapf (if keymap (format "%sKeymap =%s=" prekeymapf keymapname) ""))
@@ -194,15 +195,20 @@ If RESTRICT-TO-PIM is t, restrict the to the key bindings added by PIMacs."
               (setq docstring " (not described)"))
             (setq keydesc (format "=%s=" keydesc))
             (setq separator " calls ")))
-        (setq line (format "%s %s=%s=%s%s%s\n" section-s (if isSubKeyPrefix "Prefix " "") prefixn separator keydesc docstring))
+        (setq line
+              (format "%s %s=%s=%s%s%s\n"
+                      section-s (if isSubKeyPrefix "Prefix " "") prefixn separator keydesc docstring))
         (when (or (not restrict-to-pim) (string-match-p pim-regexp line))
           (if (and isPrefix (not isSubKeyPrefix))
               (setq level1part (concat level1part line))
             (setq result (concat result line)))
           (when isSubKeyPrefix
-            (setq result
-                  (concat
-                   result (pim-which-key-get-bindings-recursively-org keymap prefixn (+ 1 level) sub-keys)))))
+            (setq
+             result
+             (concat
+              result
+              (pim-which-key-get-bindings-recursively-org
+               keymapname keymap prefixn (+ 1 level) sub-keys)))))
         )
       )
     (concat level1part result)
@@ -210,7 +216,7 @@ If RESTRICT-TO-PIM is t, restrict the to the key bindings added by PIMacs."
   )
 
 ;;;###autoload
-(defun pim/which-key-export-bindings-recursively-to-file (keymap prefix file-name)
+(defun pim/which-key-export-bindings-recursively-to-file (keymapname keymap prefix file-name)
   "Export bindings recursively from PREFIX into file FILE-NAME with org formatting.
 PREFIX should be a string suitable for `kbd'."
   ;; (interactive "sPrefix: \nF")
@@ -219,25 +225,29 @@ PREFIX should be a string suitable for `kbd'."
                 (read-string "Key Prefix: ")
                 (car (find-file-read-args "Export to file : " nil))))
   (require 'toc-org)
-  (require 'help-fns)
-  (with-temp-file file-name
-    (point-max)
-    (save-excursion
-      (let
-          ((keymapname (pim-format-to-inline-code (help-fns-find-keymap-name keymap) "org"))
-           (prefixstm (if (equal prefix "")
-                          ""
-                        (format " Prefixed by %s" (pim-format-to-inline-code prefix "org"))))
-           (title ""))
+  ;; (require 'help-fns)
+  (let
+      (
+       ;; (keymapname (pim-format-to-inline-code (help-fns-find-keymap-name keymap) "org"))
+       (prefixstm (if (equal prefix "")
+                      ""
+                    (format " Prefixed by %s" (pim-format-to-inline-code prefix "org"))))
+       (title "")
+       (coding-system-for-write 'utf-8-unix))
+    (with-temp-file file-name
+      (point-max)
+      (save-excursion
         (if (and (equal prefix "") (not keymap))
             (setq title "Key Bindings Without Prefix Nor Keymap\n\n")
           (if keymap
-              (setq title (format  "Key Bindings of Keymap %s%s\n\n" keymapname prefixstm))
+              (setq title
+                    (format "Key Bindings of Keymap %s%s\n\n"
+                            (pim-format-to-inline-code keymapname "org") prefixstm))
             (setq title (format  "Key Bindings%s Without Keymap\n\n" prefixstm))))
         (insert (pim-format-to-title title "org"))
         (insert "This reafcard is auto-generated by [[https://github.com/pivaldi/pimacs][PIMacs]].\n")
         (insert "* Table of Content :TOC_2:\n\n")
-        (insert (pim-which-key-get-bindings-recursively-org keymap prefix 1))
+        (insert (pim-which-key-get-bindings-recursively-org keymapname keymap prefix 1))
         (toc-org-insert-toc)))))
 
 ;; *=================================================================*
@@ -253,7 +263,7 @@ User should use `pim/which-key-export-bindings-recursively-to-file' instead."
        (prefixes pim-doc-key-binding-prefixes-to-export))
     (dolist (prefix prefixes)
       (setq fname (format "%s/doom-refcard-%s.org" (doom-module-locate-path :pimacs 'doc) prefix))
-      (pim/which-key-export-bindings-recursively-to-file nil prefix fname))))
+      (pim/which-key-export-bindings-recursively-to-file "" nil prefix fname))))
 
 ;;;###autoload
 (defun pim-generate-all-keymaps ()
@@ -270,7 +280,7 @@ User should use `pim/which-key-export-bindings-recursively-to-file' instead."
       (when module (require module))
       (setq keymap (symbol-value (intern keymapname)))
       (setq fname (format "%s/doom-refcard-%s.org" (doom-module-locate-path :pimacs 'doc) (s-replace-regexp "[^a-zA-Z0-1_.-]" "_" keymapname)))
-      (pim/which-key-export-bindings-recursively-to-file keymap "" fname))))
+      (pim/which-key-export-bindings-recursively-to-file keymapname keymap "" fname))))
 
 ;;;###autoload
 (defun pim-generate-all-modules-key-bindings-refcards ()
@@ -280,7 +290,8 @@ User should use `pim/modules-key-bindings-to-refcard' instead."
   (let ((fname "")
         (keymapnames nil)
         (modulename nil)
-        (module nil))
+        (module nil)
+        (coding-system-for-write 'utf-8-unix))
     (general-override-mode +1)
     (dolist (km pim-keymapname-alist)
       (progn
