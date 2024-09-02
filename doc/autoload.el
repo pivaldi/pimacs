@@ -159,6 +159,7 @@ Comes from https://stackoverflow.com/a/38173593"
   "Insert recursively all key bindings with prefix PREFIX with org formating.
 LEVEL represent the deep of the heading."
   (require 'which-key)
+  (require 'help-fns)
   (when (not prefix) (setq prefix ""))
   (let* ((which-key-max-description-length 1000)
          (keys (if subkeys subkeys (which-key--get-bindings (kbd prefix) keymap)))
@@ -216,6 +217,7 @@ PREFIX should be a string suitable for `kbd'."
                 (read-string "Key Prefix: ")
                 (car (find-file-read-args "Export to file : " nil))))
   (require 'toc-org)
+  (require 'help-fns)
   (with-temp-file file-name
     (point-max)
     (save-excursion

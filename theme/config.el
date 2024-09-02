@@ -82,8 +82,8 @@
   (after! bm
     (set-face-attribute 'bm-fringe-persistent-face nil :background (face-attribute 'fringe :background)  :foreground "#FF3333")
     (set-face-attribute 'bm-fringe-face nil :background (face-attribute 'fringe :background)  :foreground "#33FFFF")
-    (set-face-attribute 'bm-face nil :background "#111"  :foreground nil)
-    (set-face-attribute 'bm-persistent-face nil :background "#111"  :foreground nil)
+    (set-face-attribute 'bm-face nil :background "#3A3A3A"  :underline nil :foreground nil)
+    (set-face-attribute 'bm-persistent-face nil :background "#3A3A3A" :underline nil :foreground nil)
     ))
 
 
@@ -106,7 +106,7 @@
   (set-face-attribute 'trailing-whitespace nil
                       :background "#4F6666")
   (set-face-attribute 'whitespace-trailing nil :background "#4F6666")
-  (set-face-attribute 'whitespace-tab nil :background "#4F6666")
+  (set-face-attribute 'whitespace-tab nil :background "#333333")
   (setq whitespace-style '(face tabs trailing)))
 
 ;; ------------------
