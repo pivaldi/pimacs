@@ -90,6 +90,7 @@
   (map!
    :prefix ("s-<tab>" "workspaces/windows #pim")
    :desc "Switch to last workspace. #pim" "<tab>" #'+workspace/other
+   :desc "Switch to last workspace. #pim" "s-<tab>" #'+workspace/other
    :desc "Switch to choose workspace. #pim" "w" #'+workspace/switch-to))
 
 ;; (map! :leader
@@ -166,16 +167,16 @@
   )
 
 ;; ;; Semicolon and comma at the end of the line
-(let ((keysm (kbd "C-;"))
-      (keyco (kbd "C-,")))
-  (map! :desc "Fancy insert/delete semicolon at the end of the line. #pim" keysm #'pim/insert-semicol-at-end-of-line)
-  (map! :desc "Fancy insert/delete comma at the end of the line. #pim" keyco #'pim/insert-comma-at-end-of-line)
-  ;; Rebind flyspell default key-binding
-  (after! flyspell
-    (define-key flyspell-mode-map
-                keysm 'pim/insert-semicol-at-end-of-line)
-    (define-key flyspell-mode-map
-                keyco 'pim/insert-comma-at-end-of-line)))
+;; (let ((keysm (kbd "C-;"))
+;;       (keyco (kbd "C-,")))
+;;   (map! :desc "Fancy insert/delete semicolon at the end of the line. #pim" keysm #'pim/insert-semicol-at-end-of-line)
+;;   (map! :desc "Fancy insert/delete comma at the end of the line. #pim" keyco #'pim/insert-comma-at-end-of-line)
+;;   ;; Rebind flyspell default key-binding
+;;   (after! flyspell
+;;     (define-key flyspell-mode-map
+;;                 keysm 'pim/insert-semicol-at-end-of-line)
+;;     (define-key flyspell-mode-map
+;;                 keyco 'pim/insert-comma-at-end-of-line)))
 
 (map! :desc "Insert a cool section comments. #pim" "C-$" #'pim/insert-comment-section)
 

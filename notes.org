@@ -1,0 +1,7 @@
+#+title: Notes on Doom PIMacs feature
+#+OPTIONS: \n:t
+
+* Projectile Useful Features
+** Search string in a project
+To export a list of completion search candidates in a dedicated buffer :
+=C-c s p=, input a word to search and press =C-; E=.

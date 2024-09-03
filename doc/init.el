@@ -30,7 +30,9 @@
       (list '("org-mode-map" . org) '("go-mode-map" . go-mode)
             '("dired-mode-map" . dired) '("isearch-mode-map" . isearch)
             '("magit-mode-map" . magit) '("projectile-mode-map" . projectile)
-            '("ctl-x-map" . nil) '("doom-leader-workspaces/windows-map" . nil)))
+            '("ctl-x-map" . nil) '("doom-leader-workspaces/windows-map" . nil)
+            '("php-mode-map" . php-mode)
+            ))
 
 
 

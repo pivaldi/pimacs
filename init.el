@@ -19,6 +19,7 @@
  org ;; Org mode specific configuration.
  dired ;; Dired mode specific configuration.
  lang-c
+ lang-php ;; Configuration for PHP coding.
  lang-lisp
  lang-make
 
