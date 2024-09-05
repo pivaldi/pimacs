@@ -31,6 +31,16 @@ Deletes whitespace at join."
       (delete-indentation 1)
     (kill-line arg)))
 
+(defun pim/kill-window-and-buffer()
+  "Delete current window and buffer."
+  (interactive)
+  (let ((windows (get-buffer-window-list (current-buffer))))
+    (doom/kill-this-buffer-in-all-windows (current-buffer))
+    ;; (kill-current-buffer)
+    (cl-remove-if-not #'window-live-p windows)
+    (dolist (win windows)
+      (condition-case nil (delete-window win) (error nil)))))
+
 ;;;###autoload
 (defun pim/buffer-file-name (prefix &optional killit)
   "Show the buffer file name (if any)

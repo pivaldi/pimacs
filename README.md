@@ -59,6 +59,9 @@ See also the auto-generated
 [Visible local bookmarks in buffer](bm/README.org) is a simple and useful
 complement to the native Emacs bookmark system.
 
+## pimacs/origami
+[Provide/configure the Origami text folding minor mode](origami/README.org)
+
 ### pimacs/dired
 [Dired mode specific configuration](dired/README.org).  
 See also the auto-generated

@@ -32,6 +32,14 @@ Otherwise, use a buffer in which all the names of files are editable."
       (dired-do-rename) ;; au moins un fichier marqué.
     (wdired-change-to-wdired-mode)))
 
+
+;;;###autoload
+(defun pi/dired-rename-this-file ()
+  "In Dired, rename this file.
+Comes from https://www.emacswiki.org/emacs/download/dired%2b.el"
+  (interactive)
+  (let ((use-file-dialog  nil)) (dired-do-rename 1)))
+
 (provide 'pimacs/dired)
 ;;; autoloaded.el ends here
 

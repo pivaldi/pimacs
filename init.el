@@ -15,6 +15,7 @@
  bm ;; Provides visible and BUFFER LOCAL bookmarks with the ability to jump forward and backward to the next bookmark.
  calendar-fr ;; French calendar.
  tramp ;;To “turn off” the backup feature for remote files and fix security issue.
+ origami ;; A text folding minor mode for Emacs.
 
  org ;; Org mode specific configuration.
  dired ;; Dired mode specific configuration.

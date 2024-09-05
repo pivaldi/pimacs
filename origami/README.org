@@ -1,0 +1,7 @@
+#+title: PIMacs/origami Doom Module
+
+Provide a text folding minor mode for Emacs with
+[[https://github.com/gregsexton/origami.el][Origami Emacs Package]].
+
+* Key Bindings
+=s-S-<tab>= and =s-<iso-lefttab>= : toggle the fold node at point. #pim

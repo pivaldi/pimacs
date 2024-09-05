@@ -112,7 +112,7 @@
 (if (executable-find "rg")
     (grep-apply-setting
      'grep-find-command
-     '("rg -n -H -i --hidden --no-heading -e '' $(git rev-parse --show-toplevel || pwd)" . 39))
+     '("rg -n -H -i --hidden --no-heading -e '' --glob '*' $(git rev-parse --show-toplevel || pwd)" . 39))
   (progn
     (add-to-list 'pim-error-msgs "Please install rg : https://github.com/BurntSushi/ripgrep")
     (grep-apply-setting
@@ -153,6 +153,11 @@
   (setq which-key-max-description-length 50)
   (setq max-mini-window-height 0.33)
   )
+
+(use-package! lsp
+  :config
+  (setq lsp-enable-file-watchers t
+        lsp-file-watch-threshold 10000))
 
 (load! "+doom")
 (load! "+hooks")

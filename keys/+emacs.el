@@ -39,20 +39,29 @@
 
 ;; ------------------------
 ;; * Key for other-window *
-(map!
- :desc "Select another window in cyclic ordering of windows or with `ace-window`. #pim" "<C-next>"
- (lambda (arg)
-   (interactive "p")
-   (if (functionp 'ace-window)
-       (ace-window arg)
-     (other-window 1 nil))))
-(map!
- :desc "Select another window in backwards ordering of windows or with `ace-window`. #pim" "<C-prior>"
- (lambda (arg)
-   (interactive "p")
-   (if (functionp 'ace-window)
-       (ace-window arg)
-     (other-window -1 nil))))
+(use-package! ace-window
+  :preface
+  (map!
+   :desc "Select another window in cyclic ordering of windows (with `ace-window` if featured). #pim" "<C-next>"
+   (lambda (arg)
+     (interactive "p")
+     (if (functionp 'ace-window)
+         (let ((aw-ignore-current-orig aw-ignore-current))
+           (setq aw-ignore-current t)
+           (ace-window arg)
+           (setq aw-ignore-current aw-ignore-current-orig)
+           )
+       (other-window 1 nil))))
+
+  (map!
+   :desc "Select another window in reverse cyclic ordering of windows or with `ace-window` if C-u prefix. #pim" "<C-prior>"
+   (lambda (arg)
+     "Select another window in reverse cyclic."
+     (interactive "P")
+     (if (and arg (functionp 'ace-window))
+         (ace-window arg)
+       (other-window -1 nil)))))
+
 
 ;; -------------------------------------------
 ;; * Filename completion anywhere with S-Tab *
@@ -106,11 +115,9 @@
 ;;             (define-key Info-mode-map (kbd "<") 'Info-history-back)
 ;;             (define-key Info-mode-map (kbd ">") 'Info-history-forward)))
 
-(map! :desc "Browse url at point. #pim" "C-c b" #'browse-url-at-point)
-
-(map! :desc "Kill buffer globally and all windows previously showing this buffer. #pim" "<f12>" 'doom/kill-this-buffer-in-all-windows)
-
-(map! :desc "Delete current window and buffer. #pim" "<C-S-iso-lefttab>" 'pim/indent-whole-buffer)
+;; (map! :desc "Browse url at point. #pim" "C-c b" #'browse-url-at-point)
+(map! :desc "Delete current window and buffer. #pim" "<f12>" 'pim/kill-window-and-buffer)
+(map! :desc "Indent the whole buffer. #pim" "<C-S-iso-lefttab>" 'pim/indent-whole-buffer)
 
 ;; ;; Todo : enable this !
 ;; (if (require 'move-text nil t)
@@ -431,6 +438,8 @@
 
 (map! :desc "Switch to the next user buffer. #pim" "<mouse-9>" #'pim/next-user-buffer)
 (map! :desc "Switch to the previous user buffer. #pim" "<mouse-8>" #'pim/previous-user-buffer)
+
+(provide 'pimacs/keys/+emacs)
 ;; +emacs.el ends here.
 
 ;; Local variables:

@@ -19,9 +19,6 @@
 
 ;;; Code:
 
-(provide 'pimacs/lang-php)
-;;; config.el ends here
-
 (use-package! phpactor
   :defer t
   :init
@@ -29,14 +26,29 @@
     (unless (file-directory-p d)
       (make-directory d))))
 
+;; (use-package! php-mode
+;;   :defer t
+;;   :hook ((php-mode . (lambda ()
+;;                        (set (make-local-variable 'company-backends)
+;;                             '(;; list of backends
+;;                               company-phpactor
+;;                               company-files
+;;                               ))))
 
-(after! php-mode
-  (map!
-   :map php-mode-map
-   :desc "Execute Phpactor RPC goto_definition command. #pim" "M-." #'phpactor-goto-definition
-   :desc "Execute Phpactor RPC references action to find references. #pim" "M-?" #'phpactor-find-references
-   :desc "Open the Transient Php menu. #pim" "C-t" #'transient-php-menu)
-  )
+;;          ))
+
+;; (after! php-mode
+;;   (map!
+;;    :map php-mode-map
+;;    :desc "Execute Phpactor RPC goto_definition command. #pim" "M-." #'phpactor-goto-definition
+;;    :desc "Execute Phpactor RPC references action to find references. #pim" "M-?" #'phpactor-find-references
+;;    :desc "Open the Transient Php menu. #pim" "C-t" #'transient-php-menu)
+;;   )
+
+
+
+;; TODO : key bindings collision whit M-<tab> calls php-complete-function :
+;; perform function completion on the text around point.
 
 (after! transient
   (transient-define-prefix transient-php-menu ()
@@ -46,28 +58,32 @@
       ("cn" "New" phpactor-create-new-class)
       ("cr" "Move" phpactor-move-class)
       ("ci" "Inflect" phpactor-inflect-class)
-      ("n"  "Namespace" phpactor-fix-namespace)]
+      ("cn"  "Namespace" phpactor-fix-namespace)]
      ["Properties"
-      ("a"  "Accessor" phpactor-generate-accessors)
+      ("pa"  "Accessor" phpactor-generate-accessors)
       ("pc" "Constructor" phpactor-complete-constructor)
       ("pm" "Add missing props" phpactor-complete-properties)
-      ("r" "Rename var locally" phpactor-rename-variable-local)
-      ("R" "Rename var in file" phpactor-rename-variable-file)]
+      ("pr" "Rename var locally" phpactor-rename-variable-local)
+      ("pR" "Rename var in file" phpactor-rename-variable-file)]
      ["Extract"
       ("ec" "constant" phpactor-extract-constant)
       ("ee" "expression" phpactor-extract-expression)
       ("em"  "method" phpactor-extract-method)]
      ["Methods"
-      ("i" "Implement Contracts" phpactor-implement-contracts)
-      ("m"  "Generate method" phpactor-generate-method)]
+      ("mi" "Implement Contracts" phpactor-implement-contracts)
+      ("mm"  "Generate method" phpactor-generate-method)]
      ["Navigate"
-      ("x" "List refs" phpactor-list-references)
-      ("X" "Replace refs" phpactor-replace-references)
-      ("."  "Goto def" phpactor-goto-definition)]
+      ("nx" "List refs" phpactor-list-references)
+      ("nX" "Replace refs" phpactor-replace-references)
+      ("n."  "Goto def" phpactor-goto-definition)]
      ["Phpactor"
       ("s" "Status" phpactor-status)
       ("u" "Install" phpactor-install-or-update)]]))
 
+(load! "+dependencies")
+
+(provide 'pimacs/lang-php)
+;;; config.el ends here
 
 ;; Local variables:
 ;; coding: utf-8

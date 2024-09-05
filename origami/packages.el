@@ -1,4 +1,5 @@
-;;; pimacs/lang-php/init.el -*- lexical-binding: t; -*-
+;; -*- no-byte-compile: t; -*-
+;;; pimacs/origami/packages.el
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -18,12 +19,14 @@
 
 ;;; Code:
 
-(add-to-list 'pim-keymapname-alist '("lang-php" . (("php-mode-map" . php-mode))))
+(package! origami)
+(package! dash)
+(package! s)
 
-(provide 'pimacs/lang-php/init)
-;;; init.el ends here
+(provide 'pimacs/origami/packages)
+;;; packages.el ends here
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/lang-php/init.el")
+;; eval: (rename-buffer "pimacs/origami/packages.el")
 ;; End:

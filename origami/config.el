@@ -1,4 +1,4 @@
-;;; pimacs/lang-php/init.el -*- lexical-binding: t; -*-
+;;; pimacs/origami/config.el -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -18,12 +18,20 @@
 
 ;;; Code:
 
-(add-to-list 'pim-keymapname-alist '("lang-php" . (("php-mode-map" . php-mode))))
+(use-package! origami
+  :defer t
+  :commands (origami-toggle-node global-origami-mode)
+  :autoload (origami-mode )
+  :preface
+  (map! :desc "Toggle the fold node at point. #pim" "s-S-<tab>" #'origami-toggle-node
+        :desc "Toggle the fold node at point. #pim" "s-<iso-lefttab>" #'origami-toggle-node)
+  :config
+  (global-origami-mode))
 
-(provide 'pimacs/lang-php/init)
-;;; init.el ends here
+(provide 'pimacs/origami)
+;; origami.el ends here.
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/lang-php/init.el")
+;; eval: (rename-buffer "pimacs/origami/config.el")
 ;; End:

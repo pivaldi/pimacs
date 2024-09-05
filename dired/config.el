@@ -26,8 +26,9 @@
   :config
   (map!
    :map dired-mode-map
-   :desc "Use `wdired-change-to-wdired-mode` if multiple files are marked otherwise use `dired-do-rename`. #pim"
-   "R" #'pim/dired-rename))
+   :desc "Rename current file if no file is marked, otherwise put the Dired buffer in writable Dired mode. #pim" "R" #'pim/dired-rename
+   :desc "Rename current file or all marked files. #pim" "r" #'pi/dired-rename-this-file
+   ))
 
 (when (featurep :system 'linux)
   (after! dired
