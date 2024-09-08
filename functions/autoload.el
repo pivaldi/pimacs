@@ -31,6 +31,7 @@ Deletes whitespace at join."
       (delete-indentation 1)
     (kill-line arg)))
 
+;;;###autoload
 (defun pim/kill-window-and-buffer()
   "Delete current window and buffer."
   (interactive)

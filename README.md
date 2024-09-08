@@ -71,3 +71,12 @@ See also the auto-generated
 ### pimacs/doc
 [Generated PIMacs Documentation](doc/README.org). Contains all the Doom and
 PIMacs fundamental key bindings refcards classed by key bindings prefixes.
+
+## External Tools
+
+This is a list of external tools you should install which are automatically used
+when detected !
+
+- [Semgrep](https://semgrep.dev/docs/) : Find bugs and reachable dependency
+  vulnerabilities in code.  
+  You may use the command line `pipx install semgrep` to install it.

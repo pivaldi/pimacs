@@ -72,7 +72,8 @@
  ;; Preferred split window horizontally
  split-width-threshold most-positive-fixnum
  ;; Emacs will initiate GC every 20MB allocated because we have a modern machine
- gc-cons-threshold 20000000
+ gc-cons-threshold (* 100 1024 1024)
+ read-process-output-max (* 1024 1024)
  gc-cons-percentage 1
  ;; Show all process with M-x proced
  ;; https://www.masteringemacs.org/article/displaying-interacting-processes-proced
@@ -94,6 +95,8 @@
  display-fill-column-indicator-column t
  ;; Enable matching whitespace literally.
  search-whitespace-regexp nil
+ ;; Minimum severity level for displaying the warning buffer.
+ warning-minimum-level :error
  )
 
 ;; ---------------------

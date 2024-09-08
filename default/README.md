@@ -51,7 +51,8 @@ Actually only Emacs (not Evil) key binding are supported.
 * Enable matching whitespace literally (disable lax space matching).
   [By default searching two spaces also match single space](https://www.gnu.org/software/emacs/manual/html_node/emacs/Special-Isearch.html#Special-Isearch), who want this behavior ??
 * Add Workspace name in the Doom modeline.
-* Increase the default length of `which-key` description to 50. 
+* Increase the default length of `which-key` description to 50.
+* Set the minimum severity level for displaying the warning buffer to `:error`.
 
 ## Adding Hooks
 

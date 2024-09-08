@@ -19,38 +19,42 @@
 
 ;;; Code:
 
-(use-package! phpactor
+;; TODO : key bindings collision whit M-<tab> calls php-complete-function :
+;; perform function completion on the text around point.
+
+
+(use-package! php-mode
   :defer t
   :init
   (let ((d (format "%s%s" doom-cache-dir "phpactor")))
     (unless (file-directory-p d)
-      (make-directory d))))
+      (make-directory d)))
+  :config
+  (setq php-warned-bad-indent t)
+  :hook (php-mode-hook . php-enable-symfony2-coding-style)
+  )
 
-;; (use-package! php-mode
-;;   :defer t
-;;   :hook ((php-mode . (lambda ()
-;;                        (set (make-local-variable 'company-backends)
-;;                             '(;; list of backends
-;;                               company-phpactor
-;;                               company-files
-;;                               ))))
+(use-package! php-fh
+  :defer t
+  :autoload (php-fh-highlight)
+  :init
+  (after! php-mode (php-fh-highlight)))
 
-;;          ))
+(when (modulep! :lang php +lsp)
+  (after! (:and php-mode lsp)
+    (setq-hook! 'php-mode +format-with-lsp nil)
+    )
+  )
 
-;; (after! php-mode
-;;   (map!
-;;    :map php-mode-map
-;;    :desc "Execute Phpactor RPC goto_definition command. #pim" "M-." #'phpactor-goto-definition
-;;    :desc "Execute Phpactor RPC references action to find references. #pim" "M-?" #'phpactor-find-references
-;;    :desc "Open the Transient Php menu. #pim" "C-t" #'transient-php-menu)
-;;   )
+(unless (modulep! :lang php +lsp)
+  (after! (:and phpactor php-mode transient)
+    (map!
+     :map php-mode-map
+     :desc "Execute Phpactor RPC goto_definition command. #pim" "M-." #'phpactor-goto-definition
+     :desc "Execute Phpactor RPC references action to find references. #pim" "M-?" #'phpactor-find-references
+     :desc "Open the Transient Php menu. #pim" "C-t" #'transient-php-menu)
+    )
 
-
-
-;; TODO : key bindings collision whit M-<tab> calls php-complete-function :
-;; perform function completion on the text around point.
-
-(after! transient
   (transient-define-prefix transient-php-menu ()
     "Phpactor Commands"
     [["Class"

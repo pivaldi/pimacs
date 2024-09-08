@@ -4,8 +4,8 @@
 ;; sync' after modifying this file!
 
 (setq
- user-full-name "Philippe Ivaldi"
- user-mail-address "emacs@MY_GIT_USER_NAME.me"
+ user-full-name "Philippe IVALDI"
+ user-mail-address "emacs@MY-NAME.me"
  ;; doom-theme 'doom-zenburn
  doom-theme nil ;; I use a slightly customized Zenburn theme by PIMacs.
  )

@@ -78,6 +78,8 @@
     (set-face-attribute 'avy-lead-face-1 nil :foreground "#93E0E3")
     (set-face-attribute 'avy-lead-face-2 nil :foreground "#93E0E3")
     (set-face-attribute 'avy-background-face nil :foreground "#A5A595"))
+  (after! faces
+    (set-face-attribute 'region nil :background "#307070"))
 
   (after! bm
     (set-face-attribute 'bm-fringe-persistent-face nil :background (face-attribute 'fringe :background)  :foreground "#FF3333")
