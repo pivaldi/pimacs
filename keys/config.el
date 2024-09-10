@@ -16,15 +16,13 @@
 ;;; Code:
 
 (after! pimacs/default
- (if (featurep 'evil)
-     (add-to-list 'pim-error-msgs "PIMacs does not provide key configuration for evil mode. Push request is needed.")
-   (load! "+emacs")
-   ))
+  (if (featurep 'evil)
+      (add-to-list 'pim-error-msgs "PIMacs does not provide key configuration for evil mode. Push request is needed.")
+    (load! "+emacs")
+    ))
 
 (provide 'pimacs/keys)
-
-
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/keys-config.el")
- ;; End:
+;; eval: (rename-buffer "pimacs/keys/config.el")
+;; End:

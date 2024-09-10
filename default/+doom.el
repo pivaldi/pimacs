@@ -20,10 +20,14 @@
 ;; I want to see this buffers !!
 (setq doom-unreal-buffer-functions '(minibufferp))
 
-;; Add Persp Workspace name in the Doom modeline.
-;; https://github.com/doomemacs/doomemacs/issues/314#issuecomment-470381785
 (after! doom-modeline
-  (setq doom-modeline-persp-name t))
+  ;; Add Persp Workspace name in the Doom modeline.
+  ;; https://github.com/doomemacs/doomemacs/issues/314#issuecomment-470381785
+  (setq doom-modeline-persp-name t)
+  ;; Completely disable management of the mode-line in popups
+  ;; See https://github.com/doomemacs/doomemacs/blob/master/modules/ui/popup/README.org#disabling-hidden-mode-line-in-popups
+  (when (modulep! :ui popup)
+    (remove-hook '+popup-buffer-mode-hook #'+popup-set-modeline-on-enable-h)))
 
 ;; Local variables:
 ;; coding: utf-8

@@ -34,11 +34,75 @@
   :hook (php-mode-hook . php-enable-symfony2-coding-style)
   )
 
-(use-package! php-fh
-  :defer t
-  :autoload (php-fh-highlight)
-  :init
-  (after! php-mode (php-fh-highlight)))
+;; (after! php-mode
+;;   (use-package! php-cs-fixer
+;;     :if (modulep! +php-cs-fixer)
+;;     :demand t
+;;     :config
+;;     (setq-hook! 'php-mode-hook +format-with-lsp nil)
+;;     (add-to-list '+format-on-save-disabled-modes 'php-mode)
+;;     (when (not (executable-find "php-cs-fixer"))
+;;       (add-to-list 'pim-error-msgs "Please install php-cs-fixer : https://github.com/PHP-CS-Fixer/PHP-CS-Fixer"))
+;;     (setq php-cs-fixer-config-option (format "%s/php-cs-fixer-config.php" (doom-module-locate-path :pimacs 'lang-php)))
+;;     ;; (add-hook! php-mode-hook (add-hook 'before-save-hook #'php-cs-fixer-before-save nil t))
+;;     :hook (before-save-hook . php-cs-fixer-before-save)
+;;     ))
+
+(when (modulep! +php-cs-fixer)
+  (cl-defun pim--php-cs-fixer-apheleia (&key buffer scratch formatter remote callback remote &allow-other-keys)
+    "Called by `apheleia--run-formatter-function'.
+:buffer buffer
+     Original buffer being formatted. This shouldn't be
+     modified. You can use it to check things like the
+     current major mode, or the buffer filename. If you
+     use it as input for the formatter, your formatter
+     won't work when chained after another formatter.
+:scratch scratch
+     Buffer the formatter should modify. This starts out
+     containing the original file contents, which will be
+     the same as `buffer' except it has already been
+     transformed by any formatters that ran previously.
+     Name of the current formatter symbol, e.g. `black'.
+:formatter
+     The current formatter (a symbol)
+:callback
+     Callback. Should pass an error value (cons of symbol
+     and data, like for `signal') or nil. For backwards
+     compatibility it can also invoke only on success,
+     with no args.
+:remote remote
+     The remote part of the buffers file-name or directory.
+:async (not remote)
+     Whether the formatter should be run async or not.
+:callback
+     Callback when formatting scratch has failed.
+"
+    (when (and (equal formatter 'php-cs-fixer) (not remote))
+      (with-current-buffer buffer
+        (php-cs-fixer-fix)
+        (funcall callback))))
+
+  (after! php-mode
+    (use-package! php-cs-fixer
+      :demand t
+      :init
+      (when (not (executable-find "php-cs-fixer"))
+        (add-to-list 'pim-error-msgs "Please install php-cs-fixer : https://github.com/PHP-CS-Fixer/PHP-CS-Fixer"))
+      :config
+      (setq-hook! 'php-mode-hook +format-with-lsp nil)
+      (setq php-cs-fixer-config-option (format "%s/php-cs-fixer-config.php" (doom-module-locate-path :pimacs 'lang-php)))
+      ;; (add-hook! php-mode-hook (add-hook 'before-save-hook #'php-cs-fixer-before-save nil t))
+      (with-eval-after-load 'apheleia
+        (setf (alist-get 'php-cs-fixer apheleia-formatters)
+              'pim--php-cs-fixer-apheleia)
+        (setf (alist-get 'php-mode apheleia-mode-alist) '(php-cs-fixer))))))
+
+(unless (modulep! +no-php-fh)
+  (use-package! php-fh
+    :defer t
+    :autoload (php-fh-highlight)
+    :init
+    (after! php-mode (php-fh-highlight))))
 
 (when (modulep! :lang php +lsp)
   (after! (:and php-mode lsp)
@@ -84,7 +148,8 @@
       ("s" "Status" phpactor-status)
       ("u" "Install" phpactor-install-or-update)]]))
 
-(load! "+dependencies")
+(unless (modulep! +no-dep)
+  (load! "+dependencies"))
 
 (provide 'pimacs/lang-php)
 ;;; config.el ends here

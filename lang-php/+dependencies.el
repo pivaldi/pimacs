@@ -20,32 +20,35 @@
 
 (use-package!
     async
-  :defer t
   :config
   (async-start
    (lambda ()
      (dolist (progdef '(
-                        ("phpunit" . "composer global require phpunit/phpunit --no-progress --no-progress")
-                        ("phpctags" . "composer global require techlivezheng/phpctags --no-progress --no-progress")
-                        ("php-cs-fixer" . "composer global require friendsofphp/php-cs-fixer --no-progress --no-progress")
-                        ("phpcs". "composer global require squizlabs/php_codesniffer=* --dev --no-progress")
-                        ("prettier" . "npm install -g @prettier/plugin-php")))
-       (let* ((progname (pop progdef))
-              (args (string-split progdef " "))
-              (buffername "**PIMacs PHP Dependencies Install**")
-              (cmd (pop args))
-              )
-         (unless (executable-find progname)
-           (unless (executable-find (car args))
-             (error "PIMacs error : PIMacs/lang-php module need \"%s\" to be installed." (car args)))
-           (unless (eq 0 (apply #'call-process cmd nil buffername nil args))
-             (unless (get-buffer-window buffername 0)
-               (pop-to-buffer buffername nil t))
-             (error "PIMacs error : failed to install \"%s\" with the command \"%s\"" progname (string-join args " ")))
-           (unless (executable-find progname)
-             (pop-to-buffer buffername nil t)
-             (error "PIMacs error : Not found \"%s\" in the exec path after installing \"%s\" " progname progname))
-           )))   )
-   ))
+                        ("phpstan" . (
+                                      "composer global require phpstan/phpstan --dev -W --no-progress"
+                                      "composer global require phpactor/language-server-phpstan-extension -W --no-progress"))
+                        ;; ("behat" . "composer global require phpactor/behat-extension -W --no-progress")
+                        ("phpunit" . ("composer global require phpunit/phpunit -W --no-progress"))
+                        ("phpctags" . ("composer global require techlivezheng/phpctags -W --no-progress"))
+                        ("php-cs-fixer" . ("composer global require friendsofphp/php-cs-fixer -W --no-progress"))
+                        ("phpcs". ("composer global require squizlabs/php_codesniffer=* --dev -W --no-progress"))
+                        ("prettier" . ("npm install -g @prettier/plugin-php"))))
+       (let* ((cmd (car progdef))
+              (intall-cmds (cdr progdef))
+              (buffername "**PIMacs PHP Dependencies Install**"))
+         (unless (executable-find cmd)
+           (dolist (installdef intall-cmds)
+             (let* ((args (string-split installdef " "))
+                    (cmd-install (pop args)))
+               (unless (executable-find cmd-install)
+                 (error "PIMacs error : PIMacs/lang-php module need \"%s\" to be installed." cmd-install))
+               (unless (eq 0 (apply #'call-process cmd-install nil buffername nil args))
+                 (unless (get-buffer-window buffername 0)
+                   (pop-to-buffer buffername nil t))
+                 (error "PIMacs error : failed to install \"%s\" with the command \"%s\"" cmd (string-join args " ")))
+               (unless (executable-find cmd)
+                 (pop-to-buffer buffername nil t)
+                 (error "PIMacs error : Not found \"%s\" in the exec path after installing \"%s\" " cmd cmd))
+               ))))))))
 
 ;;; Code:

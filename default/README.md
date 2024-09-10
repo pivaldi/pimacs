@@ -80,6 +80,8 @@ Actually only Emacs (not Evil) key binding are supported.
 
 * Make only the minibuffer as unreal. Use `C-x B` to see all the buffers.  
   Doom consider some buffers as unreal buffer (like *Message*) but I need to see these buffers !!
+* Add Persp Workspace name in the Doom modeline.
+* Disable the Doom management of the mode-line in popups.
 
 ## Useful Interactive Functions
 

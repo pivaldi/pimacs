@@ -96,8 +96,14 @@
  ;; Enable matching whitespace literally.
  search-whitespace-regexp nil
  ;; Minimum severity level for displaying the warning buffer.
- warning-minimum-level :error
+ ;; warning-minimum-level :error
  )
+
+;; See https://emacs.stackexchange.com/q/81247/45315
+(when (executable-find "semgrep")
+  (add-to-list 'warning-suppress-log-types '(semgrep/rulesRefreshed))
+  (add-to-list 'warning-suppress-types '(semgrep/rulesRefreshed)))
+
 
 ;; ---------------------
 ;; * Prefered encoding *
@@ -161,6 +167,10 @@
   :config
   (setq lsp-enable-file-watchers t
         lsp-file-watch-threshold 10000))
+
+(when (modulep! :ui treemacs +lsp)
+  ;; See https://github.com/doomemacs/doomemacs/blob/master/modules/ui/treemacs/README.org#configuration
+  (setq-default +treemacs-git-mode 'deferred))
 
 (load! "+doom")
 (load! "+hooks")

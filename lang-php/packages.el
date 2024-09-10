@@ -1,14 +1,15 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; pimacs/lang-php/packages.el
 
-(package! php-cs-fixer)
+(when (modulep! +php-cs-fixer)
+  (package! php-cs-fixer))
 
-(package! php-fh
-  :recipe (:host github :repo "pivaldi/php-fh")
-  :pin "261bb5499d7dac7ac5dee43034ad8a36411e9089"
-  )
+(unless (modulep! +no-php-fh)
+  (package! php-fh
+    :recipe (:host github :repo "pivaldi/php-fh")
+    :pin "40a7a81e644627bc934c967a271e4cd8be682251"))
 
-(provide 'pimacs/lang-php)
+(provide 'pimacs/lang-php/packages)
 ;;; packages.el ends here
 
 ;; Local variables:
