@@ -10,3 +10,4 @@ with **`+azerty` keyboard**.
   continuing comment on newline ; use instead `M-<RET>` for this feature.
 - You can generate the refcard of all PIMacs key bindings for your own
   configuration with the command `pim-keys-bindings-to-refcard`.
+- With a /qwerty/ keyboard, the key bindings will be different !

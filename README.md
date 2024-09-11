@@ -31,8 +31,12 @@
  ;; lang-c
  ;; lang-lisp
  ;; lang-make
+ 
+ ;; …
+ 
  )
 ```
+
 **Remember to run `doom sync` after modifying `init.el` !**
 
 ## Modules

@@ -32,9 +32,9 @@
             '("magit-mode-map" . magit) '("projectile-mode-map" . projectile)
             '("ctl-x-map" . nil) '("doom-leader-workspaces/windows-map" . nil)
             '("php-mode-map" . php-mode)
+            '("lsp-mode-map" . lsp)
+            '("emacs-lisp-mode-map" . elisp-mode)
             ))
-
-
 
 (provide `pimacs/doc/init)
 ;;; init.el ends here

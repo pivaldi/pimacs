@@ -94,7 +94,7 @@ EXT, a string, can be org, md or txt."
           (progn
             (setq prefix (pop prefixes)) ;; prefixes decreasing.
             ;; TODO : use a temp-buffer instead !!
-            (setq result (concat result (pim-which-key-get-bindings-recursively-org keymap prefix 1 nil (not all))))
+            (setq result (concat result (pim-which-key-get-bindings-recursively-org keymapname keymap prefix 1 nil (not all))))
             prefixes)))
     result
     ))
@@ -176,6 +176,7 @@ If RESTRICT-TO-PIM is t, restrict the to the key bindings added by PIMacs."
          (level1part ""))
     (when (and (equal prefix "") (not keymap)) (setq prefixf "No Prefix on No Keymap"))
     (setq level1part (if (or nil (eq 1 level)) (format "* %s%s\n" prefixf keymapf) ""))
+    (and (not (listp keys)) (error "%s %s" prefix (symbol-name keymap)))
     (dolist (key keys)
       (let* ((prefixn (s-trim (format "%s %s" prefix (pim-keystring-kbd-consolidate (pop key)))))
              (sub-keys (which-key--get-bindings (kbd prefixn) keymap))

@@ -172,6 +172,13 @@
   ;; See https://github.com/doomemacs/doomemacs/blob/master/modules/ui/treemacs/README.org#configuration
   (setq-default +treemacs-git-mode 'deferred))
 
+(use-package! ws-butler
+  :defer t
+  :config
+  (setq ws-butler-keep-whitespace-before-point nil)
+  (ws-butler-global-mode 1)
+  )
+
 (load! "+doom")
 (load! "+hooks")
 (load! "+modes")

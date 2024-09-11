@@ -16,9 +16,10 @@
  calendar-fr ;; French calendar.
  tramp ;;To “turn off” the backup feature for remote files and fix security issue.
  origami ;; A text folding minor mode for Emacs.
-
  org ;; Org mode specific configuration.
  dired ;; Dired mode specific configuration.
+
+ lsp-ui-doc ;; Configures lsp-ui-doc when the Doom lsp module is loaded without the option +peek.
  lang-c
  (lang-php +php-cs-fixer) ;; Configuration for PHP coding.
  lang-lisp

@@ -439,6 +439,9 @@
 (map! :desc "Switch to the next user buffer. #pim" "<mouse-9>" #'pim/next-user-buffer)
 (map! :desc "Switch to the previous user buffer. #pim" "<mouse-8>" #'pim/previous-user-buffer)
 
+;; TODO : better key bindings than lsp-describe-thing-at-point ?
+;; https://github.com/emacs-lsp/lsp-ui/
+
 (provide 'pimacs/keys/+emacs)
 ;; +emacs.el ends here.
 

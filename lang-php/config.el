@@ -49,6 +49,12 @@
 ;;     ))
 
 (when (modulep! +php-cs-fixer)
+  (when (modulep! :lang php +lsp)
+    (after! (:and php-mode lsp)
+      (setq-hook! 'php-mode +format-with-lsp nil)
+      )
+    )
+
   (cl-defun pim--php-cs-fixer-apheleia (&key buffer scratch formatter remote callback remote &allow-other-keys)
     "Called by `apheleia--run-formatter-function'.
 :buffer buffer
@@ -103,12 +109,6 @@
     :autoload (php-fh-highlight)
     :init
     (after! php-mode (php-fh-highlight))))
-
-(when (modulep! :lang php +lsp)
-  (after! (:and php-mode lsp)
-    (setq-hook! 'php-mode +format-with-lsp nil)
-    )
-  )
 
 (unless (modulep! :lang php +lsp)
   (after! (:and phpactor php-mode transient)
