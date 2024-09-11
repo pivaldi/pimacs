@@ -19,7 +19,7 @@
  org ;; Org mode specific configuration.
  dired ;; Dired mode specific configuration.
 
- lsp-ui-doc ;; Configures lsp-ui-doc when the Doom lsp module is loaded without the option +peek.
+ (lsp +doc) ;; Configures lsp and lsp-ui-doc (option +doc)
  lang-c
  (lang-php +php-cs-fixer) ;; Configuration for PHP coding.
  lang-lisp

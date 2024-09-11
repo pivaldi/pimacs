@@ -52,7 +52,7 @@ Actually only Emacs (not Evil) key binding are supported.
   [By default searching two spaces also match single space](https://www.gnu.org/software/emacs/manual/html_node/emacs/Special-Isearch.html#Special-Isearch), who want this behavior ??
 * Add Workspace name in the Doom modeline.
 * Increase the default length of `which-key` description to 50.
-* Set the minimum severity level for displaying the warning buffer to `:error`.
+* Suppress compilation warning message : `(add-to-list 'warning-suppress-types '(comp))`.
 
 ## Adding Hooks
 
@@ -83,10 +83,15 @@ Actually only Emacs (not Evil) key binding are supported.
 * Add Persp Workspace name in the Doom modeline.
 * Disable the Doom management of the mode-line in popups.
 
+## Adding Features With Advises
+- Possibility to filter unwanted displayed Emacs warning by message regexps.  
+  This is done by adding an advise on the function `display-warning`.  
+  The variable `pim-warning-suppress-message-regexps` can be customize to add filter.
+
 ## Useful Interactive Functions
 
 * `pim/scissor` : Insert a line of `pim/scissor-pattern` in the buffer.
-  
+
   `✂····✂····✂····✂····✂····✂····✂····✂····✂····✂····✂····`
 
 ## Initialized and Configured Packages
@@ -97,7 +102,6 @@ Actually only Emacs (not Evil) key binding are supported.
   style that partially boxes in the left hand side of an area of text,
   such a marking style might be used to show externally included text
   or example code. Usage : `M-x boxquote-…`
-
 
 ## Cli
 

@@ -43,7 +43,7 @@ Only azerty and qwerty are supported for now.")
   '(text-mode-hook org-mode-hook)
   "List of hooks for which we want auto-fill-mode --automatic break of long lines--."
   :type 'hook
-  :group 'pimacs-coding)
+  :group 'pimacs)
 
 ;; Local variables:
 ;; coding: utf-8

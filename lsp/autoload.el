@@ -1,4 +1,4 @@
-;;; pimacs/lsp-ui-doc/autoload.el -*- lexical-binding: t; -*-
+;;; pimacs/lsp/autoload.el -*- lexical-binding: t; -*-
 ;;; Package pimacs/keys --- PIMacs key binding -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
@@ -27,10 +27,10 @@
   (when lsp-ui-doc-show-with-cursor (lsp-ui-doc-hide))
   (setq lsp-ui-doc-show-with-cursor (not lsp-ui-doc-show-with-cursor)))
 
-(provide 'pimacs/lsp-ui-doc/autoload)
+(provide 'pimacs/lsp/autoload)
 ;; autoload.el ends here.
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/lsp-ui-doc/autoload.el")
+;; eval: (rename-buffer "pimacs/lsp/autoload.el")
 ;; End:

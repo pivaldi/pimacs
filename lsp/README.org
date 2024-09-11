@@ -1,0 +1,18 @@
+#+title: PIMacs/lsp-ui-doc Doom Emacs Module
+
+- Load the Doom module =lsp= if it is not already loaded
+- Remove the =lsp-mode= annoying warning /unknown notification: semgrep/rulesRefreshed/.
+- With the module option =+doc= This package configures
+  =[[https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/][lsp-ui-doc]]=
+  when the Doom =lsp= module is loaded without the option =+peek=.
+
+* Module Options
+- =+doc= : load and configure =lsp-ui-doc= *if the Doom lsp module is not loaded
+  with the option =+peek=*.
+
+* Key Bindings
+
+See [[lsp-ui-doc-key-bindings-refcard.org][the refacard of key bindings]] added
+by this module.
+
+Note that, with a /qwerty/ keyboard, the key bindings will be different…

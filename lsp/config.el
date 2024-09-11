@@ -1,4 +1,4 @@
-;;; pimacs/lsp-ui-doc/config.el -*- lexical-binding: t; -*-
+;;; pimacs/lsp/config.el -*- lexical-binding: t; -*-
 ;;; Package pimacs/keys --- PIMacs key binding -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
@@ -19,9 +19,15 @@
 
 ;;; Code:
 
-(unless (or (not (modulep! :tools lsp)) (modulep! :tools lsp +peek))
+(unless (modulep! :tools lsp) (doom! :tools lsp))
+
+;; See https://emacs.stackexchange.com/q/81247/45315
+(when (executable-find "semgrep")
+  (setq pim-warning-suppress-message-regexps '(".*semgrep/rulesRefreshed.*")))
+
+(when  (and (not (modulep! :tools lsp +peek)) (modulep! +doc))
   ;; See this excellent documentation https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
-  (use-package! lsp-ui
+  (use-package! lsp
     :defer t
     :commands lsp-ui-mode
     :config
@@ -41,10 +47,10 @@
     :hook (lsp-mode-hook . (lsp-ui-doc-mode lsp-signature-activate))
     ))
 
-(provide 'pimacs/lsp-ui-doc)
+(provide 'pimacs/lsp)
 ;; config.el ends here.
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/lsp-ui-doc/config.el")
+;; eval: (rename-buffer "pimacs/lsp/config.el")
 ;; End:

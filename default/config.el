@@ -99,11 +99,7 @@
  ;; warning-minimum-level :error
  )
 
-;; See https://emacs.stackexchange.com/q/81247/45315
-(when (executable-find "semgrep")
-  (add-to-list 'warning-suppress-log-types '(semgrep/rulesRefreshed))
-  (add-to-list 'warning-suppress-types '(semgrep/rulesRefreshed)))
-
+(add-to-list 'warning-suppress-types '(comp))
 
 ;; ---------------------
 ;; * Prefered encoding *
@@ -182,6 +178,7 @@
 (load! "+doom")
 (load! "+hooks")
 (load! "+modes")
+(load! "+advises")
 
 (provide 'pimacs/default)
 
