@@ -1,5 +1,4 @@
 ;;; pimacs/lang-php/config.el -*- lexical-binding: t; -*-
-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify

@@ -5,3 +5,8 @@
 ** Search string in a project
 To export a list of completion search candidates in a dedicated buffer :
 =C-c s p=, input a word to search and press =C-; E=.
+
+* Completion Useful Features
+** Export the completion at point
+When the completion popup is shown, hit =C-S-s= to complet in the mini-buffer
+then hit =C-; E= (for /emabark-export/). You can search, copy/paste etc…

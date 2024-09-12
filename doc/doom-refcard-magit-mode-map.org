@@ -80,7 +80,7 @@ Parent keymap for all keymaps of modes derived from ‘magit-mode’.
 - =C-w= calls =magit-copy-section-value= : save the value of the current section for later use.
 - =C-M-i= calls =magit-dired-jump= : visit file at point using Dired.
 - =C-<return>= calls =magit-visit-thing= : this is a placeholder command, which may signal an error if called.
-- =C-<tab>= calls =magit-section-cycle= : cycle visibility of current section and its children.
+- =C-<tab>= : Switch to the previous user buffer. #pim
 - =M-1= calls =magit-section-show-level-1-all= : show all sections on first level.
 - =M-2= calls =magit-section-show-level-2-all= : show all sections up to second level.
 - =M-3= calls =magit-section-show-level-3-all= : show all sections up to third level.

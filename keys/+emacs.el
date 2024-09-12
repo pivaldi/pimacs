@@ -173,7 +173,7 @@
     )
   )
 
-;; Distinct binding for <TAB> and <C-i> https://stackoverflow.com/q/1792326
+;; Uncouple the keys <TAB> and <C-i> https://stackoverflow.com/q/1792326
 (define-key input-decode-map (kbd "C-i") (kbd "H-i"))
 
 ;; ;; Fany insertion prefix.
@@ -285,7 +285,8 @@
       "« ")(insert
       " »")(backward-char
       2))
-   :desc "Add non breaking spaces before the closing French quote. #pim" "»" (lambda nil (interactive) (insert " »"))))
+   :desc "Add non breaking spaces before the closing French quote. #pim" "»"
+   (lambda nil (interactive) (insert " »"))))
 
 
 ;; ;; TODO : to be enabled
@@ -445,6 +446,16 @@
 
 (map! :desc "Switch to the next user buffer. #pim" "<mouse-9>" #'pim/next-user-buffer)
 (map! :desc "Switch to the previous user buffer. #pim" "<mouse-8>" #'pim/previous-user-buffer)
+(map!
+ :map minibuffer-local-map
+ :desc "Switch to the previous user buffer. #pim" "C-<tab>" (lambda nil
+                                                              (interactive)
+                                                              (execute-kbd-macro (read-kbd-macro "<RET>")))
+ :desc "Switch to the next previous user buffer. #pim" "C-S-<iso-lefttab>" (lambda nil
+                                                                             (interactive)
+                                                                             (execute-kbd-macro (read-kbd-macro "<down> <RET>")))
+ )
+
 
 ;; TODO : better key bindings than lsp-describe-thing-at-point ?
 ;; https://github.com/emacs-lsp/lsp-ui/

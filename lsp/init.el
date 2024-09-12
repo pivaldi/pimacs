@@ -1,6 +1,6 @@
 ;;; pimacs/lsp/init.el -*- lexical-binding: t; -*-
 
-(add-to-list 'pim-keymapname-alist '("lsp-ui-doc" . (("lsp-mode-map" . lsp))))
+(add-to-list 'pim-keymapname-alist '("lsp" . (("lsp-mode-map" . lsp))))
 
 (provide 'pimacs/lsp/init)
 ;;; init.el ends here
