@@ -72,14 +72,21 @@
     (load-theme 'zenburn t)
     (set-face-attribute 'completions-annotations nil :foreground "#A9A999"))
 
+  (set-face-attribute 'region nil :underline "#459090" :background "#000000")
+
+  (after! popup
+    (set-face-attribute
+     'popup-menu-selection-face nil
+     :background (face-attribute 'popup-menu-mouse-face :background)
+     :foreground (face-attribute 'popup-menu-mouse-face :foreground))
+    (set-face-attribute 'popup-menu-face nil :inherit 'default :background "#000"))
+
   (after! avy
     (set-face-attribute 'avy-lead-face nil :foreground "#93E0E3" :background "#50A0A0")
     (set-face-attribute 'avy-lead-face-0 nil :foreground "#93E0E3")
     (set-face-attribute 'avy-lead-face-1 nil :foreground "#93E0E3")
     (set-face-attribute 'avy-lead-face-2 nil :foreground "#93E0E3")
     (set-face-attribute 'avy-background-face nil :foreground "#A5A595"))
-  (after! faces
-    (set-face-attribute 'region nil :background "#307070"))
 
   (after! bm
     (set-face-attribute 'bm-fringe-persistent-face nil :background (face-attribute 'fringe :background)  :foreground "#FF3333")

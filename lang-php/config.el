@@ -31,6 +31,18 @@
       (make-directory d)))
   :config
   (setq php-warned-bad-indent t)
+  (map!
+   :when pim-azertyp
+   :map php-mode-map
+   :desc "Insert \"->\". #pim" "²" (lambda nil
+                                     (interactive)
+                                     (insert "->"))
+   :desc "Insert \"->\". #pim"    "œ" (lambda nil
+                                        (interactive)
+                                        (insert "->"))
+   :desc "Insert a => arrow. #pim" "¹" #'pim-insert-php-assoc-arrow
+   :desc "Insert a => arrow. #pim" "Œ" #'pim-insert-php-assoc-arrow
+   )
   :hook (php-mode-hook . php-enable-symfony2-coding-style)
   )
 

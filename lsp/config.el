@@ -27,10 +27,8 @@
 
 (when  (and (not (modulep! :tools lsp +peek)) (modulep! +doc))
   ;; See this excellent documentation https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
-  (use-package! lsp
-    :defer t
-    :commands lsp-ui-mode
-    :config
+  (after! lsp-ui
+    (setq lsp-ui-doc-enable t)
     (setq lsp-ui-doc-show-with-cursor nil)
     (setq lsp-ui-doc-show-with-mouse t)
     (setq lsp-ui-doc-include-signature t)
@@ -43,9 +41,9 @@
      (:unless pim-azertyp
        :desc "lsp-describe-thing-at-point -- lsp documentation of the thing at point. #pim" "C-\"" #'lsp-describe-thing-at-point
        :desc "Toogle lsp-ui-doc-show-with-cursor. #pim" "C-," #'pim-toggle-lsp-ui-doc-show-with-cursor)
-     )
-    :hook (lsp-mode-hook . (lsp-ui-doc-mode lsp-signature-activate))
-    ))
+     ))
+  (use-package! lsp
+    :hook (lsp-mode-hook . (lsp-signature-activate))))
 
 (provide 'pimacs/lsp)
 ;; config.el ends here.
