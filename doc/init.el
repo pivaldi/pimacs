@@ -22,7 +22,7 @@
   "List of key binding prefixes to be exported by `pim-generate-all-fundamental-key-bindings'.")
 
 (setq pim-doc-key-binding-prefixes-to-export
-      (list "" "C-c" "C-x" "C-h" "M-g" "M-s" "C-i"))
+      (list "" "C-c" "C-x" "C-h" "M-g" "M-s" "H-i"))
 
 (defvar pim-doc-keymaps-to-export (list)
   "List of keymaps to be exported by `pim-generate-all-keymaps'.")
@@ -34,6 +34,7 @@
             '("php-mode-map" . php-mode)
             '("lsp-mode-map" . lsp)
             '("emacs-lisp-mode-map" . elisp-mode)
+            '("corfu-map" . corfu)
             ))
 
 (provide `pimacs/doc/init)
