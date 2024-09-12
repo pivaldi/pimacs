@@ -34,8 +34,11 @@
             '("php-mode-map" . php-mode)
             '("lsp-mode-map" . lsp)
             '("emacs-lisp-mode-map" . elisp-mode)
-            '("corfu-map" . corfu)
             ))
+
+(when (modulep! :completion corfu)
+  (add-to-list 'pim-doc-keymaps-to-export '("corfu-map" . corfu))
+  )
 
 (provide `pimacs/doc/init)
 ;;; init.el ends here
