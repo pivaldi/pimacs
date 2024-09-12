@@ -22,7 +22,7 @@
   "List of key binding prefixes to be exported by `pim-generate-all-fundamental-key-bindings'.")
 
 (setq pim-doc-key-binding-prefixes-to-export
-      (list "" "C-c" "C-x" "C-h" "M-g" "M-s"))
+      (list "" "C-c" "C-x" "C-h" "M-g" "M-s" "C-i"))
 
 (defvar pim-doc-keymaps-to-export (list)
   "List of keymaps to be exported by `pim-generate-all-keymaps'.")

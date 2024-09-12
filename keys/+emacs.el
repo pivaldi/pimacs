@@ -173,21 +173,28 @@
     )
   )
 
-;; ;; Semicolon and comma at the end of the line
-;; (let ((keysm (kbd "C-;"))
-;;       (keyco (kbd "C-,")))
-;;   (map! :desc "Fancy insert/delete semicolon at the end of the line. #pim" keysm #'pim/insert-semicol-at-end-of-line)
-;;   (map! :desc "Fancy insert/delete comma at the end of the line. #pim" keyco #'pim/insert-comma-at-end-of-line)
-;;   ;; Rebind flyspell default key-binding
-;;   (after! flyspell
-;;     (define-key flyspell-mode-map
-;;                 keysm 'pim/insert-semicol-at-end-of-line)
-;;     (define-key flyspell-mode-map
-;;                 keyco 'pim/insert-comma-at-end-of-line)))
+;; Distinct binding for <TAB> and <C-i> https://stackoverflow.com/q/1792326
+(define-key input-decode-map (kbd "C-i") (kbd "H-i"))
 
-(map! :desc "Insert a cool section comments. #pim" "C-$" #'pim/insert-comment-section)
-
-(map! :desc "Insert a cool section comments. #pim" "C-*" #'pim/insert-comment-sub-section)
+;; ;; Fany insertion prefix.
+(let ((keysm ";") ;; Semicolon and comma at the end of the line
+      (keysm-desc "Fancy insert/delete semicolon at the end of the line. #pim")
+      (keyco ",")
+      (keyco-desc "Fancy insert/delete comma at the end of the line. #pim")
+      (prefix "H-i")) ;; In fact, it is C-i
+  (map! :prefix prefix
+        :desc keysm-desc keysm #'pim/insert-semicol-at-end-of-line
+        :desc keyco-desc keyco #'pim/insert-comma-at-end-of-line
+        ;; Rebind flyspell default key-binding
+        (:after flyspell
+         :map flyspell-mode-map
+         :desc keysm-desc keysm #'pim/insert-semicol-at-end-of-line
+         :desc keyco-desc keyco #'pim/insert-comma-at-end-of-line
+         )
+        :desc "Insert a cool section comments. #pim" "s" #'pim/insert-comment-section
+        :desc "Insert a cool section comments. #pim" "S" #'pim/insert-comment-sub-section
+        )
+  )
 
 
 ;; ;; TODO : Is it needed ?

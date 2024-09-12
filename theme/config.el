@@ -70,7 +70,9 @@
 
     :config
     (load-theme 'zenburn t)
-    (set-face-attribute 'completions-annotations nil :foreground "#A9A999"))
+    (set-face-attribute 'completions-annotations nil :foreground "#A9A999")
+    (set-face-attribute 'font-lock-comment-face nil :foreground "#8FAF8F")
+    )
 
   (set-face-attribute 'region nil :underline "#459090" :background "#000000")
 
@@ -92,7 +94,7 @@
     (set-face-attribute 'bm-fringe-persistent-face nil :background (face-attribute 'fringe :background)  :foreground "#FF3333")
     (set-face-attribute 'bm-fringe-face nil :background (face-attribute 'fringe :background)  :foreground "#33FFFF")
     (set-face-attribute 'bm-face nil :background "#3A3A3A"  :underline nil :foreground nil)
-    (set-face-attribute 'bm-persistent-face nil :background "#3A3A3A" :underline nil :foreground nil)
+    (set-face-attribute 'bm-persistent-face nil :background nil :underline "#459090" :foreground nil)
     ))
 
 
