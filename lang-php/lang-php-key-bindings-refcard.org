@@ -9,3 +9,6 @@ Keymap for ‘php-mode’.
 - =¹= : Insert a => arrow. #pim
 - =œ= : Insert "->". #pim
 - =Œ= : Insert a => arrow. #pim
+- =M-<f8>= : Copy the current full qualified class name. #pim
+- =C-<f8>= : Copy the current namespace. #pim
+- =C-S-<f8>= : Copy class/method FQSEN from cursor context. #pim
