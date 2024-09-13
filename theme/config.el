@@ -74,7 +74,7 @@
 
   (set-face-attribute 'font-lock-comment-face nil :foreground "#8FAF8F")
   (set-face-attribute 'region nil :underline "#459090" :background "#000000")
-  (set-face-attribute 'show-paren-mismatch nil :background "#FF3333" :underline "#FFFF33" :foreground "#6F6F6F")
+  ;; (set-face-attribute 'show-paren-mismatch nil :background "#FF3333" :underline "#FFFF33" :foreground "#6F6F6F")
 
   (after! popup
     (set-face-attribute
@@ -96,6 +96,9 @@
     (set-face-attribute 'bm-face nil :background nil  :underline "#33FFFF" :foreground nil)
     (set-face-attribute 'bm-persistent-face nil :background nil :underline "#FF3333" :foreground nil)
     )
+
+  (after! rainbow-delimiters
+    (set-face-attribute 'rainbow-delimiters-base-error-face nil :background nil :foreground "#FF5555"))
   )
 
 
