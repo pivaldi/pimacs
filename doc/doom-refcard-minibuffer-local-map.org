@@ -14,7 +14,7 @@ Default keymap to use when reading from the minibuffer.
 - =C-g= calls =minibuffer-keyboard-quit= : abort recursive edit.
 - =C-j= calls =exit-minibuffer= : terminate this minibuffer argument.
 - =C-s= calls =consult-history= : insert string from HISTORY of current buffer.
-- =C-S-<tab>= : Switch to the next previous user buffer. #pim
+- =C-S-<iso>-<lefttab>= : Switch to the next previous user buffer. #pim
 - =C-<tab>= : Switch to the previous user buffer. #pim
 - =M-<= calls =minibuffer-beginning-of-buffer= : move to the logical beginning of the minibuffer.
 - =M-A= : Cycle marginalia views

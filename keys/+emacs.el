@@ -18,24 +18,19 @@
 
 ;;; Code:
 
-(map! :desc "If at end of line, join with following; otherwise kill line. #pim" "C-k" #'pim/kill-and-join-forward)
-
-;; ;; TODO : Use the package easy-kill
-(map! :desc "filename in the minibuffer, in the buffer with C-u" "<f8>. #pim" #'pim/buffer-file-name)
-(map! :desc "echo filename in the minibuffer and put in the kill ring. #pim" "<S-f8>"
-      (lambda nil
-        (interactive)
-        (pim/buffer-file-name nil t)))
-
-(map! :desc "Delete characters backward until encountering the beginning of a word. #pim"
-      "<C-backspace>" #'pim/backward-delete-word)
-
-(map! "<M-backspace>" #'pim/backward-delete-sexp)
-(map! "<M-delete>"
-      (lambda ()
-        (interactive)
-        (beginning-of-line)
-        (kill-line)))
+(map!
+ ;; TODO : Use the package easy-kill
+ :desc "If at end of line, join with following; otherwise kill line. #pim" "C-k" #'pim/kill-and-join-forward
+ :desc "Echo filename in the minibuffer, insert into the buffer with C-u. #pim" "<f8>" #'pim/buffer-file-name
+ :desc "Copy the buffer file name into the kill ring. #pim" "S-<f8>" (lambda nil
+                                                                       (interactive)
+                                                                       (pim/buffer-file-name nil t))
+ :desc "Delete characters backward until encountering the beginning of a word. #pim" "C-<backspace>" #'pim/backward-delete-word
+ :desc "Delete the sexp (balanced expression) preceding point. #pim" "M-<backspace>" #'pim/backward-delete-sexp
+ :desc "Kill the whole line. #pim" "M-<delete>" (lambda ()
+                                                  (interactive)
+                                                  (beginning-of-line)
+                                                  (kill-line)))
 
 ;; ------------------------
 ;; * Key for other-window *

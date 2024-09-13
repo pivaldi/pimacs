@@ -61,7 +61,7 @@ Php standard is to put one class by file !!"
   "Copy the class name. See `pim-get-php-classname-from-buffer'"
   (interactive)
   (pim--copy-to-kill-ring-maybe
-   "Php class" (pim-get-php-classname-from-buffer)))
+   "Php class name" (pim-get-php-classname-from-buffer)))
 
 (defun pim--get-filename-uc-part (&optional filename offset trim-file-name)
   "Get the longest terminating first upper case part of a file name.
@@ -105,7 +105,7 @@ Related to `pim--get-filename-uc-part'."
   "Copy the class name. See `pim-get-php-classname-from-filename'"
   (interactive "FFile name :")
   (pim--copy-to-kill-ring-maybe
-   "Php class" (pim-get-php-classname-from-filename filename)))
+   "Php class name" (pim-get-php-classname-from-filename filename)))
 
 ;;;###autoload
 (defun pim-insert-php-classname-from-filename (&optional filename)
@@ -156,17 +156,43 @@ See `pim-get-php-namespace-from-filename'."
   (pim--insert-maybe (pim-get-php-namespace-from-filename filename)))
 
 ;;;###autoload
+(defun pim-get-php-class-from-buffer ()
+  "Get the first class with namespace of the current buffer.
+Php standard is to put one class by file !!"
+  (require 'php-mode)
+  (let* ((classname (pim-get-php-classname-from-buffer))
+         (nsp (pim-get-php-namespace-from-buffer))
+         (sep (if nsp "\\" "")))
+    (when classname
+      (concat (or nsp "") sep classname))))
+
+;;;###autoload
+(defun pim-copy-php-class-from-buffer ()
+  "Copy the class name. See `pim-get-php-classname-from-buffer'"
+  (interactive)
+  (pim--copy-to-kill-ring-maybe
+   "Php class" (pim-get-php-class-from-buffer)))
+
+
+;;;###autoload
 (defun pim-get-php-fqsen ()
   "Get class/method FQSEN.
 Inspired by the php-mode code source."
   (interactive)
   (require 'php-mode)
-  (let ((namespace (or (pim-get-php-current-namespace) ""))
+  (let ((namespace (or (pim-get-php-namespace-from-buffer) ""))
         (class     (or (pim-get-php-classname-from-buffer) ""))
-        (namedfunc (pim--get-php-element php-beginning-of-defun-regexp)))
+        (namedfunc (php-get-current-element php-beginning-of-defun-regexp)))
     (concat (if (string= namespace "") "" namespace)
             (if (string= class "") "" (concat "\\" class "::"))
             (if (string= namedfunc "") "" namedfunc ))))
+
+;;;###autoload
+(defun pim-copy-php-fqsen ()
+  "Copy class/method FQSEN."
+  (interactive)
+  (pim--copy-to-kill-ring-maybe
+   "Php FQSEN" (pim-get-php-fqsen)))
 
 (provide 'pimacs/lang-php/autoload)
 ;;; autoload.el ends here

@@ -11,7 +11,7 @@ See also ‘current-global-map’.
 
 - =«= : Insert proper French quotation with non breaking spaces. #pim
 - =»= : Add non breaking spaces before the closing French quote. #pim
-- =S-<f8>= : echo filename in the minibuffer and put in the kill ring. #pim
+- =S-<f8>= : Copy the buffer file name into the kill ring. #pim
 - =M-<f1>= : Toggle locally the modeline. #pim
 - =s-<f1>= : Toggle globally the modeline. #pim
 - =C-<f1>= : Toggle menu bar. #pim
@@ -22,6 +22,7 @@ See also ‘current-global-map’.
 - =s-<f2>= : Toggle visible buffer local persistence. #pim
 - =<f2>= : Jump to next visible buffer local bookmark. #pim
 - =<f4>= : Ending the definition of a macro. #pim
+- =<f8>= : Echo filename in the minibuffer, insert into the buffer with C-u. #pim
 - =<f12>= : Delete current window and buffer. #pim
 - =C-%= : Comment/Uncomment the entire line and indent. #pim
 - =C-:= : Redo from undo-fu for azerty keyboard. #pim
@@ -45,6 +46,8 @@ See also ‘current-global-map’.
 - =C-<up>= : Scrolling up long line. #pim
 - =M-<RET>= : Like <RET> but enable continuing comment. #pim
 - =M-q= : Use fill line or region as auto-fill-mode does. #pim
+- =M-<backspace>= : Delete the sexp (balanced expression) preceding point. #pim
+- =M-<delete>= : Kill the whole line. #pim
 - =s-<iso>-<lefttab>= : Toggle the fold node at point. #pim
 - =S-<iso>-<lefttab>= : Dynamically complete the filename under the cursor. #pim
 - =<end>= : Jump/switch between the last non-blank, non-comment character and the end of the line. #pim
@@ -68,5 +71,4 @@ Keymap for C-h commands.
 Default keymap to use when reading from the minibuffer.
 
 - =C-S-<iso>-<lefttab>= : Switch to the next previous user buffer. #pim
-- =C-S-<tab>= : Switch to the next previous user buffer. #pim
 - =C-<tab>= : Switch to the previous user buffer. #pim

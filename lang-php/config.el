@@ -42,6 +42,12 @@
    :desc "Insert a => arrow. #pim" "¹" #'pim-insert-php-assoc-arrow
    :desc "Insert a => arrow. #pim" "Œ" #'pim-insert-php-assoc-arrow
    )
+  (map!
+   :map php-mode-map
+   :desc "Copy the current namespace. #pim" "C-<f8>" #'pim-copy-php-namespace-from-buffer
+   :desc "Copy class/method FQSEN from cursor context. #pim" "<C-S-f8>" #'pim-copy-php-fqsen
+   :desc "Copy the current full qualified class name. #pim" "M-<f8>" #'pim-copy-php-class-from-buffer
+   )
   :hook (php-mode-hook . php-enable-symfony2-coding-style)
   )
 

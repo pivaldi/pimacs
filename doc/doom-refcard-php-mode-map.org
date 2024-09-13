@@ -13,6 +13,8 @@ Keymap for ‘php-mode’.
 - =¹= : Insert a => arrow. #pim
 - =œ= : Insert "->". #pim
 - =Œ= : Insert a => arrow. #pim
+- =M-<f8>= : Add to the kill-ring the current class full qualified name
+- =<f8>= : Copy class/method FQSEN of cursor context.
 - =C-.= calls =php-show-arglist= : show function arguments at cursor position.
 - =C-d= calls =c-electric-delete-forward= : delete the following character or whitespace.
 - =C-M-a= calls =c-beginning-of-defun= : move backward to the beginning of a defun.
