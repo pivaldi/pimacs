@@ -61,8 +61,8 @@
    )
   (map!
    :map php-mode-map
-   :desc "Compile Php file or lint it if prefixed. #pim" "C-c C-c" (lambda (&rest lint)
-                                                                     (interactive "P*")
+   :desc "Compile Php file or lint it if prefixed. #pim" "C-c C-c" (lambda (&optional lint)
+                                                                     (interactive "P")
                                                                      (pim-php-compile-file (buffer-file-name) lint))
    :desc "Copy the current namespace. #pim" "C-<f8>" #'pim-php-copy-namespace-from-buffer
    :desc "Copy class/method FQSEN from cursor context. #pim" "<C-S-f8>" #'pim-php-copy-fqsen

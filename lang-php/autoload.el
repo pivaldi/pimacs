@@ -172,7 +172,7 @@ Inspired by the php-mode code source."
 ;;;###autoload
 (defun pim-php-compile-file (&optional file lint)
   "Compile the file FILE with linting if LINT not nil."
-  (interactive "FPhp file to compile : \nP*")
+  (interactive "fPhp file to compile : \nP*")
   (let ((file (or file (buffer-file-name)))
         (option (if lint "-l " "")))
     (compile (format "php %s%s" option file))))
