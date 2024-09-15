@@ -24,10 +24,27 @@
 
 (use-package! php-mode
   :defer t
+  ;; :custom
+  ;; (when (modulep! :completion corfu)
+  ;;   (lsp-completion-provider :none))
+
   :init
   (let ((d (format "%s%s" doom-cache-dir "phpactor")))
     (unless (file-directory-p d)
       (make-directory d)))
+
+  ;; (when (modulep! :completion corfu)
+  ;;   (defun pim-orderless-dispatch-flex-first (_pattern index _total)
+  ;;     (and (eq index 0) 'orderless-flex))
+
+  ;;   (defun pim-lsp-mode-setup-completion ()
+  ;;     (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+  ;;           '(orderless))
+  ;;     ;; Optionally configure the first word as flex filtered.
+  ;;     (add-hook 'orderless-style-dispatchers #'pim-orderless-dispatch-flex-first nil 'local)
+  ;;     ;; Optionally configure the cape-capf-buster.
+  ;;     (setq-local completion-at-point-functions (list (cape-capf-buster #'lsp-completion-at-point)))))
+
   :config
   (setq php-warned-bad-indent t)
   (map!
@@ -39,17 +56,31 @@
    :desc "Insert \"->\". #pim"    "œ" (lambda nil
                                         (interactive)
                                         (insert "->"))
-   :desc "Insert a => arrow. #pim" "¹" #'pim-insert-php-assoc-arrow
-   :desc "Insert a => arrow. #pim" "Œ" #'pim-insert-php-assoc-arrow
+   :desc "Insert a => arrow. #pim" "¹" #'pim-php-insert-assoc-arrow
+   :desc "Insert a => arrow. #pim" "Œ" #'pim-php-insert-assoc-arrow
    )
   (map!
    :map php-mode-map
-   :desc "Copy the current namespace. #pim" "C-<f8>" #'pim-copy-php-namespace-from-buffer
-   :desc "Copy class/method FQSEN from cursor context. #pim" "<C-S-f8>" #'pim-copy-php-fqsen
-   :desc "Copy the current full qualified class name. #pim" "M-<f8>" #'pim-copy-php-class-from-buffer
+   :desc "Compile Php file or lint it if prefixed. #pim" "C-c C-c" (lambda (&rest lint)
+                                                                     (interactive "P*")
+                                                                     (pim-php-compile-file (buffer-file-name) lint))
+   :desc "Copy the current namespace. #pim" "C-<f8>" #'pim-php-copy-namespace-from-buffer
+   :desc "Copy class/method FQSEN from cursor context. #pim" "<C-S-f8>" #'pim-php-copy-fqsen
+   :desc "Copy the current full qualified class name. #pim" "M-<f8>" #'pim-php-copy-class-from-buffer
    )
+
   :hook (php-mode-hook . php-enable-symfony2-coding-style)
+  ;; :hook (lsp-completion-mode . pim-lsp-mode-setup-completion)
   )
+
+(when (modulep! :completion corfu +orderless)
+  (use-package! orderless
+    :init
+    ;; Tune the global completion style settings to your liking!
+    ;; This affects the minibuffer and non-lsp completion at point.
+    (setq completion-styles '(orderless partial-completion basic)
+          completion-category-defaults nil
+          completion-category-overrides nil)))
 
 ;; (after! php-mode
 ;;   (use-package! php-cs-fixer
@@ -72,7 +103,7 @@
       )
     )
 
-  (cl-defun pim--php-cs-fixer-apheleia (&key buffer scratch formatter remote callback remote &allow-other-keys)
+  (cl-defun pim--php-cs-fixer-apheleia (&key buffer formatter remote callback &allow-other-keys)
     "Called by `apheleia--run-formatter-function'.
 :buffer buffer
      Original buffer being formatted. This shouldn't be

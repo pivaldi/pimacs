@@ -18,7 +18,7 @@
 
 ;;; Code:
 
-(defun pim--get-php-element (re-pattern)
+(defun pim--php-get-element (re-pattern)
   "Return forward from the beginig of the buffer the matched element by
 RE-PATTERN."
   (save-excursion
@@ -42,157 +42,140 @@ RE-PATTERN."
     (message "Nothing to insert")))
 
 ;;;###autoload
-(defun pim-insert-php-assoc-arrow nil
+(defun pim-php-insert-assoc-arrow nil
   "Insert a => arrow."
   (interactive)
   (let ((sp (if (= 32 (char-before)) "" " ")))
     (insert (concat sp "=> "))))
 
 ;;;###autoload
-(defun pim-get-php-classname-from-buffer ()
+(defun pim-php-get-classname-from-buffer ()
   "Get the first class name (without namespace) of the current buffer.
 Php standard is to put one class by file !!"
   (interactive)
   (require 'php-mode)
-  (pim--get-php-element php--re-classlike-pattern))
+  (pim--php-get-element php--re-classlike-pattern))
 
 ;;;###autoload
-(defun pim-copy-php-classname-from-buffer ()
-  "Copy the class name. See `pim-get-php-classname-from-buffer'"
+(defun pim-php-copy-classname-from-buffer ()
+  "Copy the class name. See `pim-php-get-classname-from-buffer'"
   (interactive)
   (pim--copy-to-kill-ring-maybe
-   "Php class name" (pim-get-php-classname-from-buffer)))
-
-(defun pim--get-filename-uc-part (&optional filename offset trim-file-name)
-  "Get the longest terminating first upper case part of a file name.
-- If FILENAME is missing, use the filename attached to the current buffer if
-  any.
-- If OFFSET an integer is not nil, truncates the first characters by OFFSET
-  chars.
-- If TRIM-FILE-NAME an bool is not nil, remove the filename part.
-
-Example :
-If FILENAME is /var/www/xxx/yyyy/zzz/App/CPro/Model/Poi/Zone.php the function
-will return :
-- /App/CPro/Model/Poi/Zone without option
-- App/CPro/Model/Poi/Zone with option OFFSET 1
-- /App/CPro/Model/Poi/ with option TRIM-FILE-NAME t"
-  (let* ((offset (or offset 0))
-         (filename (file-name-sans-extension (or filename (buffer-file-name))))
-         (filename (if trim-file-name
-                       (file-name-directory filename) filename)))
-    (substring filename
-               (+ offset
-                  (let ((case-fold-search nil))
-                    (or (string-match
-                         "\\\(/[A-Z][a-zA-Z0-9.-_]+\\\)+$" filename)
-                        (- (length filename) offset)))))))
+   "Php class name" (pim-php-get-classname-from-buffer)))
 
 ;;;###autoload
-(defun pim-get-php-classname-from-filename (&optional filename)
+(defun pim-php-get-classname-from-filename (&optional filename)
   "Get the class name from his filename.
 The class name of the file /var/www/xxx/yyyy/zzz/App/CPro/Model/Poi/Zone.php
 should be \"Zone\" from Php coding guidelines.
-Related to `pim--get-filename-uc-part'."
+Related to `pim-get-filename-uc-part'."
   (interactive "FFile name :")
-  (let ((class-ns (pim--get-filename-uc-part filename 1 t))
-        (ns (pim--get-filename-uc-part filename 1 nil)))
+  (let ((class-ns (pim-get-filename-uc-part filename 1 t))
+        (ns (pim-get-filename-uc-part filename 1 nil)))
     (if (string= class-ns "") ""
       (string-replace class-ns "" ns))))
 
 ;;;###autoload
-(defun pim-copy-php-classname-from-filename (filename)
-  "Copy the class name. See `pim-get-php-classname-from-filename'"
+(defun pim-php-copy-classname-from-filename (filename)
+  "Copy the class name. See `pim-php-get-classname-from-filename'"
   (interactive "FFile name :")
   (pim--copy-to-kill-ring-maybe
-   "Php class name" (pim-get-php-classname-from-filename filename)))
+   "Php class name" (pim-php-get-classname-from-filename filename)))
 
 ;;;###autoload
-(defun pim-insert-php-classname-from-filename (&optional filename)
+(defun pim-php-insert-classname-from-filename (&optional filename)
   "Insert the class name from his filename.
-See `pim-get-php-classname-from-filename'."
+See `pim-php-get-classname-from-filename'."
   (interactive "FFile name :")
-  (pim--insert-maybe (pim-get-php-classname-from-filename filename)))
+  (pim--insert-maybe (pim-php-get-classname-from-filename filename)))
 
 ;;;###autoload
-(defun pim-get-php-namespace-from-buffer ()
+(defun pim-php-get-namespace-from-buffer ()
   "Get the namespace of the file following the Php guideline."
   (interactive)
   (require 'php-mode)
-  (let ((nsp (pim--get-php-element php--re-namespace-pattern)))
+  (let ((nsp (pim--php-get-element php--re-namespace-pattern)))
     (when nsp (concat "\\" nsp))))
 
 ;;;###autoload
-(defun pim-get-php-namespace-from-filename (&optional filename)
+(defun pim-php-get-namespace-from-filename (&optional filename)
   "Get the namespace name from his filename.
 The namespace name of the file /var/www/xxx/yyyy/zzz/App/CPro/Model/Poi/Zone.php
 should be \"\\App\\CPro\\Model\\Poi\\\" following Php coding guidelines.
-Related to `pim--get-filename-uc-part'."
+Related to `pim-get-filename-uc-part'."
   (interactive "FFile name :")
-  (let ((ucpart (pim--get-filename-uc-part filename 0 t)))
+  (let ((ucpart (pim-get-filename-uc-part filename 0 t)))
     (string-replace "/" "\\" (s-chop-suffix "/" ucpart))))
 
 ;;;###autoload
-(defun pim-copy-php-namespace-from-buffer ()
+(defun pim-php-copy-namespace-from-buffer ()
   "Copy the current namespace if cursor in namespace context.
-See `pim-get-php-namespace-from-buffer'."
+See `pim-php-get-namespace-from-buffer'."
   (interactive)
   (pim--copy-to-kill-ring-maybe
-   "Php namespace" (pim-get-php-namespace-from-buffer)))
+   "Php namespace" (pim-php-get-namespace-from-buffer)))
 
 ;;;###autoload
-(defun pim-copy-php-namespace-from-filename (&optional filename)
+(defun pim-php-copy-namespace-from-filename (&optional filename)
   "Copy the namespace name from his filename.
-See `pim-get-php-namespace-from-filename'."
+See `pim-php-get-namespace-from-filename'."
   (interactive "FFile name :")
   (pim--copy-to-kill-ring-maybe
-   "Php namespace" (pim-get-php-namespace-from-filename filename)))
+   "Php namespace" (pim-php-get-namespace-from-filename filename)))
 
 ;;;###autoload
-(defun pim-insert-php-namespace-from-filename (&optional filename)
+(defun pim-php-insert-namespace-from-filename (&optional filename)
   "Insert the namespace from his filename.
-See `pim-get-php-namespace-from-filename'."
+See `pim-php-get-namespace-from-filename'."
   (interactive "FFile name :")
-  (pim--insert-maybe (pim-get-php-namespace-from-filename filename)))
+  (pim--insert-maybe (pim-php-get-namespace-from-filename filename)))
 
 ;;;###autoload
-(defun pim-get-php-class-from-buffer ()
+(defun pim-php-get-class-from-buffer ()
   "Get the first class with namespace of the current buffer.
 Php standard is to put one class by file !!"
   (require 'php-mode)
-  (let* ((classname (pim-get-php-classname-from-buffer))
-         (nsp (pim-get-php-namespace-from-buffer))
+  (let* ((classname (pim-php-get-classname-from-buffer))
+         (nsp (pim-php-get-namespace-from-buffer))
          (sep (if nsp "\\" "")))
     (when classname
       (concat (or nsp "") sep classname))))
 
 ;;;###autoload
-(defun pim-copy-php-class-from-buffer ()
-  "Copy the class name. See `pim-get-php-classname-from-buffer'"
+(defun pim-php-copy-class-from-buffer ()
+  "Copy the class name. See `pim-php-get-classname-from-buffer'"
   (interactive)
   (pim--copy-to-kill-ring-maybe
-   "Php class" (pim-get-php-class-from-buffer)))
+   "Php class" (pim-php-get-class-from-buffer)))
 
 
 ;;;###autoload
-(defun pim-get-php-fqsen ()
+(defun pim-php-get-fqsen ()
   "Get class/method FQSEN.
 Inspired by the php-mode code source."
   (interactive)
   (require 'php-mode)
-  (let ((namespace (or (pim-get-php-namespace-from-buffer) ""))
-        (class     (or (pim-get-php-classname-from-buffer) ""))
+  (let ((namespace (or (pim-php-get-namespace-from-buffer) ""))
+        (class     (or (pim-php-get-classname-from-buffer) ""))
         (namedfunc (php-get-current-element php-beginning-of-defun-regexp)))
     (concat (if (string= namespace "") "" namespace)
             (if (string= class "") "" (concat "\\" class "::"))
             (if (string= namedfunc "") "" namedfunc ))))
 
 ;;;###autoload
-(defun pim-copy-php-fqsen ()
+(defun pim-php-copy-fqsen ()
   "Copy class/method FQSEN."
   (interactive)
   (pim--copy-to-kill-ring-maybe
-   "Php FQSEN" (pim-get-php-fqsen)))
+   "Php FQSEN" (pim-php-get-fqsen)))
+
+;;;###autoload
+(defun pim-php-compile-file (&optional file lint)
+  "Compile the file FILE with linting if LINT not nil."
+  (interactive "FPhp file to compile : \nP*")
+  (let ((file (or file (buffer-file-name)))
+        (option (if lint "-l " "")))
+    (compile (format "php %s%s" option file))))
 
 (provide 'pimacs/lang-php/autoload)
 ;;; autoload.el ends here

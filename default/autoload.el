@@ -43,6 +43,32 @@ See http://www.emacswiki.org/emacs/MakingScriptsExecutableOnSave"
                         (logior (file-modes buffer-file-name) #o100))
         (message (concat "Made " buffer-file-name " executable"))))))
 
+;;;###autoload
+(defun pim-get-filename-uc-part (&optional filename offset trim-file-name)
+  "Get the longest terminating first upper case part of a file name.
+- If FILENAME is missing, use the filename attached to the current buffer if
+  any.
+- If OFFSET an integer is not nil, truncates the first characters by OFFSET
+  chars.
+- If TRIM-FILE-NAME an bool is not nil, remove the filename part.
+
+Example :
+If FILENAME is /var/www/xxx/yyyy/zzz/App/CPro/Model/Poi/Zone.php the function
+will return :
+- /App/CPro/Model/Poi/Zone without option
+- App/CPro/Model/Poi/Zone with option OFFSET 1
+- /App/CPro/Model/Poi/ with option TRIM-FILE-NAME t"
+  (let* ((offset (or offset 0))
+         (filename (file-name-sans-extension (or filename (buffer-file-name))))
+         (filename (if trim-file-name
+                       (file-name-directory filename) filename)))
+    (substring filename
+               (+ offset
+                  (let ((case-fold-search nil))
+                    (or (string-match
+                         "\\\(/[A-Z][a-zA-Z0-9.-_]+\\\)+$" filename)
+                        (- (length filename) offset)))))))
+
 (provide 'pimacs/default/autoload)
 ;;; autoload.el ends here
 
