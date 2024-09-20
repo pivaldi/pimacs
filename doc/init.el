@@ -39,6 +39,7 @@
             '("lsp-mode-map" . lsp)
             '("minibuffer-local-map" . nil)
             '("emacs-lisp-mode-map" . elisp-mode)
+            '("smartparens-mode-map" . smartparens)
             ))
 
 (when (modulep! :completion corfu)

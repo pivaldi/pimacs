@@ -21,80 +21,43 @@
 ;; TODO : key bindings collision whit M-<tab> calls php-complete-function :
 ;; perform function completion on the text around point.
 
-
-(use-package! php-mode
-  :defer t
-  ;; :custom
-  ;; (when (modulep! :completion corfu)
-  ;;   (lsp-completion-provider :none))
-
-  :init
-  (let ((d (format "%s%s" doom-cache-dir "phpactor")))
-    (unless (file-directory-p d)
-      (make-directory d)))
-
-  ;; (when (modulep! :completion corfu)
-  ;;   (defun pim-orderless-dispatch-flex-first (_pattern index _total)
-  ;;     (and (eq index 0) 'orderless-flex))
-
-  ;;   (defun pim-lsp-mode-setup-completion ()
-  ;;     (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
-  ;;           '(orderless))
-  ;;     ;; Optionally configure the first word as flex filtered.
-  ;;     (add-hook 'orderless-style-dispatchers #'pim-orderless-dispatch-flex-first nil 'local)
-  ;;     ;; Optionally configure the cape-capf-buster.
-  ;;     (setq-local completion-at-point-functions (list (cape-capf-buster #'lsp-completion-at-point)))))
-
-  :config
-  (setq php-warned-bad-indent t)
+(defun pim--php-map (is-for-php-ts-mode-p)
+  "Mapping for php-mode or php-ts-mode depending of IS-FOR-PHP-TS-MODE-P"
   (map!
    :when pim-azertyp
-   :map php-mode-map
+   :map (if is-for-php-ts-mode-p php-ts-mode-map php-mode-map)
    :desc "Insert \"->\". #pim" "²" (lambda nil
                                      (interactive)
                                      (insert "->"))
    :desc "Insert \"->\". #pim"    "œ" (lambda nil
                                         (interactive)
                                         (insert "->"))
-   :desc "Insert a => arrow. #pim" "¹" #'pim-php-insert-assoc-arrow
-   :desc "Insert a => arrow. #pim" "Œ" #'pim-php-insert-assoc-arrow
+   :desc "Fancy insert \"=>\". #pim" "¹" #'pim-php-insert-assoc-arrow
+   :desc "Fancy insert \"=>\". #pim" "Œ" #'pim-php-insert-assoc-arrow
    )
   (map!
-   :map php-mode-map
+   :map (if is-for-php-ts-mode-p php-ts-mode-map php-mode-map)
    :desc "Compile Php file or lint it if prefixed. #pim" "C-c C-c" (lambda (&optional lint)
                                                                      (interactive "P")
                                                                      (pim-php-compile-file (buffer-file-name) lint))
    :desc "Copy the current namespace. #pim" "C-<f8>" #'pim-php-copy-namespace-from-buffer
    :desc "Copy class/method FQSEN from cursor context. #pim" "<C-S-f8>" #'pim-php-copy-fqsen
    :desc "Copy the current full qualified class name. #pim" "M-<f8>" #'pim-php-copy-class-from-buffer
-   )
+   ))
+
+(use-package! php-mode
+  :defer t
+  :init
+  (let ((d (format "%s%s" doom-cache-dir "phpactor")))
+    (unless (file-directory-p d)
+      (make-directory d)))
+
+  :config
+  (setq php-warned-bad-indent t)
+  (pim--php-map nil)
 
   :hook (php-mode-hook . php-enable-symfony2-coding-style)
-  ;; :hook (lsp-completion-mode . pim-lsp-mode-setup-completion)
   )
-
-(when (modulep! :completion corfu +orderless)
-  (use-package! orderless
-    :init
-    ;; Tune the global completion style settings to your liking!
-    ;; This affects the minibuffer and non-lsp completion at point.
-    (setq completion-styles '(orderless partial-completion basic)
-          completion-category-defaults nil
-          completion-category-overrides nil)))
-
-;; (after! php-mode
-;;   (use-package! php-cs-fixer
-;;     :if (modulep! +php-cs-fixer)
-;;     :demand t
-;;     :config
-;;     (setq-hook! 'php-mode-hook +format-with-lsp nil)
-;;     (add-to-list '+format-on-save-disabled-modes 'php-mode)
-;;     (when (not (executable-find "php-cs-fixer"))
-;;       (add-to-list 'pim-error-msgs "Please install php-cs-fixer : https://github.com/PHP-CS-Fixer/PHP-CS-Fixer"))
-;;     (setq php-cs-fixer-config-option (format "%s/php-cs-fixer-config.php" (doom-module-locate-path :pimacs 'lang-php)))
-;;     ;; (add-hook! php-mode-hook (add-hook 'before-save-hook #'php-cs-fixer-before-save nil t))
-;;     :hook (before-save-hook . php-cs-fixer-before-save)
-;;     ))
 
 (when (modulep! +php-cs-fixer)
   (when (modulep! :lang php +lsp)
@@ -151,7 +114,7 @@
               'pim--php-cs-fixer-apheleia)
         (setf (alist-get 'php-mode apheleia-mode-alist) '(php-cs-fixer))))))
 
-(unless (modulep! +no-php-fh)
+(unless (or (modulep! +no-php-fh) (modulep! :pimacs treesit))
   (use-package! php-fh
     :defer t
     :autoload (php-fh-highlight)
@@ -198,6 +161,9 @@
 
 (unless (modulep! +no-dep)
   (load! "+dependencies"))
+
+(when (modulep! :pimacs treesit)
+  (load! "+treesit"))
 
 (provide 'pimacs/lang-php)
 ;;; config.el ends here

@@ -81,6 +81,12 @@
      'popup-menu-selection-face nil
      :background (face-attribute 'popup-menu-mouse-face :background)
      :foreground (face-attribute 'popup-menu-mouse-face :foreground))
+    (set-face-attribute
+     'popup-tip-face nil
+     :background "#555555"
+     :foreground "#bfbbbf"
+     :box nil
+     )
     (set-face-attribute 'popup-menu-face nil :inherit 'default :background "#000"))
 
   (after! avy
@@ -93,8 +99,8 @@
   (after! bm
     (set-face-attribute 'bm-fringe-persistent-face nil :background (face-attribute 'fringe :background)  :foreground "#FF3333")
     (set-face-attribute 'bm-fringe-face nil :background (face-attribute 'fringe :background)  :foreground "#33FFFF")
-    (set-face-attribute 'bm-face nil :background nil  :underline "#33FFFF" :foreground nil)
-    (set-face-attribute 'bm-persistent-face nil :background nil :underline "#FF3333" :foreground nil)
+    (set-face-attribute 'bm-face nil :background nil  :underline "#8FAF8F" :foreground nil)
+    (set-face-attribute 'bm-persistent-face nil :background nil :underline "#DFAF8F" :foreground nil)
     )
 
   (after! rainbow-delimiters

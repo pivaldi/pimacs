@@ -54,7 +54,7 @@ See https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when
   (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
     (abort-recursive-edit)))
 
-(add-hook 'mouse-leave-buffer-hook 'pim-stop-using-minibuffer)
+(add-hook 'mouse-leave-buffer-hook #'pim-stop-using-minibuffer)
 
 (add-hook 'after-save-hook #'pim-make-script-executable)
 

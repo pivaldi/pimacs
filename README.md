@@ -50,6 +50,9 @@ See also the auto-generated
 [global-map key bindings refcard](keys/all-key-bindings-refcard.org) and the
 [global-map PIMacs key bindings refcard](keys/pimacs-key-bindings-refcard.org).
 
+### pimacs/pairing
+[Enhanced configuration of smartparens with extended features](pairing/README.org).
+
 ### pimacs/aliases
 [Define useful aliases starting by `_`](aliases/config.el).
 

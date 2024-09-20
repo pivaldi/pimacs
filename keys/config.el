@@ -15,6 +15,9 @@
 
 ;;; Code:
 
+;; (global-set-key [remap dabbrev-expand] 'hippie-expand)
+(map! [remap dabbrev-expand] #'hippie-expand)
+
 (after! pimacs/default
   (if (featurep 'evil)
       (add-to-list 'pim-error-msgs "PIMacs does not provide key configuration for evil mode. Push request is needed.")

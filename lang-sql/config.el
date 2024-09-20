@@ -1,4 +1,4 @@
-;;; pimacs/lang-php/init.el -*- lexical-binding: t; -*-
+;;; pimacs/lang-sql/config.el -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -18,15 +18,22 @@
 
 ;;; Code:
 
-(if (modulep! :pimacs treesit)
-    (add-to-list ' pim-keymapname-alist '("lang-php" . (("php-ts-mode-map" . php-ts-mode)
-                                                        ("php-mode-map" . php-mode))))
-  (add-to-list 'pim-keymapname-alist '("lang-php" . (("php-mode-map" . php-mode)))))
+(when (and (modulep! treesit)
+           (fboundp 'treesit-install-language-grammar))
+  (add-to-list 'treesit-language-source-alist
+               '((sql . ("https://github.com/DerekStride/tree-sitter-sql.git" "gh-pages" "src"))))
+  (unless (and (treesit-language-available-p 'sql) (treesit-ready-p 'sql))
+    (treesit-install-language-grammar 'sql)
+    )
 
-(provide 'pimacs/lang-php/init)
-;;; init.el ends here
+  font-lock-keyword-face
+  )
+
+
+(provide 'pimacs/lang-sql)
+;; config.el ends here.
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/lang-php/init.el")
+;; eval: (rename-buffer "pimacs/lang-sql/config.el")
 ;; End:

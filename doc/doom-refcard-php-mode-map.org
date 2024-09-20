@@ -10,11 +10,12 @@ Keymap for ‘php-mode’.
 
 - =<TAB>= calls =c-indent-line-or-region= : indent active region, current line, or block starting on this line.
 - =²= : Insert "->". #pim
-- =¹= : Insert a => arrow. #pim
+- =¹= : Fancy insert "=>". #pim
 - =œ= : Insert "->". #pim
-- =Œ= : Insert a => arrow. #pim
-- =M-<f8>= : Add to the kill-ring the current class full qualified name
-- =<f8>= : Copy class/method FQSEN of cursor context.
+- =Œ= : Fancy insert "=>". #pim
+- =C-<f8>= : Copy the current namespace. #pim
+- =C-S-<f8>= : Copy class/method FQSEN from cursor context. #pim
+- =M-<f8>= : Copy the current full qualified class name. #pim
 - =C-.= calls =php-show-arglist= : show function arguments at cursor position.
 - =C-d= calls =c-electric-delete-forward= : delete the following character or whitespace.
 - =C-M-a= calls =c-beginning-of-defun= : move backward to the beginning of a defun.
@@ -23,6 +24,7 @@ Keymap for ‘php-mode’.
 - =C-M-q= calls =c-indent-exp= : indent each line in the balanced expression following point syntactically.
 - =M-a= calls =c-beginning-of-statement= : go to the beginning of the innermost C statement.
 - =M-e= calls =c-end-of-statement= : go to the end of the innermost C statement.
+- =M-q= calls =prog-fill-reindent-defun= : refill or reindent the paragraph or defun that contains point.
 - =M-<tab>= calls =php-complete-function= : perform function completion on the text around point.
 ** Prefix =C-c= : +prefix
 - =C-c <DEL>= calls =c-hungry-delete-backwards= : delete the preceding character or all preceding whitespace
@@ -33,7 +35,7 @@ Keymap for ‘php-mode’.
 - =C-c C-\= calls =c-backslash-region= : insert, align, or delete end-of-line backslashes on the lines in the region.
 - =C-c C-a= calls =c-toggle-auto-newline= : toggle auto-newline feature.
 - =C-c C-b= calls =c-submit-bug-report= : submit via mail a bug report on CC Mode.
-- =C-c C-c= calls =comment-region= : comment or uncomment each line in the region.
+- =C-c C-c= : Compile Php file or lint it if prefixed. #pim
 - =C-c C-d= calls =c-hungry-delete-forward= : delete the following character or all following whitespace
 - =C-c C-f= : fold
 - =C-c C-k= calls =c-toggle-comment-style= : toggle the comment style between block and line comments.

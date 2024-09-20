@@ -6,6 +6,19 @@
   =[[https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/][lsp-ui-doc]]=
   when the Doom =lsp= module is loaded without the option =+peek=.
 
+here the final =lsp= configuration :
+#+begin_src lisp
+(setq lsp-ui-doc-enable t
+      lsp-ui-doc-show-with-cursor nil
+      lsp-ui-doc-show-with-mouse t
+      lsp-ui-doc-include-signature t
+      lsp-modeline-code-actions-enable nil ;; With t it slows down editing code and that becomes painful !!
+      lsp-signature-auto-activate t
+      lsp-completion-show-kind t
+      lsp-ui-doc-delay 0.33) ;; Package default 0.2, Doom default 0.75
+#+end_src
+
+
 * Module Options
 - =+doc= : load and configure =lsp-ui-doc= *if the Doom lsp module is not loaded
   with the option =+peek=*.

@@ -7,7 +7,7 @@
 (unless (modulep! +no-php-fh)
   (package! php-fh
     :recipe (:host github :repo "pivaldi/php-fh")
-    :pin "40a7a81e644627bc934c967a271e4cd8be682251"))
+    :pin "63b9be69b529e471e58274ddaa3eebaf613473bd"))
 
 (provide 'pimacs/lang-php/packages)
 ;;; packages.el ends here

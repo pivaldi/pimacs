@@ -7,11 +7,22 @@
 - [[doom-refcard-C-h.org][Fundamental Key Bindings Prefixed by C-h (help)]]
 - [[doom-refcard-M-g.org][Fundamental Key Bindings Prefixed by M-g (goto map)]]
 - [[doom-refcard-M-s.org][Fundamental Key Bindings Prefixed by M-S (isearch map)]]
+- [[doom-refcard-H-i.org][Fundamental Key Bindings Prefixed by C-i]]
+
+* Doom/PIMacs Key Bindings Refcards
+- [[doom-refcard-corfu-map.org][Key Bindings of Keymap corfu-map]]
+- [[doom-refcard-dired-mode-map.org][Key Bindings of Keymap dired-mode-map]]
+- [[doom-refcard-doom-leader-workspaces_windows-map.org][Key Bindings of Keymap workspaces_windows-map]]
+- [[doom-refcard-emacs-lisp-mode-map.org][Key Bindings of Keymap emacs-lisp-mode-map]]
+- [[doom-refcard-go-mode-map.org][Key Bindings of Keymap go-mode-mappemonde]]
+- [[doom-refcard-isearch-mode-map.org][Key Bindings of Keymap isearch-mode-map]]
+- [[doom-refcard-lsp-mode-map.org][Key Bindings of Keymap lsp-mode-map]]
+- [[doom-refcard-magit-mode-map.org][Key Bindings of Keymap magit-mode-map]]
+- [[doom-refcard-minibuffer-local-map.org][Key Bindings of Keymap minibuffer-local-map]]
+- [[doom-refcard-org-mode-map.org][Key Bindings of Keymap org-mode-map]]
+- [[doom-refcard-php-mode-map.org][Key Bindings of Keymap php-mode-map]]
+- [[doom-refcard-projectile-mode-map.org][Key Bindings of Keymap projectile-mode-map]]
+- [[doom-refcard-smartparens-mode-map.org][Key Bindings of Keymap smartparens-mode-map]]
 
 * Autoloaded Functions
-- =pim/which-key-export-bindings-recursively-to-file= : export bindings
-  recursively by key prefix into a file *with org formatting*.
-- =pim-keys-bindings-to-refcard= : export the PIMacs key bindings from keymaps in a file (org,
-  md and txt format supported).
-- =pim/modules-key-bindings-to-refcard= : export the PIMacs key bindings from
-  module names in a file (org, md and txt format supported).
+See the file [[autoload.el]].

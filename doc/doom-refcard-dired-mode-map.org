@@ -47,6 +47,7 @@ Local keymap for Dired mode buffers.
 - =C= calls =dired-do-copy= : copy all marked (or next ARG) files, or copy the current file.
 - =d= calls =dired-flag-file-deletion= : in Dired, flag the current line's file for deletion.
 - =D= calls =dired-do-delete= : delete all marked (or next ARG) files.
+- =E= calls =dired-do-open= : open all marked (or next ARG) files using an external program.
 - =F= calls =dired-do-find-marked-files= : find all marked files displaying all of them simultaneously.
 - =g= calls =revert-buffer= : replace current buffer text with the text of the visited file on disk.
 - =G= calls =dired-do-chgrp= : change the group of the marked (or next ARG) files.
@@ -60,11 +61,11 @@ Local keymap for Dired mode buffers.
 - =L= calls =dired-do-load= : load the marked (or next ARG) Emacs Lisp files.
 - =m= calls =dired-mark= : mark the file at point in the Dired buffer.
 - =M= calls =dired-do-chmod= : change the mode of the marked (or next ARG) files.
-- =n= calls =dired-next-line= : move down lines then position at filename.
+- =n= calls =dired-next-line= : move down ARG lines, then position at filename.
 - =N= calls =dired-do-man= : in Dired, run `man' on this file.
 - =o= calls =dired-find-file-other-window= : in Dired, visit this file or directory in another window.
 - =O= calls =dired-do-chown= : change the owner of the marked (or next ARG) files.
-- =p= calls =dired-previous-line= : move up lines then position at filename.
+- =p= calls =dired-previous-line= : move up ARG lines, then position at filename.
 - =P= calls =dired-do-print= : print the marked (or next ARG) files.
 - =q= calls =quit-window= : quit WINDOW and bury its buffer.
 - =Q= calls =dired-do-find-regexp-and-replace= : replace matches of FROM with TO, in all marked files.
@@ -98,8 +99,9 @@ Local keymap for Dired mode buffers.
 - =M-G= calls =dired-goto-subdir= : go to end of header line of inserted directory DIR in this Dired buffer.
 - =M-{= calls =dired-prev-marked-file= : move to the ARGth previous marked file.
 - =M-}= calls =dired-next-marked-file= : move to the ARGth next marked file.
-- =S-<SPC>= calls =dired-previous-line= : move up lines then position at filename.
+- =S-<SPC>= calls =dired-previous-line= : move up ARG lines, then position at filename.
 - =<follow>-<link>= : mouse-face
+- =<touchscreen>-<hold>= calls =dired-enable-click-to-select-mode= : enable `dired-click-to-select-mode' and mark the file under EVENT.
 - =e..f= calls =dired-find-file= : this function has :override advice: `dirvish-find-entry-a'.
 ** Prefix =%= : +prefix
 - =% &= calls =dired-flag-garbage-files= : flag for deletion all files that match `dired-garbage-files-regexp'.

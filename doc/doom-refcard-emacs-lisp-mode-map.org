@@ -14,6 +14,7 @@ All commands in ‘lisp-mode-shared-map’ are inherited by this map.
 - =C-M-i= calls =completion-at-point= : perform completion on the text around point.
 - =C-M-q= calls =indent-pp-sexp= : indent each line of the list starting just after point, or prettyprint it.
 - =C-M-x= calls =eval-defun= : evaluate top-level form around point and instrument it if EDEBUG-IT is non-nil.
+- =M-q= calls =prog-fill-reindent-defun= : refill or reindent the paragraph or defun that contains point.
 ** Prefix =C-c= : +prefix
 - =C-c C-b= calls =elisp-byte-compile-buffer= : byte compile the current buffer, but don't write a file.
 - =C-c C-e= calls =elisp-eval-region-or-buffer= : evaluate the forms in the active region or the whole current buffer.

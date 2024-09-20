@@ -94,7 +94,7 @@ Parent keymap for all keymaps of modes derived from ‘magit-mode’.
 - =<left>-<fringe>= : +prefix
 ** Prefix =C-c= : +prefix
 - =C-c <TAB>= calls =magit-section-cycle= : cycle visibility of current section and its children.
-- =C-c C-c= calls =magit-dispatch= : invoke a Magit command from a list of available commands.
+- =C-c C-c= : Compile Php file or lint it if prefixed. #pim
 - =C-c C-e= calls =magit-edit-thing= : this is a placeholder command, which may signal an error if called.
 - =C-c C-o= calls =magit-browse-thing= : this is a placeholder command, which may signal an error if called.
 - =C-c C-w= calls =magit-copy-thing= : this is a placeholder command, which signals an error if called.

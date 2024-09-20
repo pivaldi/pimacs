@@ -17,16 +17,16 @@
 ;;; Code:
 
 ;;;###autodef
-(defvar pim/scissor-pattern "✂·······"
-  "String pattern to insert in `pim/scissor`.")
+(defvar pim-scissor-pattern "✂·······"
+  "String pattern to insert in `pim-scissor`.")
 
 ;;;###autoload
-(defun pim/scissor ()
-  "Insert a line of 'pim/scissor-pattern' in the buffer."
+(defun pim-scissor ()
+  "Insert a line of `pim-scissor-pattern' in the buffer."
   (interactive)
   (or (bolp) (beginning-of-line 2))
-  (while (<= (current-column) (- (or fill-column 70) (length pim/scissor-pattern)))
-    (insert pim/scissor-pattern))
+  (while (<= (current-column) (- (or fill-column 70) (length pim-scissor-pattern)))
+    (insert pim-scissor-pattern))
   (newline))
 
 ;;;###autoload

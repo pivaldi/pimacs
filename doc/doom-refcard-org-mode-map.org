@@ -18,8 +18,7 @@ Keymap for Org mode.
 - =C-,= calls =org-cycle-agenda-files= : cycle through the files in `org-agenda-files'.
 - =C-j= calls =org-return-and-maybe-indent= : goto next table row, or insert a newline, maybe indented.
 - =C-M-<RET>= calls =org-insert-subheading= : insert a new subheading and demote it.
-- =C-M-i= calls =ispell-complete-word= : try to complete the word before or at point.
-- =C-M-t= calls =org-transpose-element= : transpose current and previous elements, keeping blank lines between.
+- =C-M-t= : . #pim
 - =C-M-S-<left>= calls =org-decrease-number-at-point= : decrement the number at point.
 - =C-M-S-<right>= calls =org-increase-number-at-point= : increment the number at point.
 - =C-M-<return>= calls =org-insert-subheading= : insert a new subheading and demote it.
@@ -99,7 +98,7 @@ Keymap for Org mode.
 - =C-c C-_= calls =org-down-element= : move to inner element.
 - =C-c C-a= calls =org-attach= : the dispatcher for attachment commands.
 - =C-c C-b= calls =org-backward-heading-same-level= : move backward to the ARG'th subheading at same level as this one.
-- =C-c C-c= calls =org-ctrl-c-ctrl-c= : set tags in headline, or update according to changed information at point.
+- =C-c C-c= : Compile Php file or lint it if prefixed. #pim
 - =C-c C-d= calls =org-deadline= : insert a "DEADLINE:" string with a timestamp to make a deadline.
 - =C-c C-e= calls =org-export-dispatch= : export dispatcher for Org mode.
 - =C-c C-f= : fold
@@ -195,7 +194,7 @@ Keymap for Org mode.
 - =C-c l c e= calls =org-clock-modify-effort-estimate= : add to or set the effort estimate of the item currently being clocked.
 - =C-c l c E= calls =org-set-effort= : set the effort property of the current entry.
 - =C-c l c g= calls =org-clock-goto= : go to the currently clocked-in entry, or to the most recently clocked one.
-- =C-c l c G= : closure
+- =C-c l c G= calls =function= : like `quote', but preferred for objects which are functions.
 - =C-c l c i= calls =org-clock-in= : start the clock on the current item.
 - =C-c l c I= calls =org-clock-in-last= : clock in the last closed clocked item.
 - =C-c l c l= calls =+org/toggle-last-clock= : toggles last clocked item.
@@ -210,7 +209,7 @@ Keymap for Org mode.
 - =C-c l d T= calls =org-time-stamp-inactive= : insert an inactive time stamp.
 **** Prefix =C-c l g= : +prefix
 - =C-c l g c= calls =org-clock-goto= : go to the currently clocked-in entry, or to the most recently clocked one.
-- =C-c l g C= : closure
+- =C-c l g C= calls =function= : like `quote', but preferred for objects which are functions.
 - =C-c l g g= calls =consult-org-heading= : jump to an Org heading.
 - =C-c l g G= calls =consult-org-agenda= : jump to an Org agenda heading.
 - =C-c l g i= calls =org-id-goto= : switch to the buffer containing the entry with id ID.

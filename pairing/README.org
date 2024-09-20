@@ -1,0 +1,9 @@
+#+title: PIMacs/pairing Doom Emacs Module
+
+Enhanced configuration of smartparens with extended features.
+
+*This module need Doom default module loaded whith +smartparens.*
+
+## Features
+
+The features added by this module are bind to a key shortcut, see

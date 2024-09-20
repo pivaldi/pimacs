@@ -16,8 +16,10 @@
  calendar-fr ;; French calendar.
  tramp ;;To “turn off” the backup feature for remote files and fix security issue.
  origami ;; A text folding minor mode for Emacs.
+ pairing ;; Enhanced configuration of smartparens (this module need Doom default module loaded whith +smartparens)
  org ;; Org mode specific configuration.
  dired ;; Dired mode specific configuration.
+ treesit ;; Automatically install and use tree-sitter major modes in Emacs 29+
 
  (lsp +doc) ;; Configures lsp and lsp-ui-doc (option +doc)
  lang-c

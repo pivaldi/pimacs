@@ -1,4 +1,5 @@
-;;; pimacs/lang-php/init.el -*- lexical-binding: t; -*-
+;;; Package pimacs/treesit --- PIMacs tree-sitter config
+;;; pimacs/treesit/config.el -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -18,15 +19,24 @@
 
 ;;; Code:
 
-(if (modulep! :pimacs treesit)
-    (add-to-list ' pim-keymapname-alist '("lang-php" . (("php-ts-mode-map" . php-ts-mode)
-                                                        ("php-mode-map" . php-mode))))
-  (add-to-list 'pim-keymapname-alist '("lang-php" . (("php-mode-map" . php-mode)))))
+(when (< emacs-major-version 29)
+  (add-to-list 'pim-error-msgs "Emacs 29+ is needed by treesit module"))
 
-(provide 'pimacs/lang-php/init)
-;;; init.el ends here
+(unless (fboundp 'treesit-install-language-grammar)
+  (add-to-list
+   'pim-error-msgs
+   "Native treesit module *no*t found.  Complie Emacs with configuration option --with-tree-sitter"))
+
+(use-package! treesit
+  :defer t
+  :config
+  (setq treesit-font-lock-level 4) ;; Maximum treesit font decoration
+  )
+
+(provide 'pimacs/treesit)
+;; config.el ends here.
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/lang-php/init.el")
+;; eval: (rename-buffer "pimacs/treesit/config.el")
 ;; End:

@@ -20,6 +20,12 @@
 
 ;;; Code:
 
+(unless (and (fboundp 'native-comp-available-p)
+             (native-comp-available-p))
+  (add-to-list
+   'pim-error-msgs
+   "Native complation is *not* available. Please compile Emacs with the configure option --with-native-compilation"))
+
 (setq-default
  ;; Fix missing warning-suppress-types function
  warning-suppress-types nil

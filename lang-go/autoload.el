@@ -1,6 +1,5 @@
-;;; pimacs/lang-php/init.el -*- lexical-binding: t; -*-
+;;; pimacs/lang-go/autoload.el -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
-
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation, either version 3 of the License, or
@@ -18,15 +17,14 @@
 
 ;;; Code:
 
-(if (modulep! :pimacs treesit)
-    (add-to-list ' pim-keymapname-alist '("lang-php" . (("php-ts-mode-map" . php-ts-mode)
-                                                        ("php-mode-map" . php-mode))))
-  (add-to-list 'pim-keymapname-alist '("lang-php" . (("php-mode-map" . php-mode)))))
+;;;###autoload
+(defun pim-go_ts_mode-hook nil
+  ;; (setq tab-width 2)
+  )
 
-(provide 'pimacs/lang-php/init)
-;;; init.el ends here
+;;; autoload.el ends here
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/lang-php/init.el")
+;; eval: (rename-buffer "pimacs/lang-go/autoload.el")
 ;; End:

@@ -19,6 +19,11 @@
 
 ;;; Code:
 
+(unless (functionp 'json-serialize)
+  (add-to-list
+   'pim-error-msgs
+   "Native JSON is *not* available. Please compile Emacs with the configure option --with-json"))
+
 (unless (modulep! :tools lsp) (doom! :tools lsp))
 
 ;; See https://emacs.stackexchange.com/q/81247/45315
@@ -28,11 +33,14 @@
 (when  (and (not (modulep! :tools lsp +peek)) (modulep! +doc))
   ;; See this excellent documentation https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
   (after! lsp-ui
-    (setq lsp-ui-doc-enable t)
-    (setq lsp-ui-doc-show-with-cursor nil)
-    (setq lsp-ui-doc-show-with-mouse t)
-    (setq lsp-ui-doc-include-signature t)
-    (setq lsp-ui-doc-delay 0.33)
+    (setq lsp-ui-doc-enable t
+          lsp-ui-doc-show-with-cursor nil
+          lsp-ui-doc-show-with-mouse t
+          lsp-ui-doc-include-signature t
+          lsp-modeline-code-actions-enable nil ;; With t it slows down editing code and that becomes painful !!
+          lsp-signature-auto-activate t
+          lsp-completion-show-kind t
+          lsp-ui-doc-delay 0.33)
     (map!
      :map lsp-mode-map
      (:when pim-azertyp
@@ -43,7 +51,7 @@
        :desc "Toogle lsp-ui-doc-show-with-cursor. #pim" "C-," #'pim-toggle-lsp-ui-doc-show-with-cursor)
      ))
   (use-package! lsp
-    :hook (lsp-mode-hook . (lsp-signature-activate))))
+    :hook (lsp-mode-hook . (lsp-signature-activate lsp-modeline--disable-code-actions ))))
 
 (provide 'pimacs/lsp)
 ;; config.el ends here.
