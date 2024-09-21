@@ -111,7 +111,7 @@ If there is a paired char at point use sp-unwrap-sexp."
      :desc "If word at point delete it and if paired char at point unwrap sexp. #pim" "C-<delete>" #'pim-sp-delete-word-or-unwrap-sexp
      ;; :desc ". #pim" "M-<delete>" #'sp-unwrap-sexp
      ;; :desc ". #pim" "M-<backspace>" #'sp-backward-unwrap-sexp
-     :desc ". #pim" "C-<backspace>" #'sp-backward-delete-word
+     :desc "Delete a word backward, skipping over intervening delimiters. #pim" "C-<backspace>" #'sp-backward-delete-word
      ;; :desc ". #pim" [remap sp-backward-delete-word] backward-delete-word
      ;; :desc ". #pim" [remap sp-backward-kill-word] backward-kill-word
 
