@@ -21,7 +21,8 @@
                (("global-map" . nil)
                 ("general-override-mode-map" . general)
                 ("which-key-C-h-map" . which-key)
-                ("minibuffer-local-map" . nil))))
+                ("minibuffer-local-map" . nil)
+                ("prog-mode-map" . prog-mode))))
 
 ;; (setq pim-keymapname-alist
 ;;       (list '("keys" . (("global-map" . nil) ("general-override-mode-map" . general)))

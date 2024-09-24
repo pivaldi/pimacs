@@ -351,9 +351,8 @@
       (lambda nil
         (interactive)
         (let ((scroll-preserve-screen-position t))
-          (scroll-up 1))))
-
-(map! :desc "Scroll down keeping the cursor on the same line. #pim" "<C-M-down>"
+          (scroll-up 1)))
+      :desc "Scroll down keeping the cursor on the same line. #pim" "<C-M-down>"
       (lambda nil
         (interactive)
         (let ((scroll-preserve-screen-position t))
@@ -365,9 +364,8 @@
       (lambda nil
         (interactive)
         (let ((line-move-visual nil))
-          (forward-line -1))))
-
-(map! :desc "Scrolling down in long line. #pim" "<C-down>"
+          (forward-line -1)))
+      :desc "Scrolling down in long line. #pim" "<C-down>"
       (lambda nil
         (interactive)
         (let ((line-move-visual nil))
@@ -377,71 +375,8 @@
       :prefix ("8" . "utf-8 #pim")
       :desc "Choose and insert an emoji glyph #pim" "i" #'emoji-insert)
 
-;; (map! :leader
-;;       :prefix ("8" . "utf-8 #pim")
-;;       :desc "Choose and insert an emoji glyph #pim" "e" #'emoji-insert
-;;       (:prefix ("1" . "fraction one #pim")
-;;        :desc "Fraction one half #pim" "2" "½"
-;;        :desc "Fraction one third #pim" "3" "⅓"
-;;        :desc "Fraction one quarter #pim" "4" "¼"
-;;        :desc "Fraction one fifth #pim" "5" "⅕"
-;;        :desc "Fraction one sixth #pim" "6" "⅙"
-;;        :desc "Fraction one seventh #pim" "7" "⅐"
-;;        :desc "Fraction one eighth #pim" "8" "⅛"
-;;        :desc "Fraction one ninth #pim" "9" "⅑"
-;;        :desc "Fraction one tenth #pim" "0" "⅒"
-;;        )
-
-;;       (:prefix ("f" . "face #pim")
-;;        :desc "🙂 #pim" "s" "🙂"
-;;        :desc "😀 #pim" "g" "😀"
-;;        :desc "😬 #pim" "G" "😬"
-;;        :desc "😒 #pim" "u" "😒"
-;;        :desc "😞 #pim" "d" "😞"
-;;        :desc "😖 #pim" "c" "😖"
-;;        :desc "😉 #pim" "w" "😉"
-;;        :desc "😂 #pim" "j" "😂"
-;;        :desc "😟 #pim" "W" "😟"
-;;        :desc "😅 #pim" "C" "😅"
-;;        :desc "😱 #pim" "S" "😱"
-;;        :desc "😆 #pim" "e" "😆"
-;;        :desc "😭 #pim" "l" "😭"
-;;        )
-
-;;       (:prefix ("s" . "symbol #pim")
-;;        :desc "⚠️ #pim" "w" "⚠️"
-;;        :desc "⚡ #pim" "z" "⚡"
-;;        :desc "• #pim" "b" "•"
-;;        )
-
-;;       (:prefix ("b" . "bullet #pim")
-;;        :desc "• #pim" "b" "•"
-;;        :desc "‣ #pim" "t" "‣"
-;;        :desc "⁃ #pim" "h" "⁃"
-;;        :desc "◘ #pim" "i" "◘"
-;;        :desc "◦ #pim" "w" "◦"
-;;        :desc "☑ #pim" "c" "☑"
-;;        :desc "☒ #pim" "x" "☒"
-;;        :desc "❧ #pim" "f" "❧"
-;;        :desc "☙ #pim" "F" "☙"
-;;        :desc "⦿ #pim" "C" "⦿"
-;;        )
-
-;;       (:prefix ("a" . "arrow #pim")
-;;        :desc "🠕 #pim" "u" "🠕"
-;;        :desc "🠖 #pim" "r" "🠖"
-;;        :desc "🠔 #pim" "l" "🠔"
-;;        :desc "🠗 #pim" "d" "🠗"
-
-;;        :desc "🠙 #pim" "U" "🠙"
-;;        :desc "🠚 #pim" "R" "🠚"
-;;        :desc "🠘 #pim" "L" "🠘"
-;;        :desc "🠛 #pim" "D" "🠛"
-;;        )
-;;       )
-
-(map! :desc "Switch to the next user buffer. #pim" "<mouse-9>" #'pim-next-user-buffer)
-(map! :desc "Switch to the previous user buffer. #pim" "<mouse-8>" #'pim-previous-user-buffer)
+(map! :desc "Switch to the next user buffer. #pim" "<mouse-9>" #'pim-next-user-buffer
+      :desc "Switch to the previous user buffer. #pim" "<mouse-8>" #'pim-previous-user-buffer)
 (map!
  :map minibuffer-local-map
  :desc "Switch to the previous user buffer. #pim" "C-<tab>" (lambda nil
@@ -449,12 +384,20 @@
                                                               (execute-kbd-macro (read-kbd-macro "<RET>")))
  :desc "Switch to the next previous user buffer. #pim" "C-S-<iso-lefttab>" (lambda nil
                                                                              (interactive)
-                                                                             (execute-kbd-macro (read-kbd-macro "<down> <RET>")))
- )
+                                                                             (execute-kbd-macro (read-kbd-macro "<down> <RET>"))))
 
+(use-package! prog-mode)
 
-;; TODO : better key bindings than lsp-describe-thing-at-point ?
-;; https://github.com/emacs-lsp/lsp-ui/
+(use-package! xref
+  :defer t
+  :config
+  (after! prog-mode
+    (map!
+     :map prog-mode-map
+     :desc "Find the definition of the identifier at point. #pim" "M-." #'xref-find-definitions
+     :desc "Find references to the identifier at point. #pim" "M-?" #'xref-find-references
+     :desc "Find references to the identifier at point. #pim" "M-," #'xref-go-back
+     )))
 
 (provide 'pimacs/keys/+emacs)
 ;; +emacs.el ends here.

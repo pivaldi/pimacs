@@ -28,9 +28,21 @@
   (add-hook 'go-ts-mode-hook #'pim-go_ts_mode-hook)
 
   :config
-  (map!
-   :map go-ts-mode-map
-   :desc "Jump to the definition of the expression at POINT. #pim" "M-." #'godef-jump)
+  (if (modulep! +lsp)
+      (progn
+        (map!
+         :map go-ts-mode-map
+         :desc "Find definitions of the symbol under point with LSP. #pim" "M-." #'lsp-find-definition
+         :desc "Find references of the symbol under point with LSP. #pim" "M-?" #'lsp-find-references)
+        )
+    (progn
+      (map!
+       :map go-ts-mode-map
+       :desc "Find the definition of the identifier at point with xref. #pim" "M-." #'xref-find-definitions
+       :desc "Find references to the identifier at point with xref. #pim" "M-?" #'xref-find-references
+       :desc "Go back to the previous position in xref history.. #pim" "M-," #'xref-go-back
+       ))
+    )
   )
 
 (after! (go-ts-mode flycheck-golangci-lint)

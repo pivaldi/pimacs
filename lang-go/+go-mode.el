@@ -28,11 +28,23 @@
   :hook
   (go-mode . (pim-go_ts_mode-hook))
   :init
-  (when (modulep! +lsp)
-    (add-hook 'go-mode-hook #'lsp-deferred))
-  (map!
-   :map go-mode-map
-   :desc "Jump to the definition of the expression at POINT. #pim" "M-." #'godef-jump)
+  (if (modulep! +lsp)
+      (progn
+        (add-hook 'go-mode-hook #'lsp-deferred)
+        (map!
+         :map go-mode-map
+         :desc "Find definitions of the symbol under point with LSP. #pim" "M-." #'lsp-find-definition
+         :desc "Find references of the symbol under point with LSP. #pim" "M-?" #'lsp-find-references)
+        )
+    (progn
+      (map!
+       :map go-mode-map
+       :desc "Find the definition of the identifier at point with xref. #pim" "M-." #'xref-find-definitions
+       :desc "Find references to the identifier at point with xref. #pim" "M-?" #'xref-find-references
+       :desc "Go back to the previous position in xref history.. #pim" "M-," #'xref-go-back
+       ))
+    )
+
   )
 
 
