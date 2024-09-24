@@ -35,6 +35,25 @@
    :desc "Jump to the definition of the expression at POINT. #pim" "M-." #'godef-jump)
   )
 
+
+(use-package! flycheck-golangci-lint
+  :ensure t ;; We need it !!
+  :when (and (modulep! :checkers syntax)
+             (not (modulep! :checkers syntax +flymake)))
+  :config
+  (unless  (executable-find "golangci-lint")
+    (add-to-list 'pim-error-msgs
+                 "Please install golangci-lint <https://github.com/golangci/golangci-lint>"))
+  )
+
+;; Enable golangci-lint in go-mode with fix for lsp-mode
+(after! (go-mode flycheck-golangci-lint pimacs/lsp)
+  (add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup)
+  (add-hook 'lsp-managed-mode-hook
+            (lambda ()
+              (when (eq major-mode 'go-mode)
+                (setq pim--flycheck-local-checkers '((lsp . ((next-checkers . (golangci-lint))))))))))
+
 ;;; +go-mode.el ends here
 
 ;; Local variables:

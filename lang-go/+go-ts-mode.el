@@ -33,16 +33,6 @@
    :desc "Jump to the definition of the expression at POINT. #pim" "M-." #'godef-jump)
   )
 
-(use-package! flycheck-golangci-lint
-  ;; :defer t
-  :when (and (modulep! :checkers syntax)
-             (not (modulep! :checkers syntax +flymake)))
-  :config
-  (unless  (executable-find "golangci-lint")
-    (add-to-list 'pim-error-msgs
-                 "Please install golangci-lint <https://github.com/golangci/golangci-lint>"))
-  )
-
 (after! (go-ts-mode flycheck-golangci-lint)
   (flycheck-define-checker pim-golangci-lint-ts
     "A Go syntax checker using golangci-lint for go-ts-mode."
@@ -64,12 +54,13 @@
      (error line-start (file-name) ":" line ":" (message) line-end))
     :modes go-ts-mode)
 
+  (add-hook 'flycheck-mode-hook #'pim-flycheck-golangci-lint-ts-setup-maybe)
+
   (after! pimacs/lsp
     (add-hook 'lsp-managed-mode-hook
               (lambda ()
-                (when (derived-mode-p 'go-ts-mode)
+                (when (eq major-mode 'go-ts-mode)
                   (setq pim--flycheck-local-checkers '((lsp . ((next-checkers . (pim-golangci-lint-ts))))))))))
-  (add-hook 'flycheck-mode-hook #'pim-flycheck-golangci-lint-ts-setup-maybe)
   )
 
 ;;; +go-ts-mode.el ends here
