@@ -22,7 +22,7 @@
 
 
 ;;;###autoload
-(defun pim/kill-and-join-forward (&optional arg)
+(defun pim-kill-and-join-forward (&optional arg)
   "If at end of line, join with following; otherwise kill line.
 Passes ARG to command `kill-line' when provided.
 Deletes whitespace at join."
@@ -32,7 +32,7 @@ Deletes whitespace at join."
     (kill-line arg)))
 
 ;;;###autoload
-(defun pim/kill-window-and-buffer()
+(defun pim-kill-window-and-buffer()
   "Delete current window and buffer."
   (interactive)
   (let ((windows (get-buffer-window-list (current-buffer))))
@@ -43,7 +43,7 @@ Deletes whitespace at join."
       (condition-case nil (delete-window win) (error nil)))))
 
 ;;;###autoload
-(defun pim/buffer-file-name (prefix &optional killit)
+(defun pim-buffer-file-name (prefix &optional killit)
   "Show the buffer file name (if any)
 and make it the latest kill in the kill ring if KILLIT is t.
 With PREFIX, write in the current buffer."
@@ -59,7 +59,7 @@ With PREFIX, write in the current buffer."
     (message "No file-name attached to the bufer")))
 
 ;;;###autoload
-(defun pim/backward-delete-word (arg)
+(defun pim-backward-delete-word (arg)
   "Delete characters backward until encountering the beginning of a word.
 With argument ARG, do this that many times."
   (interactive "p")
@@ -67,7 +67,7 @@ With argument ARG, do this that many times."
 
 
 ;;;###autoload
-(defun pim/delete-sexp (&optional arg)
+(defun pim-delete-sexp (&optional arg)
   "Delete the sexp (balanced expression) following point.
 With ARG, delete that many sexps after point.
 Negative arg -N means delete N sexps before point.
@@ -78,16 +78,16 @@ This command assumes point is not in a string or comment."
     (delete-region opoint (point))))
 
 ;;;###autoload
-(defun pim/backward-delete-sexp (&optional arg)
+(defun pim-backward-delete-sexp (&optional arg)
   "Delete the sexp (balanced expression) preceding point.
 With ARG, delete that many sexps before point.
 Negative arg -N means delete N sexps after point.
 This command assumes point is not in a string or comment."
   (interactive "p")
-  (pim/delete-sexp (- (or arg 1))))
+  (pim-delete-sexp (- (or arg 1))))
 
 ;;;###autoload
-(defun pim/indent-whole-html-buffer nil
+(defun pim-indent-whole-html-buffer nil
   "Indent the whole buffer except <pre> part in html mode."
   (interactive)
   (save-excursion
@@ -100,14 +100,14 @@ This command assumes point is not in a string or comment."
       (indent-region ppoint (point-max) nil))))
 
 ;;;###autoload
-(defun pim/indent-whole-buffer nil
+(defun pim-indent-whole-buffer nil
   "Indent the whole buffer.
 If the mark `(concat comment-start \"--indent after--\")`
 is found in the buffer the indentation start after the last mark found."
   (interactive)
   (save-excursion
     (if (assoc-string major-mode (list "xhtml-mode" "html-mode" "nxhtml-mode"))
-        (pim/indent-whole-html-buffer)
+        (pim-indent-whole-html-buffer)
       (progn
         (goto-char (point-min))
         (let ((ppoint (point)))
@@ -122,14 +122,14 @@ is found in the buffer the indentation start after the last mark found."
           (indent-region ppoint (point-max) nil))))))
 
 ;;;###autoload
-(defun pim/find-file-root ()
+(defun pim-find-file-root ()
   "Find file as root."
   (interactive)
   (let ((file (read-file-name "Find file as root : ")))
     (find-file (concat "/su::" file))))
 
 ;;;###autoload
-(defun pim/home()
+(defun pim-home()
   "Move cursor at beginning of line or first non blank character.
 Depending where the cursor is."
   (interactive)
@@ -141,7 +141,7 @@ Depending where the cursor is."
 
 ;; See also comment-dwim
 ;;;###autoload
-(defun pim/?comment (&optional indentp)
+(defun pim-?comment (&optional indentp)
   "Comment/Uncomment the entire line and indent if arg INDENTP is t."
   (interactive)
   (save-excursion
@@ -156,7 +156,7 @@ Depending where the cursor is."
         (and indentp (indent-according-to-mode))))))
 
 ;;;###autoload
-(defun pim/insert-comment-section ()
+(defun pim-insert-comment-section ()
   "Insert a section comments."
   (interactive)
   (let* ((str (if (and mark-active transient-mark-mode)
@@ -177,7 +177,7 @@ Depending where the cursor is."
     (beginning-of-line)))
 
 ;;;###autoload
-(defun pim/insert-comment-sub-section ()
+(defun pim-insert-comment-sub-section ()
   "Insert a section sub comments."
   (interactive)
   (let* ((str (if (and mark-active transient-mark-mode)
@@ -194,7 +194,7 @@ Depending where the cursor is."
     (beginning-of-line)))
 
 ;;;###autoload
-(defun pim/fill ()
+(defun pim-fill ()
   "Use fill line or region as `auto-fill-mode' does.";
   (interactive)
   (save-excursion
@@ -219,19 +219,19 @@ Arg REMOVESTRLIST is a list of char to be deleted before removing the STR char."
       (delete-char -1))))
 
 ;;;###autoload
-(defun pim/insert-semicol-at-end-of-line  nil
+(defun pim-insert-semicol-at-end-of-line  nil
   "Smartly insert a semicolumn at the end of the line."
   (interactive)
   (pi-insert-char-at-end-of-line ";" '("," ":" "." "#" "%" "/")))
 
 ;;;###autoload
-(defun pim/insert-comma-at-end-of-line nil
+(defun pim-insert-comma-at-end-of-line nil
   "Smartly insert a comma at the end of the line."
   (interactive)
   (pi-insert-char-at-end-of-line "," '(";" ":" "." "#" "%" "/")))
 
 ;;;###autoload
-(defun pim/next-user-buffer ()
+(defun pim-next-user-buffer ()
   "Switch to the next user buffer.
 User buffers are those whose name does not start with *."
   (interactive)
@@ -241,7 +241,7 @@ User buffers are those whose name does not start with *."
       (setq i (1+ i)) (next-buffer) )))
 
 ;;;###autoload
-(defun pim/previous-user-buffer ()
+(defun pim-previous-user-buffer ()
   "Switch to the previous user buffer.
 User buffers are those whose name does not start with *."
   (interactive)

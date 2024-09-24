@@ -1,5 +1,6 @@
-;;; pimacs/lang-go/autoload.el -*- lexical-binding: t; -*-
+;;; pimacs/lang-go/+go-mode.el -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
+
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation, either version 3 of the License, or
@@ -17,26 +18,26 @@
 
 ;;; Code:
 
-;;;###autoload
-(defun pim-go_ts_mode-hook nil
-  "`go-ts-mode' and `go-mode' common hook."
-  (setq tab-width 2)
-  (make-local-variable 'skeleton-pair-alist)
-  (setq skeleton-pair-alist '((?` _ ?`)))
+(unless (modulep! :lang go)
+  (if (modulep! +lsp)
+      (doom! :lang go +lsp)
+    (doom! :lang go)))
+
+(use-package! go-mode
+  :defer t
+  :hook
+  (go-mode . (pim-go_ts_mode-hook))
+  :init
+  (when (modulep! +lsp)
+    (add-hook 'go-mode-hook #'lsp-deferred))
+  (map!
+   :map go-mode-map
+   :desc "Jump to the definition of the expression at POINT. #pim" "M-." #'godef-jump)
   )
 
-;;;###autoload
-(defun pim-flycheck-golangci-lint-ts-setup-maybe ()
-  "Setup Flycheck GolangCI-Lint if featured.
-Add `pim-golangci-lint-ts' for `go-ts-mode' to `flycheck-checkers'."
-  (interactive)
-  (when (and (featurep 'flycheck) (featurep 'flycheck-golangci-lint))
-    (add-to-list 'flycheck-checkers 'pim-golangci-lint-ts))
-  )
-
-;;; autoload.el ends here
+;;; +go-mode.el ends here
 
 ;; Local variables:
 ;; coding: utf-8
-;; eval: (rename-buffer "pimacs/lang-go/autoload.el")
+;; eval: (rename-buffer "pimacs/lang-go/+go-mode.el")
 ;; End:

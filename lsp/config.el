@@ -30,6 +30,23 @@
 (when (executable-find "semgrep")
   (setq pim-warning-suppress-message-regexps '(".*semgrep/rulesRefreshed.*")))
 
+(defvar-local pim--flycheck-local-checkers nil)
+(use-package! lsp
+  ;; :defer t
+  :config
+  (when (and (modulep! :checkers syntax)
+             (not (modulep! :checkers syntax +flymake)))
+    (defun +pim-flycheck-checker-get(fn checker property)
+      "See https://github.com/flycheck/flycheck/issues/1762"
+      (or (alist-get property (alist-get checker pim--flycheck-local-checkers))
+          (funcall fn checker property)))
+    (advice-add 'flycheck-checker-get :around '+pim-flycheck-checker-get))
+
+  :hook
+  (lsp-mode . (lsp-signature-activate lsp-modeline--disable-code-actions))
+  (before-save . (lsp-organize-imports))
+  )
+
 (when  (and (not (modulep! :tools lsp +peek)) (modulep! +doc))
   ;; See this excellent documentation https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
   (after! lsp-ui
@@ -49,9 +66,7 @@
      (:unless pim-azertyp
        :desc "lsp-describe-thing-at-point -- lsp documentation of the thing at point. #pim" "C-\"" #'lsp-describe-thing-at-point
        :desc "Toogle lsp-ui-doc-show-with-cursor. #pim" "C-," #'pim-toggle-lsp-ui-doc-show-with-cursor)
-     ))
-  (use-package! lsp
-    :hook (lsp-mode-hook . (lsp-signature-activate lsp-modeline--disable-code-actions ))))
+     )))
 
 (provide 'pimacs/lsp)
 ;; config.el ends here.

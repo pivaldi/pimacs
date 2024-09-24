@@ -26,7 +26,7 @@
   :config
   (map!
    :map dired-mode-map
-   :desc "Rename current file if no file is marked, otherwise put the Dired buffer in writable Dired mode. #pim" "R" #'pim/dired-rename
+   :desc "Rename current file if no file is marked, otherwise put the Dired buffer in writable Dired mode. #pim" "R" #'pim-dired-rename
    :desc "Rename current file or all marked files. #pim" "r" #'pi/dired-rename-this-file
    ))
 
@@ -35,14 +35,14 @@
     ;; This lib comes from https://github.com/kickingvegas/cclisp/blob/e5397b5b08d9b96633a2cf13b230e71e02697b3f/cc-dired-sort-by.el
     (load! "+cc-dired-sort-by")
 
-    (defun pim/dired-sort-by (&optional arg)
+    (defun pim-dired-sort-by (&optional arg)
       "Dired sort by `cc/dired-sort-by' or, if ARG is not nil, by native `dired-sort-toggle-or-edit'."
       (interactive "P")
       (if arg (if (equal arg '(4)) (dired-sort-toggle-or-edit) (dired-sort-toggle-or-edit 4)) (cc/dired-sort-by)))
 
     (map!
      :map dired-mode-map
-     :desc "Sort with Charles Choi fancy sort or the native Dired sort if prefix or double prefix. #pim" "s" #'pim/dired-sort-by)))
+     :desc "Sort with Charles Choi fancy sort or the native Dired sort if prefix or double prefix. #pim" "s" #'pim-dired-sort-by)))
 
 (provide 'pimacs/dired)
 ;;; config.el ends here

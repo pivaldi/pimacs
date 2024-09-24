@@ -90,7 +90,7 @@ Actually only Emacs (not Evil) key binding are supported.
 
 ## Useful Interactive Functions
 
-* `pim/scissor` : Insert a line of `pim/scissor-pattern` in the buffer.
+* `pim-scissor` : Insert a line of `pim-scissor-pattern` in the buffer.
 
   `✂····✂····✂····✂····✂····✂····✂····✂····✂····✂····✂····`
 

@@ -25,6 +25,7 @@
  lang-c
  (lang-php +php-cs-fixer) ;; Configuration for PHP coding.
  lang-lisp
+ (lang-go +lsp)
  lang-make
 
  doc ;; Generated documentation, fundamental keys binding for example.

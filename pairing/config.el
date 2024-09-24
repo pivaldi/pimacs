@@ -102,7 +102,7 @@ If there is a paired char at point use sp-unwrap-sexp."
      :desc "Move point to the next position that is the end of a symbol. #pim" "C-S-f" #'sp-forward-symbol
      :desc "Move point to the next position that is the begining of a symbol. #pim" "C-S-b" #'sp-backward-symbol
 
-     :desc ". #pim" "C-M-t" nil ;; Default is sp-transpose-sexp. Don't like this !
+     :desc "#pim" "C-M-t" nil ;; Default is sp-transpose-sexp. Don't like this !
      ;; :desc ". #pim" "C-M-k" sp-kill-sexp
      :desc "Kill the balanced expression preceding point. #pim" "M-k" #'sp-backward-kill-sexp
      :desc "Jump to beginning of the sexp the point is in then kill the sexp respecting delimiters. #pim" "C-M-w" #'pim-sp-kill-sexp
@@ -111,7 +111,7 @@ If there is a paired char at point use sp-unwrap-sexp."
      :desc "If word at point delete it and if paired char at point unwrap sexp. #pim" "C-<delete>" #'pim-sp-delete-word-or-unwrap-sexp
      ;; :desc ". #pim" "M-<delete>" #'sp-unwrap-sexp
      ;; :desc ". #pim" "M-<backspace>" #'sp-backward-unwrap-sexp
-     :desc "Delete a word backward, skipping over intervening delimiters. #pim" "C-<backspace>" #'sp-backward-delete-word
+     :desc "Delete a word backward, skipping over intervening delimiters. #pim" "C-<backspace>" #'pim-backward-delete-word
      ;; :desc ". #pim" [remap sp-backward-delete-word] backward-delete-word
      ;; :desc ". #pim" [remap sp-backward-kill-word] backward-kill-word
 
@@ -124,6 +124,8 @@ If there is a paired char at point use sp-unwrap-sexp."
      :desc "Wrap the following expression with back quotes. #pim" "C-c `"  #'pim-wrap-with-back-quotes
      )
     )
+
+  (map! :desc "#pim" "C-M-t" nil) ;; Default is sp-transpose-sexp. Don't like this !
   )
 
 (provide 'pimacs/pairing)

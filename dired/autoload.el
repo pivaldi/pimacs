@@ -20,7 +20,7 @@
 ;;; Code:
 
 ;;;###autoload
-(defun pim/dired-rename ()
+(defun pim-dired-rename ()
   "Use multiple renaming if multiple files are marked.
 Otherwise, use a buffer in which all the names of files are editable."
   (interactive)

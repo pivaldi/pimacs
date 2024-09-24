@@ -20,13 +20,13 @@
 
 (map!
  ;; TODO : Use the package easy-kill
- :desc "If at end of line, join with following; otherwise kill line. #pim" "C-k" #'pim/kill-and-join-forward
- :desc "Echo filename in the minibuffer, insert into the buffer with C-u. #pim" "<f8>" #'pim/buffer-file-name
+ :desc "If at end of line, join with following; otherwise kill line. #pim" "C-k" #'pim-kill-and-join-forward
+ :desc "Echo filename in the minibuffer, insert into the buffer with C-u. #pim" "<f8>" #'pim-buffer-file-name
  :desc "Copy the buffer file name into the kill ring. #pim" "S-<f8>" (lambda nil
                                                                        (interactive)
-                                                                       (pim/buffer-file-name nil t))
- :desc "Delete characters backward until encountering the beginning of a word. #pim" "C-<backspace>" #'pim/backward-delete-word
- :desc "Delete the sexp (balanced expression) preceding point. #pim" "M-<backspace>" #'pim/backward-delete-sexp
+                                                                       (pim-buffer-file-name nil t))
+ :desc "Delete characters backward until encountering the beginning of a word. #pim" "C-<backspace>" #'pim-backward-delete-word
+ :desc "Delete the sexp (balanced expression) preceding point. #pim" "M-<backspace>" #'pim-backward-delete-sexp
  :desc "Kill the whole line. #pim" "M-<delete>" (lambda ()
                                                   (interactive)
                                                   (beginning-of-line)
@@ -111,8 +111,8 @@
 ;;             (define-key Info-mode-map (kbd ">") 'Info-history-forward)))
 
 ;; (map! :desc "Browse url at point. #pim" "C-c b" #'browse-url-at-point)
-(map! :desc "Delete current window and buffer. #pim" "<f12>" 'pim/kill-window-and-buffer)
-(map! :desc "Indent the whole buffer. #pim" "<C-S-iso-lefttab>" 'pim/indent-whole-buffer)
+(map! :desc "Delete current window and buffer. #pim" "<f12>" 'pim-kill-window-and-buffer)
+(map! :desc "Indent the whole buffer. #pim" "<C-S-iso-lefttab>" 'pim-indent-whole-buffer)
 
 ;; ;; Todo : enable this !
 ;; (if (require 'move-text nil t)
@@ -151,20 +151,20 @@
 (map! :desc "Jump/switch between the indentation column and the beginning of the line. #pim" "C-M-<prior>" #'doom/backward-to-bol-or-indent)
 (map! :desc "Jump/switch between the last non-blank, non-comment character and the end of the line. #pim" "C-M-<next>" #'doom/forward-to-last-non-comment-or-eol)
 (map! :desc "Jump/switch between the last non-blank, non-comment character and the end of the line. #pim" "<end>" #'doom/forward-to-last-non-comment-or-eol)
-(map! :desc "Use fill line or region as auto-fill-mode does. #pim" "M-q" #'pim/fill)
+(map! :desc "Use fill line or region as auto-fill-mode does. #pim" "M-q" #'pim-fill)
 
 (if pim-azertyp
     (progn
       (map! :desc "Comment/Uncomment the entire line and indent. #pim" "C-%"
             (lambda nil
               (interactive)
-              (pim/?comment t)))
-      (map! :desc "Comment/Uncomment the entire line but not indent. #pim" "C-ù" #'pim/?comment))
+              (pim-?comment t)))
+      (map! :desc "Comment/Uncomment the entire line but not indent. #pim" "C-ù" #'pim-?comment))
   (progn
     (map! :desc "Comment/Uncomment the entire line and indent (no indent if C-u prefix). #pim" "C-/"
           (lambda (arg)
             (interactive "P")
-            (pim/?comment (not arg))))
+            (pim-?comment (not arg))))
     )
   )
 
@@ -178,16 +178,16 @@
       (keyco-desc "Fancy insert/delete comma at the end of the line. #pim")
       (prefix "H-i")) ;; In fact, it is C-i
   (map! :prefix prefix
-        :desc keysm-desc keysm #'pim/insert-semicol-at-end-of-line
-        :desc keyco-desc keyco #'pim/insert-comma-at-end-of-line
+        :desc keysm-desc keysm #'pim-insert-semicol-at-end-of-line
+        :desc keyco-desc keyco #'pim-insert-comma-at-end-of-line
         ;; Rebind flyspell default key-binding
         (:after flyspell
          :map flyspell-mode-map
-         :desc keysm-desc keysm #'pim/insert-semicol-at-end-of-line
-         :desc keyco-desc keyco #'pim/insert-comma-at-end-of-line
+         :desc keysm-desc keysm #'pim-insert-semicol-at-end-of-line
+         :desc keyco-desc keyco #'pim-insert-comma-at-end-of-line
          )
-        :desc "Insert a cool section comments. #pim" "s" #'pim/insert-comment-section
-        :desc "Insert a cool section comments. #pim" "S" #'pim/insert-comment-sub-section
+        :desc "Insert a cool section comments. #pim" "s" #'pim-insert-comment-section
+        :desc "Insert a cool section comments. #pim" "S" #'pim-insert-comment-sub-section
         )
   )
 
@@ -439,8 +439,8 @@
 ;;        )
 ;;       )
 
-(map! :desc "Switch to the next user buffer. #pim" "<mouse-9>" #'pim/next-user-buffer)
-(map! :desc "Switch to the previous user buffer. #pim" "<mouse-8>" #'pim/previous-user-buffer)
+(map! :desc "Switch to the next user buffer. #pim" "<mouse-9>" #'pim-next-user-buffer)
+(map! :desc "Switch to the previous user buffer. #pim" "<mouse-8>" #'pim-previous-user-buffer)
 (map!
  :map minibuffer-local-map
  :desc "Switch to the previous user buffer. #pim" "C-<tab>" (lambda nil
