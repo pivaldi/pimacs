@@ -42,9 +42,9 @@
           (funcall fn checker property)))
     (advice-add 'flycheck-checker-get :around '+pim-flycheck-checker-get))
 
-  :hook
-  (lsp-mode . (lsp-signature-activate lsp-modeline--disable-code-actions))
-  (before-save . (lsp-organize-imports))
+  ;; :hook
+  ;; (lsp-mode . (lsp-signature-activate lsp-modeline--disable-code-actions))
+  ;; (before-save . (lsp-organize-imports))
   )
 
 (when  (and (not (modulep! :tools lsp +peek)) (modulep! +doc))

@@ -95,6 +95,7 @@
    :prefix ("s-<tab>" "workspaces/windows #pim")
    :desc "Switch to last workspace. #pim" "<tab>" #'+workspace/other
    :desc "Switch to last workspace. #pim" "s-<tab>" #'+workspace/other
+   :desc "Switch to last workspace. #pim" "<RET>" #'+workspace/other
    :desc "Switch to choose workspace. #pim" "w" #'+workspace/switch-to))
 
 ;; (map! :leader

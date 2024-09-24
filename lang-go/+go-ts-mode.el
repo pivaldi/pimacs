@@ -19,24 +19,13 @@
 
 ;;; Code:
 
-;; (remove-hook! (pim-go_ts_mode-hook . go-ts-mode-hook))
-;; (remove-hook! (pim-flycheck-golangci-lint-ts-setup-maybe . go-ts-mode-hook))
-
 (use-package! go-ts-mode
   ;; :defer t
-  ;; :hook
-  ;; (go-ts-mode . (pim-go_ts_mode-hook pim-flycheck-golangci-lint-ts-setup-maybe))
-  ;; (go-ts-mode . (pim-flycheck-golangci-lint-ts-setup-maybe))
 
   :init
-  ;; (when (modulep! +lsp)
-  ;;   (add-hook 'go-ts-mode-hook #'lsp-deferred))
+  (when (modulep! +lsp)
+    (add-hook 'go-ts-mode-hook #'lsp-deferred))
   (add-hook 'go-ts-mode-hook #'pim-go_ts_mode-hook)
-  ;; (add-hook 'go-ts-mode-hook #'pim-flycheck-golangci-lint-ts-setup-maybe)
-
-  ;; :init
-  ;; (add-to-list 'major-mode-remap-alist '(go-mode . go-ts-mode))
-  ;; (add-to-list 'major-mode-remap-alist '(go-mode-mode . go-mod-ts-mode))
 
   :config
   (map!
@@ -75,11 +64,11 @@
      (error line-start (file-name) ":" line ":" (message) line-end))
     :modes go-ts-mode)
 
-  ;; (after! pimacs/lsp
-  ;;   (add-hook 'lsp-managed-mode-hook
-  ;;             (lambda ()
-  ;;               (when (derived-mode-p 'go-ts-mode)
-  ;;                 (setq pim--flycheck-local-checkers '((lsp . ((next-checkers . (pim-golangci-lint-ts))))))))))
+  (after! pimacs/lsp
+    (add-hook 'lsp-managed-mode-hook
+              (lambda ()
+                (when (derived-mode-p 'go-ts-mode)
+                  (setq pim--flycheck-local-checkers '((lsp . ((next-checkers . (pim-golangci-lint-ts))))))))))
   (add-hook 'flycheck-mode-hook #'pim-flycheck-golangci-lint-ts-setup-maybe)
   )
 
