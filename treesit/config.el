@@ -25,7 +25,7 @@
 (unless (fboundp 'treesit-install-language-grammar)
   (add-to-list
    'pim-error-msgs
-   "Native treesit module *no*t found.  Complie Emacs with configuration option --with-tree-sitter"))
+   "Native treesit module *not* found.  Complie Emacs with configuration option --with-tree-sitter"))
 
 (use-package! treesit
   :defer t

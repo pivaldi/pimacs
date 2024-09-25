@@ -26,6 +26,11 @@
                            (y-or-n-p (format "Directory %s does not exist. Create it ?" dir)))
                   (make-directory dir t))))))
 
+(add-hook! 'doom-after-init-hook :append
+  (defun pim--disable-visual-line-mode ()
+    (global-visual-line-mode -1)
+    ))
+
 ;; ----------------------------------------------
 ;; * Auto-fill: automatic cutting of long lines *
 ;; So that the auto-fill mode does not cut off at the place of a ":" or ";" etc..

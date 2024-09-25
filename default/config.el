@@ -103,6 +103,11 @@
  search-whitespace-regexp nil
  ;; Minimum severity level for displaying the warning buffer.
  ;; warning-minimum-level :error
+
+ ;; See the hook pim--enable-visual-line-mode in +hooks.el
+ truncate-partial-width-windows nil
+ word-wrap nil ;; dont wrap word because space make sens for some prog languages.
+ truncate-lines t
  )
 
 (add-to-list 'warning-suppress-types '(comp))

@@ -40,12 +40,12 @@
              ))))
     (progn  ;; emacs >= 30
       (unless (and
-               (treesit-ready-p 'php)
-               (treesit-ready-p 'phpdoc)
-               (treesit-ready-p 'html)
-               (treesit-ready-p 'javascript)
-               (treesit-ready-p 'jsdoc)
-               (treesit-ready-p 'css))
+               (treesit-language-available-p 'php)
+               (treesit-language-available-p 'phpdoc)
+               (treesit-language-available-p 'html)
+               (treesit-language-available-p 'javascript)
+               (treesit-language-available-p 'jsdoc)
+               (treesit-language-available-p 'css))
         (warn "php tree sitter parser are not installed. PIMacs is installing they for you…")
         (php-ts-mode-install-parsers))
       (pim--php-map t))))
