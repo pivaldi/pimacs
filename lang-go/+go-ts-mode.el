@@ -20,10 +20,9 @@
 ;;; Code:
 
 (use-package! go-ts-mode
-  ;; :defer t
-
+  :defer t
   :init
-  (when (modulep! +lsp)
+  (when (or (modulep! +lsp) (modulep! :pimacs lsp))
     (add-hook 'go-ts-mode-hook #'lsp-deferred))
   (add-hook 'go-ts-mode-hook #'pim-go_ts_mode-hook)
 

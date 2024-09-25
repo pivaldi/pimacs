@@ -250,6 +250,14 @@ User buffers are those whose name does not start with *."
     (while (and (string-match "^*" (buffer-name)) (< i 50))
       (setq i (1+ i)) (previous-buffer) )))
 
+;;;###(autoload
+(defun pim-expand-file-name-at-point ()
+  "Use hippie-expand to expand the filename.
+Source : https://superuser.com/a/68648"
+  (interactive)
+  (let ((hippie-expand-try-functions-list '(try-complete-file-name-partially try-complete-file-name)))
+    (call-interactively 'hippie-expand)))
+
 (provide 'pimacs/functions/autoload)
 ;;; autoload.el ends here
 

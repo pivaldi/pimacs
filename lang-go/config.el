@@ -20,6 +20,25 @@
 
 (setenv "GO111MODULE" "on")
 
+(if (not (executable-find "goimports"))
+    (add-to-list 'pim-error-msgs "Please install goimports : https://godoc.org/golang.org/x/tools/cmd/goimports"))
+(if (not (executable-find "gofmt"))
+    (add-to-list 'pim-error-msgs "Please install gofmt : https://godoc.org/golang.org/x/tools/cmd/gofmt"))
+(if (not (executable-find "godef"))
+    (add-to-list 'pim-error-msgs "Please install godef : go install github.com/rogpeppe/godef@latest"))
+(if (not (executable-find "gocode"))
+    (add-to-list 'pim-error-msgs "Please install gocode : go install github.com/nsf/gocode@latest"))
+
+(use-package! flycheck-golangci-lint
+  :defer t
+  :ensure t ;; We need it !!
+  :when (and (modulep! :checkers syntax)
+             (not (modulep! :checkers syntax +flymake)))
+  :config
+  (unless  (executable-find "golangci-lint")
+    (add-to-list 'pim-error-msgs
+                 "Please install golangci-lint <https://github.com/golangci/golangci-lint>")))
+
 (load! "+go-mode") ;; go-mode by default
 
 ;; Load go-ts-mode if available

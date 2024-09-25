@@ -53,7 +53,8 @@ keymap.
 - =B= calls =switch-to-buffer= : display buffer BUFFER-OR-NAME in the selected window.
 - =d= calls =dired= : "Edit" directory DIRNAME--delete, rename, print, etc. some files in it.
 - =e= calls =kmacro-end-and-call-macro= : call last keyboard macro, ending it first if currently being defined.
-- =f= calls =set-fill-column= : set `fill-column' to specified argument.
+- =f= calls =projectile-find-file= : jump to a project's file using completion.
+- =F= calls =consult-find= : search for files with `find' in DIR.
 - =g= calls =magit-status= : show the status of the current Git repository in a buffer.
 - =h= calls =mark-whole-buffer= : put point at beginning and mark at end of buffer.
 - =i= calls =insert-file= : insert contents of file FILENAME into buffer after point.
@@ -99,10 +100,13 @@ keymap.
 - =C-M--= calls =global-text-scale-adjust= : change (a.k.a. "adjust") the font size of all faces by INCREMENT.
 - =C-M-0= calls =global-text-scale-adjust= : change (a.k.a. "adjust") the font size of all faces by INCREMENT.
 - =C-M-== calls =global-text-scale-adjust= : change (a.k.a. "adjust") the font size of all faces by INCREMENT.
+- =C-S-f= calls =consult-find= : search for files with `find' in DIR.
 - =C-<left>= calls =previous-buffer= : in selected window switch to ARGth previous buffer.
 - =C-<right>= calls =next-buffer= : in selected window switch to ARGth next buffer.
 - =M-:= calls =repeat-complex-command= : edit and re-evaluate last complex command, or ARGth from last.
 - =M-g= calls =magit-dispatch= : invoke a Magit command from a list of available commands.
+- =S-f= calls =projectile-find-file= : jump to a project's file using completion.
+- =S-F= calls =projectile-find-file= : jump to a project's file using completion.
 - =<left>= calls =previous-buffer= : in selected window switch to ARGth previous buffer.
 - =<right>= calls =next-buffer= : in selected window switch to ARGth next buffer.
 ** Prefix =<ESC>= calls =repeat-complex-command= : edit and re-evaluate last complex command, or ARGth from last.

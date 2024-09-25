@@ -32,7 +32,7 @@
 
 (defvar-local pim--flycheck-local-checkers nil)
 (use-package! lsp
-  ;; :defer t
+  :defer t
   :config
   (when (and (modulep! :checkers syntax)
              (not (modulep! :checkers syntax +flymake)))
@@ -42,14 +42,20 @@
           (funcall fn checker property)))
     (advice-add 'flycheck-checker-get :around '+pim-flycheck-checker-get))
 
-  ;; :hook
   ;; (lsp-mode . (lsp-signature-activate lsp-modeline--disable-code-actions))
-  ;; (before-save . (lsp-organize-imports))
+  ;; TODO: make this flex when mode does not provide
+  (add-hook
+   'before-save-hook (lambda nil
+                       (when (and lsp-managed-mode
+                                  (lsp--find-action-handler 'lsp-organize-imports))
+                         (lsp-organize-imports))))
   )
 
 (when  (and (not (modulep! :tools lsp +peek)) (modulep! +doc))
   ;; See this excellent documentation https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
-  (after! lsp-ui
+  (use-package! lsp
+    :defer t
+    :config
     (setq lsp-ui-doc-enable t
           lsp-ui-doc-show-with-cursor nil
           lsp-ui-doc-show-with-mouse t

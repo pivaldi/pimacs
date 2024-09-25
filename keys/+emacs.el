@@ -32,6 +32,18 @@
                                                   (beginning-of-line)
                                                   (kill-line)))
 
+(use-package! consult
+  :defer t
+  :config
+  (map!
+   :desc "Search for files with find in DIR. #pim" "C-x C-S-F" #'consult-find))
+
+(use-package! projectile
+  :defer t
+  :config
+  (map!
+   :desc "Jump to a project's file using completion. #pim" "C-x f" #'projectile-find-file))
+
 ;; ------------------------
 ;; * Key for other-window *
 (use-package! ace-window
@@ -60,13 +72,9 @@
 
 ;; -------------------------------------------
 ;; * Filename completion anywhere with S-Tab *
-(autoload 'comint-dynamic-complete-filename "comint" "" t)
-;; List of suffixes to neglect during completion
-(setq comint-completion-fignore (quote ("{" "}" "(" ")" "$" "=" "\"" "`" "'" "[" "]" "%" "<" ">")))
-(map! :desc "Dynamically complete the filename under the cursor. #pim"
-      "S-<iso-lefttab>" #'comint-dynamic-complete-filename
-      "S-<tab>" #'comint-dynamic-complete-filename)
-
+(map! :desc "A really working dynamical completion of the filename under the cursor. #pim"
+      "S-<iso-lefttab>" #'pim-expand-file-name-at-point
+      "S-<tab>" #'pim-expand-file-name-at-point)
 (map!
  :desc "Open recent file à la Chromium/Firefox. #pim"
  :g "C-S-t" #'consult-recent-file)

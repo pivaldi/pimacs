@@ -22,6 +22,9 @@ Keymap for ‘php-mode’.
 - =C-M-e= calls =c-end-of-defun= : move forward to the end of a top level declaration.
 - =C-M-h= calls =mark-defun= : put mark at end of this defun, point at beginning.
 - =C-M-q= calls =c-indent-exp= : indent each line in the balanced expression following point syntactically.
+- =M-,= : Find references to the identifier at point. #pim
+- =M-.= : Find the definition of the identifier at point. #pim
+- =M-?= : Find references to the identifier at point. #pim
 - =M-a= calls =c-beginning-of-statement= : go to the beginning of the innermost C statement.
 - =M-e= calls =c-end-of-statement= : go to the end of the innermost C statement.
 - =M-q= calls =prog-fill-reindent-defun= : refill or reindent the paragraph or defun that contains point.

@@ -28,23 +28,33 @@
   "List of keymaps to be exported by `pim-generate-all-keymaps'.")
 (setq pim-doc-keymaps-to-export
       (list '("org-mode-map" . org)
-            '("go-mode-map" . go-mode)
             '("dired-mode-map" . dired)
             '("isearch-mode-map" . isearch)
             '("magit-mode-map" . magit)
             '("projectile-mode-map" . projectile)
             '("ctl-x-map" . nil)
             '("doom-leader-workspaces/windows-map" . nil)
-            '("php-mode-map" . php-mode)
-            '("lsp-mode-map" . lsp)
             '("minibuffer-local-map" . nil)
             '("emacs-lisp-mode-map" . elisp-mode)
             '("smartparens-mode-map" . smartparens)
+            '("vertico-map" . vertico)
             ))
 
 (when (modulep! :completion corfu)
   (add-to-list 'pim-doc-keymaps-to-export '("corfu-map" . corfu))
   )
+
+(when (modulep! :pimacs lsp)
+  (add-to-list 'pim-doc-keymaps-to-export '("lsp-mode-map" . lsp)))
+
+(when (or (modulep! :pimacs lang-php) (modulep! :lang php))
+  (add-to-list 'pim-doc-keymaps-to-export '("php-mode-map" . php-mode)))
+
+(when (or (modulep! :pimacs lang-go) (modulep! :lang go))
+  (add-to-list 'pim-doc-keymaps-to-export '("go-mode-map" . go-mode))
+  (when (fboundp 'go-ts-mode)
+    (add-to-list 'pim-doc-keymaps-to-export '("go-ts-mode-map" . go-ts-mode))))
+
 
 (provide `pimacs/doc/init)
 ;;; init.el ends here

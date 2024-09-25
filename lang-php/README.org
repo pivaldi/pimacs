@@ -1,13 +1,18 @@
 #+title: PIMacs/lang-php Doom Emacs Module
 
 This package provide extra configurations of the default /Doom Emacs/ configuration for /PHP/
-code editing :
+code editing and extend this configuration to the Emacs native ~php-ts-mode~
+based on the equally Emacs native [[https://tree-sitter.github.io/tree-sitter/][Tree Sitter]].
+
+* Features
+- If the module =pimacs/treesit= is loaded and the Emacs version is greater than
+  30, this module use and configure the Emacs native =php-ts-mode=.
 - With the =+php-cs-fixer= module option, use the
   /[[https://github.com/OVYA/php-cs-fixer][php-cs-fixer]]/ formater even when
-  =lsp-mode= is enabled (replace /prettier/ used by [[https://github.com/lassik/emacs-format-all-the-code][ormat-all]]).
+  =lsp-mode= is enabled (replace /prettier/ used by [[https://github.com/lassik/emacs-format-all-the-code][format-all]]).
 - Enable /[[https://github.com/pivaldi/php-fh][php-fh]]/ for highlight the
-  native /PHP/ functions names (can be disabled with the module option
-  =+no-php-fh= option).
+  native /PHP/ functions names. This is disabled with the module option
+  =+no-php-fh= option or if your use Emacs native Tree sitter solution.
 - When =:lang php= *is not loaded with the option =+lsp=*, configure the package
   /[[https://github.com/emacs-php/phpactor.el][phpactor]]/
 - Check and install automatically the needed binary softwares (disabled with
@@ -19,6 +24,9 @@ code editing :
   - [[https://github.com/squizlabs/PHP_CodeSniffer][PHP_CodeSniffer]] tokenizes /PHP/ files and detects violations of a defined set of coding standards.
   - [[https://prettier.io/][Prettier]] is an opinionated code formatter.
 
+* Key bindings
+
+See the [[lang-php-key-bindings-refcard.org][the key bindings added by this package]].
 
 * Module Options
 - =+php-cs-fixer= : to force the formatting system to usage
@@ -26,3 +34,4 @@ code editing :
 - =+no-dep= : to disable checking and auto-installing binary dependencies.
 - =+no-php-fh= : to not load /[[https://github.com/pivaldi/php-fh][php-fh]]/
   because of his potential intensive CPU usage.
+- =+lsp= (*recommended*): configure the Langage Server Protocol for =php-mode= and =php-ts-mode=.

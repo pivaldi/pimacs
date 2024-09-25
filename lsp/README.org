@@ -1,12 +1,15 @@
 #+title: PIMacs/lsp-ui-doc Doom Emacs Module
 
+* Features
+- When loading this module all the other modes handle by /PIMacs/ assume
+  you want an =lsp= integration if it's possible.
 - Load the Doom module =lsp= if it is not already loaded
 - Remove the =lsp-mode= annoying warning /unknown notification: semgrep/rulesRefreshed/.
 - With the module option =+doc= This package configures
   =[[https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/][lsp-ui-doc]]=
   when the Doom =lsp= module is loaded without the option =+peek=.
 
-here the final =lsp= configuration :
+here the final =lsp-ui-doc= configuration :
 #+begin_src lisp
 (setq lsp-ui-doc-enable t
       lsp-ui-doc-show-with-cursor nil

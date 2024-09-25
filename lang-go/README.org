@@ -1,0 +1,38 @@
+#+title: PIMacs/lang-go Doom Emacs Module
+
+This Doom package provides ready to use configuration of the Emacs native
+~go-ts-mode~ for editing [[https://go.dev/][Go programming language]]
+based on the native support of [[https://tree-sitter.github.io/tree-sitter/][Tree Sitter]].
+
+* Features
+
+- Handle and extand properly the Emacs V29.1+ [[https://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/progmodes/go-ts-mode.el][native support of Go]]
+  of =go-ts-mode= with native [[https://tree-sitter.github.io/tree-sitter/][Tree Sitter]] Emacs integration.
+- Inherit and extand the Doom Emacs =go-mode= configuration by default.
+- Provide a solid programming bundle with =go-[ts-]mode=, =LSP= and
+  =[[https://github.com/golangci/golangci-lint][Golangci-lint]]= working together.
+- Rapid key access for "Find definitions", "Find references" and "Go back"
+  without modifying the default Doom key bindings.
+- Realtime documentation [[../lsp/lsp-key-bindings-refcard.org][with mouse or key bindings]] if the =+lsp= option is passed.
+
+* Module Options
+- =lsp= (recommended) : provide =LSP= integration with =go-mode= and =go-ts-mode=.
+  If the module =:pimacs lsp= is loaded this option is automatically added.
+  See the [[../lsp/README.org][pimacs/lsp README]] for futher informations.
+
+* TODO Use goimports on save
+Use [[https://github.com/purcell/emacs-reformatter?tab=readme-ov-file][ purcell/emacs-reformatter]].
+#+begin_src lisp
+(reformatter-define go-format
+    :program "goimports"
+    :args '("/dev/stdin"))
+#+end_src
+
+* Pull Request Needed
+
+The support of =Golangci-lint= is done with
+[[https://github.com/weijiangan/flycheck-golangci-lint][flycheck-golangci-lint]]
+only if the Doom module =:checkers syntax= is loaded and without the option
+=+flymake= !
+
+Pull request is needed to support =Golangci-lint= with =flymake= or [[https://github.com/nametake/golangci-lint-langserver][golangci-lint-langserver]].

@@ -18,7 +18,7 @@ Keymap for Org mode.
 - =C-,= calls =org-cycle-agenda-files= : cycle through the files in `org-agenda-files'.
 - =C-j= calls =org-return-and-maybe-indent= : goto next table row, or insert a newline, maybe indented.
 - =C-M-<RET>= calls =org-insert-subheading= : insert a new subheading and demote it.
-- =C-M-t= : . #pim
+- =C-M-t= : #pim
 - =C-M-S-<left>= calls =org-decrease-number-at-point= : decrement the number at point.
 - =C-M-S-<right>= calls =org-increase-number-at-point= : increment the number at point.
 - =C-M-<return>= calls =org-insert-subheading= : insert a new subheading and demote it.

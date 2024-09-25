@@ -22,7 +22,7 @@ Keymap used for ‘smartparens-mode’.
 - =C-M-<backspace>= calls =sp-splice-sexp= : unwrap the current list.
 - =C-S-b= : Move point to the next position that is the begining of a symbol. #pim
 - =C-S-f= : Move point to the next position that is the end of a symbol. #pim
-- =C-<backspace>= : . #pim
+- =C-<backspace>= : Delete a word backward, skipping over intervening delimiters. #pim
 - =C-<delete>= : If word at point delete it and if paired char at point unwrap sexp. #pim
 - =M-k= : Kill the balanced expression preceding point. #pim
 ** Prefix =C-c= : +prefix

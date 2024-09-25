@@ -25,9 +25,12 @@
 
 (use-package! go-mode
   :defer t
-  :hook
-  (go-mode . (pim-go_ts_mode-hook))
   :init
+  (add-hook 'go-mode-hook #'pim-go_ts_mode-hook)
+  :config
+  ;; TODO : use https://github.com/purcell/emacs-reformatter?tab=readme-ov-file ?
+  (setq gofmt-command "goimports")
+  (setq gofmt-args nil)
   (if (modulep! +lsp)
       (progn
         (add-hook 'go-mode-hook #'lsp-deferred)
@@ -45,17 +48,6 @@
        ))
     )
 
-  )
-
-
-(use-package! flycheck-golangci-lint
-  :ensure t ;; We need it !!
-  :when (and (modulep! :checkers syntax)
-             (not (modulep! :checkers syntax +flymake)))
-  :config
-  (unless  (executable-find "golangci-lint")
-    (add-to-list 'pim-error-msgs
-                 "Please install golangci-lint <https://github.com/golangci/golangci-lint>"))
   )
 
 ;; Enable golangci-lint in go-mode with fix for lsp-mode
