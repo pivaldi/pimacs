@@ -26,6 +26,10 @@ Use [[https://github.com/purcell/emacs-reformatter?tab=readme-ov-file][ purcell/
 (reformatter-define go-format
     :program "goimports"
     :args '("/dev/stdin"))
+
+(use-package go-ts-mode
+  :hook
+  (go-ts-mode . go-format-on-save-mode))
 #+end_src
 
 * Pull Request Needed

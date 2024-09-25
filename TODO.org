@@ -1,0 +1,19 @@
+#+title: PIMacs TODO Lists
+
+Some refs I need to explore to improve/complet PIMacs :
+
+- Super conf emacs : https://github.com/patrickt/emacs
+- Example de cli Doom : https://gist.github.com/hlissner/ba8c3b4c6f37c24ff27b72194942b7aa
+- Doom config sympa : https://tecosaur.github.io/emacs-config/
+- Connect your notes : org-roam + org-roam-ui  VS https://logseq.com/
+- Verb is a package for Emacs which allows you to organize and send HTTP requests :https://github.com/federicotdn/verb
+- Charles Choi Emacs Configuration Files https://github.com/kickingvegas/cclisp
+- jimeh’s .emacs.d (a.k.a. Emacs Siren) : https://github.com/jimeh/.emacs.d
+- Shows a sticky header at the top of the window. : https://github.com/alphapapa/topsy.el
+- A polished Dired with batteries included : https://github.com/alexluigit/dirvish
+- Structured Navigation and Editing with Combobulate : https://github.com/mickeynp/combobulate
+- extensions Vertico : https://github.com/minad/vertico/blob/main/extensions/vertico-suspend.el
+- consult-dir: insert paths into minibuffer prompts in Emacs https://github.com/karthink/consult-dir
+- GPTel: A simple LLM client for Emacs https://github.com/karthink/gptel/tree/53a905dafc99fc1a3732655a2123657c145343a2?tab=readme-ov-file#spacemacs
+- https://github.com/jojojames/smart-jump
+- Emacs client for fediverse servers that implement the Mastodon API. https://codeberg.org/martianh/mastodon.el
