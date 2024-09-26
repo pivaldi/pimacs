@@ -18,15 +18,55 @@
 
 ;;; Code:
 
+(unles (modulep! :ui workspaces)
+       (doom! :ui workspaces))
+
 ;; Restoring workspace
-(when (modulep! :ui workspaces)
-  (add-hook!
-   'window-setup-hook
-   (progn
-     (doom/quickload-session t)
-     (when (+workspace-exists-p "default")
-       (+workspace-switch "default" nil))
-     )))
+(add-hook! 'window-setup-hook
+  (progn (doom/quickload-session t)))
+
+(use-package! desktop
+  :config
+  (setq desktop-buffers-not-to-save
+        (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
+                "\\|\\.el\\.gz\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
+                "\\)$"))
+  ;; Do not reopen the following modes :
+  (add-to-list 'desktop-modes-not-to-save 'dired-mode)
+  (add-to-list 'desktop-modes-not-to-save 'Info-mode)
+  (add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
+  (add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
+  (setq desktop-save nil)
+  (setq desktop-auto-save-timeout nil)
+  ;; (setq desktop-auto-save-timeout 30)
+  ;; (desktop-save-mode 1) ;; I use :pimacs session
+  )
+
+
+(defvar pim-doom-session-auto-save-keeped-backup-num
+  (if (boundp 'pim-doom-session-auto-save-keeped-backup-num) pim-doom-session-auto-save-keeped-backup-num 5)
+  "Number of autosaved Doom session keeped.")
+(defvar pim-doom-session-auto-save-timeout
+  (if (boundp 'pim-doom-session-auto-save-timeout) pim-doom-session-auto-save-timeout 600)
+  "Number of seconds of idle time before auto saving the Doom session.")
+
+(defvar pim-current-persp-auto-save-num pim-doom-session-auto-save-keeped-backup-num)
+(defvar pim-doom-session-auto-save-timer nil)
+(defvar pim-doom-base-lock-name ".pim-doom-session.lock")
+(defvar pim-auto-save-fname "pim-autosave-")
+
+(after! persp-mode
+  (setq persp-auto-save-fname "on-shutdonw")
+  (setq persp-auto-save-num-of-backups 5)
+  (unless (modulep! +no-auto-save)
+    (unless noninteractive
+      (add-hook 'kill-emacs-query-functions #'pim--doom-session-on-kill)
+      ;; Certain things should be done even if
+      ;; `kill-emacs-query-functions' are not called.
+      (add-hook 'kill-emacs-hook #'pim--doom-session-on-kill))
+    (add-hook! 'doom-after-init-hook :append #'pim-doom-session-auto-save-enable)
+    )
+  )
 
 (provide 'pimacs/session)
 ;;; config.el ends here

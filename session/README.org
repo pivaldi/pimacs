@@ -1,0 +1,35 @@
+#+title: PIMacs/session Doom Module
+
+* Features
+- The PIMacs module ~:pimacs session~ provides regular backups, every hour by
+  default, of the workspaces à la =destkopt-save-mode= but with rotation of five
+  backups file.
+- It permits to automatically save and restore
+  your session and workspaces using the pre-defined Doom workspace features.
+  Backup concurrency is handle with a lock file inspired by =destkopt-save-mode=.
+- Finally it configures Emacs =desktop= variables ~desktop-buffers-not-to-save~
+  and ~desktop-modes-not-to-save~ to be more user-friendly.
+
+* How To Proceed With Doom Workspaces
+For my part, the default Doom workspace session save-on-kill does not work
+properly but with this strict process, it gives me entire satisfaction.
+
+- Create a workspace named =test= by creating a standard workspace #x (~+workspace/new C-c w c~)
+  and rename it =test= (* DON'T use ~+workspace/new-named C-c w C~ *).
+- Open files in this workspace.
+- Create others workspaces as needed with ~+workspace/new~.
+-  Close Emacs.
+
+When opening again Emacs, you retrieve the opened buffers in the ~test~
+workspaces  with ~C-c w w~ or ~s-tab~ (~s~ mean =SUPER= key NOT =SHIFT= key)
+if the module =:pimacs keys= is enabled.
+
+* Options
+- Load this module with the option ~+no-auto-save~ to disable the auto saving
+  feature.
+- When auto saving is enabled, setting these variables in your =config.el= file
+  overwrite the default values :
+  - ~pim-doom-session-auto-save-timeout~ for the auto saving
+    timeout in second (default 600).
+  - ~pim-doom-session-auto-save-keeped-backup-num~ for the number
+    of rotated backups session (default is 5).
