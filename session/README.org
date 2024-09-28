@@ -1,9 +1,11 @@
 #+title: PIMacs/session Doom Module
 
 * Features
-- The PIMacs module ~:pimacs session~ provides regular backups, every hour by
-  default, of the workspaces à la =destkopt-save-mode= but with rotation of five
-  backups file.
+- The PIMacs module ~:pimacs session~ provides regular backups of you desktop
+  and workspace, every hour by default, à la
+  =destkopt-save-mode= but with rotation of five backups file. To reload a
+  previous backup, use the Doom default key binding =C-c w l= and choose the
+  =pim-autosave-X= or =on-shutdownX= you want.
 - It permits to automatically save and restore
   your session and workspaces using the pre-defined Doom workspace features.
   Backup concurrency is handle with a lock file inspired by =destkopt-save-mode=.

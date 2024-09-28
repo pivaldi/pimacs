@@ -28,11 +28,21 @@
   (doom-session-file pim-doom-base-lock-name))
 
 (defun pim--doom-session-claim-lock ()
-  "Record this Emacs process as the owner of the pim session file."
+  "Record this Emacs process as the owner of the pim session lock file."
   (let ((file (pim--doom-session-full-lock-name)))
-    (unless (file-exists-p file)
-      (write-region (number-to-string (emacs-pid)) nil
-                    file))))
+    (if (not (file-exists-p file))
+        (write-region (number-to-string (emacs-pid)) nil file)
+      (let ((owner (pim--doom-session-owner)))
+        (unless
+            (or (eq (emacs-pid) owner)
+                (not (pim--doom-session-ask-rewrite-lock-file owner)))
+          (delete-file file)
+          (pim--doom-session-claim-lock))))))
+
+(defun pim--doom-session-ask-rewrite-lock-file (owner)
+  (unless (daemonp)
+    (y-or-n-p (format "WARNING : pim-session-auto-save lock file appears to be own by PID %s.\n\
+Overwrite it may cause conflicts.  Overwrite it anyway ? " owner))))
 
 (defun pim--doom-session-release-lock()
   "Remove the lock file for the pim session."
@@ -48,6 +58,8 @@
   "Save the Doom session periodically.
 Called by the timer created in `pim--doom-session-auto-save-set-timer'."
   (when (and
+         (not pim-doom-session-auto-save-lock)
+         (setq pim-doom-session-auto-save-lock t)
          (integerp pim-doom-session-auto-save-timeout)
          (> pim-doom-session-auto-save-timeout 0)
          ;; Avoid desktop saving during lazy loading.
@@ -59,7 +71,12 @@ Called by the timer created in `pim--doom-session-auto-save-set-timer'."
     (setq pim-current-persp-auto-save-num (- pim-current-persp-auto-save-num 1))
     (when (< pim-current-persp-auto-save-num 1)
       (setq pim-current-persp-auto-save-num persp-auto-save-num-of-backups)
-      )))
+      ))
+  (when (integerp pim-doom-session-auto-save-timeout)
+    (run-with-timer
+     (/ pim-doom-session-auto-save-timeout 1.25) nil
+     (lambda nil
+       (setq pim-doom-session-auto-save-lock nil)))))
 
 (defun pim--doom-session-owner ()
   "Return the PID of the Emacs process that owns the pim session.
@@ -81,7 +98,7 @@ Cancel any previous timer. When `pim-doom-session-auto-save-timeout' is
 a positive integer, start a new idle timer to call `pim-doom-session-auto-save'
 after that many seconds of idle time. This function is called from
 `window-configuration-change-hook'."
-  (pim-doom-session-auto-save-cancel-timer)
+  (pim--doom-session-auto-save-cancel-timer)
   (when (and (integerp pim-doom-session-auto-save-timeout)
              (> pim-doom-session-auto-save-timeout 0))
     (setq pim-doom-session-auto-save-timer

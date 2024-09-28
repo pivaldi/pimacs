@@ -1,4 +1,4 @@
-;;; Package pimacs/session --- description here
+;;; Package pimacs/session --- description here  -*- lexical-binding: t; -*-
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 
 ;;; Code:
 
-(unles (modulep! :ui workspaces)
+(unless (modulep! :ui workspaces)
        (doom! :ui workspaces))
 
 ;; Restoring workspace
@@ -42,21 +42,22 @@
   ;; (desktop-save-mode 1) ;; I use :pimacs session
   )
 
-
 (defvar pim-doom-session-auto-save-keeped-backup-num
   (if (boundp 'pim-doom-session-auto-save-keeped-backup-num) pim-doom-session-auto-save-keeped-backup-num 5)
   "Number of autosaved Doom session keeped.")
+
 (defvar pim-doom-session-auto-save-timeout
   (if (boundp 'pim-doom-session-auto-save-timeout) pim-doom-session-auto-save-timeout 600)
   "Number of seconds of idle time before auto saving the Doom session.")
 
 (defvar pim-current-persp-auto-save-num pim-doom-session-auto-save-keeped-backup-num)
 (defvar pim-doom-session-auto-save-timer nil)
+(defvar pim-doom-session-auto-save-lock nil)
 (defvar pim-doom-base-lock-name ".pim-doom-session.lock")
 (defvar pim-auto-save-fname "pim-autosave-")
 
 (after! persp-mode
-  (setq persp-auto-save-fname "on-shutdonw")
+  (setq persp-auto-save-fname "on-shutdown")
   (setq persp-auto-save-num-of-backups 5)
   (unless (modulep! +no-auto-save)
     (unless noninteractive
