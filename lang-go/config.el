@@ -46,6 +46,10 @@
   ;; (or (> emacs-major-version 29) (and (= emacs-major-version 29) (>= emacs-minor-version 1)))
   (load! "+go-ts-mode"))
 
+(after! lsp
+  (setq lsp-disabled-clients '((go-mode . (semgrep-ls)) (go-ts-mode . (semgrep-ls)))))
+
+
 (provide 'pimacs/lang-go/config)
 ;;; config.el ends here
 

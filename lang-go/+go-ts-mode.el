@@ -29,6 +29,8 @@
   :config
   (if (modulep! +lsp)
       (progn
+        (after! lsp
+          (add-to-list 'lsp-disabled-clients '((go-ts-mode . (semgrep-ls)))))  ;; Useless lsp-client for Go
         (map!
          :map go-ts-mode-map
          :desc "Find definitions of the symbol under point with LSP. #pim" "M-." #'lsp-find-definition

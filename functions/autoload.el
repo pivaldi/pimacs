@@ -258,6 +258,51 @@ Source : https://superuser.com/a/68648"
   (let ((hippie-expand-try-functions-list '(try-complete-file-name-partially try-complete-file-name)))
     (call-interactively 'hippie-expand)))
 
+;;;###(autoload
+(defun pim-sort-files-by-modification-time (files)
+  "Sort FILES list with respect to modification time."
+  (sort
+   files
+   (lambda (f1 f2)
+     (time-less-p
+      (file-attribute-modification-time (file-attributes f2))
+      (file-attribute-modification-time (file-attributes f1))))))
+
+;;;###(autoload
+(defun pim-keep-when (pred seq)
+  "(pim-keep-when 'atom '(1 2 3 (4 5) 6 nil t foo)) => (1 2 3 6 nil t foo)
+Source : https://www.emacswiki.org/emacs/ElispCookbook#h5o-39"
+  (let ((del (make-symbol "del")))
+    (remove del (mapcar (lambda (el)
+			  (if (funcall pred el) el del)) seq))))
+
+;;;###(autoload
+(defun pim-exclude-when (pred seq)
+  "(pim-exclude-when 'atom '(1 2 3 (4 5) 6 nil t foo)) => ((4 5))
+Source : https://www.emacswiki.org/emacs/ElispCookbook#h5o-39"
+  (let ((del (make-symbol "del")))
+    (remove del (mapcar (lambda (el)
+			  (if (not (funcall pred el)) el del)) seq))))
+
+;;;###(autoload
+(defun pim-directory-files (directory &optional full match nosort)
+  "Like `directory-files', but excluding directories."
+  (pim-exclude-when 'file-directory-p
+                    (directory-files directory full match nosort)))
+
+;;;###(autoload
+(defun pim-latest-file (dirpath &optional full match)
+  "Get latest file (excluding directories) in PATH.
+
+There are three optional arguments :
+If FULL is non-nil, return absolute file names.  Otherwise return names
+ that are relative to the specified directory.
+If MATCH is non-nil, mention only file names whose non-directory part
+matches the regexp MATCH."
+  (car (pim-sort-files-by-modification-time
+        (pim-directory-files
+         dirpath full match t))))
+
 (provide 'pimacs/functions/autoload)
 ;;; autoload.el ends here
 

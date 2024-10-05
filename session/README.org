@@ -1,16 +1,24 @@
 #+title: PIMacs/session Doom Module
 
 * Features
-- The PIMacs module ~:pimacs session~ provides regular backups of you desktop
-  and workspace, every hour by default, à la
+- The PIMacs module ~:pimacs session~ provides regular backups of
+  *your desktop and opened workspaces*, every hour by default, à la
   =destkopt-save-mode= but with rotation of five backups file. To reload a
   previous backup, use the Doom default key binding =C-c w l= and choose the
   =pim-autosave-X= or =on-shutdownX= you want.
+  To reload a previous backup-ed workspace, use the PIMacs key binding =C-c w L=
+  or =M-x +workspace/load=.
 - It permits to automatically save and restore
-  your session and workspaces using the pre-defined Doom workspace features.
-  Backup concurrency is handle with a lock file inspired by =destkopt-save-mode=.
+  your session and workspaces using the pre-defined Doom session and workspace features.
 - Finally it configures Emacs =desktop= variables ~desktop-buffers-not-to-save~
-  and ~desktop-modes-not-to-save~ to be more user-friendly.
+  and ~desktop-modes-not-to-save~ to be more user-friendly (do not reload help
+  buffers, =.gz= files, =.gpg= files, =dired= buffers etc).
+
+** Note
+
+Backup concurrency is handle with a lock file inspired by =destkopt-save-mode=
+so that multiple simultaneous Doom Emacs instances can not overwrite each other.
+
 
 * How To Proceed With Doom Workspaces
 For my part, the default Doom workspace session save-on-kill does not work

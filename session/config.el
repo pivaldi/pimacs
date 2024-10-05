@@ -19,11 +19,17 @@
 ;;; Code:
 
 (unless (modulep! :ui workspaces)
-       (doom! :ui workspaces))
+  (doom! :ui workspaces))
 
 ;; Restoring workspace
 (add-hook! 'window-setup-hook
   (progn (doom/quickload-session t)))
+
+;; (add-hook! 'window-setup-hook
+;;   (progn
+;;     ()
+;;     (doom-load-session file)))
+
 
 (use-package! desktop
   :config
@@ -47,7 +53,7 @@
   "Number of autosaved Doom session keeped.")
 
 (defvar pim-doom-session-auto-save-timeout
-  (if (boundp 'pim-doom-session-auto-save-timeout) pim-doom-session-auto-save-timeout 600)
+  (if (boundp 'pim-doom-session-auto-save-timeout) pim-doom-session-auto-save-timeout 60)
   "Number of seconds of idle time before auto saving the Doom session.")
 
 (defvar pim-current-persp-auto-save-num pim-doom-session-auto-save-keeped-backup-num)
@@ -56,17 +62,19 @@
 (defvar pim-doom-base-lock-name ".pim-doom-session.lock")
 (defvar pim-auto-save-fname "pim-autosave-")
 
+(unless (modulep! +no-auto-save)
+  (unless noninteractive
+    (add-hook 'kill-emacs-query-functions #'pim--doom-session-on-kill)
+    ;; Certain things should be done even if
+    ;; `kill-emacs-query-functions' are not called.
+    (add-hook 'kill-emacs-hook #'pim--doom-session-on-kill)
+    (add-hook! 'window-setup-hook #'pim-doom-session-auto-save-enable))
+  )
+
 (after! persp-mode
   (setq persp-auto-save-fname "on-shutdown")
   (setq persp-auto-save-num-of-backups 5)
-  (unless (modulep! +no-auto-save)
-    (unless noninteractive
-      (add-hook 'kill-emacs-query-functions #'pim--doom-session-on-kill)
-      ;; Certain things should be done even if
-      ;; `kill-emacs-query-functions' are not called.
-      (add-hook 'kill-emacs-hook #'pim--doom-session-on-kill))
-    (add-hook! 'doom-after-init-hook :append #'pim-doom-session-auto-save-enable)
-    )
+  (setq persp-auto-resume-time 1)
   )
 
 (provide 'pimacs/session)

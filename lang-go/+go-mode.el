@@ -33,6 +33,8 @@
   (setq gofmt-args nil)
   (if (modulep! +lsp)
       (progn
+        (after! lsp
+          (add-to-list 'lsp-disabled-clients '((go-mode . (semgrep-ls))))) ;; Useless lsp-client for Go
         (add-hook 'go-mode-hook #'lsp-deferred)
         (map!
          :map go-mode-map

@@ -44,6 +44,12 @@
   (map!
    :desc "Jump to a project's file using completion. #pim" "C-x f" #'projectile-find-file))
 
+(after! dirvish
+        (map! :map dirvish-mode-map
+              :gm [left]  nil
+              :gm [right] nil
+              ))
+
 ;; ------------------------
 ;; * Key for other-window *
 (use-package! ace-window

@@ -46,7 +46,7 @@ Overwrite it may cause conflicts.  Overwrite it anyway ? " owner))))
 
 (defun pim--doom-session-release-lock()
   "Remove the lock file for the pim session."
-  (let ((file (pim--doom-session-full-fname)))
+  (let ((file (pim--doom-session-full-lock-name)))
     (when (file-exists-p file) (delete-file file))))
 
 (defun pim--doom-session-full-fname ()
@@ -67,7 +67,9 @@ Called by the timer created in `pim--doom-session-auto-save-set-timer'."
          ;; Save only to own desktop file.
          (eq (emacs-pid) (pim--doom-session-owner))
          desktop-dirname)
-    (doom-save-session (pim--doom-session-full-fname))
+    (let ((inhibit-message nil))
+      (doom-save-session (pim--doom-session-full-fname))
+      (pim-save-all-workspaces))
     (setq pim-current-persp-auto-save-num (- pim-current-persp-auto-save-num 1))
     (when (< pim-current-persp-auto-save-num 1)
       (setq pim-current-persp-auto-save-num persp-auto-save-num-of-backups)
@@ -77,6 +79,14 @@ Called by the timer created in `pim--doom-session-auto-save-set-timer'."
      (/ pim-doom-session-auto-save-timeout 1.25) nil
      (lambda nil
        (setq pim-doom-session-auto-save-lock nil)))))
+
+;;;###autoload
+(defun pim-save-all-workspaces ()
+  "Save all the opened workspaces."
+  (interactive)
+  (let ((workspaces (+workspace-list-names)))
+    (dolist (workspace workspaces)
+      (+workspace/save workspace))))
 
 (defun pim--doom-session-owner ()
   "Return the PID of the Emacs process that owns the pim session.
@@ -102,8 +112,8 @@ after that many seconds of idle time. This function is called from
   (when (and (integerp pim-doom-session-auto-save-timeout)
              (> pim-doom-session-auto-save-timeout 0))
     (setq pim-doom-session-auto-save-timer
-          (run-with-idle-timer
-           pim-doom-session-auto-save-timeout nil
+          (run-with-timer
+           pim-doom-session-auto-save-timeout pim-doom-session-auto-save-timeout
            'pim-doom-session-auto-save))))
 
 ;;;###autoload
@@ -129,11 +139,11 @@ after that many seconds of idle time. This function is called from
 
 ;;;###autoload
 (defun pim--doom-session-on-kill ()
-  ;; If we own it, we don't anymore.
   (when (eq (emacs-pid) (pim--doom-session-owner))
     ;; Allow exiting Emacs even if we can't delete the desktop file.
     (ignore-error file-error
-      (pim--doom-session-release-lock))))
+      (pim--doom-session-release-lock)))
+  t)
 
 (provide 'pimacs/session/autoload)
 ;;; autoload.el ends here

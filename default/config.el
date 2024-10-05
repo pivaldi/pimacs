@@ -108,6 +108,8 @@
  truncate-partial-width-windows nil
  word-wrap nil ;; dont wrap word because space make sens for some prog languages.
  truncate-lines t
+ ;; Show matching parenthesis context when offscreen
+ show-paren-context-when-offscreen 'overlay
  )
 
 (add-to-list 'warning-suppress-types '(comp))
