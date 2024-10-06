@@ -274,7 +274,7 @@ Source : https://superuser.com/a/68648"
 Source : https://www.emacswiki.org/emacs/ElispCookbook#h5o-39"
   (let ((del (make-symbol "del")))
     (remove del (mapcar (lambda (el)
-			  (if (funcall pred el) el del)) seq))))
+                          (if (funcall pred el) el del)) seq))))
 
 ;;;###(autoload
 (defun pim-exclude-when (pred seq)
@@ -282,7 +282,7 @@ Source : https://www.emacswiki.org/emacs/ElispCookbook#h5o-39"
 Source : https://www.emacswiki.org/emacs/ElispCookbook#h5o-39"
   (let ((del (make-symbol "del")))
     (remove del (mapcar (lambda (el)
-			  (if (not (funcall pred el)) el del)) seq))))
+                          (if (not (funcall pred el)) el del)) seq))))
 
 ;;;###(autoload
 (defun pim-directory-files (directory &optional full match nosort)
