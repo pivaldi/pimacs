@@ -1,4 +1,5 @@
 #+title: PIMacs/session Doom Module
+Rotated backup of sessions and workspaces with auto load at startup.
 
 * Features
 - The PIMacs module ~:pimacs session~ provides regular backups of

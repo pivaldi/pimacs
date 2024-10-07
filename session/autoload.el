@@ -49,11 +49,29 @@ Overwrite it may cause conflicts.  Overwrite it anyway ? " owner))))
   (let ((file (pim--doom-session-full-lock-name)))
     (when (file-exists-p file) (delete-file file))))
 
+;;;###autoload
+(defun pim-current-auto-save-num ()
+  "Retun the current auto save number and set `pim-current-auto-save-num' to non nil value."
+  (let* ((match (rx (eval pim-auto-save-fname) (group digit)))
+         (file (or pim-current-auto-save-num  ;; prevent searching file when not needed
+                   (pim-latest-file
+                    (file-name-directory (doom-session-file))
+                    'full
+                    match))))
+    (setq pim-current-auto-save-num
+          (or pim-current-auto-save-num
+              (when (and file (string-match match file))
+                (min pim-doom-session-auto-save-keeped-backup-num
+                     (+ 1 (string-to-number (match-string 1 file)))))
+              1))))
+
 (defun pim--doom-session-full-fname ()
   "Return the full name of the pim session file."
-  (let ((persp-auto-save-fname pim-auto-save-fname))
-    (format "%s%s" (doom-session-file) pim-current-persp-auto-save-num)))
+  (format "%s%s%s"
+          (file-name-directory (doom-session-file))
+          pim-auto-save-fname (pim-current-auto-save-num)))
 
+;;;###autoload
 (defun pim-doom-session-auto-save ()
   "Save the Doom session periodically.
 Called by the timer created in `pim--doom-session-auto-save-set-timer'."
@@ -70,9 +88,9 @@ Called by the timer created in `pim--doom-session-auto-save-set-timer'."
     (let ((inhibit-message nil))
       (doom-save-session (pim--doom-session-full-fname))
       (pim-save-all-workspaces))
-    (setq pim-current-persp-auto-save-num (- pim-current-persp-auto-save-num 1))
-    (when (< pim-current-persp-auto-save-num 1)
-      (setq pim-current-persp-auto-save-num persp-auto-save-num-of-backups)
+    (setq pim-current-auto-save-num (- pim-current-auto-save-num 1))
+    (when (< pim-current-auto-save-num 1)
+      (setq pim-current-auto-save-num persp-auto-save-num-of-backups)
       ))
   (when (integerp pim-doom-session-auto-save-timeout)
     (run-with-timer

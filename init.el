@@ -10,7 +10,7 @@
  aliases ;; Define aliases starting with `_`. The most useful are `_rb` and `_sir`.
  theme ;; Define some faces and load Zenburn Theme. See the `README.md` in the directory `pimacs/theme`.
  keys ;; Define the PIMacs keys binding. See the `refcard.md`.
- ;; session ;; Rotated backup of session and workspaces and auto reload the last session at startup.
+ session ;; Rotated backup of session and workspaces and auto reload the more recent saved session at startup.
  avy ;; usefull key bindings for avy because Doom does not provide then.
  bm ;; Provides visible and BUFFER LOCAL bookmarks with the ability to jump forward and backward to the next bookmark.
  calendar-fr ;; French calendar.

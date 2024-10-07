@@ -21,15 +21,34 @@
 (unless (modulep! :ui workspaces)
   (doom! :ui workspaces))
 
+(defvar pim-doom-session-auto-save-keeped-backup-num
+  (if (boundp 'pim-doom-session-auto-save-keeped-backup-num) pim-doom-session-auto-save-keeped-backup-num 5)
+  "Number of autosaved Doom session keeped.")
+
+(defvar pim-doom-session-auto-save-timeout
+  (if (boundp 'pim-doom-session-auto-save-timeout) pim-doom-session-auto-save-timeout 600)
+  "Number of seconds of idle time before auto saving the Doom session.")
+
+(defvar pim-doom-session-auto-save-timer nil)
+(defvar pim-doom-session-auto-save-lock nil)
+(defvar pim-doom-base-lock-name ".pim-doom-session.lock")
+(defvar pim-auto-save-fname "pim-autosave-")
+(defvar pim-persp-auto-save-fname "on-shutdown")
+
+(defvar pim-current-auto-save-num nil
+  "Internal use. Use the function `pim-current-auto-save-num'to set and
+retrieve his value.")
+
 ;; Restoring workspace
-(add-hook! 'window-setup-hook
-  (progn (doom/quickload-session t)))
-
-;; (add-hook! 'window-setup-hook
-;;   (progn
-;;     ()
-;;     (doom-load-session file)))
-
+(add-hook 'doom-init-ui-hook
+          (lambda ()
+            (require 'persp-mode)
+            (doom-load-session
+             (pim-latest-file
+              (file-name-directory (doom-session-file))
+              'full
+              (rx (or (group (eval pim-auto-save-fname) digit)
+                      (group (eval pim-persp-auto-save-fname) (? digit))))))))
 
 (use-package! desktop
   :config
@@ -48,31 +67,17 @@
   ;; (desktop-save-mode 1) ;; I use :pimacs session
   )
 
-(defvar pim-doom-session-auto-save-keeped-backup-num
-  (if (boundp 'pim-doom-session-auto-save-keeped-backup-num) pim-doom-session-auto-save-keeped-backup-num 5)
-  "Number of autosaved Doom session keeped.")
-
-(defvar pim-doom-session-auto-save-timeout
-  (if (boundp 'pim-doom-session-auto-save-timeout) pim-doom-session-auto-save-timeout 60)
-  "Number of seconds of idle time before auto saving the Doom session.")
-
-(defvar pim-current-persp-auto-save-num pim-doom-session-auto-save-keeped-backup-num)
-(defvar pim-doom-session-auto-save-timer nil)
-(defvar pim-doom-session-auto-save-lock nil)
-(defvar pim-doom-base-lock-name ".pim-doom-session.lock")
-(defvar pim-auto-save-fname "pim-autosave-")
-
 (unless (modulep! +no-auto-save)
   (unless noninteractive
     (add-hook 'kill-emacs-query-functions #'pim--doom-session-on-kill)
     ;; Certain things should be done even if
     ;; `kill-emacs-query-functions' are not called.
     (add-hook 'kill-emacs-hook #'pim--doom-session-on-kill)
-    (add-hook! 'window-setup-hook #'pim-doom-session-auto-save-enable))
+    (add-hook! 'doom-init-ui-hook #'pim-doom-session-auto-save-enable))
   )
 
 (after! persp-mode
-  (setq persp-auto-save-fname "on-shutdown")
+  (setq persp-auto-save-fname pim-persp-auto-save-fname)
   (setq persp-auto-save-num-of-backups 5)
   (setq persp-auto-resume-time 1)
   )

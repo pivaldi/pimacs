@@ -250,7 +250,7 @@ User buffers are those whose name does not start with *."
     (while (and (string-match "^*" (buffer-name)) (< i 50))
       (setq i (1+ i)) (previous-buffer) )))
 
-;;;###(autoload
+;;;###autoload
 (defun pim-expand-file-name-at-point ()
   "Use hippie-expand to expand the filename.
 Source : https://superuser.com/a/68648"
@@ -258,7 +258,7 @@ Source : https://superuser.com/a/68648"
   (let ((hippie-expand-try-functions-list '(try-complete-file-name-partially try-complete-file-name)))
     (call-interactively 'hippie-expand)))
 
-;;;###(autoload
+;;;###autoload
 (defun pim-sort-files-by-modification-time (files)
   "Sort FILES list with respect to modification time."
   (sort
@@ -268,7 +268,7 @@ Source : https://superuser.com/a/68648"
       (file-attribute-modification-time (file-attributes f2))
       (file-attribute-modification-time (file-attributes f1))))))
 
-;;;###(autoload
+;;;###autoload
 (defun pim-keep-when (pred seq)
   "(pim-keep-when 'atom '(1 2 3 (4 5) 6 nil t foo)) => (1 2 3 6 nil t foo)
 Source : https://www.emacswiki.org/emacs/ElispCookbook#h5o-39"
@@ -276,7 +276,7 @@ Source : https://www.emacswiki.org/emacs/ElispCookbook#h5o-39"
     (remove del (mapcar (lambda (el)
                           (if (funcall pred el) el del)) seq))))
 
-;;;###(autoload
+;;;###autoload
 (defun pim-exclude-when (pred seq)
   "(pim-exclude-when 'atom '(1 2 3 (4 5) 6 nil t foo)) => ((4 5))
 Source : https://www.emacswiki.org/emacs/ElispCookbook#h5o-39"
@@ -284,13 +284,13 @@ Source : https://www.emacswiki.org/emacs/ElispCookbook#h5o-39"
     (remove del (mapcar (lambda (el)
                           (if (not (funcall pred el)) el del)) seq))))
 
-;;;###(autoload
+;;;###autoload
 (defun pim-directory-files (directory &optional full match nosort)
   "Like `directory-files', but excluding directories."
   (pim-exclude-when 'file-directory-p
                     (directory-files directory full match nosort)))
 
-;;;###(autoload
+;;;###autoload
 (defun pim-latest-file (dirpath &optional full match)
   "Get latest file (excluding directories) in PATH.
 
