@@ -119,7 +119,7 @@ If there is a paired char at point use sp-unwrap-sexp."
      :desc "Wrap the following expression with brackets. #pim" "C-c ["  #'pim-wrap-with-brackets
      :desc "Wrap the following expression with braces. #pim" "C-c {"  #'pim-wrap-with-braces
      :desc "Wrap the following expression with quotes. #pim" "C-c '"  #'pim-wrap-with-single-quotes
-     :desc "Wrap the following expression with double quotes. #pim" "C-c \\" #'pim-wrap-with-double-quotes
+     :desc "Wrap the following expression with double quotes. #pim" "C-c \"" #'pim-wrap-with-double-quotes
      :desc "Wrap the following expression with underscores. #pim" "C-c _"  #'pim-wrap-with-underscores
      :desc "Wrap the following expression with back quotes. #pim" "C-c `"  #'pim-wrap-with-back-quotes
      )

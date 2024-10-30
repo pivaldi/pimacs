@@ -41,9 +41,9 @@
       (or (alist-get property (alist-get checker pim--flycheck-local-checkers))
           (funcall fn checker property)))
     (advice-add 'flycheck-checker-get :around '+pim-flycheck-checker-get))
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\vendor\\'")
+  (setq lsp-modeline-diagnostics-scope :workspace)
 
-  ;; (lsp-mode . (lsp-signature-activate lsp-modeline--disable-code-actions))
-  ;; TODO: make this flex when mode does not provide
   (add-hook
    'before-save-hook (lambda nil
                        (when (and lsp-managed-mode
@@ -63,7 +63,8 @@
           lsp-modeline-code-actions-enable nil ;; With t it slows down editing code and that becomes painful !!
           lsp-signature-auto-activate t
           lsp-completion-show-kind t
-          lsp-ui-doc-delay 0.33)
+          lsp-ui-doc-delay 0.33
+          lsp-ui-sideline-diagnostic-max-lines 10)
     (map!
      :map lsp-mode-map
      (:when pim-azertyp

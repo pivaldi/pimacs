@@ -166,6 +166,17 @@
 ;;                        :debounce 1 "<up>" "<down>"
 ;;                        :debounce 2 any)))
 
+
+(when (and (modulep! :checkers syntax)
+           (not (modulep! :checkers syntax +flymake)))
+  (add-to-list 'display-buffer-alist
+               `(,(rx bos "*Flycheck errors*" eos)
+                 (display-buffer-reuse-window
+                  display-buffer-in-side-window)
+                 (side            . bottom)
+                 (reusable-frames . visible)
+                 (window-height   . 0.25))))
+
 (after! which-key
   :config
   (setq which-key-max-description-length 50)
@@ -175,7 +186,7 @@
 (use-package! lsp
   :config
   (setq lsp-enable-file-watchers t
-        lsp-file-watch-threshold 10000))
+        lsp-file-watch-threshold 2000))
 
 (when (modulep! :ui treemacs +lsp)
   ;; See https://github.com/doomemacs/doomemacs/blob/master/modules/ui/treemacs/README.org#configuration

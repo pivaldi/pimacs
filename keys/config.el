@@ -18,6 +18,20 @@
 ;; (global-set-key [remap dabbrev-expand] 'hippie-expand)
 (map! [remap dabbrev-expand] #'hippie-expand)
 
+(after! dabbrev
+  (setq hippie-expand-try-functions-list
+        '(
+          try-expand-dabbrev
+          try-expand-dabbrev-all-buffers
+          try-expand-dabbrev-from-kill
+          try-complete-file-name-partially
+          try-complete-file-name try-expand-all-abbrevs
+          try-expand-list try-expand-line
+          try-complete-lisp-symbol-partially
+          try-complete-lisp-symbol)
+        )
+  )
+
 (after! pimacs/default
   (if (featurep 'evil)
       (add-to-list 'pim-error-msgs "PIMacs does not provide key configuration for evil mode. Push request is needed.")

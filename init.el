@@ -20,7 +20,7 @@
  org ;; Org mode specific configuration.
  dired ;; Dired mode specific configuration.
  treesit ;; Automatically install and use tree-sitter major modes in Emacs 29+
-
+ corfu ;; Configure Corfu : remove automatic completion, remove TAB key for next candidate.
  (lsp +doc) ;; Configures lsp and lsp-ui-doc (option +doc)
  lang-c
  (lang-php +php-cs-fixer) ;; Configuration for PHP coding.
