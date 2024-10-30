@@ -28,9 +28,12 @@
   :init
   (add-hook 'go-mode-hook #'pim-go_ts_mode-hook)
   :config
-  ;; TODO : use https://github.com/purcell/emacs-reformatter?tab=readme-ov-file ?
   (setq gofmt-command "goimports")
   (setq gofmt-args nil)
+  (when (executable-find "goimports")
+    (setq-hook! 'go-mode-hook +format-with-lsp nil)
+    (with-eval-after-load 'apheleia
+      (setf (alist-get 'go-mode apheleia-mode-alist) '(goimports))))
   (if (modulep! +lsp)
       (progn
         (after! lsp

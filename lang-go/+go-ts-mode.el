@@ -24,7 +24,7 @@
   :init
   (when (or (modulep! +lsp) (modulep! :pimacs lsp))
     (add-hook 'go-ts-mode-hook #'lsp-deferred))
-  (add-hook 'go-ts-mode-hook #'pim-go_ts_mode-hook)
+  (add-hook 'go-ts-mode-hook #'pim-go-ts-mode-hook)
 
   :config
   (if (modulep! +lsp)
@@ -44,6 +44,10 @@
        :desc "Go back to the previous position in xref history.. #pim" "M-," #'xref-go-back
        ))
     )
+  (when (executable-find "goimports")
+    (setq-hook! 'go-ts-mode-hook +format-with-lsp nil)
+    (with-eval-after-load 'apheleia
+      (setf (alist-get 'go-ts-mode apheleia-mode-alist) '(goimports))))
   )
 
 (after! (go-ts-mode flycheck-golangci-lint)
