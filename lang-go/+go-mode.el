@@ -26,7 +26,7 @@
 (use-package! go-mode
   :defer t
   :init
-  (add-hook 'go-mode-hook #'pim-go_ts_mode-hook)
+  (add-hook 'go-mode-hook #'pim-go-ts-mode-hook)
   :config
   (setq gofmt-command "goimports")
   (setq gofmt-args nil)
@@ -52,6 +52,10 @@
        :desc "Go back to the previous position in xref history.. #pim" "M-," #'xref-go-back
        ))
     )
+  (when (executable-find "goimports")
+    (setq-hook! 'go-mode-hook +format-with-lsp nil)
+    (with-eval-after-load 'apheleia
+      (setf (alist-get 'go-mode apheleia-mode-alist) '(goimports))))
 
   )
 

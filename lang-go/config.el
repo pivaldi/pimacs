@@ -29,14 +29,6 @@
 (if (not (executable-find "gocode"))
     (add-to-list 'pim-error-msgs "Please install gocode : go install github.com/nsf/gocode@latest"))
 
-;; (setq-hook! 'php-mode-hook +format-with-lsp nil)
-;;       (setq php-cs-fixer-config-option (format "%s/php-cs-fixer-config.php" (doom-module-locate-path :pimacs 'lang-php)))
-;;       ;; (add-hook! php-mode-hook (add-hook 'before-save-hook #'php-cs-fixer-before-save nil t))
-;;       (with-eval-after-load 'apheleia
-;;         (setf (alist-get 'php-cs-fixer apheleia-formatters)
-;;               'pim--php-cs-fixer-apheleia)
-;;         (setf (alist-get 'php-mode apheleia-mode-alist) '(php-cs-fixer)))
-
 (use-package! flycheck-golangci-lint
   :defer t
   :ensure t ;; We need it !!
@@ -56,7 +48,6 @@
 
 (after! lsp
   (setq lsp-disabled-clients '((go-mode . (semgrep-ls)) (go-ts-mode . (semgrep-ls)))))
-
 
 (provide 'pimacs/lang-go/config)
 ;;; config.el ends here
