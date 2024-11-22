@@ -1,0 +1,13 @@
+#+title: PIMacs/corfu  Doom Emacs Module
+
+This Doom Emacs package provide some extra configuration of the package
+[[https://github.com/minad/corfu][Corfu -- COmpletion in Region FUnction --]]
+
+* Features
+- Disable auto-completion by default : auto-completion when I need it only.
+- Remap =TAB= key to =M-<SPACE>= because =TAB= is over used (indent,
+  completion, snippet and others).
+- Enable Corfu in the minibuffer
+
+* Thanks
+Largely inspired by https://hieuphay.com/doom-emacs-config/

@@ -1,5 +1,7 @@
 # PIMacs/theme Doom Module
 
+Slight customization of the Emacs theme depending the module options used.
+
 * Use `TerminessTTF` Nerd Font by default (use option `+no-font` to disable this
   feature).
 * (Re)Define some faces, `trailing-whitespace` for example (use option

@@ -18,15 +18,10 @@
 
 ;;; Code:
 
-(when (and (modulep! treesit)
-           (fboundp 'treesit-install-language-grammar))
-  (add-to-list 'treesit-language-source-alist
-               '((sql . ("https://github.com/DerekStride/tree-sitter-sql.git" "gh-pages" "src"))))
+(when (fboundp 'treesit-install-language-grammar)
   (unless (and (treesit-language-available-p 'sql) (treesit-ready-p 'sql))
     (treesit-install-language-grammar 'sql)
     )
-
-  font-lock-keyword-face
   )
 
 

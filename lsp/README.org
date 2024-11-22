@@ -1,4 +1,4 @@
-#+title: PIMacs/lsp-ui-doc Doom Emacs Module
+#+title: PIMacs/lsp Doom Emacs Module
 
 * Features
 - When loading this module all the other modes handle by /PIMacs/ assume

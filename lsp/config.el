@@ -42,7 +42,7 @@
           (funcall fn checker property)))
     (advice-add 'flycheck-checker-get :around '+pim-flycheck-checker-get))
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\vendor\\'")
-  (setq lsp-modeline-diagnostics-scope :workspace)
+  ;; (setq lsp-modeline-diagnostics-scope :workspace)
 
   (add-hook
    'before-save-hook (lambda nil
