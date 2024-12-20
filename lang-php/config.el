@@ -107,7 +107,7 @@
         (add-to-list 'pim-error-msgs "Please install php-cs-fixer : https://github.com/PHP-CS-Fixer/PHP-CS-Fixer"))
       :config
       (setq-hook! 'php-mode-hook +format-with-lsp nil)
-      (setq php-cs-fixer-config-option (format "%s/php-cs-fixer-config.php" (doom-module-locate-path :pimacs 'lang-php)))
+      (setq php-cs-fixer-config-option (format "%s/php-cs-fixer-config.php" (doom-module-locate-path '(:pimacs . lang-php))))
       ;; (add-hook! php-mode-hook (add-hook 'before-save-hook #'php-cs-fixer-before-save nil t))
       (with-eval-after-load 'apheleia
         (setf (alist-get 'php-cs-fixer apheleia-formatters)

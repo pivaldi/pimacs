@@ -82,6 +82,19 @@ retrieve his value.")
   (setq persp-auto-resume-time 1)
   )
 
+
+(after! recentf
+  (add-to-list 'recentf-exclude #'file-remote-p))
+
+(after! tramp
+  (advice-add
+   'doom--recentf-file-truename-fn :override
+   (defun pim-recent-truename (file &rest _args)
+     "See https://discourse.doomemacs.org/t/recentf-cleanup-logs-a-lot-of-error-messages/3273/5"
+     (if (or (not (file-remote-p file)) (equal "sudo" (file-remote-p file 'method)))
+         (abbreviate-file-name (file-truename (tramp-file-local-name file)))
+       file))))
+
 (provide 'pimacs/session)
 ;;; config.el ends here
 

@@ -1,0 +1,25 @@
+#+title: PIMacs/notmuch Doom Emacs Module
+
+This package provide extra configurations of the default /Doom Emacs/
+configuration for [[https://notmuchmail.org/][Notmuch]].
+
+* IMPORTANT NOTES
+- The /bash/ script [[mail-sync.sh]] is an example of IMAP synchronization with
+  [[https://github.com/gburd/isync][isync/mbsync]] and /Notmuch/ tagging for my
+  personal usage.
+  - ~mbsync~ use the completly personnal config file ~~/.isyncrc~ symlinked to
+    [[.isyncrc]] for educational purpose and showing best security practices.
+  - /Notmuch/ tagging use the file [[.notmuch-tagging]] through the symlink from
+    ~~.notmuch-tagging~ allowing you to use your own tagging config inspired by mine.
+- The configured email directory is ~~/.mail~, use a symbolic link to your
+  existing email directory if needed.
+
+* Features
+-
+
+* Key bindings
+-
+
+
+* Module Options
+-

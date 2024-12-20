@@ -28,8 +28,17 @@
  (lang-go +lsp)
  lang-make
 
+ notmuch ;; notmuch and mbsync config
  doc ;; Generated documentation, fundamental keys binding for example.
  )
+
+;; (when (file-directory-p (doom-module-locate-path '(:pi . notmuch))) ;; My private configurations
+(doom!
+ :pi
+ notmuch ;; My personnal notmuch overwrote data
+ )
+
+;; )
 
 ;; Local variables:
 ;; coding: utf-8
