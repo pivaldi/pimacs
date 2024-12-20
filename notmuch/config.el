@@ -150,6 +150,10 @@
    :desc "Tag as deleted or untag is prefixed. #pim" "E"  #'pimacs-notmuch-show-expire-message
    :desc "Tag as spam or untag is prefixed. #pim" "S" #'pimacs-notmuch-show-spam-message
    )
+
+  ;; TODO
+  ;; https://holgerschurig.github.io/en/emacs-notmuch-hello/
+
   )
 
 (provide 'pimacs/notmuch)

@@ -81,7 +81,8 @@ This gets the `notmuch-tag-flagged' face, if that is specified in
 
 (defmacro pimacs-notmuch-search-tag-thread (name tags)
   "Produce NAME function parsing TAGS.
-Source : https://git.sr.ht/~protesilaos/dotfiles/tree/master/item/emacs/.emacs.d/prot-lisp/prot-notmuch.el"
+Modified version of
+https://git.sr.ht/~protesilaos/dotfiles/tree/master/item/emacs/.emacs.d/prot-lisp/prot-notmuch.el"
   (declare (indent defun))
   `(defun ,name (&optional untag beg end)
      ,(format
@@ -93,16 +94,23 @@ encompasses multiple threads, operate on all those messages
 instead.
 
 With optional prefix argument (\\[universal-argument]) as UNTAG,
-reverse the application of the tags.
+reverse the application of the *added* tags.
 
 This function advances to the next thread when finished."
        tags)
      (interactive (cons current-prefix-arg (notmuch-interactive-region)))
-     (when ,tags
-       (notmuch-search-tag
-        (notmuch-tag-change-list ,tags untag) beg end))
-     (when (eq beg end)
-       (notmuch-search-next-thread))))
+     (let ((rmtags '()))
+       (mapc
+        (lambda (str)
+          (when (string-match "^[^-]" str)
+            (add-to-list 'rmtags str)
+            )) ,tags)
+
+       (when rmtags
+         (notmuch-search-tag
+          (notmuch-tag-change-list rmtags untag) beg end)
+         (when (eq beg end)
+           (notmuch-search-next-thread))))))
 
 (pimacs-notmuch-search-tag-thread
   pimacs-notmuch-search-delete-thread
