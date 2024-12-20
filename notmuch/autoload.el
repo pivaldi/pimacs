@@ -34,17 +34,25 @@ See `pimacs-notmuch-delete-expirable-mail' and `pimacs-notmuch-delete-mail'."
   (pimacs-notmuch-delete-mail)
   (pimacs-notmuch-delete-expirable-mail))
 
+;;;###autoload
+(defun pimacs-notmuch-count-query (query)
+  "Simplified version of `notmuch-hello-query-counts'.
+Usage : (pimacs-notmuch-count-query \"folder:here and tag:unread\")"
+  (interactive "sQuery: ")
+  (let ((count (string-to-number
+                (with-temp-buffer
+                  (shell-command
+                   (format "notmuch count %s" query) t)
+                  (buffer-substring-no-properties (point-min) (1- (point-max)))))))
+    (message (format "%d" count))
+    count))
+
 (defun pimacs--notmuch-delete-mail-by-query (query)
   "Permanently delete mails matching the notmuch QUERY.
 Prompt for confirmation before carrying out the operation.
 Inspired from : https://git.sr.ht/~protesilaos/dotfiles/tree/master/item/emacs/.emacs.d/prot-lisp/prot-notmuch.el"
   (interactive)
-  (let* ((count
-          (string-to-number
-           (with-temp-buffer
-             (shell-command
-              (format "notmuch count %s" query) t)
-             (buffer-substring-no-properties (point-min) (1- (point-max))))))
+  (let* ((count (pimacs-notmuch-count-query query))
          (mail (if (> count 1) "mails" "mail")))
     (if (> count 0)
         (message "No mail matching `%s'" query)

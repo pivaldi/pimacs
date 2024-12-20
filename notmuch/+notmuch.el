@@ -79,6 +79,13 @@ This gets the `notmuch-tag-flagged' face, if that is specified in
   :type '(repeat string)
   :group 'pimacs-notmuch)
 
+(defface pimacs-notmuch-hello-header-face
+  '((t :foreground "white"
+     :background "blue"
+     :weight bold))
+  "Font for the header in `pimacs-notmuch-hello-insert-searches`."
+  :group 'notmuch-faces)
+
 (defmacro pimacs-notmuch-search-tag-thread (name tags)
   "Produce NAME function parsing TAGS.
 Modified version of
@@ -160,3 +167,46 @@ reverse the application of the tags."
 (pimacs-notmuch-show-tag-message
   pimacs-notmuch-show-spam-message
   pimacs-notmuch-mark-spam-tags)
+
+
+(defun pimacs-notmuch-hello-query-insert (cnt query elem)
+  "Create a notmuch query widget.
+Source : https://holgerschurig.github.io/en/emacs-notmuch-hello/"
+  (if cnt
+      (let* ((str (format "%s" cnt))
+             (widget-push-button-prefix "")
+             (widget-push-button-suffix "")
+             (oldest-first (case (plist-get elem :sort-order)
+                             (newest-first nil)
+                             (oldest-first t)
+                             (otherwise notmuch-search-oldest-first))))
+        (widget-create 'push-button
+                       :notify #'notmuch-hello-widget-search
+                       :notmuch-search-terms query
+                       :notmuch-search-oldest-first oldest-first
+                       :notmuch-search-type 'tree
+                       str)
+        (widget-insert (make-string (- 8 (length str)) ? )))
+    (widget-insert "        ")))
+
+
+(defun pimacs-notmuch-hello-insert-searches ()
+  "Insert the saved-searches section.
+Source : https://holgerschurig.github.io/en/emacs-notmuch-hello/"
+  (widget-insert (propertize "New     Total      Key  List\n" 'face 'pimacs-notmuch-hello-header-face))
+  (mapc (lambda (elem)
+          (when elem
+            (let* ((qtot (plist-get elem :query))
+                   (qnew (concat qtot " AND tag:unread"))
+                   (n_tot (pimacs-notmuch-count-query qtot))
+                   (n_new (pimacs-notmuch-count-query qnew)))
+              (pimacs-notmuch-hello-query-insert n_new qnew elem)
+              (pimacs-notmuch-hello-query-insert n_tot qtot elem)
+              (widget-insert "   ")
+              (widget-insert (plist-get elem :key))
+              (widget-insert "    ")
+              (widget-insert (plist-get elem :name))
+              (widget-insert "\n")
+              ))
+          )
+        notmuch-saved-searches))

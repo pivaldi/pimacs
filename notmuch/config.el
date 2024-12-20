@@ -40,6 +40,7 @@
                             ;; notmuch-hello-insert-recent-searches ;; I prefer the keybinding "s" folowed by M-p
                             notmuch-hello-insert-alltags
                             ;; notmuch-hello-insert-footer ;; completly useless (hit the key "?")
+                            pimacs-notmuch-hello-insert-searches
                             )
    notmuch-show-all-tags-list t
 
@@ -152,8 +153,8 @@
    )
 
   ;; TODO
-  ;; https://holgerschurig.github.io/en/emacs-notmuch-hello/
-
+  ;; https://holgerschurig.github.io/en/emacs-notmuch-hello/ or https://sqrtminusone.xyz/posts/2021-02-27-gmail/
+  ;; Integrate https://github.com/mhayashi1120/Emacs-langtool
   )
 
 (provide 'pimacs/notmuch)

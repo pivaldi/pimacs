@@ -48,7 +48,7 @@ other_email=p22@ivaldi.me;pi@ovya.fr;
 #
 [new]
 tags=new;unread
-ignore=.uidvalidity;.mbsyncstate
+ignore=.uidvalidity;.mbsyncstate;/.*[.](json|lock|bak)$/
 
 # Search configuration
 #
