@@ -62,6 +62,7 @@
 
   ;; Saved search config
   (setq
+   notmuch-show-empty-saved-searches t
    notmuch-saved-searches
    `(( :name "Inbox"
        :query "tag:inbox"
@@ -106,6 +107,8 @@
 
 ;;;; Reading messages
   (setq
+   ;; Inhibit displaying of images inline in the article body.
+   mm-html-inhibit-images t
    ;; Which mime types to hide by default for multipart messages.
    notmuch-multipart/alternative-discouraged '("text/html" "multipart/related")
    ;; Display relative dates in the message summary line.

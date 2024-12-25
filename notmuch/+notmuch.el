@@ -63,7 +63,7 @@ To delete expired emails, refer to `pimacs-notmuch-expire-mail'."
   :group 'pimacs-notmuch)
 
 (defcustom pimacs-notmuch-mark-flag-tags
-  '(
+  `(
     "+flagged" "-unread" "-spam"
     ,(format "-%s" pimacs-notmuch-delete-tag)
     ,(format "-%s" pimacs-notmuch-expire-tag)
@@ -77,6 +77,87 @@ This gets the `notmuch-tag-flagged' face, if that is specified in
 (defcustom pimacs-notmuch-mark-spam-tags '("+spam" "-inbox" "-unread" "-archive")
   "List of tags to mark as spam."
   :type '(repeat string)
+  :group 'pimacs-notmuch)
+
+(define-widget 'pimacs-notmuch-account-plist 'list
+  "A single saved search property list."
+  :tag "Accounts"
+  :args '((list :inline t
+	   :format "%v"
+	   (group :format "%v" :inline t
+		  (const :format "   Name: " :name)
+		  (string :format "%v"))
+	   (group :format "%v" :inline t
+		  (const :format "  Query: " :query)
+		  (string :format "%v"))
+           (group :format "%v" :inline t
+		  (const :format "  Shortcut key: " :query)
+		  (key-sequence :format "%v")))
+          ))
+
+(defcustom pimacs-notmuch-account-saved-searches
+  ;; nil
+  `(("ivaldi.me" "tag:ivaldi.me"
+     ((:name "Inbox" :query "tag:inbox" :key ,(kbd "i") :sort-order newest-first
+       :search-type tree)
+      (:name "Sent" :query "tag:sent" :key ,(kbd "s") :sort-order newest-first
+       :search-type tree)))
+    ("ovya.fr" "tag:ovya.fr"
+     ((:name "Inbox" :query "tag:inbox and not tag:redmine and not tag:admin"
+       :key ,(kbd "i") :sort-order newest-first :search-type tree)
+      (:name "Redmine" :query "tag:redmine" :key ,(kbd "r") :sort-order newest-first))))
+  ;; (list (list "Main" "tag:ivaldi.me"
+  ;;    `((:name "inbox" :query "tag:inbox" :key (kbd "i"))
+  ;;     (:name "unread" :query "tag:unread" :key (kbd "u"))
+  ;;     (:name "flagged" :query "tag:flagged" :key (kbd "f"))
+  ;;     (:name "sent" :query "tag:sent" :key (kbd "t"))
+  ;;     (:name "drafts" :query "tag:draft" :key (kbd "d"))
+  ;;     (:name "all mail" :query "*" :key (kbd "a"))))
+  ;;   (list "Second" "tag:plop.me"
+  ;;    `((:name "inbox" :query "tag:inbox" :key (kbd "i"))
+  ;;     (:name "unread" :query "tag:unread" :key (kbd "u"))
+  ;;     (:name "flagged" :query "tag:flagged" :key (kbd "f"))
+  ;;     (:name "sent" :query "tag:sent" :key (kbd "t"))
+  ;;     (:name "drafts" :query "tag:draft" :key (kbd "d"))
+  ;;     (:name "all mail" :query "*" :key (kbd "a"))))
+  ;;   )
+  "A list of saved searches to display.
+
+The saved search can be given in 3 forms. The preferred way is as
+a plist. Supported properties are
+
+  :name            Name of the search (required).
+  :query           Search to run (required).
+  :key             Optional shortcut key for `notmuch-jump-search'.
+  :count-query     Optional extra query to generate the count
+                   shown. If not present then the :query property
+                   is used.
+  :sort-order      Specify the sort order to be used for the search.
+                   Possible values are `oldest-first', `newest-first'
+                   or nil. Nil means use the default sort order.
+  :search-type     Specify whether to run the search in search-mode,
+                   tree mode or unthreaded mode. Set to `tree' to
+                   specify tree mode, \\='unthreaded to specify
+                   unthreaded mode, and set to nil (or anything
+                   except tree and unthreaded) to specify search
+                   mode.
+
+Other accepted forms are a cons cell of the form (NAME . QUERY)
+or a list of the form (NAME QUERY COUNT-QUERY)."
+  ;; The saved-search format is also used by the all-tags notmuch-hello
+  ;; section. This section generates its own saved-search list in one of
+  ;; the latter two forms.
+  ;; :get 'notmuch-hello--saved-searches-to-plist
+  ;; :type '(repeat notmuch-saved-search-plist)
+  :type '(repeat
+          :tag "Account"
+          (list
+           (string :tag "Account Name")
+           (string :tag "Notmuch Account Query")
+           (repeat :get 'notmuch-hello--saved-searches-to-plist
+                   :tag "List of Saved Searches"
+                   notmuch-saved-search-plist)))
+  :tag "List of Associaded Saved Searches"
   :group 'pimacs-notmuch)
 
 (defface pimacs-notmuch-hello-header-face
@@ -193,15 +274,16 @@ Source : https://holgerschurig.github.io/en/emacs-notmuch-hello/"
 (defun pimacs-notmuch-hello-insert-searches ()
   "Insert the saved-searches section.
 Source : https://holgerschurig.github.io/en/emacs-notmuch-hello/"
-  (widget-insert (propertize "New     Total      Key  List\n" 'face 'pimacs-notmuch-hello-header-face))
+  (widget-insert (propertize "Ivaldi.me" 'face 'pimacs-notmuch-hello-header-face))
+  (widget-insert (propertize "Ivaldi.m\nNew     Total      Key  List\n" 'face 'pimacs-notmuch-hello-header-face))
   (mapc (lambda (elem)
           (when elem
             (let* ((qtot (plist-get elem :query))
                    (qnew (concat qtot " AND tag:unread"))
-                   (n_tot (pimacs-notmuch-count-query qtot))
-                   (n_new (pimacs-notmuch-count-query qnew)))
-              (pimacs-notmuch-hello-query-insert n_new qnew elem)
-              (pimacs-notmuch-hello-query-insert n_tot qtot elem)
+                   (ntot (pimacs-notmuch-count-query qtot))
+                   (nnew (pimacs-notmuch-count-query qnew)))
+              (pimacs-notmuch-hello-query-insert nnew qnew elem)
+              (pimacs-notmuch-hello-query-insert ntot qtot elem)
               (widget-insert "   ")
               (widget-insert (plist-get elem :key))
               (widget-insert "    ")
