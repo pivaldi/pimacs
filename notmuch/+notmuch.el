@@ -81,84 +81,90 @@ This gets the `notmuch-tag-flagged' face, if that is specified in
 
 (define-widget 'pimacs-notmuch-account-plist 'list
   "A single saved search property list."
-  :tag "Accounts"
+  :tag "Account Definition"
   :args '((list :inline t
-	   :format "%v"
-	   (group :format "%v" :inline t
-		  (const :format "   Name: " :name)
-		  (string :format "%v"))
-	   (group :format "%v" :inline t
-		  (const :format "  Query: " :query)
-		  (string :format "%v"))
+           :format "%v"
            (group :format "%v" :inline t
-		  (const :format "  Shortcut key: " :query)
-		  (key-sequence :format "%v")))
+                  (const :format "  Name: " :name)
+                  (string :format "%v"))
+           (group :format "%v" :inline t
+                  (const :format "  Query: " :query)
+                  (string :format "%v"))
+           (group :format "%v" :inline t
+                  (const :format "  Shortcut key: " :key)
+                  (key-sequence :format "%v")))
           ))
 
-(defcustom pimacs-notmuch-account-saved-searches
-  ;; nil
-  `(("ivaldi.me" "tag:ivaldi.me"
-     ((:name "Inbox" :query "tag:inbox" :key ,(kbd "i") :sort-order newest-first
-       :search-type tree)
-      (:name "Sent" :query "tag:sent" :key ,(kbd "s") :sort-order newest-first
-       :search-type tree)))
-    ("ovya.fr" "tag:ovya.fr"
-     ((:name "Inbox" :query "tag:inbox and not tag:redmine and not tag:admin"
-       :key ,(kbd "i") :sort-order newest-first :search-type tree)
-      (:name "Redmine" :query "tag:redmine" :key ,(kbd "r") :sort-order newest-first))))
-  ;; (list (list "Main" "tag:ivaldi.me"
-  ;;    `((:name "inbox" :query "tag:inbox" :key (kbd "i"))
-  ;;     (:name "unread" :query "tag:unread" :key (kbd "u"))
-  ;;     (:name "flagged" :query "tag:flagged" :key (kbd "f"))
-  ;;     (:name "sent" :query "tag:sent" :key (kbd "t"))
-  ;;     (:name "drafts" :query "tag:draft" :key (kbd "d"))
-  ;;     (:name "all mail" :query "*" :key (kbd "a"))))
-  ;;   (list "Second" "tag:plop.me"
-  ;;    `((:name "inbox" :query "tag:inbox" :key (kbd "i"))
-  ;;     (:name "unread" :query "tag:unread" :key (kbd "u"))
-  ;;     (:name "flagged" :query "tag:flagged" :key (kbd "f"))
-  ;;     (:name "sent" :query "tag:sent" :key (kbd "t"))
-  ;;     (:name "drafts" :query "tag:draft" :key (kbd "d"))
-  ;;     (:name "all mail" :query "*" :key (kbd "a"))))
-  ;;   )
-  "A list of saved searches to display.
+(define-widget 'pimacs-notmuch-accounts-saved-searches-plist 'list
+  "A set of accounts associated with his saved searches list."
+  :tag "Associated Account Searches"
+  :args '((list :inline t
+           :format "%v"
+           (group :format "%v" :inline t
+                  (const :format "" :account)
+                  pimacs-notmuch-account-plist)
+           (group :format "%v" :inline t
+                  (const :format "Account Searches:\n" :searches)
+                  (repeat :tag "Search" notmuch-saved-search-plist))
+           )
+          ))
 
-The saved search can be given in 3 forms. The preferred way is as
-a plist. Supported properties are
-
-  :name            Name of the search (required).
-  :query           Search to run (required).
-  :key             Optional shortcut key for `notmuch-jump-search'.
-  :count-query     Optional extra query to generate the count
-                   shown. If not present then the :query property
-                   is used.
-  :sort-order      Specify the sort order to be used for the search.
-                   Possible values are `oldest-first', `newest-first'
-                   or nil. Nil means use the default sort order.
-  :search-type     Specify whether to run the search in search-mode,
-                   tree mode or unthreaded mode. Set to `tree' to
-                   specify tree mode, \\='unthreaded to specify
-                   unthreaded mode, and set to nil (or anything
-                   except tree and unthreaded) to specify search
-                   mode.
-
-Other accepted forms are a cons cell of the form (NAME . QUERY)
-or a list of the form (NAME QUERY COUNT-QUERY)."
-  ;; The saved-search format is also used by the all-tags notmuch-hello
-  ;; section. This section generates its own saved-search list in one of
-  ;; the latter two forms.
-  ;; :get 'notmuch-hello--saved-searches-to-plist
-  ;; :type '(repeat notmuch-saved-search-plist)
-  :type '(repeat
-          :tag "Account"
-          (list
-           (string :tag "Account Name")
-           (string :tag "Notmuch Account Query")
-           (repeat :get 'notmuch-hello--saved-searches-to-plist
-                   :tag "List of Saved Searches"
-                   notmuch-saved-search-plist)))
-  :tag "List of Associaded Saved Searches"
+(defcustom pimacs-notmuch-accounts-saved-searches
+  nil
+  "plop."
+  :type '(repeat :tag "Account" pimacs-notmuch-accounts-saved-searches-plist)
+  :tag "List of Accounts"
   :group 'pimacs-notmuch)
+
+
+;; (defcustom pimacs-notmuch-accounts-saved-searches
+;;   nil
+;;   ;; `(((:name "ivaldi.me" :query "tag:ivaldi.me" :key ,(kbd "i"))
+;;   ;;   ((:name "Inbox" :query "tag:inbox" :key ,(kbd "i") :sort-order newest-first
+;;   ;;     :search-type tree)
+;;   ;;    (:name "Sent" :query "tag:sent" :key ,(kbd "s") :sort-order newest-first
+;;   ;;     :search-type tree)))
+;;   ;;   ((:name "ovya.fr" :query "tag:ovya.fr" :key ,(kbd "o"))
+;;   ;;    ((:name "Inbox" :query "tag:inbox and not tag:redmine and not tag:admin"
+;;   ;;      :key ,(kbd "i") :sort-order newest-first :search-type tree)
+;;   ;;     (:name "Redmine" :query "tag:redmine" :key ,(kbd "r") :sort-order newest-first))))
+;;   "A list of saved searches to display.
+
+;; The saved search can be given in 3 forms. The preferred way is as
+;; a plist. Supported properties are
+
+;;   :name            Name of the search (required).
+;;   :query           Search to run (required).
+;;   :key             Optional shortcut key for `notmuch-jump-search'.
+;;   :count-query     Optional extra query to generate the count
+;;                    shown. If not present then the :query property
+;;                    is used.
+;;   :sort-order      Specify the sort order to be used for the search.
+;;                    Possible values are `oldest-first', `newest-first'
+;;                    or nil. Nil means use the default sort order.
+;;   :search-type     Specify whether to run the search in search-mode,
+;;                    tree mode or unthreaded mode. Set to `tree' to
+;;                    specify tree mode, \\='unthreaded to specify
+;;                    unthreaded mode, and set to nil (or anything
+;;                    except tree and unthreaded) to specify search
+;;                    mode.
+
+;; Other accepted forms are a cons cell of the form (NAME . QUERY)
+;; or a list of the form (NAME QUERY COUNT-QUERY)."
+;;   ;; The saved-search format is also used by the all-tags notmuch-hello
+;;   ;; section. This section generates its own saved-search list in one of
+;;   ;; the latter two forms.
+;;   ;; :get 'notmuch-hello--saved-searches-to-plist
+;;   ;; :type '(repeat notmuch-saved-search-plist)
+;;   :type '(repeat
+;;           :tag "Accounts"
+;;           (cons :tag "Account"
+;;                 (pimacs-notmuch-account-plist)
+;;                 (repeat :get 'notmuch-hello--saved-searches-to-plist
+;;                         :tag "List of Saved Searches"
+;;                         notmuch-saved-search-plist)))
+;;   :tag "List of Associaded Saved Searches"
+;;   :group 'pimacs-notmuch)
 
 (defface pimacs-notmuch-hello-header-face
   '((t :foreground "white"
