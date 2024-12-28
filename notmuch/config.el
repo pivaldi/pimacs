@@ -35,12 +35,12 @@
    notmuch-hello-recent-searches-max 20
    notmuch-hello-thousands-separator " "
    notmuch-hello-sections '(
-                            notmuch-hello-insert-saved-searches
+                            pimacs-notmuch-hello-insert-accounts-searches
+                            ;; notmuch-hello-insert-saved-searches
                             ;; notmuch-hello-insert-search ;; I prefer the keybinding "s"
                             ;; notmuch-hello-insert-recent-searches ;; I prefer the keybinding "s" folowed by M-p
                             notmuch-hello-insert-alltags
                             ;; notmuch-hello-insert-footer ;; completly useless (hit the key "?")
-                            pimacs-notmuch-hello-insert-searches
                             )
    notmuch-show-all-tags-list t
 
@@ -61,30 +61,7 @@
 
 
   ;; Saved search config
-  (setq
-   notmuch-show-empty-saved-searches t
-   notmuch-saved-searches
-   `(( :name "Inbox"
-       :query "tag:inbox"
-       :sort-order newest-first
-       :key ,(kbd "i"))
-     ( :name "Unread+Inbox"
-             :query "tag:unread and tag:inbox"
-             :sort-order newest-first
-             :key ,(kbd "u"))
-     ( :name "Unread"
-             :query "tag:unread"
-             :sort-order newest-first
-             :key ,(kbd "U"))
-     ( :name "Archived"
-             :query "tag:archive"
-             :sort-order newest-first
-             :key ,(kbd "a"))
-     ( :name "Important"
-             :query "tag:important"
-             :sort-order newest-first
-             :key ,(kbd "i"))
-     ))
+  (setq notmuch-show-empty-saved-searches t)
 
   ;; Tag settings
   (setq

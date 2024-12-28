@@ -80,7 +80,14 @@ This gets the `notmuch-tag-flagged' face, if that is specified in
   :group 'pimacs-notmuch)
 
 (define-widget 'pimacs-notmuch-account-plist 'list
-  "A single saved search property list."
+  "An email account.
+
+An account is a plist. Supported properties are
+
+  :name         The name of the account (required).
+  :query        Search for all the email for this account (required).
+  :key          Optional prefix shortcut key open `notmuch-jump-search' relatively to this account.
+"
   :tag "Account Definition"
   :args '((list :inline t
            :format "%v"
@@ -110,61 +117,19 @@ This gets the `notmuch-tag-flagged' face, if that is specified in
           ))
 
 (defcustom pimacs-notmuch-accounts-saved-searches
-  nil
-  "plop."
+  `((:account (:name "MAIN" :query "*" :key ,(kbd "m"))
+     :searches ,notmuch-saved-searches))
+  "A list of email account associated with `notmuch-saved-searches'.
+
+The saved accounts searches is a list of plist.
+Supported properties of the plist are :
+
+  :account         A `pimacs-notmuch-account-plist (required)'.
+  :searches        A `notmuch-saved-searches' (required).
+"
   :type '(repeat :tag "Account" pimacs-notmuch-accounts-saved-searches-plist)
   :tag "List of Accounts"
   :group 'pimacs-notmuch)
-
-
-;; (defcustom pimacs-notmuch-accounts-saved-searches
-;;   nil
-;;   ;; `(((:name "ivaldi.me" :query "tag:ivaldi.me" :key ,(kbd "i"))
-;;   ;;   ((:name "Inbox" :query "tag:inbox" :key ,(kbd "i") :sort-order newest-first
-;;   ;;     :search-type tree)
-;;   ;;    (:name "Sent" :query "tag:sent" :key ,(kbd "s") :sort-order newest-first
-;;   ;;     :search-type tree)))
-;;   ;;   ((:name "ovya.fr" :query "tag:ovya.fr" :key ,(kbd "o"))
-;;   ;;    ((:name "Inbox" :query "tag:inbox and not tag:redmine and not tag:admin"
-;;   ;;      :key ,(kbd "i") :sort-order newest-first :search-type tree)
-;;   ;;     (:name "Redmine" :query "tag:redmine" :key ,(kbd "r") :sort-order newest-first))))
-;;   "A list of saved searches to display.
-
-;; The saved search can be given in 3 forms. The preferred way is as
-;; a plist. Supported properties are
-
-;;   :name            Name of the search (required).
-;;   :query           Search to run (required).
-;;   :key             Optional shortcut key for `notmuch-jump-search'.
-;;   :count-query     Optional extra query to generate the count
-;;                    shown. If not present then the :query property
-;;                    is used.
-;;   :sort-order      Specify the sort order to be used for the search.
-;;                    Possible values are `oldest-first', `newest-first'
-;;                    or nil. Nil means use the default sort order.
-;;   :search-type     Specify whether to run the search in search-mode,
-;;                    tree mode or unthreaded mode. Set to `tree' to
-;;                    specify tree mode, \\='unthreaded to specify
-;;                    unthreaded mode, and set to nil (or anything
-;;                    except tree and unthreaded) to specify search
-;;                    mode.
-
-;; Other accepted forms are a cons cell of the form (NAME . QUERY)
-;; or a list of the form (NAME QUERY COUNT-QUERY)."
-;;   ;; The saved-search format is also used by the all-tags notmuch-hello
-;;   ;; section. This section generates its own saved-search list in one of
-;;   ;; the latter two forms.
-;;   ;; :get 'notmuch-hello--saved-searches-to-plist
-;;   ;; :type '(repeat notmuch-saved-search-plist)
-;;   :type '(repeat
-;;           :tag "Accounts"
-;;           (cons :tag "Account"
-;;                 (pimacs-notmuch-account-plist)
-;;                 (repeat :get 'notmuch-hello--saved-searches-to-plist
-;;                         :tag "List of Saved Searches"
-;;                         notmuch-saved-search-plist)))
-;;   :tag "List of Associaded Saved Searches"
-;;   :group 'pimacs-notmuch)
 
 (defface pimacs-notmuch-hello-header-face
   '((t :foreground "white"
@@ -214,7 +179,6 @@ This function advances to the next thread when finished."
   pimacs-notmuch-search-expire-thread
   pimacs-notmuch-mark-expire-tags)
 
-
 (pimacs-notmuch-search-tag-thread
   pimacs-notmuch-search-flag-thread
   pimacs-notmuch-mark-flag-tags)
@@ -263,7 +227,7 @@ Source : https://holgerschurig.github.io/en/emacs-notmuch-hello/"
       (let* ((str (format "%s" cnt))
              (widget-push-button-prefix "")
              (widget-push-button-suffix "")
-             (oldest-first (case (plist-get elem :sort-order)
+             (oldest-first (cl-case (plist-get elem :sort-order)
                              (newest-first nil)
                              (oldest-first t)
                              (otherwise notmuch-search-oldest-first))))
@@ -276,25 +240,245 @@ Source : https://holgerschurig.github.io/en/emacs-notmuch-hello/"
         (widget-insert (make-string (- 8 (length str)) ? )))
     (widget-insert "        ")))
 
+(defun pimacs-notmuch-hello-query-counts (query-list &rest options)
+  "Modified version of `notmuch-hello-query-counts' to add unread the property :unread:count."
+  (with-temp-buffer
+    (dolist (elem query-list nil)
+      (let* ((count-query (or (notmuch-saved-search-get elem :count-query)
+                              (notmuch-saved-search-get elem :query)))
+             (consolidated-count-query (replace-regexp-in-string
+                                        "\n" " "
+                                        (notmuch-hello-filtered-query count-query
+                                                                      (or (plist-get options :filter-count)
+                                                                          (plist-get options :filter))))))
+        (insert
+         consolidated-count-query "\n"
+         (concat consolidated-count-query " AND tag:unread") "\n")))
 
-(defun pimacs-notmuch-hello-insert-searches ()
-  "Insert the saved-searches section.
+    (unless (= (notmuch--call-process-region (point-min) (point-max) notmuch-command
+                                             t t nil "count"
+                                             (if (plist-get options :disable-excludes)
+                                                 "--exclude=false"
+                                               "--exclude=true")
+                                             "--batch") 0)
+      (notmuch-logged-error
+       "notmuch count --batch failed"
+       "Please check that the notmuch CLI is new enough to support `count
+--batch'. In general we recommend running matching versions of
+the CLI and emacs interface."))
+    (goto-char (point-min))
+    (cl-mapcan
+     (lambda (elem)
+       (let* ((elem-plist (notmuch-hello-saved-search-to-plist elem))
+              (search-query (plist-get elem-plist :query))
+              (filtered-query (notmuch-hello-filtered-query
+                               search-query (plist-get options :filter)))
+              (message-count (prog1 (read (current-buffer))
+                               (forward-line 1)))
+              (unread-count (prog1 (read (current-buffer))
+                              (forward-line 1))))
+         (when (and filtered-query (or (plist-get options :show-empty-searches)
+                                       (> message-count 0)))
+           (setq elem-plist (plist-put elem-plist :query filtered-query))
+           (list (plist-put (plist-put elem-plist :count message-count) :unread-count unread-count)))))
+     query-list)))
+
+(defun pimacs-notmuch-hello-insert-buttons (searches)
+  "Modified version of `notmuch-hello-insert-buttons'."
+  (let* ((widest (notmuch-hello-longest-label searches))
+         (tags-and-width (notmuch-hello-tags-per-line widest))
+         (tags-per-line (car tags-and-width))
+         (column-width (cdr tags-and-width))
+         (column-indent 0)
+         (count 0)
+         (reordered-list (notmuch-hello-reflect searches tags-per-line))
+         ;; Hack the display of the buttons used.
+         (widget-push-button-prefix "")
+         (widget-push-button-suffix ""))
+    ;; dme: It feels as though there should be a better way to
+    ;; implement this loop than using an incrementing counter.
+    (mapc (lambda (elem)
+            ;; (not elem) indicates an empty slot in the matrix.
+            (when elem
+              (when (> column-indent 0)
+                (widget-insert (make-string column-indent ? )))
+              (let* ((name (plist-get elem :name))
+                     (query (plist-get elem :query))
+                     (query-unread (concat query " and tag:unread"))
+                     (oldest-first (cl-case (plist-get elem :sort-order)
+                                     (newest-first nil)
+                                     (oldest-first t)
+                                     (otherwise notmuch-search-oldest-first)))
+                     (search-type (plist-get elem :search-type))
+                     (msg-count (plist-get elem :count)))
+                (widget-insert (format "%8s "
+                                       (notmuch-hello-nice-number msg-count)))
+                (widget-create 'push-button
+                               :notify #'notmuch-hello-widget-search
+                               :notmuch-search-terms query
+                               :notmuch-search-oldest-first oldest-first
+                               :notmuch-search-type search-type
+                               name)
+                (setq column-indent
+                      (1+ (max 0 (- column-width (length name)))))))
+            (cl-incf count)
+            (when (eq (% count tags-per-line) 0)
+              (setq column-indent 0)
+              (widget-insert "\n")))
+          reordered-list)
+    ;; If the last line was not full (and hence did not include a
+    ;; carriage return), insert one now.
+    (unless (eq (% count tags-per-line) 0)
+      (widget-insert "\n"))))
+
+
+(defun pimacs-notmuch-hello-insert-buttons (searches)
+  "Modified version of `notmuch-hello-insert-buttons'.
+
+SEARCHES must be a list of plists each of which should contain at
+least the properties :name NAME :query QUERY and :count COUNT,
+where QUERY is the query to start when the button for the
+corresponding entry is activated, and COUNT should be the number
+of messages matching the query.  Such a plist can be computed
+with `pimacs-notmuch-hello-query-counts'."
+  (let* ((widest (notmuch-hello-longest-label searches))
+         (tags-and-width (notmuch-hello-tags-per-line widest))
+         (tags-per-line (car tags-and-width))
+         (column-width (cdr tags-and-width))
+         (column-indent 0)
+         (count 0)
+         (reordered-list (notmuch-hello-reflect searches tags-per-line))
+         ;; Hack the display of the buttons used.
+         (widget-push-button-prefix "")
+         (widget-push-button-suffix ""))
+    ;; dme: It feels as though there should be a better way to
+    ;; implement this loop than using an incrementing counter.
+    (mapc (lambda (elem)
+            ;; (not elem) indicates an empty slot in the matrix.
+            (when elem
+              (when (> column-indent 0)
+                (widget-insert (make-string column-indent ? )))
+              (let* ((name (plist-get elem :name))
+                     (query (plist-get elem :query))
+                     (oldest-first (cl-case (plist-get elem :sort-order)
+                                     (newest-first nil)
+                                     (oldest-first t)
+                                     (otherwise notmuch-search-oldest-first)))
+                     (search-type (plist-get elem :search-type))
+                     (msg-count (plist-get elem :count))
+                     (unread-count (plist-get elem :unread-count)))
+                (widget-insert (format "%8s/%s "
+                                       (notmuch-hello-nice-number unread-count) (notmuch-hello-nice-number msg-count)))
+                (widget-create 'push-button
+                               :notify #'notmuch-hello-widget-search
+                               :notmuch-search-terms query
+                               :notmuch-search-oldest-first oldest-first
+                               :notmuch-search-type search-type
+                               name)
+                (setq column-indent
+                      (1+ (max 0 (- column-width (length name)))))))
+            (cl-incf count)
+            (when (eq (% count tags-per-line) 0)
+              (setq column-indent 0)
+              (widget-insert "\n")))
+          reordered-list)
+    ;; If the last line was not full (and hence did not include a
+    ;; carriage return), insert one now.
+    (unless (eq (% count tags-per-line) 0)
+      (widget-insert "\n"))))
+
+(defun pimacs-notmuch-hello-insert-searches (title query-list &rest options)
+  "Insert a section with TITLE showing a list of buttons made from
+QUERY-LIST.
+
+QUERY-LIST should ideally be a plist but for backwards
+compatibility other forms are also accepted (see
+`notmuch-saved-searches' for details).  The plist should
+contain keys :name and :query; if :count-query is also present
+then it specifies an alternate query to be used to generate the
+count for the associated search.
+
+Supports the following entries in OPTIONS as a plist:
+:initially-hidden - if non-nil, section will be hidden on startup
+:show-empty-searches - show buttons with no matching messages
+:hide-if-empty - hide if no buttons would be shown
+   (only makes sense without :show-empty-searches)
+:filter - This can be a function that takes the search query as
+   its argument and returns a filter to be used in conjunction
+   with the query for that search or nil to hide the
+   element. This can also be a string that is used as a combined
+   with each query using \"and\".
+:filter-count - Separate filter to generate the count displayed
+   each search. Accepts the same values as :filter. If :filter
+   and :filter-count are specified, this will be used instead of
+   :filter, not in conjunction with it."
+
+  ;; (widget-insert "       ")
+  (when (and notmuch-hello-first-run (plist-get options :initially-hidden))
+    (add-to-list 'notmuch-hello-hidden-sections title))
+  (let ((is-hidden (member title notmuch-hello-hidden-sections))
+        (start (point)))
+    (if is-hidden
+        (widget-create 'push-button
+                       :notify (lambda (&rest _ignore)
+                                 (setq notmuch-hello-hidden-sections
+                                       (delete title notmuch-hello-hidden-sections))
+                                 (notmuch-hello-update))
+                       (concat title "..."))
+      (widget-create 'push-button
+                     :notify (lambda (&rest _ignore)
+                               (add-to-list 'notmuch-hello-hidden-sections
+                                            title)
+                               (notmuch-hello-update))
+                     title))
+    (widget-insert "\n")
+    (unless is-hidden
+      (let ((searches (apply 'pimacs-notmuch-hello-query-counts query-list options)))
+        (when (or (not (plist-get options :hide-if-empty))
+                  searches)
+          (widget-insert "\n")
+          (pimacs-notmuch-hello-insert-buttons searches))))))
+
+
+(defun pimacs-notmuch-hello-insert-account-searches2 (account-searches)
+  "Insert the accounts -searches section."
+  (let* ((searches (plist-get account-searches :searches))
+         (account (plist-get account-searches :account))
+         (account-query (concat (plist-get account :query))))
+    (pimacs-notmuch-hello-insert-searches (plist-get account :name) searches :filter account-query :show-empty-searches t)
+    )
+  )
+
+(defun pimacs-notmuch-hello-insert-account-searches (account-searches)
+  "Insert a section of account associated with saved-searches.
 Source : https://holgerschurig.github.io/en/emacs-notmuch-hello/"
-  (widget-insert (propertize "Ivaldi.me" 'face 'pimacs-notmuch-hello-header-face))
-  (widget-insert (propertize "Ivaldi.m\nNew     Total      Key  List\n" 'face 'pimacs-notmuch-hello-header-face))
-  (mapc (lambda (elem)
-          (when elem
-            (let* ((qtot (plist-get elem :query))
-                   (qnew (concat qtot " AND tag:unread"))
-                   (ntot (pimacs-notmuch-count-query qtot))
-                   (nnew (pimacs-notmuch-count-query qnew)))
-              (pimacs-notmuch-hello-query-insert nnew qnew elem)
-              (pimacs-notmuch-hello-query-insert ntot qtot elem)
-              (widget-insert "   ")
-              (widget-insert (plist-get elem :key))
-              (widget-insert "    ")
-              (widget-insert (plist-get elem :name))
-              (widget-insert "\n")
-              ))
+  (let* ((searches (plist-get account-searches :searches))
+         (account (plist-get account-searches :account))
+         (account-query (concat (plist-get account :query))))
+    (widget-insert (propertize (concat "             " (plist-get account :name) "\n") 'face 'pimacs-notmuch-hello-header-face))
+    (widget-insert (propertize "New     Total      Key  Name\n" 'face 'pimacs-notmuch-hello-header-face))
+    (mapc (lambda (elem)
+            (when elem
+              (let* ((qtot (concat account-query " AND " (plist-get elem :query)))
+                     (qnew (concat qtot " AND tag:unread"))
+                     (ntot (pimacs-notmuch-count-query qtot))
+                     (nnew (pimacs-notmuch-count-query qnew)))
+                (pimacs-notmuch-hello-query-insert nnew qnew elem)
+                (pimacs-notmuch-hello-query-insert ntot qtot elem)
+                (widget-insert "   ")
+                (widget-insert (plist-get elem :key))
+                (widget-insert "    ")
+                (widget-insert (plist-get elem :name))
+                (widget-insert "\n")
+                ))
+            ) searches)))
+
+(defun pimacs-notmuch-hello-insert-accounts-searches ()
+  (mapc (lambda (account-searches)
+          (when account-searches
+            (pimacs-notmuch-hello-insert-account-searches2 account-searches)
+            (widget-insert "\n")
+            )
           )
-        notmuch-saved-searches))
+        pimacs-notmuch-accounts-saved-searches)
+  )
