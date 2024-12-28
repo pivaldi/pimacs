@@ -138,6 +138,14 @@ Supported properties of the plist are :
   "Font for the header in `pimacs-notmuch-hello-insert-searches`."
   :group 'notmuch-faces)
 
+(defface pimacs-notmuch-hello-buttons-unread-face
+  '((t
+     :inherit warning
+     :weight bold))
+  "Face used for unread hello buttons creation.
+See `pimacs-notmuch-hello-insert-buttons`."
+  :group 'notmuch-faces)
+
 (defmacro pimacs-notmuch-search-tag-thread (name tags)
   "Produce NAME function parsing TAGS.
 Modified version of
@@ -284,55 +292,6 @@ the CLI and emacs interface."))
      query-list)))
 
 (defun pimacs-notmuch-hello-insert-buttons (searches)
-  "Modified version of `notmuch-hello-insert-buttons'."
-  (let* ((widest (notmuch-hello-longest-label searches))
-         (tags-and-width (notmuch-hello-tags-per-line widest))
-         (tags-per-line (car tags-and-width))
-         (column-width (cdr tags-and-width))
-         (column-indent 0)
-         (count 0)
-         (reordered-list (notmuch-hello-reflect searches tags-per-line))
-         ;; Hack the display of the buttons used.
-         (widget-push-button-prefix "")
-         (widget-push-button-suffix ""))
-    ;; dme: It feels as though there should be a better way to
-    ;; implement this loop than using an incrementing counter.
-    (mapc (lambda (elem)
-            ;; (not elem) indicates an empty slot in the matrix.
-            (when elem
-              (when (> column-indent 0)
-                (widget-insert (make-string column-indent ? )))
-              (let* ((name (plist-get elem :name))
-                     (query (plist-get elem :query))
-                     (query-unread (concat query " and tag:unread"))
-                     (oldest-first (cl-case (plist-get elem :sort-order)
-                                     (newest-first nil)
-                                     (oldest-first t)
-                                     (otherwise notmuch-search-oldest-first)))
-                     (search-type (plist-get elem :search-type))
-                     (msg-count (plist-get elem :count)))
-                (widget-insert (format "%8s "
-                                       (notmuch-hello-nice-number msg-count)))
-                (widget-create 'push-button
-                               :notify #'notmuch-hello-widget-search
-                               :notmuch-search-terms query
-                               :notmuch-search-oldest-first oldest-first
-                               :notmuch-search-type search-type
-                               name)
-                (setq column-indent
-                      (1+ (max 0 (- column-width (length name)))))))
-            (cl-incf count)
-            (when (eq (% count tags-per-line) 0)
-              (setq column-indent 0)
-              (widget-insert "\n")))
-          reordered-list)
-    ;; If the last line was not full (and hence did not include a
-    ;; carriage return), insert one now.
-    (unless (eq (% count tags-per-line) 0)
-      (widget-insert "\n"))))
-
-
-(defun pimacs-notmuch-hello-insert-buttons (searches)
   "Modified version of `notmuch-hello-insert-buttons'.
 
 SEARCHES must be a list of plists each of which should contain at
@@ -366,7 +325,9 @@ with `pimacs-notmuch-hello-query-counts'."
                                      (otherwise notmuch-search-oldest-first)))
                      (search-type (plist-get elem :search-type))
                      (msg-count (plist-get elem :count))
-                     (unread-count (plist-get elem :unread-count)))
+                     (unread-count (plist-get elem :unread-count))
+                     (title (if (eq 0 unread-count) name
+                              (propertize name 'face 'pimacs-notmuch-hello-buttons-unread-face))))
                 (widget-insert (format "%8s/%s "
                                        (notmuch-hello-nice-number unread-count) (notmuch-hello-nice-number msg-count)))
                 (widget-create 'push-button
@@ -374,7 +335,7 @@ with `pimacs-notmuch-hello-query-counts'."
                                :notmuch-search-terms query
                                :notmuch-search-oldest-first oldest-first
                                :notmuch-search-type search-type
-                               name)
+                               title)
                 (setq column-indent
                       (1+ (max 0 (- column-width (length name)))))))
             (cl-incf count)
