@@ -303,6 +303,40 @@ matches the regexp MATCH."
         (pim-directory-files
          dirpath full match t))))
 
+
+;;;###autoload
+(defun pimacs-ellipsid (len s &optional ellipsis)
+  "If S is longer than LEN, truncate at last word and add ELLIPSIS.
+
+When not specified, ELLIPSIS defaults to ‘...’.
+Inspiration : https://github.com/magnars/s.el"
+  (declare (side-effect-free t))
+  (save-match-data
+    (with-temp-buffer
+      (insert s)
+      (let ((fill-column len))
+        (fill-region (point-min) (point-max)))
+      (unless ellipsis
+        (setq ellipsis "..."))
+      (let*
+          ((bs (buffer-substring (point-min) (point-max)))
+           (shorted (replace-regexp-in-string "\\(\n.*\\)+" "" bs))
+           (elid (if (eq (length bs ) (length shorted)) "" ellipsis))
+           )
+        (concat shorted elid)
+        ))))
+
+;;;###autoload
+(defun pimacs-strip-emoji (str)
+  "Remove characters which are part of the `emoji' script from STR.
+Source : https://emacs.stackexchange.com/a/79017"
+  (replace-regexp-in-string
+   "📽" "" ;; Special unwanted utf8 char.
+   (cl-remove-if
+    (lambda (c)
+      (equal (aref char-script-table c) 'emoji))
+    str)))
+
 (provide 'pimacs/functions/autoload)
 ;;; autoload.el ends here
 

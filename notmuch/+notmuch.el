@@ -140,7 +140,7 @@ Supported properties of the plist are :
 
 (defface pimacs-notmuch-hello-buttons-unread-face
   '((t
-     :inherit warning
+     :inherit notmuch-tag-unread
      :weight bold))
   "Face used for unread hello buttons creation.
 See `pimacs-notmuch-hello-insert-buttons`."

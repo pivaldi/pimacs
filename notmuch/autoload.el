@@ -72,3 +72,33 @@ Source : https://git.sr.ht/~protesilaos/dotfiles/tree/master/item/emacs/.emacs.d
   (if arg
       (notmuch-refresh-all-buffers)
     (notmuch-refresh-this-buffer)))
+
+(defun pimacs--get-subject (msg)
+  (let* ((subject (string-trim
+                   (pimacs-strip-emoji
+                    (notmuch-show-strip-re
+                     (or (plist-get msg :subject)
+                         (plist-get (plist-get msg :headers) :Subject)))))))
+    (pimacs-ellipsid 85 subject "…")))
+
+;;;###autoload
+(defun pimacs-tree-format-subject (format-string msg)
+  (let* ((tags (plist-get msg :tags ))
+         (unread? (member "unread" tags))
+         (subject (format format-string (pimacs--get-subject msg)))
+         (face (if unread?
+                   'notmuch-search-unread-face
+                 'notmuch-tree-no-match-subject-face))
+         )
+    (propertize subject 'face face )
+    ))
+
+;;;###autoload
+(defun pimacs-search-format-subject (format-string msg)
+  (let* ((match? (plist-get msg :match))
+         (subject (format format-string (pimacs--get-subject msg)))
+         (face (if match?
+                   'notmuch-tree-match-face
+                 'notmuch-tree-no-match-subject-face))
+         )
+    (propertize subject 'face face )))

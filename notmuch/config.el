@@ -27,8 +27,8 @@
 (after! notmuch
   (load! "+notmuch")
 
+  ;; General UI
   (setq
-   ;; General UI
    notmuch-show-logo nil
    notmuch-column-control t
    notmuch-hello-auto-refresh t
@@ -59,27 +59,23 @@
    notmuch-always-prompt-for-sender t
    )
 
-
   ;; Saved search config
   (setq notmuch-show-empty-saved-searches t)
+  (setq notmuch-tag-unread 'warning)
 
   ;; Tag settings
   (setq
    notmuch-archive-tags '("-inbox" "-unread" "+archived")
    notmuch-tag-formats
-   '(("unread" (propertize tag 'face 'notmuch-tag-unread) "UR")
-     ("flagged" (propertize tag 'face 'notmuch-tag-flagged) "FL")
-     ("delete" (notmuch-apply-face tag 'notmuch-tag-added) "DEL")
-     ("expire" (notmuch-apply-face tag 'notmuch-tag-added) "EXP")
-     ("important" (propertize tag 'face 'notmuch-tag-flagged) "❗"))
-   notmuch-tag-deleted-formats
-   '(("unread" (notmuch-apply-face bare-tag 'notmuch-tag-added) "R")
-     (".*" (notmuch-apply-face tag 'notmuch-tag-deleted) tag))
-   notmuch-tag-added-formats
-   '(("delete" (notmuch-apply-face tag 'notmuch-tag-added) "DEL")
-     ("expire" (notmuch-apply-face tag 'notmuch-tag-added) "EXP")
-     (".*" (notmuch-apply-face tag 'notmuch-tag-added) tag)
-     ))
+   '(("unread" (propertize tag 'face 'notmuch-tag-unread) "U")
+     ("flagged" (propertize tag 'face 'notmuch-tag-flagged) "🚩")
+     ("inbox" (propertize tag 'face 'notmuch-tag-flagged) "I")
+     ("delete" (notmuch-apply-face tag 'notmuch-tag-added) "D")
+     ("expire" (notmuch-apply-face tag 'notmuch-tag-added) "E")
+     ("attachment" (notmuch-apply-face tag 'notmuch-tag-added) "A")
+     ("important" (propertize tag 'face 'notmuch-tag-flagged) "❗")
+     ("signed" (propertize tag 'face 'notmuch-tag-flagged) "S"))
+   )
 
 
 ;;;; Reading messages
@@ -131,6 +127,25 @@
    :desc "Tag as deleted or untag is prefixed. #pim" "E"  #'pimacs-notmuch-show-expire-message
    :desc "Tag as spam or untag is prefixed. #pim" "S" #'pimacs-notmuch-show-spam-message
    )
+
+  (setq notmuch-search-result-format
+        '(("date" . "%12s ") ("count" . "%-7s ") ("authors" . "%-30s ")
+          (pimacs-search-format-subject . "%-90s ") ("tags" . "(%s)"))
+        notmuch-tree-result-format
+        '(("date" . "%12s  ") ("authors" . "%-20s")
+          ((("tree" . "%s") (pimacs-tree-format-subject . " %-80s")) . " %-90s ") ("tags" . "(%s)"))
+        )
+
+  (setq notmuch-tree-thread-symbols
+        '((prefix . " ")
+          (top . "─")
+          (top-tee . "┬")
+          (vertical . "│")
+          (vertical-tee . "├")
+          (bottom . "└")
+          ;; (arrow . "►")
+          (arrow . "─►")
+          ))
 
   ;; TODO
   ;; https://holgerschurig.github.io/en/emacs-notmuch-hello/ or https://sqrtminusone.xyz/posts/2021-02-27-gmail/
