@@ -5,7 +5,7 @@
 -unread -new -inbox +expire -- folder:ivaldi.me/Trash and not tag:expire
 -unread -new -inbox +spam -- folder:ivaldi.me/Spam and not tag:span
 -unread -new -inbox +sent -- folder:ivaldi.me/Sent and not tag:sent
--unread -new -inbox +archive -- folder:ivaldi.me/Archive and not tag:archive
+-unread -new -inbox +archived -- folder:ivaldi.me/Archive and not tag:archived
 -new +flagged -- folder:ivaldi.me/Starred and not tag:flagged
 
 # Remove the new tag from messages

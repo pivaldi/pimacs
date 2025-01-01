@@ -146,6 +146,16 @@ Supported properties of the plist are :
 See `pimacs-notmuch-hello-insert-buttons`."
   :group 'notmuch-faces)
 
+(defun pimacs--notmuch-remove-untags (tags)
+  (let ((rmtags '()))
+    (mapc
+     (lambda (str)
+       (when (string-match "^[^-]" str)
+         (add-to-list 'rmtags str)
+         )) tags)
+    rmtags
+    ))
+
 (defmacro pimacs-notmuch-search-tag-thread (name tags)
   "Produce NAME function parsing TAGS.
 Modified version of
@@ -166,16 +176,9 @@ reverse the application of the *added* tags.
 This function advances to the next thread when finished."
        tags)
      (interactive (cons current-prefix-arg (notmuch-interactive-region)))
-     (let ((rmtags '()))
-       (mapc
-        (lambda (str)
-          (when (string-match "^[^-]" str)
-            (add-to-list 'rmtags str)
-            )) ,tags)
-
+     (let ((rmtags (pimacs--notmuch-remove-untags ,tags)))
        (when rmtags
-         (notmuch-search-tag
-          (notmuch-tag-change-list rmtags untag) beg end)
+         (notmuch-search-tag (notmuch-tag-change-list rmtags untag) beg end)
          (when (eq beg end)
            (notmuch-search-next-thread))))))
 
@@ -193,6 +196,109 @@ This function advances to the next thread when finished."
 
 (pimacs-notmuch-search-tag-thread
   pimacs-notmuch-search-spam-thread
+  pimacs-notmuch-mark-spam-tags)
+
+(defmacro pimacs-notmuch-search-tag-all (name tags)
+  "Produce NAME function parsing TAGS."
+  (declare (indent defun))
+  `(defun ,name (&optional untag)
+     ,(format
+       "Mark with `%s' all the messages in the search buffer.
+
+Operate on each message in the current search buffer.
+
+With optional prefix argument (\\[universal-argument]) as UNTAG,
+reverse the application of the *added* tags."
+       tags)
+     (interactive current-prefix-arg)
+     (let ((rmtags (pimacs--notmuch-remove-untags ,tags)))
+       (when rmtags
+         (notmuch-search-tag-all (notmuch-tag-change-list rmtags untag))))))
+
+
+(pimacs-notmuch-search-tag-all
+  pimacs-notmuch-search-delete-all
+  pimacs-notmuch-mark-delete-tags)
+
+(pimacs-notmuch-search-tag-all
+  pimacs-notmuch-search-expire-all
+  pimacs-notmuch-mark-expire-tags)
+
+(pimacs-notmuch-search-tag-all
+  pimacs-notmuch-search-flag-all
+  pimacs-notmuch-mark-flag-tags)
+
+(pimacs-notmuch-search-tag-all
+  pimacs-notmuch-search-spam-all
+  pimacs-notmuch-mark-spam-tags)
+
+(defmacro pimacs-notmuch-tree-tag-message (name tags)
+  "Produce NAME function parsing TAGS.
+Modified version of
+https://git.sr.ht/~protesilaos/dotfiles/tree/master/item/emacs/.emacs.d/prot-lisp/prot-notmuch.el"
+  (declare (indent defun))
+  `(defun ,name (&optional untag beg end)
+     ,(format
+       "Mark with `%s' the currently selected message in notmuch-tree-mode.
+
+With optional prefix argument (\\[universal-argument]) as UNTAG,
+reverse the application of the *added* tags.
+
+This function advances to the next message when finished."
+       tags)
+     (interactive (cons current-prefix-arg (notmuch-interactive-region)))
+     (let ((rmtags (pimacs--notmuch-remove-untags ,tags)))
+       (when rmtags
+         (notmuch-tree-tag (notmuch-tag-change-list rmtags untag))
+         (notmuch-tree-next-message)))))
+
+(pimacs-notmuch-tree-tag-message
+  pimacs-notmuch-tree-delete-message
+  pimacs-notmuch-mark-delete-tags)
+
+(pimacs-notmuch-tree-tag-message
+  pimacs-notmuch-tree-expire-message
+  pimacs-notmuch-mark-expire-tags)
+
+(pimacs-notmuch-tree-tag-message
+  pimacs-notmuch-tree-flag-message
+  pimacs-notmuch-mark-flag-tags)
+
+(pimacs-notmuch-tree-tag-message
+  pimacs-notmuch-tree-spam-message
+  pimacs-notmuch-mark-spam-tags)
+
+
+(defmacro pimacs-notmuch-tree-tag-thread (name tags)
+  "Produce NAME function parsing TAGS."
+  (declare (indent defun))
+  `(defun ,name (&optional untag beg end)
+     ,(format
+       "Mark with `%s' all message of the the current thread in notmuch-tree-mode.
+
+With optional prefix argument (\\[universal-argument]) as UNTAG,
+reverse the application of the *added* tags."
+       tags)
+     (interactive (cons current-prefix-arg (notmuch-interactive-region)))
+     (let ((rmtags (pimacs--notmuch-remove-untags ,tags)))
+       (when rmtags
+         (notmuch-tree-tag-thread (notmuch-tag-change-list rmtags untag))
+         (notmuch-tree-next-thread)))))
+
+(pimacs-notmuch-tree-tag-thread
+  pimacs-notmuch-tree-delete-thread
+  pimacs-notmuch-mark-delete-tags)
+
+(pimacs-notmuch-tree-tag-thread
+  pimacs-notmuch-tree-expire-thread
+  pimacs-notmuch-mark-expire-tags)
+
+(pimacs-notmuch-tree-tag-thread
+  pimacs-notmuch-tree-flag-thread
+  pimacs-notmuch-mark-flag-tags)
+
+(pimacs-notmuch-tree-tag-thread
+  pimacs-notmuch-tree-spam-thread
   pimacs-notmuch-mark-spam-tags)
 
 (defmacro pimacs-notmuch-show-tag-message (name tags)
@@ -329,7 +435,8 @@ with `pimacs-notmuch-hello-query-counts'."
                      (title (if (eq 0 unread-count) name
                               (propertize name 'face 'pimacs-notmuch-hello-buttons-unread-face))))
                 (widget-insert (format "%8s/%s "
-                                       (notmuch-hello-nice-number unread-count) (notmuch-hello-nice-number msg-count)))
+                                       (if (eq 0 unread-count) (notmuch-hello-nice-number unread-count)
+                                         (propertize (notmuch-hello-nice-number unread-count) 'face 'pimacs-notmuch-hello-buttons-unread-face)) (notmuch-hello-nice-number msg-count)))
                 (widget-create 'push-button
                                :notify #'notmuch-hello-widget-search
                                :notmuch-search-terms query
