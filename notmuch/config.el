@@ -62,7 +62,8 @@
 
   ;; Saved search config
   (setq notmuch-show-empty-saved-searches t)
-  (setq notmuch-tag-unread 'warning)
+  (set-face-attribute 'notmuch-tag-unread nil :inherit 'warning)
+  (set-face-attribute 'notmuch-search-matching-authors nil :inherit 'notmuch-tree-match-author-face)
 
   ;; Tag settings
   (setq
@@ -115,6 +116,7 @@
 
    :map notmuch-hello-mode-map
    :desc "Move point to the previous field or button." "S-<tab>" #'widget-backward
+   :desc "Move point to the previous field or button." "S-<iso-lefttab>" #'widget-backward
 
    :map notmuch-search-mode-map
    :desc "Replace a by A. #pim" "a" nil ;; the default archive keybinding is too easy to hit accidentally
@@ -123,12 +125,12 @@
    :desc "Reply to the entire current thread. #pim" "r" #'notmuch-search-reply-to-thread-sender
    :desc "Reply-all to the entire current thread. #pim" "R" #'notmuch-search-reply-to-thread ; reply to all
    :desc "Refresh current buffer or all notmuch buffers if prefixed. #pim" "g" #'pimacs-notmuch-refresh-buffer
-   :desc "Mark as deleted the currently selected thread. #pim" "d" #'pimacs-notmuch-search-delete-thread
-   :desc "Mark as deleted the currently selected thread. #pim" "D" #'pimacs-notmuch-search-delete-all
-   :desc "Mark as expirable the currently selected thread. #pim" "e" #'pimacs-notmuch-search-expire-thread
-   :desc "Mark as expirable the currently selected thread. #pim" "E" #'pimacs-notmuch-search-expire-all
-   :desc "Mark as spam the currently selected thread. #pim" "s" #'pimacs-notmuch-search-spam-thread
-   :desc "Mark as spam the currently selected thread. #pim" "S" #'pimacs-notmuch-search-spam-all
+   :desc "Mark as deleted the currently selected thread. #pim" "C-t d" #'pimacs-notmuch-search-delete-thread
+   :desc "Mark as deleted the currently selected thread. #pim" "C-t D" #'pimacs-notmuch-search-delete-all
+   :desc "Mark as expirable the currently selected thread. #pim" "C-t e" #'pimacs-notmuch-search-expire-thread
+   :desc "Mark as expirable the currently selected thread. #pim" "C-t E" #'pimacs-notmuch-search-expire-all
+   :desc "Mark as spam the currently selected thread. #pim" "C-t s" #'pimacs-notmuch-search-spam-thread
+   :desc "Mark as spam the currently selected thread. #pim" "C-t S" #'pimacs-notmuch-search-spam-all
 
    :map notmuch-tree-mode-map
    :desc "Replace a by A. #pim" "a" nil ;; the default archive keybinding is too easy to hit accidentally
@@ -136,12 +138,12 @@
    :desc "Filter or LIMIT the current search results. #pim" "/" #'notmuch-tree-filter ; alias for l
    :desc "Reply to the sender of the current message. #pim" "r" #'notmuch-tree-reply-sender
    :desc "Reply-all of the current message. #pim" "R" #'notmuch-tree-reply ; reply to all
-   :desc "Mark as deleted the currently selected thread. #pim" "d" #'pimacs-notmuch-tree-delete-message
-   :desc "Mark as deleted the currently selected thread. #pim" "D" #'pimacs-notmuch-tree-delete-thread
-   :desc "Mark as expirable the currently selected thread. #pim" "e" #'pimacs-notmuch-tree-expire-message
-   :desc "Mark as expirable the currently selected thread. #pim" "E" #'pimacs-notmuch-tree-expire-thread
-   :desc "Mark as spam the currently selected thread. #pim" "s" #'pimacs-notmuch-tree-spam-message
-   :desc "Mark as spam the currently selected thread. #pim" "S" #'pimacs-notmuch-tree-spam-thread
+   :desc "Mark as deleted the currently selected thread. #pim" "C-t d" #'pimacs-notmuch-tree-delete-message
+   :desc "Mark as deleted the currently selected thread. #pim" "C-t D" #'pimacs-notmuch-tree-delete-thread
+   :desc "Mark as expirable the currently selected thread. #pim" "C-t e" #'pimacs-notmuch-tree-expire-message
+   :desc "Mark as expirable the currently selected thread. #pim" "C-t E" #'pimacs-notmuch-tree-expire-thread
+   :desc "Mark as spam the currently selected thread. #pim" "C-t s" #'pimacs-notmuch-tree-spam-message
+   :desc "Mark as spam the currently selected thread. #pim" "C-t S" #'pimacs-notmuch-tree-spam-thread
    :desc "Refresh current buffer or all notmuch buffers if prefixed. #pim" "g" #'pimacs-notmuch-refresh-buffer
 
    :map notmuch-show-mode-map
@@ -149,9 +151,9 @@
    :desc "Archive each message in thread. #pim" "A" #'notmuch-show-archive-thread
    :desc "Reply-to of the current message. #pim" "r" #'notmuch-show-reply-sender
    :desc "Reply-all of the current message. #pim" "R" #'notmuch-show-reply
-   :desc "Tag as deleted or untag is prefixed. #pim" "d"  #'pimacs-notmuch-show-delete-message
-   :desc "Tag as deleted or untag is prefixed. #pim" "e"  #'pimacs-notmuch-show-expire-message
-   :desc "Tag as spam or untag is prefixed. #pim" "S" #'pimacs-notmuch-show-spam-message
+   :desc "Tag as deleted or untag is prefixed. #pim" "C-t d"  #'pimacs-notmuch-show-delete-message
+   :desc "Tag as deleted or untag is prefixed. #pim" "C-t e"  #'pimacs-notmuch-show-expire-message
+   :desc "Tag as spam or untag is prefixed. #pim" "C-t s" #'pimacs-notmuch-show-spam-message
    )
 
   (setq notmuch-search-result-format
@@ -160,8 +162,7 @@
         notmuch-tree-result-format
         '(("date" . "%12s  ") ("authors" . "%-30s")
           ((("tree" . "%s") (pimacs-tree-format-subject . " %-80s")) . " %-90s ") ("tags" . "(%s)"))
-        )
-  (setq notmuch-unthreaded-result-format
+        notmuch-unthreaded-result-format
         '(("date" . "%12s ") ("authors" . "%-30s ")
           (pimacs-search-format-subject . "%-90s ") ("tags" . "(%s)")))
 

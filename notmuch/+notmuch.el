@@ -98,8 +98,8 @@ An account is a plist. Supported properties are
                   (const :format "  Query: " :query)
                   (string :format "%v"))
            (group :format "%v" :inline t
-                  (const :format "  Shortcut key: " :key)
-                  (key-sequence :format "%v")))
+                  (const :format "  Shortcut key prefix: " :key-prefix)
+                  (string :format "%v")))
           ))
 
 (define-widget 'pimacs-notmuch-accounts-saved-searches-plist 'list
@@ -129,7 +129,46 @@ Supported properties of the plist are :
 "
   :type '(repeat :tag "Account" pimacs-notmuch-accounts-saved-searches-plist)
   :tag "List of Accounts"
+  :set (lambda (symbol value)
+         (set-default symbol value)
+         (pimacs-notmuch-accounts-saved-searches-set value))
   :group 'pimacs-notmuch)
+
+
+(defun pimacs-notmuch-hello-filtered-query (query filter)
+  "Constructs a query to search all messages matching QUERY and FILTER.
+Modified version of `notmuch-hello-filtered-query' to handle query equal to *."
+  (cond
+   ((functionp filter) (funcall filter query))
+   ((stringp filter)
+    (if (string= query "*") filter
+      (concat "(" query ") and (" filter ")")))
+   (t query)))
+
+(defun pimacs-notmuch-accounts-saved-searches-set (accounts-searches)
+  "Setter of `pimacs-notmuch-accounts-saved-searches'.
+Push the searches from accounts into `notmuch-saved-searches'
+with computed nane, key and query.
+
+Must be used instead of setq."
+  (setq pimacs-notmuch-accounts-saved-searches accounts-searches)
+  (dolist (account-searches accounts-searches)
+    (let* ((searches (plist-get account-searches :searches))
+           (account (plist-get account-searches :account))
+           (account-name (plist-get account :name))
+           (account-query (plist-get account :query))
+           (kprefix (plist-get account :key-prefix)))
+      (dolist (search searches)
+        (let ((s (copy-sequence search)))
+          (when search
+            (when (not (string= kprefix ""))
+              (let ((keydesc (key-description (plist-get search :key))))
+                (plist-put s :key (kbd (concat kprefix keydesc))))
+              ))
+          (plist-put s :name (concat account-name " - " (plist-get search :name)))
+          (plist-put s :query (pimacs-notmuch-hello-filtered-query account-query (plist-get search :query)))
+          (add-to-list 'notmuch-saved-searches s)))
+      )) notmuch-saved-searches)
 
 (defface pimacs-notmuch-hello-header-face
   '((t :foreground "white"
@@ -362,12 +401,12 @@ Source : https://holgerschurig.github.io/en/emacs-notmuch-hello/"
                               (notmuch-saved-search-get elem :query)))
              (consolidated-count-query (replace-regexp-in-string
                                         "\n" " "
-                                        (notmuch-hello-filtered-query count-query
-                                                                      (or (plist-get options :filter-count)
-                                                                          (plist-get options :filter))))))
+                                        (pimacs-notmuch-hello-filtered-query count-query
+                                                                             (or (plist-get options :filter-count)
+                                                                                 (plist-get options :filter))))))
         (insert
          consolidated-count-query "\n"
-         (concat consolidated-count-query " AND tag:unread") "\n")))
+         (pimacs-notmuch-hello-filtered-query consolidated-count-query "tag:unread") "\n")))
 
     (unless (= (notmuch--call-process-region (point-min) (point-max) notmuch-command
                                              t t nil "count"
@@ -385,7 +424,7 @@ the CLI and emacs interface."))
      (lambda (elem)
        (let* ((elem-plist (notmuch-hello-saved-search-to-plist elem))
               (search-query (plist-get elem-plist :query))
-              (filtered-query (notmuch-hello-filtered-query
+              (filtered-query (pimacs-notmuch-hello-filtered-query
                                search-query (plist-get options :filter)))
               (message-count (prog1 (read (current-buffer))
                                (forward-line 1)))
@@ -436,7 +475,10 @@ with `pimacs-notmuch-hello-query-counts'."
                               (propertize name 'face 'pimacs-notmuch-hello-buttons-unread-face))))
                 (widget-insert (format "%8s/%s "
                                        (if (eq 0 unread-count) (notmuch-hello-nice-number unread-count)
-                                         (propertize (notmuch-hello-nice-number unread-count) 'face 'pimacs-notmuch-hello-buttons-unread-face)) (notmuch-hello-nice-number msg-count)))
+                                         (propertize
+                                          (notmuch-hello-nice-number unread-count)
+                                          'face 'pimacs-notmuch-hello-buttons-unread-face))
+                                       (notmuch-hello-nice-number msg-count)))
                 (widget-create 'push-button
                                :notify #'notmuch-hello-widget-search
                                :notmuch-search-terms query
@@ -484,8 +526,7 @@ Supports the following entries in OPTIONS as a plist:
   ;; (widget-insert "       ")
   (when (and notmuch-hello-first-run (plist-get options :initially-hidden))
     (add-to-list 'notmuch-hello-hidden-sections title))
-  (let ((is-hidden (member title notmuch-hello-hidden-sections))
-        (start (point)))
+  (let ((is-hidden (member title notmuch-hello-hidden-sections)))
     (if is-hidden
         (widget-create 'push-button
                        :notify (lambda (&rest _ignore)
@@ -508,45 +549,19 @@ Supports the following entries in OPTIONS as a plist:
           (pimacs-notmuch-hello-insert-buttons searches))))))
 
 
-(defun pimacs-notmuch-hello-insert-account-searches2 (account-searches)
-  "Insert the accounts -searches section."
-  (let* ((searches (plist-get account-searches :searches))
-         (account (plist-get account-searches :account))
-         (account-query (concat (plist-get account :query))))
-    (pimacs-notmuch-hello-insert-searches (plist-get account :name) searches :filter account-query :show-empty-searches t)
-    )
-  )
-
 (defun pimacs-notmuch-hello-insert-account-searches (account-searches)
   "Insert a section of account associated with saved-searches.
-Source : https://holgerschurig.github.io/en/emacs-notmuch-hello/"
+
+See `pimacs-notmuch-accounts-saved-searches'."
   (let* ((searches (plist-get account-searches :searches))
          (account (plist-get account-searches :account))
-         (account-query (concat (plist-get account :query))))
-    (widget-insert (propertize (concat "             " (plist-get account :name) "\n") 'face 'pimacs-notmuch-hello-header-face))
-    (widget-insert (propertize "New     Total      Key  Name\n" 'face 'pimacs-notmuch-hello-header-face))
-    (mapc (lambda (elem)
-            (when elem
-              (let* ((qtot (concat account-query " AND " (plist-get elem :query)))
-                     (qnew (concat qtot " AND tag:unread"))
-                     (ntot (pimacs-notmuch-count-query qtot))
-                     (nnew (pimacs-notmuch-count-query qnew)))
-                (pimacs-notmuch-hello-query-insert nnew qnew elem)
-                (pimacs-notmuch-hello-query-insert ntot qtot elem)
-                (widget-insert "   ")
-                (widget-insert (plist-get elem :key))
-                (widget-insert "    ")
-                (widget-insert (plist-get elem :name))
-                (widget-insert "\n")
-                ))
-            ) searches)))
+         (account-query (plist-get account :query)))
+    (pimacs-notmuch-hello-insert-searches
+     (plist-get account :name) searches :filter account-query :show-empty-searches t)))
 
 (defun pimacs-notmuch-hello-insert-accounts-searches ()
-  (mapc (lambda (account-searches)
-          (when account-searches
-            (pimacs-notmuch-hello-insert-account-searches2 account-searches)
-            (widget-insert "\n")
-            )
-          )
-        pimacs-notmuch-accounts-saved-searches)
-  )
+  (dolist (account-searches pimacs-notmuch-accounts-saved-searches)
+    (when account-searches
+      (pimacs-notmuch-hello-insert-account-searches account-searches)
+      (widget-insert "\n")
+      )))

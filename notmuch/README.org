@@ -23,3 +23,8 @@ configuration for [[https://notmuchmail.org/][Notmuch]].
 
 * Module Options
 -
+
+* Futher Configuration
+
+This [[https://github.com/pivaldi/pi-notmuch][here]] the example of the my
+personal configuration and how I use ~PIMacs/notmuch~.
