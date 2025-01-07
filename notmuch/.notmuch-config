@@ -10,8 +10,9 @@
 # Notmuch will store its database within a sub-directory of the path
 # configured here named ".notmuch".
 #
+
 [database]
-path=.mail
+path=/home/pi/Mail
 
 # User configuration
 #
@@ -28,9 +29,11 @@ path=.mail
 # recipient list of replies, and will set the From address based on the
 # address to which the original email was addressed.
 #
+
 [user]
 name=Philippe IVALDI
-other_email=p22@ivaldi.me;pi@ovya.fr;
+primary_email=p22@ivaldi.me
+other_email=pi@ovya.fr;catchall@ivaldi.me;
 
 # Configuration for "notmuch new"
 #
@@ -46,8 +49,9 @@ other_email=p22@ivaldi.me;pi@ovya.fr;
 #		names will be ignored, independent of its depth/location
 #		in the mail store.
 #
+
 [new]
-tags=new;unread
+tags=new
 ignore=.uidvalidity;.mbsyncstate;/.*[.](json|lock|bak)$/
 
 # Search configuration
@@ -59,6 +63,7 @@ ignore=.uidvalidity;.mbsyncstate;/.*[.](json|lock|bak)$/
 #		search results by default.  Using an excluded tag in a
 #		query will override that exclusion.
 #
+
 [search]
 
 # Maildir compatibility configuration
@@ -82,5 +87,15 @@ ignore=.uidvalidity;.mbsyncstate;/.*[.](json|lock|bak)$/
 #	and update tags, while the "notmuch tag" and "notmuch restore"
 #	commands will notice tag changes and update flags in filenames
 #
+
 [maildir]
 synchronize_flags=true
+
+## This custom indexes' definitions permit to
+## search by custom header values like XSender:/@salesforce.com/
+
+[index]
+header.XSender=X-Sender
+header.DeliveredTo=Delivered-To
+header.XMailer=X-Mailer
+header.XRedmineProject=X-Redmine-Project

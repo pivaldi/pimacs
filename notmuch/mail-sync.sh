@@ -1,9 +1,16 @@
 #!/bin/bash
 
+MAILDIR=/home/pi/Mail
+ACCOUNTS="ivaldi.me ovya.fr"
+
+for ACCOUNT in $ACCOUNTS; do
+    DIR="${MAILDIR}/$ACCOUNT"
+    [ -e "$DIR" ] || mkdir -p "$DIR"
+done
+
 mbsync --config "${HOME}/.isyncrc" --all || exit 1
 
 notmuch new
-
 
 # # Come from https://sqrtminusone.xyz/posts/2021-02-27-gmail/
 # # A file with last time of sync
@@ -38,6 +45,10 @@ notmuch new
 
 
 notmuch tag --input="${HOME}/.notmuch-tagging"
+
+# Personnal tags system for my work
+OVYA_TAGGING_FILE="${HOME}/.notmuch-tagging-ovya"
+[ -e  "$OVYA_TAGGING_FILE" ] && notmuch tag --input="$OVYA_TAGGING_FILE"
 
 ## Remove emails tagged with expire and older than 90 days
 # notmuch search --output=files --format=text0 tag:expire and date:-90d | xargs -r0 rm

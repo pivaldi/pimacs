@@ -11,7 +11,7 @@ configuration for [[https://notmuchmail.org/][Notmuch]].
     [[.isyncrc]] for educational purpose and showing best security practices.
   - /Notmuch/ tagging use the file [[.notmuch-tagging]] through the symlink from
     ~~.notmuch-tagging~ allowing you to use your own tagging config inspired by mine.
-- The configured email directory is ~~/.mail~, use a symbolic link to your
+- The configured email directory is ~~/Maiil~, use a symbolic link to your
   existing email directory if needed.
 
 * Features

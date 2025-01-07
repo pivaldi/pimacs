@@ -116,25 +116,6 @@ An account is a plist. Supported properties are
            )
           ))
 
-(defcustom pimacs-notmuch-accounts-saved-searches
-  `((:account (:name "MAIN" :query "*" :key ,(kbd "m"))
-     :searches ,notmuch-saved-searches))
-  "A list of email account associated with `notmuch-saved-searches'.
-
-The saved accounts searches is a list of plist.
-Supported properties of the plist are :
-
-  :account         A `pimacs-notmuch-account-plist (required)'.
-  :searches        A `notmuch-saved-searches' (required).
-"
-  :type '(repeat :tag "Account" pimacs-notmuch-accounts-saved-searches-plist)
-  :tag "List of Accounts"
-  :set (lambda (symbol value)
-         (set-default symbol value)
-         (pimacs-notmuch-accounts-saved-searches-set value))
-  :group 'pimacs-notmuch)
-
-
 (defun pimacs-notmuch-hello-filtered-query (query filter)
   "Constructs a query to search all messages matching QUERY and FILTER.
 Modified version of `notmuch-hello-filtered-query' to handle query equal to *."
@@ -169,6 +150,24 @@ Must be used instead of setq."
           (plist-put s :query (pimacs-notmuch-hello-filtered-query account-query (plist-get search :query)))
           (add-to-list 'notmuch-saved-searches s)))
       )) notmuch-saved-searches)
+
+(defcustom pimacs-notmuch-accounts-saved-searches
+  `((:account (:name "MAIN" :query "*" :key ,(kbd "m"))
+     :searches ,notmuch-saved-searches))
+  "A list of email account associated with `notmuch-saved-searches'.
+
+The saved accounts searches is a list of plist.
+Supported properties of the plist are :
+
+  :account         A `pimacs-notmuch-account-plist (required)'.
+  :searches        A `notmuch-saved-searches' (required).
+"
+  :type '(repeat :tag "Account" pimacs-notmuch-accounts-saved-searches-plist)
+  :tag "List of Accounts"
+  :set (lambda (symbol value)
+         (set-default symbol value)
+         (pimacs-notmuch-accounts-saved-searches-set value))
+  :group 'pimacs-notmuch)
 
 (defface pimacs-notmuch-hello-header-face
   '((t :foreground "white"
@@ -222,20 +221,20 @@ This function advances to the next thread when finished."
            (notmuch-search-next-thread))))))
 
 (pimacs-notmuch-search-tag-thread
-  pimacs-notmuch-search-delete-thread
-  pimacs-notmuch-mark-delete-tags)
+ pimacs-notmuch-search-delete-thread
+ pimacs-notmuch-mark-delete-tags)
 
 (pimacs-notmuch-search-tag-thread
-  pimacs-notmuch-search-expire-thread
-  pimacs-notmuch-mark-expire-tags)
+ pimacs-notmuch-search-expire-thread
+ pimacs-notmuch-mark-expire-tags)
 
 (pimacs-notmuch-search-tag-thread
-  pimacs-notmuch-search-flag-thread
-  pimacs-notmuch-mark-flag-tags)
+ pimacs-notmuch-search-flag-thread
+ pimacs-notmuch-mark-flag-tags)
 
 (pimacs-notmuch-search-tag-thread
-  pimacs-notmuch-search-spam-thread
-  pimacs-notmuch-mark-spam-tags)
+ pimacs-notmuch-search-spam-thread
+ pimacs-notmuch-mark-spam-tags)
 
 (defmacro pimacs-notmuch-search-tag-all (name tags)
   "Produce NAME function parsing TAGS."
@@ -256,20 +255,20 @@ reverse the application of the *added* tags."
 
 
 (pimacs-notmuch-search-tag-all
-  pimacs-notmuch-search-delete-all
-  pimacs-notmuch-mark-delete-tags)
+ pimacs-notmuch-search-delete-all
+ pimacs-notmuch-mark-delete-tags)
 
 (pimacs-notmuch-search-tag-all
-  pimacs-notmuch-search-expire-all
-  pimacs-notmuch-mark-expire-tags)
+ pimacs-notmuch-search-expire-all
+ pimacs-notmuch-mark-expire-tags)
 
 (pimacs-notmuch-search-tag-all
-  pimacs-notmuch-search-flag-all
-  pimacs-notmuch-mark-flag-tags)
+ pimacs-notmuch-search-flag-all
+ pimacs-notmuch-mark-flag-tags)
 
 (pimacs-notmuch-search-tag-all
-  pimacs-notmuch-search-spam-all
-  pimacs-notmuch-mark-spam-tags)
+ pimacs-notmuch-search-spam-all
+ pimacs-notmuch-mark-spam-tags)
 
 (defmacro pimacs-notmuch-tree-tag-message (name tags)
   "Produce NAME function parsing TAGS.
@@ -292,20 +291,20 @@ This function advances to the next message when finished."
          (notmuch-tree-next-message)))))
 
 (pimacs-notmuch-tree-tag-message
-  pimacs-notmuch-tree-delete-message
-  pimacs-notmuch-mark-delete-tags)
+ pimacs-notmuch-tree-delete-message
+ pimacs-notmuch-mark-delete-tags)
 
 (pimacs-notmuch-tree-tag-message
-  pimacs-notmuch-tree-expire-message
-  pimacs-notmuch-mark-expire-tags)
+ pimacs-notmuch-tree-expire-message
+ pimacs-notmuch-mark-expire-tags)
 
 (pimacs-notmuch-tree-tag-message
-  pimacs-notmuch-tree-flag-message
-  pimacs-notmuch-mark-flag-tags)
+ pimacs-notmuch-tree-flag-message
+ pimacs-notmuch-mark-flag-tags)
 
 (pimacs-notmuch-tree-tag-message
-  pimacs-notmuch-tree-spam-message
-  pimacs-notmuch-mark-spam-tags)
+ pimacs-notmuch-tree-spam-message
+ pimacs-notmuch-mark-spam-tags)
 
 
 (defmacro pimacs-notmuch-tree-tag-thread (name tags)
@@ -325,20 +324,20 @@ reverse the application of the *added* tags."
          (notmuch-tree-next-thread)))))
 
 (pimacs-notmuch-tree-tag-thread
-  pimacs-notmuch-tree-delete-thread
-  pimacs-notmuch-mark-delete-tags)
+ pimacs-notmuch-tree-delete-thread
+ pimacs-notmuch-mark-delete-tags)
 
 (pimacs-notmuch-tree-tag-thread
-  pimacs-notmuch-tree-expire-thread
-  pimacs-notmuch-mark-expire-tags)
+ pimacs-notmuch-tree-expire-thread
+ pimacs-notmuch-mark-expire-tags)
 
 (pimacs-notmuch-tree-tag-thread
-  pimacs-notmuch-tree-flag-thread
-  pimacs-notmuch-mark-flag-tags)
+ pimacs-notmuch-tree-flag-thread
+ pimacs-notmuch-mark-flag-tags)
 
 (pimacs-notmuch-tree-tag-thread
-  pimacs-notmuch-tree-spam-thread
-  pimacs-notmuch-mark-spam-tags)
+ pimacs-notmuch-tree-spam-thread
+ pimacs-notmuch-mark-spam-tags)
 
 (defmacro pimacs-notmuch-show-tag-message (name tags)
   "Produce NAME function parsing TAGS.
@@ -357,20 +356,20 @@ reverse the application of the tags."
               (notmuch-tag-change-list ,tags untag)))))
 
 (pimacs-notmuch-show-tag-message
-  pimacs-notmuch-show-delete-message
-  pimacs-notmuch-mark-delete-tags)
+ pimacs-notmuch-show-delete-message
+ pimacs-notmuch-mark-delete-tags)
 
 (pimacs-notmuch-show-tag-message
-  pimacs-notmuch-show-expire-message
-  pimacs-notmuch-mark-expire-tags)
+ pimacs-notmuch-show-expire-message
+ pimacs-notmuch-mark-expire-tags)
 
 (pimacs-notmuch-show-tag-message
-  pimacs-notmuch-show-flag-message
-  pimacs-notmuch-mark-flag-tags)
+ pimacs-notmuch-show-flag-message
+ pimacs-notmuch-mark-flag-tags)
 
 (pimacs-notmuch-show-tag-message
-  pimacs-notmuch-show-spam-message
-  pimacs-notmuch-mark-spam-tags)
+ pimacs-notmuch-show-spam-message
+ pimacs-notmuch-mark-spam-tags)
 
 
 (defun pimacs-notmuch-hello-query-insert (cnt query elem)
@@ -565,3 +564,5 @@ See `pimacs-notmuch-accounts-saved-searches'."
       (pimacs-notmuch-hello-insert-account-searches account-searches)
       (widget-insert "\n")
       )))
+
+(provide 'pimacs/+notmuch)

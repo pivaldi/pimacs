@@ -26,7 +26,7 @@
 
 (after! notmuch
   (load! "+notmuch")
-  (remove-hook! 'notmuch-show-hook '+notmuch-show-expand-only-unread-h)
+  ;; (remove-hook! 'notmuch-show-hook '+notmuch-show-expand-only-unread-h)
 
   ;; General UI
   (setq
@@ -34,7 +34,7 @@
    notmuch-column-control t
    notmuch-hello-auto-refresh t
    notmuch-hello-recent-searches-max 20
-   notmuch-hello-thousands-separator " "
+   notmuch-hello-thousands-separator " "
    notmuch-hello-sections '(
                             pimacs-notmuch-hello-insert-accounts-searches
                             ;; notmuch-hello-insert-saved-searches
@@ -46,8 +46,7 @@
    notmuch-show-all-tags-list t
 
    ;; Set this to an arbitrary shell command
-   +notmuch-sync-backend 'custom
-   +notmuch-sync-command "~/bin/mail-sync.sh"
+   +notmuch-sync-backend "~/bin/mail-sync.sh"
 
    ;; Encrypted and signed mime messages can be read and verified with
    notmuch-crypto-mime t
@@ -64,6 +63,10 @@
   (setq notmuch-show-empty-saved-searches t)
   (set-face-attribute 'notmuch-tag-unread nil :inherit 'warning)
   (set-face-attribute 'notmuch-search-matching-authors nil :inherit 'notmuch-tree-match-author-face)
+  (set-face-attribute 'notmuch-search-non-matching-authors nil :inherit 'notmuch-tree-match-author-face)
+  (set-face-attribute 'notmuch-tree-no-match-author-face nil :inherit 'notmuch-tree-match-author-face)
+  (set-face-attribute 'notmuch-tree-no-match-date-face nil :inherit 'notmuch-tree-match-date-face)
+  (set-face-attribute 'notmuch-tree-no-match-tag-face nil :inherit 'notmuch-tree-match-tag-face)
 
   ;; Tag settings
   (setq
@@ -180,9 +183,10 @@
   ;; TODO
   ;; https://holgerschurig.github.io/en/emacs-notmuch-hello/ or https://sqrtminusone.xyz/posts/2021-02-27-gmail/
   ;; Integrate https://github.com/mhayashi1120/Emacs-langtool
+
+  (provide 'pimacs/notmuch)
   )
 
-(provide 'pimacs/notmuch)
 ;; config.el ends here.
 
 ;; Local variables:
