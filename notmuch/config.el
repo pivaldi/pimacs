@@ -130,12 +130,12 @@
      :desc "Reply to the entire current thread. #pim" "r" #'notmuch-search-reply-to-thread-sender
      :desc "Reply-all to the entire current thread. #pim" "R" #'notmuch-search-reply-to-thread ; reply to all
      :desc "Refresh current buffer or all notmuch buffers if prefixed. #pim" "g" #'notmuch-multi-refresh-buffer
-     :desc "Mark as deleted the currently selected thread. #pim" "C-t d" #'notmuch-multi-search-delete-thread
-     :desc "Mark as deleted the currently selected thread. #pim" "C-t D" #'notmuch-multi-search-delete-all
-     :desc "Mark as expirable the currently selected thread. #pim" "C-t e" #'notmuch-multi-search-expire-thread
-     :desc "Mark as expirable the currently selected thread. #pim" "C-t E" #'notmuch-multi-search-expire-all
-     :desc "Mark as spam the currently selected thread. #pim" "C-t s" #'notmuch-multi-search-spam-thread
-     :desc "Mark as spam the currently selected thread. #pim" "C-t S" #'notmuch-multi-search-spam-all
+     :desc "Mark as deleted the currently selected thread. #pim" "d" #'notmuch-multi-search-delete-thread
+     :desc "Mark as deleted the currently selected thread. #pim" "D" #'notmuch-multi-search-delete-all
+     :desc "Mark as expirable the currently selected thread. #pim" "e" #'notmuch-multi-search-expire-thread
+     :desc "Mark as expirable the currently selected thread. #pim" "E" #'notmuch-multi-search-expire-all
+     :desc "Mark as spam the currently selected thread. #pim" "s" #'notmuch-multi-search-spam-thread
+     :desc "Mark as spam the currently selected thread. #pim" "S" #'notmuch-multi-search-spam-all
      :desc "Mark as flagged the currently selected thread. #pim" "!" #'notmuch-multi-search-flag-thread
 
      :map notmuch-tree-mode-map
@@ -144,13 +144,13 @@
      :desc "Filter or LIMIT the current search results. #pim" "/" #'notmuch-tree-filter ; alias for l
      :desc "Reply to the sender of the current message. #pim" "r" #'notmuch-tree-reply-sender
      :desc "Reply-all of the current message. #pim" "R" #'notmuch-tree-reply ; reply to all
-     :desc "Mark as deleted the currently selected message. #pim" "C-t d" #'notmuch-multi-tree-delete-message
-     :desc "Mark as deleted the currently selected thread. #pim" "C-t D" #'notmuch-multi-tree-delete-thread
-     :desc "Mark as expirable the currently selected message. #pim" "C-t e" #'notmuch-multi-tree-expire-message
-     :desc "Mark as expirable the currently selected thread. #pim" "C-t E" #'notmuch-multi-tree-expire-thread
-     :desc "Mark as spam the currently selected message. #pim" "C-t s" #'notmuch-multi-tree-spam-message
-     :desc "Mark as spam the currently selected thread. #pim" "C-t S" #'notmuch-multi-tree-spam-thread
-     :desc "Mark as flagged the currently selected thread. #pim" "C-t F" #'notmuch-multi-tree-flag-thread
+     :desc "Mark as deleted the currently selected message. #pim" "d" #'notmuch-multi-tree-delete-message
+     :desc "Mark as deleted the currently selected thread. #pim" "D" #'notmuch-multi-tree-delete-thread
+     :desc "Mark as expirable the currently selected message. #pim" "e" #'notmuch-multi-tree-expire-message
+     :desc "Mark as expirable the currently selected thread. #pim" "E" #'notmuch-multi-tree-expire-thread
+     :desc "Mark as spam the currently selected message. #pim" "s" #'notmuch-multi-tree-spam-message
+     :desc "Mark as spam the currently selected thread. #pim" "S" #'notmuch-multi-tree-spam-thread
+     :desc "Mark as flagged the currently selected thread. #pim" "F" #'notmuch-multi-tree-flag-thread
      :desc "Mark as flagged the currently selected message. #pim" "!" #'notmuch-multi-tree-flag-message
      :desc "Refresh current buffer or all notmuch buffers if prefixed. #pim" "g" #'notmuch-multi-refresh-buffer
 
