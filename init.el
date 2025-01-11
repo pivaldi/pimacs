@@ -15,6 +15,7 @@
  bm ;; Provides visible and BUFFER LOCAL bookmarks with the ability to jump forward and backward to the next bookmark.
  calendar-fr ;; French calendar.
  tramp ;;To “turn off” the backup feature for remote files and fix security issue.
+ crypt ;; Enabled elpa to automatically crypt and decrpyt .gpg file. Hide password in gpg file like in authinfo.gpg file…
  origami ;; A text folding minor mode for Emacs.
  pairing ;; Enhanced configuration of smartparens (this module need Doom default module loaded whith +smartparens)
  org ;; Org mode specific configuration.

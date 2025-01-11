@@ -53,7 +53,7 @@ retrieve his value.")
 (use-package! desktop
   :config
   (setq desktop-buffers-not-to-save
-        (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
+        (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|\\.gpg\\|(ftp)\\|^tags\\|^TAGS"
                 "\\|\\.el\\.gz\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
                 "\\)$"))
   ;; Do not reopen the following modes :
