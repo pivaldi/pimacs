@@ -1,0 +1,6 @@
+#+title: PIMacs/crypt Doom Emacs Module
+
+This module :
+- enable ~elpa~ to automatically crypt and decrpyt .gpg file.
+- add a hook function to ~find-file-hook~ in order to hide password in gpg file
+  like ~authinfo-mode~ do in ~authinfo.gpg~ file.
