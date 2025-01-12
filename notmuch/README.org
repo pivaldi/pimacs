@@ -6,9 +6,9 @@ configuration for [[https://notmuchmail.org/][Notmuch]] using
 multiple mail accounts.
 
 * Features
-TODO
+[[https://github.com/pivaldi/pi-notmuch][See my personal configuration of PIMacs/notmuch]]
 
-* Futher Configuration
+* Screenshots
+[[https://github.com/pivaldi/notmuch-multi][See Notmuch-Multi]].
 
-[[https://github.com/pivaldi/pi-notmuch][See my personal configuration of
-PIMacs/notmuch]] (and Notmuch-Multi by the same way).
+* Added Keys Binding
