@@ -53,7 +53,7 @@ retrieve his value.")
 (use-package! desktop
   :config
   (setq desktop-buffers-not-to-save
-        (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
+        (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|\\.gpg\\|(ftp)\\|^tags\\|^TAGS"
                 "\\|\\.el\\.gz\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
                 "\\)$"))
   ;; Do not reopen the following modes :
@@ -81,6 +81,19 @@ retrieve his value.")
   (setq persp-auto-save-num-of-backups 5)
   (setq persp-auto-resume-time 1)
   )
+
+
+(after! recentf
+  (add-to-list 'recentf-exclude #'file-remote-p))
+
+(after! tramp
+  (advice-add
+   'doom--recentf-file-truename-fn :override
+   (defun pim-recent-truename (file &rest _args)
+     "See https://discourse.doomemacs.org/t/recentf-cleanup-logs-a-lot-of-error-messages/3273/5"
+     (if (or (not (file-remote-p file)) (equal "sudo" (file-remote-p file 'method)))
+         (abbreviate-file-name (file-truename (tramp-file-local-name file)))
+       file))))
 
 (provide 'pimacs/session)
 ;;; config.el ends here

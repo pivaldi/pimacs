@@ -34,17 +34,22 @@
 (unless (modulep! +no-font)
   (after!
     pimacs/default
-    (if
-        (find-font (font-spec :name "TerminessTTF NF"))
-        (progn
-          (setq
-           doom-font-increment 1
-           ;; TODO : Make the default font size an option
-           doom-font (font-spec :family "TerminessTTF NF" :foundry "PfEd" :weight 'bold :size 20 :foreground "#DCDCCC")
-           )
-          (set-frame-font doom-font nil t))
-
-      (add-to-list 'pim-error-msgs "Please install Terminess TTF Nerd Fonts : https://github.com/ryanoasis/nerd-fonts"))
+    (let ((used-font
+           (cond
+            ((find-font (font-spec :name "Source Code Pro"))
+             (font-spec :family "Source Code Pro" :weight 'medium :size 15 :width 'normal :foreground "#DCDCCC"))
+            ((find-font (font-spec :name "Terminus"))
+             (font-spec :foundry "xos4" :family "Terminus" :weight 'medium :height 160 :width 'normal :foreground "#DCDCCC"))
+            ((find-font (font-spec :name "Hack"))
+             (font-spec :family "Hack" :weight 'medium :height 160 :width 'normal :foreground "#DCDCCC"))
+            ((find-font (font-spec :name "DejaVu Sans Mono"))
+             (font-spec :family "DejaVu Sans Mono" :weight 'normal :size 14 :foreground "#DCDCCC"))
+            (t nil)
+            )))
+      (setq doom-font-increment 1
+            doom-font used-font
+            line-spacing 0)
+      (set-frame-font doom-font nil t))
     ))
 
 
@@ -99,13 +104,11 @@
   (after! bm
     (set-face-attribute 'bm-fringe-persistent-face nil :background (face-attribute 'fringe :background)  :foreground "#FF3333")
     (set-face-attribute 'bm-fringe-face nil :background (face-attribute 'fringe :background)  :foreground "#33FFFF")
-    (set-face-attribute 'bm-face nil :background nil  :underline "#8FAF8F" :foreground nil)
-    (set-face-attribute 'bm-persistent-face nil :background nil :underline "#DFAF8F" :foreground nil)
-    )
+    (set-face-attribute 'bm-face nil :background nil  :underline "#8FAF8F" :foreground "unspecified")
+    (set-face-attribute 'bm-persistent-face nil :background nil :underline "#DFAF8F" :foreground "unspecified"))
 
   (after! rainbow-delimiters
-    (set-face-attribute 'rainbow-delimiters-base-error-face nil :background nil :foreground "#FF5555"))
-  )
+    (set-face-attribute 'rainbow-delimiters-base-error-face nil :background "unspecified" :foreground "#FF5555")))
 
 
 

@@ -154,6 +154,8 @@ Automatically install and use tree-sitter major modes in Emacs 29+.
 * Snippet
 * Templating
 * Support of Go html template
+  https://github.com/a-h/templ
+  https://drshapeless.com/blog/posts/writing-go-templ-with-emacs.html
 * Hide password on some files (gpg, authinfo, etc)
 * Check macro support of Doom
 * Improve dired experience

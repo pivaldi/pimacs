@@ -15,6 +15,7 @@
  bm ;; Provides visible and BUFFER LOCAL bookmarks with the ability to jump forward and backward to the next bookmark.
  calendar-fr ;; French calendar.
  tramp ;;To “turn off” the backup feature for remote files and fix security issue.
+ crypt ;; Enabled elpa to automatically crypt and decrpyt .gpg file. Hide password in gpg file like in authinfo.gpg file…
  origami ;; A text folding minor mode for Emacs.
  pairing ;; Enhanced configuration of smartparens (this module need Doom default module loaded whith +smartparens)
  org ;; Org mode specific configuration.
@@ -28,8 +29,17 @@
  (lang-go +lsp)
  lang-make
 
+ notmuch ;; notmuch and mbsync config
  doc ;; Generated documentation, fundamental keys binding for example.
  )
+
+;; (when (file-directory-p (doom-module-locate-path '(:pi . notmuch))) ;; My private configurations
+(doom!
+ :pi
+ notmuch ;; My personnal notmuch overwrote data
+ )
+
+;; )
 
 ;; Local variables:
 ;; coding: utf-8
