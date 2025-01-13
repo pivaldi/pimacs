@@ -15,12 +15,7 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-
-;; Source of inspiration
-;; https://protesilaos.com/emacs/dotemacs
-;; https://gitlab.com/protesilaos/dotfiles/-/blob/master/emacs/.emacs.d/prot-emacs-modules/prot-emacs-notmuch.el?ref_type=heads
-;; https://git.sr.ht/~protesilaos/dotfiles/tree/master/item/emacs/.emacs.d/prot-lisp/prot-notmuch.el
-
+;;
 ;;; Code:
 
 (after! notmuch
@@ -185,10 +180,6 @@
             ;; (arrow . "►")
             (arrow . "─►")
             ))
-
-    ;; TODO
-    ;; https://holgerschurig.github.io/en/emacs-notmuch-hello/ or https://sqrtminusone.xyz/posts/2021-02-27-gmail/
-    ;; Integrate https://github.com/mhayashi1120/Emacs-langtool
     ))
 
 (provide 'pimacs/notmuch)

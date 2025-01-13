@@ -30,6 +30,7 @@
  lang-make
 
  notmuch ;; notmuch and mbsync config
+ flyspell ;; flyspell configuration with two dictionaries switching.
  doc ;; Generated documentation, fundamental keys binding for example.
  )
 

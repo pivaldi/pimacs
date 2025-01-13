@@ -1,0 +1,27 @@
+#+title: PIMacs/flyspell Doom Emacs Module
+
+* Features
+
+- This module provide dictionary switching between the two dictionaries defined in
+  the variables ~pim-flyspell-default-dictionary~ and
+  ~pim-flyspell-default-dictionary~.
+- The dictionary ~pim-flyspell-default-dictionary~ is initialized to "french"
+  and the second dictionary ~pim-flyspell-default-dictionary~ is initialized to
+  "american".
+- The variable ~pim-flyspell-prog-mode-dictionary~ allows to configure the default
+  dictionary used in ~prog-mode~.
+
+* Key Binding
+
+The key "F6" allows to switch between ~pim-flyspell-default-dictionary~ and
+  ~pim-flyspell-default-dictionary~ trough the function ~pim-ispell-dictionary-switch~.
+
+* Customization
+You can customize three variables for your need with :
+#+begin_src lisp
+(after! flyspell
+    (setq pim-flyspell-default-dictionary "français"
+          pim-flyspell-secondary-dictionary "american"
+          pim-flyspell-prog-mode-dictionary "american"
+     ))
+#+end_src
