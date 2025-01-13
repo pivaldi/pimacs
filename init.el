@@ -28,9 +28,9 @@
  lang-lisp
  (lang-go +lsp)
  lang-make
-
  notmuch ;; notmuch and mbsync config
  flyspell ;; flyspell configuration with two dictionaries switching.
+ yasnippet ;; Little yas/snippet config with key binding if +no-key is not set.
  doc ;; Generated documentation, fundamental keys binding for example.
  )
 

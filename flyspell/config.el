@@ -32,6 +32,9 @@
   (add-hook 'prog-mode-hook
             (lambda ()
               (ispell-change-dictionary pim-flyspell-prog-mode-dictionary)))
+  (when (modulep! +everywhere)
+    (add-hook! '(text-mode-hook)
+               #'flyspell-mode))
 
   (map!
    :desc "Toggle dictionary between two dictionaries. #pim" "<f6>" #'pim-ispell-dictionary-switch)

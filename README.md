@@ -55,12 +55,15 @@ You imperatively need these softwars installed :
 ## Modules
 
 ### pimacs/aliases
+
 [Define useful aliases starting by `_`](aliases/config.el).
 
 ### pimacs/avy
+
 [Create key bindings for avy with prefix (Doom does not provide them)](avy/README.org).
 
 ## pimacs/bm
+
 [Visible local bookmarks in buffer](bm/README.org) is a simple and useful
 complement to the native Emacs bookmark system.
 
@@ -72,23 +75,36 @@ Configure the calendar for French support.
 
 [Extra configuration of the package COmpletion in Region FUnction](corfu/README.org)
 
+### pimcas/crypt
+
+[PIMacs extra encrypting configuration and features](crypt/README.org)
+
 ### pimacs/default
+
 [PIMacs default configuration](default/README.md).
 
 ### pimacs/dired
+
 [Dired mode specific configuration](dired/README.org).  
 See also the auto-generated
 [dired-mode-map key bindings refcard](dired/all-key-bindings-refcard.org) and the
 [dired-mode-map PIMacs key bindings refcard](dired/pimacs-key-bindings-refcard.org).
 
 ### pimacs/doc
+
 [Generated PIMacs Documentation](doc/README.org). Contains all the Doom and
 PIMacs fundamental key bindings refcards classed by key bindings prefixes.
 
+### pimcas/flyspell
+
+[Dictionary switching between two dictionaries with Flyspell](flyspell/README.org)
+
 ### pimacs/functions
+
 [Define useful functions used under the hood by PIMacs](functions/README.md).
 
 ### pimacs/keys
+
 [PIMacs `global-map` configuration](keys/README.md).  
 See also the auto-generated
 [global-map key bindings refcard](keys/all-key-bindings-refcard.org) and the
@@ -122,7 +138,14 @@ Support native `php-ts-mode` (Emacs 29+) and standart `php-mode`.
 
 Complet/extend the default Doom configuration of the [Langage Server Protocol](https://microsoft.github.io/language-server-protocol/).
 
-## pimacs/origami
+### pimacs/notmuch
+
+[This package](notmuch/README.org) provides extra configurations of the default Doom Emacs
+configuration for [[https://notmuchmail.org/][Notmuch]] using
+[[https://github.com/pivaldi/notmuch-multi][Notmuch-Multi]] to manage smartly
+multiple mail accounts.
+
+### pimacs/origami
 [Provide/configure the Origami text folding minor mode](origami/README.org)
 
 ### pimacs/pairing

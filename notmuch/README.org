@@ -1,6 +1,6 @@
 #+title: PIMacs/notmuch Doom Emacs Module
 
-This package provide extra configurations of the default /Doom Emacs/
+This package provides extra configurations of the default /Doom Emacs/
 configuration for [[https://notmuchmail.org/][Notmuch]] using
 [[https://github.com/pivaldi/notmuch-multi][Notmuch-Multi]] to manage smartly
 multiple mail accounts.
