@@ -26,12 +26,13 @@
 (after! flyspell
   ;; I don't want to use M-TAB to correct, M-$ is enough for me.
   (setq flyspell-use-meta-tab nil)
-  (ispell-change-dictionary pim-flyspell-default-dictionary 1)
+  ;; (ispell-change-dictionary pim-flyspell-default-dictionary 1)
   (setq flyspell-default-dictionary pim-flyspell-default-dictionary)
 
   (add-hook 'prog-mode-hook
             (lambda ()
-              (ispell-change-dictionary pim-flyspell-prog-mode-dictionary)))
+              (or (string= pim-flyspell-prog-mode-dictionary "american")
+                  (ispell-change-dictionary pim-flyspell-prog-mode-dictionary))))
   (when (modulep! +everywhere)
     (add-hook! '(text-mode-hook)
                #'flyspell-mode))
@@ -39,7 +40,6 @@
   (map!
    :desc "Toggle dictionary between two dictionaries. #pim" "<f6>" #'pim-ispell-dictionary-switch)
   )
-
 
 (provide 'pimacs/flyspell)
 ;; config.el ends here.
