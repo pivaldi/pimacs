@@ -1,6 +1,17 @@
 #+title: PIMacs/crypt Doom Emacs Module
 
-This module :
+* Fearture
 - enable ~elpa~ to automatically crypt and decrpyt .gpg file.
 - add a hook function to ~find-file-hook~ in order to hide password in gpg file
   like ~authinfo-mode~ do in ~authinfo.gpg~ file.
+- Define the interactive function ~pim-hide-password~ to hide password in
+  current buffer.
+- Define the interactive function ~pim-gen-password~ which generates a fairly good password.
+  Default length can be customized by ~pim-gen-password-length~ and can be
+  overwrite using the universal-prefix argument.
+
+* Dependency
+This package install [[https://github.com/vandrlexay/emacs-password-genarator][emacs-password-genarator]].
+
+* Configuration
+You can customize the variable ~pim-gen-password-length~.

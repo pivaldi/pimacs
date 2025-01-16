@@ -21,15 +21,12 @@
 (use-package! epa
   :init
   ;; This enables the automatic encryption and decryption of files.
-  (epa-file-enable)
-  )
+  (epa-file-enable))
 
 (add-hook 'find-file-hook
           (lambda ()
             (when (string-match-p ".*\.gpg~?" (file-name-nondirectory (buffer-file-name)))
-              (pimacs-hide-password)
-              )))
-
+              (pim-hide-password))))
 
 (provide 'pimacs/crypt)
 ;;; config.el ends here
