@@ -45,10 +45,10 @@
    :desc "Jump to a project's file using completion. #pim" "C-x f" #'projectile-find-file))
 
 (after! dirvish
-        (map! :map dirvish-mode-map
-              :gm [left]  nil
-              :gm [right] nil
-              ))
+  (map! :map dirvish-mode-map
+        :gm [left]  nil
+        :gm [right] nil
+        ))
 
 ;; ------------------------
 ;; * Key for other-window *
@@ -309,30 +309,14 @@
 ;;   ;; Raccourci sur [f10]
 ;;   (global-set-key (kbd "<f10>") 'column-highlight-mode))
 
-;;;###package jumpc
-(use-package!
-    jumpc
-  ;; :defer t ;; defered does not work…
-  ;; :commands (jumpc-jump-backward jumpc-jump-forward)
-  :preface
-  (if pim-azertyp
-      (progn
-        (map! :desc "Jump to prev cursor position. #pim" "C-<" #'jumpc-jump-backward)
-        (map! :desc "Jump to next cursor position. #pim" "C->" #'jumpc-jump-forward))
-    (progn
-      (map! :desc "Jump to prev cursor position. #pim" "<f8>" #'jumpc-jump-backward)
-      ((map! :desc "Jump to next cursor position. #pim" "<f9>" 'jumpc-jump-forward)))
-    )
+(use-package! jump-to-prev-pos
+  :hook (pre-command-hook . jump-to-prev-pos-remember-position)
   :config
-  (jumpc))
-
-;; (map!
-;;  :after better-jumper
-;;  :desc "Jump to prev cursor position. #pim" "C-<" #'better-jumper-jump-backward)
-
-;; (map!
-;;  :after better-jumper
-;;  :desc "Jump to next cursor position. #pim" "C->" #'better-jumper-jump-forward)
+  (if pim-azertyp
+      (map! :desc "Jump to prev cursor position. #pim" "C-<" #'jump-to-prev-pos-prev-pos
+            :desc "Jump to next cursor position. #pim" "C->" #'jump-to-prev-pos-next-pos)
+    (map! :desc "Jump to prev cursor position. #pim" "<f8>" #'jump-to-prev-pos-prev-pos
+          :desc "Jump to next cursor position. #pim" "<f9>" #'jump-to-prev-pos-next-pos)))
 
 ;; TODO : To be implemented
 ;; ;; Define C-x up | C-x down | C-x right | C-x left to resize the windows

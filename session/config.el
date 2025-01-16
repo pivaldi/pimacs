@@ -53,9 +53,13 @@ retrieve his value.")
 (use-package! desktop
   :config
   (setq desktop-buffers-not-to-save
-        (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|\\.gpg\\|(ftp)\\|^tags\\|^TAGS"
+        (concat "\\("
+                "\\`/[^/:]*:"
+                "\\|^nn\\.a[0-9]+\\|\\.log\\|\\.gpg\\|(ftp)\\|^tags\\|^TAGS"
                 "\\|\\.el\\.gz\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
-                "\\)$"))
+                "\\)")
+        desktop-files-not-to-save desktop-buffers-not-to-save)
+
   ;; Do not reopen the following modes :
   (add-to-list 'desktop-modes-not-to-save 'dired-mode)
   (add-to-list 'desktop-modes-not-to-save 'Info-mode)
@@ -80,6 +84,17 @@ retrieve his value.")
   (setq persp-auto-save-fname pim-persp-auto-save-fname)
   (setq persp-auto-save-num-of-backups 5)
   (setq persp-auto-resume-time 1)
+
+  (defun pim--persp-common-buffer-filter (b)
+    "Filter added to `persp-common-buffer-filter-functions'."
+    (let* ((fname (with-current-buffer b (buffer-file-name)))
+           (mmode (with-current-buffer b major-mode))
+           (remote (or (file-remote-p (or fname "")) (equal "sudo" (file-remote-p (or fname "") 'method)))))
+      (or remote (not fname) (not (desktop-save-buffer-p fname b mmode)))))
+
+  ;; there is also `persp-add-buffer-on-after-change-major-mode-filter-functions'
+  (add-hook 'persp-common-buffer-filter-functions
+            #'pim--persp-common-buffer-filter)
   )
 
 

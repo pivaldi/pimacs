@@ -34,6 +34,13 @@ Add `pim-golangci-lint-ts' for `go-ts-mode' to `flycheck-checkers'."
     (add-to-list 'flycheck-checkers 'pim-golangci-lint-ts))
   )
 
+;;;###autoload
+(defun pim-go-run ()
+  "Run current buffer file name with \"go run\""
+  (interactive)
+  (compile (concat "go run " (buffer-file-name))))
+
+
 ;;; autoload.el ends here
 
 ;; Local variables:

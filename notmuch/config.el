@@ -119,7 +119,7 @@
      :desc "Move point to the previous field or button." "S-<iso-lefttab>" #'widget-backward
 
      :map notmuch-search-mode-map
-     :desc "Replace a by A. #pim" "a" nil ;; the default archive keybinding is too easy to hit accidentally
+     ;; :desc "Replace a by A. #pim" "a" nil ;; the default archive keybinding is too easy to hit accidentally
      :desc "Archive the currently selected thread or region. #pim" "A" #'notmuch-search-archive-thread
      :desc "Filter or LIMIT the current search results. #pim" "/" #'notmuch-search-filter ; alias for l
      :desc "Reply to the entire current thread. #pim" "r" #'notmuch-search-reply-to-thread-sender
@@ -134,7 +134,7 @@
      :desc "Mark as flagged the currently selected thread. #pim" "!" #'notmuch-multi-search-flag-thread
 
      :map notmuch-tree-mode-map
-     :desc "Replace a by A. #pim" "a" nil ;; the default archive keybinding is too easy to hit accidentally
+     ;; :desc "Replace a by A. #pim" "a" nil ;; the default archive keybinding is too easy to hit accidentally
      :desc "Archive the currently selected thread or region. #pim" "A" #'notmuch-tree-archive-thread
      :desc "Filter or LIMIT the current search results. #pim" "/" #'notmuch-tree-filter ; alias for l
      :desc "Reply to the sender of the current message. #pim" "r" #'notmuch-tree-reply-sender

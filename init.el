@@ -27,6 +27,7 @@
  (lang-php +php-cs-fixer) ;; Configuration for PHP coding.
  lang-lisp
  (lang-go +lsp)
+ (lang-ts +lsp)
  lang-make
  notmuch ;; notmuch and mbsync config
  flyspell ;; flyspell configuration with two dictionaries switching.

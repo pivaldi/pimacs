@@ -28,6 +28,9 @@
   :init
   (add-hook 'go-mode-hook #'pim-go-ts-mode-hook)
   :config
+  (map! :map go-mode-map
+        :desc "Run the current buffer filename with \"go run\". #pim" "C-c C-c" #'pim-go-run)
+
   (setq gofmt-command "goimports")
   (setq gofmt-args nil)
   (when (executable-find "goimports")

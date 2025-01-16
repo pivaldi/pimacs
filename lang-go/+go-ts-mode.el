@@ -27,6 +27,9 @@
   (add-hook 'go-ts-mode-hook #'pim-go-ts-mode-hook)
 
   :config
+  (map! :map go-ts-mode-map
+        :desc "Run the current buffer filename with \"go run\". #pim" "C-c C-c" #'pim-go-run)
+
   (if (modulep! +lsp)
       (progn
         (after! lsp
@@ -44,6 +47,7 @@
        :desc "Go back to the previous position in xref history.. #pim" "M-," #'xref-go-back
        ))
     )
+
   (when (executable-find "goimports")
     (setq-hook! 'go-ts-mode-hook +format-with-lsp nil)
     (with-eval-after-load 'apheleia

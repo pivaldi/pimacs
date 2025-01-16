@@ -136,7 +136,7 @@ after that many seconds of idle time. This function is called from
 
 ;;;###autoload
 (defun pim-doom-session-auto-save-enable ()
-  "Enable the pim auto save feature."
+  "Enable the pimacs auto save feature."
   (interactive)
   (when (and (integerp pim-doom-session-auto-save-timeout)
              (> pim-doom-session-auto-save-timeout 0))

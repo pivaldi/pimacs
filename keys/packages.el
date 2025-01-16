@@ -1,6 +1,7 @@
 ;;; -*- no-byte-compile: t; -*-
 
-(package! jumpc)
+(package! jump-to-prev-pos
+  :recipe (:host github :repo "pivaldi/jump-to-prev-pos.el"))
 (package! ace-window)
 
 ;; Local variables:

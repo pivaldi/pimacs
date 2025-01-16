@@ -90,14 +90,8 @@ If there is a paired char at point use sp-unwrap-sexp."
     (map!
      :map smartparens-mode-map
      ;; All comments already are in the Doom module  :default +smartparens
-     ;; :desc ". #pim" "C-M-a" sp-beginning-of-sexp
-     ;; :desc ". #pim" "C-M-e" sp-end-of-sexp
-
-     ;; :desc ". #pim" "C-M-f" sp-forward-sexp
-     ;; :desc ". #pim" "C-M-b" sp-backward-sexp
-
-     ;; :desc ". #pim" "C-M-n" sp-next-sexp
-     ;; :desc ". #pim" "C-M-p" sp-previous-sexp
+     :desc "Move forward across one balanced expression. #pim" "C-M-<right>" #'sp-forward-sexp
+     :desc "Move backward across one balanced expression. #pim" "C-M-<left>" #'sp-backward-sexp
 
      :desc "Move point to the next position that is the end of a symbol. #pim" "C-S-f" #'sp-forward-symbol
      :desc "Move point to the next position that is the begining of a symbol. #pim" "C-S-b" #'sp-backward-symbol
