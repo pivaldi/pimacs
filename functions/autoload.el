@@ -255,7 +255,9 @@ User buffers are those whose name does not start with *."
   "Use hippie-expand to expand the filename.
 Source : https://superuser.com/a/68648"
   (interactive)
-  (let ((hippie-expand-try-functions-list '(try-complete-file-name-partially try-complete-file-name)))
+  (let ((hippie-expand-try-functions-list '(try-complete-file-name-partially
+                                            ;; try-complete-file-name
+                                            )))
     (call-interactively 'hippie-expand)))
 
 ;;;###autoload
