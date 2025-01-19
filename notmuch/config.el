@@ -110,10 +110,6 @@
     (add-hook 'notmuch-mua-send-hook 'notmuch-mua-attachment-check)
 
     (map!
-     :map global-map
-     :desc "Run notmuch. #pim" "C-c m" #'notmuch
-     :desc "Compose new mail with Notmuch. #pim" "C-x m" #'notmuch-mua-new-mail
-
      :map notmuch-hello-mode-map
      :desc "Move point to the previous field or button." "S-<tab>" #'widget-backward
      :desc "Move point to the previous field or button." "S-<iso-lefttab>" #'widget-backward
@@ -180,9 +176,14 @@
             ;; (arrow . "►")
             (arrow . "─►")
             ))
-    ))
+    )
+  (provide 'pimacs/notmuch))
 
-(provide 'pimacs/notmuch)
+(map!
+ :map global-map
+ :desc "Run notmuch. #pim" "C-c m" #'notmuch
+ :desc "Compose new mail with Notmuch. #pim" "C-x m" #'notmuch-mua-new-mail)
+
 ;; config.el ends here.
 
 ;; Local variables:
