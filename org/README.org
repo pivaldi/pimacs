@@ -1,0 +1,22 @@
+#+title: PIMacs/org Doom Module
+
+* Feature
+Customization of [[https:orgmode.org][Org Mode]] :
+- Change some default ~Org Mode~ variables and ~Org~ exportation.
+- Turn of by default the ~auto-fil-mode~.
+- Change the value of ~org-export-creator-string~ and ~org-html-creator-string~
+  in order to not include the version and revision number of ~Emacs~ and ~Org Mode~.
+- Add a French translation to ~org-html-postamble-format~.
+- Add the book ~Latex~ template coming from [[https://github.com/GeneKao/orgmode-latex-templates][Gene Ting-Chun Kao]] to to
+  ~org-latex-classes~ (take a look to the documentation of this variable).
+
+* Dependency
+This module installs the [[https://github.com/hniksic/emacs-htmlize][Hrvoje Nikšić emacs-htmlize package]].
+
+* Module option
+if the module is load with the ~+lang-fr~ option :
+- Set the default value of ~org-export-default-language~ to ~fr~ ;
+- Add the ~Latex~ template ~pim-fr-article-1~ to ~org-latex-classes~ so that we
+  can use the ~Latex~ exporting option class ~#+LATEX_CLASS: pim-fr-article-1~
+  to export ~org~ file to ~latex~ or ~pdf~ file with this template adapted to
+  French simple article.
