@@ -95,6 +95,10 @@ See also the auto-generated
 [Generated PIMacs Documentation](doc/README.org). Contains all the Doom and
 PIMacs fundamental key bindings refcards classed by key bindings prefixes.
 
+### pimacs/docker
+
+[Installs and configures Docker Mode](dockerfile/README.org)
+
 ### pimcas/flyspell
 
 [Dictionary switching between two dictionaries with Flyspell](flyspell/README.org)
@@ -147,6 +151,9 @@ multiple mail accounts.
 
 ### pimacs/origami
 [Provide/configure the Origami text folding minor mode](origami/README.org)
+
+### pimacs/org
+[Configure the Org mode and add Latex templating](org/README.org)
 
 ### pimacs/pairing
 [Enhanced configuration of smartparens with extended features](pairing/README.org).

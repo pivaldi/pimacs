@@ -1,0 +1,3 @@
+#+title: PIMacs/dockerfile Doom Emacs Module
+
+This module installs and configures [[https://github.com/spotify/dockerfile-mode][Dockerfile mode]].

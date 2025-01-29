@@ -18,15 +18,33 @@
 
 ;;; Code:
 
-;; Make shift-cursor commands select text when possible in org-mode.
-(add-hook! 'doom-after-init-hook :append
-  (defun pim-org-support-shift-select-setup ()
-    (when shift-select-mode
-      (setq-default org-support-shift-select t)
-      ))
-  )
+(after! org
+  (setq org-link-descriptive t
+        org-export-with-creator t
+        org-export-with-author nil)
+  ;; Make shift-cursor commands select text when possible in org-mode.
+  (when shift-select-mode
+    (setq-default org-support-shift-select t))
 
-(after! org (setq org-link-descriptive nil))
+  (load! "+template"))
+
+;; (add-hook 'org-mode-hook 'turn-off-auto-fill)
+
+(after! ox
+  ;; (setq org-export-creator-string "[[https://www.gnu.org/software/emacs/][Emacs]] \\& [[https://orgmode.org/][Org] mode")
+  (setq org-export-creator-string "Emacs + Org Mode"))
+
+(after! ox-html
+  (add-to-list
+   'org-html-postamble-format
+   '(("fr" "<p class=\"author\">Auteur: %a (%e)</p>
+<p class=\"date\">Date: %d</p>
+<p class=\"creator\">%c</p>
+<p class=\"validation\">%v</p>")))
+  (setq org-export-default-language (if (modulep! +lang-fr) "fr" "en")
+        org-html-creator-string "With: <a href=\"https://www.gnu.org/software/emacs/\">Emacs</a> & <a href=\"https://orgmode.org\">Org</a> mode"
+        )
+  )
 
 (provide 'pimacs/org-mode)
 ;;; config.el ends here

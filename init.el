@@ -18,7 +18,7 @@
  crypt ;; Enabled elpa to automatically crypt and decrpyt .gpg file. Hide password in gpg file like in authinfo.gpg file…
  origami ;; A text folding minor mode for Emacs.
  pairing ;; Enhanced configuration of smartparens (this module need Doom default module loaded whith +smartparens)
- org ;; Org mode specific configuration.
+ (org +lang-fr) ;; Org mode specific configuration.
  dired ;; Dired mode specific configuration.
  treesit ;; Automatically install and use tree-sitter major modes in Emacs 29+
  corfu ;; Configure Corfu : remove automatic completion, remove TAB key for next candidate.
@@ -32,6 +32,7 @@
  notmuch ;; notmuch and mbsync config
  flyspell ;; flyspell configuration with two dictionaries switching.
  yasnippet ;; Little yas/snippet config with key binding if +no-key is not set.
+ dockerfile
  doc ;; Generated documentation, fundamental keys binding for example.
  )
 

@@ -104,7 +104,9 @@
      notmuch-wash-wrap-lines-length 120
      ;; View selected messages in new window rather than split-pane.
      notmuch-unthreaded-show-out nil
-     notmuch-message-headers '("To" "Cc" "Subject" "Date")
+     notmuch-message-headers '("Subject" "To" "Cc" "Fcc" "Date"
+                               "Reply-To" "Return-Path" "X-Mailer"
+                               "Followup-To" "User-Agent" "X-User-Agent" "Content-Type" "Summary")
      notmuch-message-headers-visible t)
 
     (add-hook 'notmuch-mua-send-hook 'notmuch-mua-attachment-check)
@@ -156,6 +158,23 @@
      :desc "Tag as spam or untag is prefixed. #pim" "C-t s" #'notmuch-multi-show-spam-message
      )
 
+    (cond
+     ((modulep! :completion vertico)
+      (map!
+       :map notmuch-show-mode-map
+       :desc "Swith to buffer with the same workspace. #pim"
+       "C-<tab>" #'+vertico/switch-workspace-buffer))
+     ((modulep! :completion helm)
+      (map!
+       :map notmuch-show-mode-map
+       :desc "Swith to buffer with the same workspace. #pim"
+       "C-<tab>" #'+helm/workspace-mini))
+     ((modulep! :completion ivy)
+      (map!
+       :map notmuch-show-mode-map
+       :desc "Swith to buffer with the same workspace. Use 'C-x B' for extended buffer/file list. #pim"
+       "C-<tab>" #'+ivy/switch-workspace-buffer)))
+
     (setq notmuch-search-result-format
           '(("date" . "%12s ") ("count" . "%-7s ") ("authors" . "%-30s ")
             (notmuch-multi-search-format-subject . "%-90s ") ("tags" . "(%s)"))
@@ -178,6 +197,11 @@
             ))
     )
   (provide 'pimacs/notmuch))
+
+;; (defun pim--notmuch-hello-bufferp (b)
+;;   (eq major-mode 'notmuch-hello-mode))
+
+;; (push 'pim--notmuch-hello-bufferp doom-real-buffer-functions )
 
 (map!
  :map global-map
