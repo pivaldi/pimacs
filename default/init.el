@@ -40,7 +40,7 @@ Only azerty and qwerty are supported for now.")
   "List (\"module name\" . '((keymapname1 . provided-by1) (keymapname2 . provided-by2) etc)  configured by PIMacs.")
 
 (defcustom pim-auto-fill-mode-hooks
-  '(text-mode-hook org-mode-hook)
+  '(text-mode-hook)
   "List of hooks for which we want auto-fill-mode --automatic break of long lines--."
   :type 'hook
   :group 'pimacs)

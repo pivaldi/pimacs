@@ -341,7 +341,8 @@
 
 ;; ------------------------
 ;; * Expand M-g goto-xxx *
-(map! :desc "Move backward to the beginning of a defun. #pim" "M-g d" #'beginning-of-defun)
+(map! :desc "Move backward to the beginning of a defun. #pim" "M-g d" #'beginning-of-defun
+      :desc "Move forward to the end of a defun. #pim" "M-g e" #'end-of-defun)
 
 ;; -------------------
 ;; * scroll in place *

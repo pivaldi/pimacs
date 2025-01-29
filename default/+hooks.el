@@ -29,6 +29,7 @@
 (add-hook! 'doom-after-init-hook :append
   (defun pim--disable-visual-line-mode ()
     (global-visual-line-mode -1)
+    (auto-fill-mode -1)
     ))
 
 ;; ----------------------------------------------

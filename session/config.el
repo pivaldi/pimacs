@@ -93,8 +93,9 @@ retrieve his value.")
       (or remote (not fname) (not (desktop-save-buffer-p fname b mmode)))))
 
   ;; there is also `persp-add-buffer-on-after-change-major-mode-filter-functions'
-  (add-hook 'persp-common-buffer-filter-functions
-            #'pim--persp-common-buffer-filter)
+  ;; (add-hook 'persp-common-buffer-filter-functions
+  ;;           #'pim--persp-common-buffer-filter)
+  (push #'pim--persp-common-buffer-filter persp-filter-save-buffers-functions)
   )
 
 
