@@ -124,6 +124,7 @@
   :defer t
   :config
   (setq global-hl-line-modes '(special-mode org-agenda-mode dired-mode))
+  (set-face-attribute 'hl-line  nil :background "#000000")
   )
 
 (unless (modulep! +no-whitespace-style)
