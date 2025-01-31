@@ -112,6 +112,12 @@
  show-paren-context-when-offscreen 'overlay
  )
 
+(when (modulep! :lang markdown)
+  (after! markdown-mode
+    ;; Hide URLs of inline links and reference tags of reference links.
+    markdown-hide-urls t)
+  )
+
 (add-to-list 'warning-suppress-types '(comp))
 
 ;; ---------------------

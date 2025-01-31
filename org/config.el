@@ -18,13 +18,18 @@
 
 ;;; Code:
 
+;; Make shift-cursor commands select text when possible in org-mode.
+;; This option is only relevant at load-time of Org mode, and must be set
+;; *before* org.el is loaded.
+(when shift-select-mode
+  (setq org-support-shift-select t
+        org-replace-disputed-keys t)
+  )
+
 (after! org
   (setq org-link-descriptive t
         org-export-with-creator t
         org-export-with-author nil)
-  ;; Make shift-cursor commands select text when possible in org-mode.
-  (when shift-select-mode
-    (setq-default org-support-shift-select t))
 
   (load! "+template"))
 
