@@ -4,7 +4,7 @@
   (package! zenburn-theme)
   (package! solaire-mode :disable t))
 
-
+(package! ligature)
 
 ;; Local variables:
 ;; coding: utf-8
