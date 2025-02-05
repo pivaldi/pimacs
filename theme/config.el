@@ -38,7 +38,7 @@
            (cond
             ((find-font (font-spec :name "Cascadia Code NF" ))
              (prog1
-                 (font-spec :family "Cascadia Code NF" :height 110 :foreground "#DCDCCC")
+                 (font-spec :family "Cascadia Code NF" :height 120 :foreground "#DCDCCC")
                (load! "+ligature-cascadia")))
             ((find-font (font-spec :name "Source Code Pro"))
              (font-spec :family "Source Code Pro" :weight 'medium :size 15 :width 'normal :foreground "#DCDCCC"))

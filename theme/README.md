@@ -3,7 +3,7 @@
 Slight customization of the Emacs theme depending the module options used.
 
 * Use the first font found in this order :
-  1. [Cascadia Code](https://github.com/microsoft/cascadia-code) with ligatures
+  1. [Cascadia Code](https://github.com/microsoft/cascadia-code) [with ligatures](https://github.com/mickeynp/ligature.el)
      enabled in `prog-mode`.
   1. [Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
   1. [Terminus](https://terminus-font.sourceforge.net/)
