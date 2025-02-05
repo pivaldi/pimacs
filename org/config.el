@@ -30,6 +30,9 @@
   (setq org-link-descriptive t
         org-export-with-creator t
         org-export-with-author nil)
+  (map!
+   :map org-mode-map
+   :desc "Extract URL from org-mode link and add it to kill ring. #pim" "C-c l l w" #'pim-org-link-copy)
 
   (load! "+template"))
 
