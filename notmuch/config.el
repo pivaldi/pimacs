@@ -208,6 +208,32 @@
  :desc "Run notmuch. #pim" "C-c m" #'notmuch
  :desc "Compose new mail with Notmuch. #pim" "C-x m" #'notmuch-mua-new-mail)
 
+(after! corfu
+  ;; See
+  ;; - https://github.com/doomemacs/doomemacs/issues/7747
+  ;; - https://github.com/minad/corfu/issues/121
+  ;; - https://nmbug.notmuchmail.org/nmweb/show/871qzfzgic.fsf%40gmail.com
+
+  (add-hook 'notmuch-message-mode-hook (lambda () (corfu-mode -1))))
+
+;; See
+;; - https://github.com/doomemacs/doomemacs/issues/7747
+;; - https://github.com/minad/corfu/issues/121
+;; - https://nmbug.notmuchmail.org/nmweb/show/871qzfzgic.fsf%40gmail.com
+(if (modulep! :completion corfu)
+    (after! corfu
+      (add-hook 'notmuch-message-mode-hook (lambda () (corfu-mode -1))))
+  (progn
+    (defun pim-pop-from-message-completion()
+      "Some bug with notmuch address completion due to
+having `notmuch-address-expand-name'in the
+`message--old-style-completion-functions' variable.
+
+See https://github.com/doomemacs/doomemacs/issues/7747#issuecomment-2265358795"
+      (pop message--old-style-completion-functions))
+
+    (advice-add 'message-completion-function :after #'pim-pop-from-message-completion)))
+
 ;; config.el ends here.
 
 ;; Local variables:
