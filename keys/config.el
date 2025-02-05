@@ -16,9 +16,9 @@
 ;;; Code:
 
 ;; (global-set-key [remap dabbrev-expand] 'hippie-expand)
-(map! [remap dabbrev-expand] #'hippie-expand)
+;; (map! [remap dabbrev-expand] #'hippie-expand)
 
-(after! dabbrev
+(after! hippie-exp
   (setq hippie-expand-try-functions-list
         '(
           try-expand-dabbrev
@@ -30,6 +30,10 @@
           try-complete-lisp-symbol-partially
           try-complete-lisp-symbol)
         )
+  )
+
+(after! cape
+  (map! [remap dabbrev-expand] #'cape-dabbrev)
   )
 
 (after! pimacs/default

@@ -252,13 +252,9 @@ User buffers are those whose name does not start with *."
 
 ;;;###autoload
 (defun pim-expand-file-name-at-point ()
-  "Use hippie-expand to expand the filename.
-Source : https://superuser.com/a/68648"
+  "Use cape-file to expand the filename."
   (interactive)
-  (let ((hippie-expand-try-functions-list '(try-complete-file-name-partially
-                                            ;; try-complete-file-name
-                                            )))
-    (call-interactively 'hippie-expand)))
+  (call-interactively 'cape-file))
 
 ;;;###autoload
 (defun pim-sort-files-by-modification-time (files)
