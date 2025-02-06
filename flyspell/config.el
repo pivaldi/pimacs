@@ -31,14 +31,17 @@
 
   (add-hook 'prog-mode-hook
             (lambda ()
-              (or (string= pim-flyspell-prog-mode-dictionary "american")
-                  (ispell-change-dictionary pim-flyspell-prog-mode-dictionary))))
-  (when (modulep! +everywhere)
+              (or (string= pim-flyspell-prog-mode-dictionary pim-flyspell-default-dictionary)
+                  (ispell-change-dictionary pim-flyspell-prog-mode-dictionary))
+              ))
+
+  (when (modulep! :checkers spell +everywhere)
     (add-hook! '(text-mode-hook)
                #'flyspell-mode))
 
   (map!
-   :desc "Toggle dictionary between two dictionaries. #pim" "<f6>" #'pim-ispell-dictionary-switch)
+   :desc "Toggle dictionary between two dictionaries. #pim" "<f6>" #'pim-ispell-dictionary-switch
+   :desc "Toggle flyspell-mode . #pim" "S-<f6>" #'flyspell-mode)
   )
 
 (provide 'pimacs/flyspell)

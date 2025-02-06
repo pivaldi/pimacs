@@ -32,9 +32,9 @@
         )
   )
 
-(after! cape
-  (map! [remap dabbrev-expand] #'cape-dabbrev)
-  )
+;; (after! cape
+;;   (map! [remap dabbrev-expand] #'cape-dabbrev)
+;;   )
 
 (after! pimacs/default
   (if (featurep 'evil)
