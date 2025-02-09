@@ -26,8 +26,12 @@
   "Number of autosaved Doom session keeped.")
 
 (defvar pim-doom-session-auto-save-timeout
-  (if (boundp 'pim-doom-session-auto-save-timeout) pim-doom-session-auto-save-timeout 600)
-  "Number of seconds of idle time before auto saving the Doom session.")
+  (if (boundp 'pim-doom-session-auto-save-timeout) pim-doom-session-auto-save-timeout 1800)
+  "Number of seconds of time before auto saving the Doom session.")
+
+(defvar pim-doom-session-auto-save-idle-seconds
+  (if (boundp 'pim-doom-session-auto-save-idle-seconds) pim-doom-session-auto-save-idle-seconds 5)
+  "Seconds' number of Emacs idle time needed to save the Doom session.")
 
 (defvar pim-doom-session-auto-save-timer nil)
 (defvar pim-doom-session-auto-save-lock nil)

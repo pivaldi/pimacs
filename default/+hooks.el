@@ -27,9 +27,16 @@
                   (make-directory dir t))))))
 
 (add-hook! 'doom-after-init-hook :append
-  (defun pim--disable-visual-line-mode ()
+  (defun pim--doom-after-init-hook-fn ()
     (global-visual-line-mode -1)
     (auto-fill-mode -1)
+    (setq inhibit-auto-fill t) ;; TODO: Disabled completly auto-fill-mode, it's too hard !!
+    (remove-hook 'text-mode-hook #'turn-on-auto-fill)
+    (remove-hook 'prog-mode-hook #'turn-on-auto-fill)
+    (after! yaml-mode
+      (remove-hook 'yaml-mode-hook #'turn-on-auto-fill))
+    (after! org-mode
+      (remove-hook 'org-mode-hook #'turn-on-auto-fill))
     ))
 
 ;; ----------------------------------------------

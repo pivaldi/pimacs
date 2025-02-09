@@ -84,7 +84,9 @@ Called by the timer created in `pim--doom-session-auto-save-set-timer'."
          (not desktop-lazy-timer)
          ;; Save only to own desktop file.
          (eq (emacs-pid) (pim--doom-session-owner))
-         desktop-dirname)
+         desktop-dirname
+         (> (- (time-convert (current-time) 'integer) (time-convert (current-idle-time) 'integer))
+            pim-doom-session-auto-save-idle-seconds))
     (let ((inhibit-message nil))
       (doom-save-session (pim--doom-session-full-fname))
       (pim-save-all-workspaces))
