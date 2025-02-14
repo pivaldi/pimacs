@@ -1,0 +1,138 @@
+* PIMacs
+  :PROPERTIES:
+  :CUSTOM_ID: pimacs
+  :END:
+** Extended Configuration of Emacs on Top of Doom Emacs
+   :PROPERTIES:
+   :CUSTOM_ID: extended-configuration-of-emacs-on-top-of-doom-emacs
+   :END:
+Here an extended configuration of Emacs 29+ on Top of Doom Emacs
+programming oriented with special attention to French keyboard.
+
+- *This is a work in progress* but I use daily this configuration for
+  professional programming and administration system works.\\
+  See the roadmap at the end of this file and the [[file:TODO.org][to-do list]].
+- This is a huge refactoring of [[https://github.com/pivaldi/pi-emacs-configuration][=pi-emacs-configuration=]]
+  using [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
+
+** Dependencies
+   :PROPERTIES:
+   :CUSTOM_ID: dependencies
+   :END:
+You imperatively need these softwars installed :
+
+- The last stable [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
+- [[https://www.gnu.org/software/emacs/manual/html_node/efaq/New-in-Emacs-29.html][Emacs 29+]] compiled with
+  [[https://tree-sitter.github.io/tree-sitter/][Tree-sitter]] support.\\
+  [[https://gist.github.com/pivaldi/116c22742040834316c90e938411c082][Here]]
+  a bash script example to compile and install an optimized Emacs 29+
+  version with Tree-sitter support.
+
+** Installation
+   :PROPERTIES:
+   :CUSTOM_ID: installation
+   :END:
+- Clone this repository into your =USERDOOMDIR/modules=
+  (=~/.doom.d/modules= on Linux) :\\
+  =cd ~/.doom.d/modules && git clone https://github.com/pivaldi/pimacs.git=
+- You can enable PIMacs in two ways :
+  1. *Full featured PIMacs as it satisfy MY daily coding needs*\\
+     In your Doom file =init.el=, at the end of the file, after the
+     =(doom! …)=\\
+     part, add the code =(load! "modules/pimacs/init")=.\\
+     This will load /all the PIMacs modules/ at once.
+  2. *Partially featured PIMacs as it satisfy YOUR needs*\\
+     In your Doom file =init.el=, at the end of the file, after the
+     =(doom! …)=\\
+     part, add the following code uncommenting the module you want to
+     enabled :
+
+#+begin_src lisp
+(doom! :pimacs
+ default ;; PIMacs default Emacs configuration on top of Doom.
+ ;; aliases ;; Define aliases starting with `_`. The most useful are `_rb`, `_sir`, `_gf`.
+ ;; (theme +no-font) ;; Define some faces and load Zenburn Theme.
+                   ;;;; See the `README.md` in the directory `pimacs/theme`
+ ;; (keys +azerty) ;; Define the PIMacs keys binding.
+ ;; session ;; Auto reload the last session at startup through
+          ;;;; `doom/quickload-session` (no desktop bad practice in Doom)
+
+ ;; etc…
+
+ )
+#+end_src
+
+*Remember to run =doom sync= after modifying =init.el= !*
+
+** Modules
+   :PROPERTIES:
+   :CUSTOM_ID: modules
+   :END:
+- *pimacs/aliases*: [[file:aliases/config.el][Define useful aliases starting by =_=]].
+- *pimacs/avy*: [[file:avy/README.org][Create key bindings for avy with prefix (Doom does not provide them)]].
+- *pimacs/bm*: [[file:bm/README.org][Visible local bookmarks in buffer]]
+  is a simple and useful complement to the native Emacs bookmark system.
+- *pimacs/calendar-fr*: Configure the calendar for French support.
+- *pimacs/corfu*: [[file:corfu/README.org][Extra configuration of the package COmpletion in Region FUnction]].
+- *pimcas/crypt*: [[file:crypt/README.org][PIMacs extra encrypting configuration and features]].
+- *pimacs/default*: [[file:default/README.md][PIMacs default configuration]].
+- *pimacs/dired*: [[file:dired/README.org][Dired mode specific configuration]]. See also the auto-generated
+  [[file:dired/all-key-bindings-refcard.org][dired-mode-map key bindings refcard]] and the [[file:dired/pimacs-key-bindings-refcard.org][dired-mode-map PIMacs key bindings refcard]].
+- *pimacs/doc*: [[file:doc/README.org][Generated PIMacs Documentation]].
+  Contains all the Doom and PIMacs fundamental key bindings refcards
+  classed by key bindings prefixes.
+- *pimacs/docker*: [[file:dockerfile/README.org][Installs and configures Docker Mode]].
+- *pimcas/flyspell*: [[file:flyspell/README.org][Dictionary switching between two dictionaries with Flyspell]].
+- *pimacs/functions*: [[file:functions/README.md][Define useful functions used under the hood by PIMacs]].
+- *pimacs/keys*: [[file:keys/README.md][PIMacs global-map configuration]]. See also the auto-generated
+  [[file:keys/all-key-bindings-refcard.org][global-map key bindings refcard]] and the [[file:keys/pimacs-key-bindings-refcard.org][global-map PIMacs key bindings refcard]].
+- *pimacs/lang-c*: Configuration of =C= mode and derived.
+  #+begin_example
+  (setq-default c-basic-offset 2)
+  (c-set-offset 'substatement-open '0)
+  (c-set-offset 'brace-list-open '0)
+  (c-set-offset 'arglist-close '0)
+  (c-set-offset 'statement-case-open '0)
+  (c-set-offset 'arglist-cont-nonempty '4)
+  (c-set-offset 'arglist-intro 'c-basic-offset)
+  #+end_example
+- *pimacs/lang-go*: [[file:lang-go/README.org][Configuration for the Go programming language]].\\
+  Support native =go-ts-mode= (Emacs 30+) and standart =go-mode=.
+- *pimacs/lang-php*: [[file:lang-php/README.org][Configuration for the PHP programming language]].\\
+  Support native =php-ts-mode= (Emacs 29+) and standart =php-mode=.
+- *pimacs/lsp*: Complet/extend the default Doom configuration of the
+  [[https://microsoft.github.io/language-server-protocol/][Langage Server Protocol]].
+- *pimacs/notmuch*: [[file:notmuch/README.org][This package]] provides
+  extra configurations of the default Doom Emacs configuration for
+  [[file:Notmuch][https://notmuchmail.org/]] using [[file:Notmuch-Multi%20to%20manage%20smartly%20multiple%20mail%20accounts][https://github.com/pivaldi/notmuch-multi]].
+- *pimacs/origami*: [[file:origami/README.org][Provide/configure the Origami text folding minor mode]].
+- *pimacs/org*: [[file:org/README.org][Configure the Org mode and add Latex templating]].
+- *pimacs/pairing*: [[file:pairing/README.org][Enhanced configuration of smartparens with extended features]].
+- *pimacs/session*: [[file:session/README.md][Workspace/Session Persistence and Auto Restore Last Session]].
+- *pimacs/theme*: [[file:theme/README.md][Slight customization of the Emacs theme depending the module options used]].
+- *pimacs/tramp*: [[file:tramp/README.md][Slight configuration of TRAMP]].\\
+  =TRAMP= is a built-in Emacs feature that enables you to access and
+  edit files on remote systems, including those that require
+  authentication using =SSH=, =SFTP=, or other protocols.
+- *pimacs/treesit*: Automatically install and use tree-sitter major
+  modes in Emacs 29+.
+
+** Roadmap
+   :PROPERTIES:
+   :CUSTOM_ID: roadmap
+   :END:
+- Module for sql-ts-mode/sql-mode
+- Better typescript-ts-mode
+- Snippet
+- Templating
+- Support of Go html template https://github.com/a-h/templ. See
+  https://drshapeless.com/blog/posts/writing-go-templ-with-emacs.html
+- Hide password on some files (gpg, authinfo, etc)
+- Improve dired experience
+- Make a module for direnv support
+- Use easy-kill https://github.com/leoliu/easy-kill
+- elfeed
+- lang-lua
+- lang-rust
+- lang-asy
+- Configure org-mode and markdown support for my needs
