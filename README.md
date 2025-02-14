@@ -35,7 +35,7 @@ You imperatively need these softwars installed :
      In your Doom file `init.el`, at the end of the file, after the `(doom! …)`  
      part, add the following code uncommenting the module you want to enabled :
 
-```elisp
+```lisp
 (doom! :pimacs
  default ;; PIMacs default Emacs configuration on top of Doom.
  ;; aliases ;; Define aliases starting with `_`. The most useful are `_rb`, `_sir`, `_gf`.
@@ -54,71 +54,30 @@ You imperatively need these softwars installed :
 
 ## Modules
 
-### pimacs/aliases
+- *pimacs/aliases*: [Define useful aliases starting by `_`](aliases/config.el).
+- *pimacs/avy*: [Create key bindings for avy with prefix (Doom does not provide them)](avy/README.org).
+- *pimacs/bm*: [Visible local bookmarks in buffer](bm/README.org) is a simple
+  and useful complement to the native Emacs bookmark system.
+- *pimacs/calendar-fr*: Configure the calendar for French support.
+- *pimacs/corfu*: [Extra configuration of the package COmpletion in Region FUnction](corfu/README.org).
+- *pimcas/crypt*: [PIMacs extra encrypting configuration and features](crypt/README.org).
+- *pimacs/default*: [PIMacs default configuration](default/README.md).
+- *pimacs/dired*: [Dired mode specific configuration](dired/README.org).
+  See also the auto-generated
+  [dired-mode-map key bindings refcard](dired/all-key-bindings-refcard.org) and the
+  [dired-mode-map PIMacs key bindings refcard](dired/pimacs-key-bindings-refcard.org).
+- *pimacs/doc*: [Generated PIMacs Documentation](doc/README.org). Contains all the Doom and
+  PIMacs fundamental key bindings refcards classed by key bindings prefixes.
+- *pimacs/docker*: [Installs and configures Docker Mode](dockerfile/README.org).
+- *pimcas/flyspell*: [Dictionary switching between two dictionaries with Flyspell](flyspell/README.org).
+- *pimacs/functions*: [Define useful functions used under the hood by PIMacs](functions/README.md).
+- *pimacs/keys*: [PIMacs `global-map` configuration](keys/README.md).
+  See also the auto-generated
+  [global-map key bindings refcard](keys/all-key-bindings-refcard.org) and the
+  [global-map PIMacs key bindings refcard](keys/pimacs-key-bindings-refcard.org).
+- *pimacs/lang-c*: Configuration of `C` mode and derived.
 
-[Define useful aliases starting by `_`](aliases/config.el).
-
-### pimacs/avy
-
-[Create key bindings for avy with prefix (Doom does not provide them)](avy/README.org).
-
-## pimacs/bm
-
-[Visible local bookmarks in buffer](bm/README.org) is a simple and useful
-complement to the native Emacs bookmark system.
-
-### pimacs/calendar-fr
-
-Configure the calendar for French support.
-
-### pimacs/corfu
-
-[Extra configuration of the package COmpletion in Region FUnction](corfu/README.org)
-
-### pimcas/crypt
-
-[PIMacs extra encrypting configuration and features](crypt/README.org)
-
-### pimacs/default
-
-[PIMacs default configuration](default/README.md).
-
-### pimacs/dired
-
-[Dired mode specific configuration](dired/README.org).  
-See also the auto-generated
-[dired-mode-map key bindings refcard](dired/all-key-bindings-refcard.org) and the
-[dired-mode-map PIMacs key bindings refcard](dired/pimacs-key-bindings-refcard.org).
-
-### pimacs/doc
-
-[Generated PIMacs Documentation](doc/README.org). Contains all the Doom and
-PIMacs fundamental key bindings refcards classed by key bindings prefixes.
-
-### pimacs/docker
-
-[Installs and configures Docker Mode](dockerfile/README.org)
-
-### pimcas/flyspell
-
-[Dictionary switching between two dictionaries with Flyspell](flyspell/README.org)
-
-### pimacs/functions
-
-[Define useful functions used under the hood by PIMacs](functions/README.md).
-
-### pimacs/keys
-
-[PIMacs `global-map` configuration](keys/README.md).  
-See also the auto-generated
-[global-map key bindings refcard](keys/all-key-bindings-refcard.org) and the
-[global-map PIMacs key bindings refcard](keys/pimacs-key-bindings-refcard.org).
-
-### pimacs/lang-c
-
-Configuration of `C` mode and derived.
-
-``` elisp
+  ``` elisp
   (setq-default c-basic-offset 2)
   (c-set-offset 'substatement-open '0)
   (c-set-offset 'brace-list-open '0)
@@ -126,56 +85,25 @@ Configuration of `C` mode and derived.
   (c-set-offset 'statement-case-open '0)
   (c-set-offset 'arglist-cont-nonempty '4)
   (c-set-offset 'arglist-intro 'c-basic-offset)
-```
-
-### pimacs/lang-go
-
-[Configuration for the Go programming language](lang-go/README.org).  
-Support native `go-ts-mode` (Emacs 30+) and standart `go-mode`.
-
-### pimacs/lang-php
-
-[Configuration for the PHP programming language](lang-php/README.org).  
-Support native `php-ts-mode` (Emacs 29+) and standart `php-mode`.
-
-### pimacs/lsp
-
-Complet/extend the default Doom configuration of the [Langage Server Protocol](https://microsoft.github.io/language-server-protocol/).
-
-### pimacs/notmuch
-
-[This package](notmuch/README.org) provides extra configurations of the default Doom Emacs
-configuration for [[https://notmuchmail.org/][Notmuch]] using
-[[https://github.com/pivaldi/notmuch-multi][Notmuch-Multi]] to manage smartly
-multiple mail accounts.
-
-### pimacs/origami
-[Provide/configure the Origami text folding minor mode](origami/README.org)
-
-### pimacs/org
-[Configure the Org mode and add Latex templating](org/README.org)
-
-### pimacs/pairing
-[Enhanced configuration of smartparens with extended features](pairing/README.org).
-
-### pimacs/session
-[Workspace/Session Persistence and Auto Restore Last Session](session/README.md).
-
-### pimacs/theme
-
-[Slight customization of the Emacs theme depending the module options used](theme/README.md)
-
-### pimacs/tramp
-
-[Slight configuration of TRAMP](tramp/README.md).  
-`TRAMP` is a built-in Emacs feature that enables you to access and edit files on
-remote systems, including those that require authentication using `SSH`, `SFTP`, or
-other protocols.
-
-### pimacs/treesit
-
-Automatically install and use tree-sitter major modes in Emacs 29+.
-
+  ```
+- *pimacs/lang-go*: [Configuration for the Go programming language](lang-go/README.org).  
+  Support native `go-ts-mode` (Emacs 30+) and standart `go-mode`.
+- *pimacs/lang-php*: [Configuration for the PHP programming language](lang-php/README.org).  
+  Support native `php-ts-mode` (Emacs 29+) and standart `php-mode`.
+- *pimacs/lsp*: Complet/extend the default Doom configuration of the [Langage Server Protocol](https://microsoft.github.io/language-server-protocol/).
+- *pimacs/notmuch*: [This package](notmuch/README.org) provides extra configurations of the default Doom Emacs
+  configuration for [https://notmuchmail.org/](Notmuch) using
+  [https://github.com/pivaldi/notmuch-multi](Notmuch-Multi to manage smartly multiple mail accounts).
+- *pimacs/origami*: [Provide/configure the Origami text folding minor mode](origami/README.org).
+- *pimacs/org*: [Configure the Org mode and add Latex templating](org/README.org).
+- *pimacs/pairing*: [Enhanced configuration of smartparens with extended features](pairing/README.org).
+- *pimacs/session*: [Workspace/Session Persistence and Auto Restore Last Session](session/README.md).
+- *pimacs/theme*: [Slight customization of the Emacs theme depending the module options used](theme/README.md).
+- *pimacs/tramp*: [Slight configuration of TRAMP](tramp/README.md).  
+  `TRAMP` is a built-in Emacs feature that enables you to access and edit files on
+  remote systems, including those that require authentication using `SSH`, `SFTP`, or
+  other protocols.
+- *pimacs/treesit*: Automatically install and use tree-sitter major modes in Emacs 29+.
 
 ## Roadmap
 
