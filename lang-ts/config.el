@@ -23,6 +23,8 @@
 (after! typescript-mode
   (defvar pim-ng-app-filenames '("app.component.ts"))
   (defvar pim-ts-compile-command "deno")
+  (when (modulep! +lsp)
+    (add-hook 'typescript-mode-hook #'lsp))
 
   (use-package! ng2-mode
     :defer t
@@ -47,7 +49,7 @@
         (after! tide
           (flycheck-add-mode 'typescript-tide 'ng2-ts-mode)))))
 
-  (add-to-list 'auto-mode-alist '("\\.module.ts\\'" . ng2-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.page.ts\\'" . ng2-ts-mode))
 
   (if (not (executable-find pim-ts-compile-command))
       (add-to-list 'pim-error-msgs "Please install deno : https://github.com/denoland/deno"))
