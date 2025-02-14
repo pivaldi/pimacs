@@ -31,8 +31,9 @@
 
   (add-hook 'prog-mode-hook
             (lambda ()
-              (or (string= pim-flyspell-prog-mode-dictionary pim-flyspell-default-dictionary)
-                  (ispell-change-dictionary pim-flyspell-prog-mode-dictionary))
+              ;; (or (string= pim-flyspell-prog-mode-dictionary pim-flyspell-default-dictionary)
+              ;;     (ispell-change-dictionary pim-flyspell-prog-mode-dictionary))
+              (flyspell-mode -1)
               ))
 
   (when (modulep! :checkers spell +everywhere)
