@@ -106,6 +106,7 @@
       (when (not (executable-find "php-cs-fixer"))
         (add-to-list 'pim-error-msgs "Please install php-cs-fixer : https://github.com/PHP-CS-Fixer/PHP-CS-Fixer"))
       :config
+      (setq php-cs-fixer-fix-popup-on-error t)
       (setq-hook! 'php-mode-hook +format-with-lsp nil)
       (setq php-cs-fixer-config-option (format "%s/php-cs-fixer-config.php" (doom-module-locate-path '(:pimacs . lang-php))))
       ;; (add-hook! php-mode-hook (add-hook 'before-save-hook #'php-cs-fixer-before-save nil t))
