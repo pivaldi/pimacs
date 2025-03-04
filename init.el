@@ -29,7 +29,7 @@
  (lang-go +lsp)
  (lang-ts +lsp)
  lang-make
- notmuch ;; notmuch and mbsync config
+ notmuch ;; notmuch using notmuch-multi
  flyspell ;; flyspell configuration with two dictionaries switching.
  yasnippet ;; Little yas/snippet config with key binding if +no-key is not set.
  dockerfile
