@@ -85,6 +85,9 @@
   (set-face-attribute 'region nil :underline "#459090" :background "#000000")
   ;; (set-face-attribute 'show-paren-mismatch nil :background "#FF3333" :underline "#FFFF33" :foreground "#6F6F6F")
 
+  (after! org
+    (set-face-attribute 'org-list-dt nil :foreground "#8F8F8F"))
+
   (after! popup
     (set-face-attribute
      'popup-menu-selection-face nil

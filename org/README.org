@@ -11,7 +11,9 @@ Customization of [[https:orgmode.org][Org Mode]] :
   ~org-latex-classes~ (take a look to the documentation of this variable).
 
 * Dependency
-This module installs the [[https://github.com/hniksic/emacs-htmlize][Hrvoje Nikšić emacs-htmlize package]].
+This module installs :
+- the [[https://github.com/hniksic/emacs-htmlize][Hrvoje Nikšić emacs-htmlize package]].
+- The [[https://github.com/sabof/org-bullets][org-bullets package]] that replaces all headline markers with different Unicode bullets.
 
 * Module option
 if the module is load with the ~+lang-fr~ option :

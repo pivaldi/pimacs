@@ -9,3 +9,12 @@ See `pim-flyspell-default-dictionary' and `pim-flyspell-secondary-dictionary'."
   (if (string= ispell-current-dictionary pim-flyspell-default-dictionary)
       (ispell-change-dictionary pim-flyspell-secondary-dictionary)
     (ispell-change-dictionary pim-flyspell-default-dictionary)))
+
+;;;###autoload
+(defun pim-flyspell-correct ()
+  "Use `flyspell-correct-at-point' if region is not active.
+Use `ispell-region' if region is active."
+  (interactive)
+  (if  (region-active-p)
+      (ispell-region (region-beginning) (region-end))
+    (flyspell-correct-at-point)))

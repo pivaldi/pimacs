@@ -58,7 +58,7 @@
    :desc "Select another window in cyclic ordering of windows (with `ace-window` if featured). #pim" "<C-next>"
    (lambda (arg)
      (interactive "p")
-     (if (functionp 'ace-window)
+     (if (and arg (functionp 'ace-window))
          (let ((aw-ignore-current-orig aw-ignore-current))
            (setq aw-ignore-current t)
            (ace-window arg)
@@ -126,8 +126,11 @@
 ;;             (define-key Info-mode-map (kbd ">") 'Info-history-forward)))
 
 ;; (map! :desc "Browse url at point. #pim" "C-c b" #'browse-url-at-point)
-(map! :desc "Delete current window and buffer. #pim" "<f12>" 'pim-kill-window-and-buffer)
-(map! :desc "Indent the whole buffer. #pim" "<C-S-iso-lefttab>" 'pim-indent-whole-buffer)
+(map! :desc "Delete current window and buffer. #pim" "<f12>" #'pim-kill-window-and-buffer
+      :desc "Indent the whole buffer. #pim" "<C-S-iso-lefttab>" #'pim-indent-whole-buffer
+      :desc "Increment the number forward from point by ARG. #pim" "C-c +" #'pim-increment-number-decimal
+      :desc "Decrement the number forward from point by ARG. #pim"  "C-c -" #'pim-decrement-number-decimal)
+
 
 ;; ;; Todo : enable this !
 ;; (if (require 'move-text nil t)

@@ -40,10 +40,17 @@
     (add-hook! '(text-mode-hook)
                #'flyspell-mode))
 
+  ;; Don't spellcheck org blocks
+  ;; (pushnew! ispell-skip-region-alist
+  ;;           '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:")
+  ;;           '("#\\+BEGIN_SRC" . "#\\+END_SRC")
+  ;;           '("#\\+BEGIN_EXAMPLE" . "#\\+END_EXAMPLE"))
+
   (map!
    :desc "Toggle dictionary between two dictionaries. #pim" "<f6>" #'pim-ispell-dictionary-switch
    :desc "Toggle flyspell-mode . #pim" "S-<f6>" #'flyspell-mode)
-  )
+  (map! :ie :desc "flyspell correct word or region. #pim" "M-$" #'pim-flyspell-correct))
+
 
 (provide 'pimacs/flyspell)
 ;; config.el ends here.

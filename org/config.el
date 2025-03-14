@@ -27,6 +27,9 @@
   )
 
 (after! org
+  (add-hook 'org-mode-hook 'variable-pitch-mode)
+  (add-hook 'org-mode-hook 'visual-line-mode)
+
   (setq org-link-descriptive t
         org-export-with-creator t
         org-export-with-author nil)
@@ -35,8 +38,6 @@
    :desc "Extract URL from org-mode link and add it to kill ring. #pim" "C-c l l w" #'pim-org-link-copy)
 
   (load! "+template"))
-
-;; (add-hook 'org-mode-hook 'turn-off-auto-fill)
 
 (after! ox
   ;; (setq org-export-creator-string "[[https://www.gnu.org/software/emacs/][Emacs]] \\& [[https://orgmode.org/][Org] mode")
@@ -53,6 +54,11 @@
         org-html-creator-string "With: <a href=\"https://www.gnu.org/software/emacs/\">Emacs</a> & <a href=\"https://orgmode.org\">Org</a> mode"
         )
   )
+
+;; The org-bullets package replaces all headline markers with different Unicode bullets.
+(use-package! org-bullets
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (provide 'pimacs/org-mode)
 ;;; config.el ends here
