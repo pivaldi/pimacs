@@ -30,6 +30,11 @@
 (when (executable-find "semgrep")
   (setq pim-warning-suppress-message-regexps '(".*semgrep/rulesRefreshed.*")))
 
+;; Fix error: void-function (gcmh-set-high-threshold)
+;; used in doom/modules/tools/lsp/config.el
+(use-package! gcmh
+   :defer nil)
+
 (defvar-local pim--flycheck-local-checkers nil)
 (use-package! lsp
   :defer t
