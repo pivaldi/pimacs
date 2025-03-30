@@ -26,3 +26,5 @@
 
 * Autoloaded Functions
 See the file [[autoload.el]].
+
+If you appreciate this project, I'll appreciate too you [[https://buymeacoffee.com/pivaldi][☕ Buy Me a Coffee]].

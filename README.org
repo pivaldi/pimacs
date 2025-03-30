@@ -136,3 +136,6 @@ You imperatively need these softwars installed :
 - lang-rust
 - lang-asy
 - Configure org-mode and markdown support for my needs
+
+* If you appreciate this project
+[[https://buymeacoffee.com/pivaldi][☕ Buy Me a Coffee]]
