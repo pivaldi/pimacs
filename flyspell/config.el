@@ -49,7 +49,17 @@
   (map!
    :desc "Toggle dictionary between two dictionaries. #pim" "<f6>" #'pim-ispell-dictionary-switch
    :desc "Toggle flyspell-mode . #pim" "S-<f6>" #'flyspell-mode)
-  (map! :ie :desc "flyspell correct word or region. #pim" "M-$" #'pim-flyspell-correct))
+  (map! :ie :desc "flyspell correct word or region. #pim" "M-$" #'pim-flyspell-correct)
+  (map! :map flyspell-mouse-map "<mouse-1>" nil)
+  (map! :map flyspell-mode-map "C-m" nil)
+  ;; Remove fucking flyspell-correct-at-point on return key pressed.
+  ;; When I press RET, I want insert a break-line.
+  (map! :map flyspell-mouse-map
+        "RET"    nil
+        [return] nil
+        ;; [mouse-1] #'flyspell-correct-at-point
+        )
+  )
 
 
 (provide 'pimacs/flyspell)
