@@ -198,7 +198,7 @@ Depending where the cursor is."
   (interactive)
   (save-excursion
     (if mark-active
-        (fill-region-as-paragraph (point) (mark))
+        (fill-region (region-beginning) (region-end))
       (do-auto-fill))))
 
 (defun pi-insert-char-at-end-of-line (str &optional removeStrList)
