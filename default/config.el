@@ -104,10 +104,12 @@
  ;; Minimum severity level for displaying the warning buffer.
  ;; warning-minimum-level :error
 
- ;; See the hook pim--enable-visual-line-mode in +hooks.el
- truncate-partial-width-windows nil
+ ;; See the hook pim--doom-after-init-hook-fn in +hooks.el
+ truncate-partial-width-windows 50
  word-wrap nil ;; dont wrap word because space make sens for some prog languages.
- truncate-lines t
+ truncate-lines nil
+ visual-line-mode nil
+ global-visual-line-mode nil
  ;; Show matching parenthesis context when offscreen
  show-paren-context-when-offscreen 'overlay
  )
