@@ -32,7 +32,9 @@
     (auto-fill-mode -1)
     (setq inhibit-auto-fill t) ;; TODO: Disabled completly auto-fill-mode, it's too hard !!
     (remove-hook 'text-mode-hook #'turn-on-auto-fill)
+    (remove-hook 'text-mode-hook #'visual-line-mode)
     (remove-hook 'prog-mode-hook #'turn-on-auto-fill)
+    (remove-hook 'prog-mode-hook #'visual-line-mode)
     (after! yaml-mode
       (remove-hook 'yaml-mode-hook #'turn-on-auto-fill))
     (after! org-mode
