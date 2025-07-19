@@ -291,16 +291,10 @@
 ;; Non-breaking spaces with quotes please.
 (when pim-azertyp
   (map!
-   :desc "Insert proper French quotation with non breaking spaces. #pim" "«"
-   (lambda nil
-     (interactive)
-     (insert
-      "« ")(insert
-      " »")(backward-char
-      2))
+   :desc "Insert proper French quotation with non breaking spaces. #pim" "«" #'pim-insert-or-surround-region-with-french-quotes
+
    :desc "Add non breaking spaces before the closing French quote. #pim" "»"
    (lambda nil (interactive) (insert " »"))))
-
 
 ;; ;; TODO : to be enabled
 ;; ;; --------------------------------
