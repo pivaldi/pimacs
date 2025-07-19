@@ -20,17 +20,25 @@
 ;;; Code:
 
 (use-package!
- tramp
- :defer t
- :config
+    tramp
+  :defer t
+  :config
   ;; To “turn off” the backup feature for remote files and stop TRAMP from saving to the backup directory.
   ;; See https://www.gnu.org/software/tramp/#Auto_002dsave-File-Lock-and-Backup
- (add-to-list 'backup-directory-alist
-              (cons tramp-file-name-regexp nil))
+  (add-to-list 'backup-directory-alist
+               (cons tramp-file-name-regexp nil))
   (customize-set-variable 'tramp-backup-directory-alist backup-directory-alist)
 
   (setq backup-enable-predicate
         (lambda (name) nil))
+
+  (setq tramp-inline-compress-start-size 10240
+        tramp-copy-size-limit 10240
+        vc-handled-backends '(Git)
+        tramp-verbose 3
+        ;; tramp-default-method "scp"
+        tramp-use-ssh-controlmaster-options nil
+        )
   )
 
 
