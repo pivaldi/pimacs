@@ -33,6 +33,8 @@
  flyspell ;; flyspell configuration with two dictionaries switching.
  yasnippet ;; Little yas/snippet config with key binding if +no-key is not set.
  dockerfile
+ shrface ;; Extends shr / eww with org features and analysis capability.
+ elfeed
  doc ;; Generated documentation, fundamental keys binding for example.
  )
 
