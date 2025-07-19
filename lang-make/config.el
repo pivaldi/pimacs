@@ -26,11 +26,39 @@
 
 ;; Except for makefile-mode…
 (after! make-mode
-        (add-hook
-         'makefile-mode-hook
-         (lambda()
-           (setq indent-tabs-mode t)
-           )))
+  (add-hook
+   'makefile-mode-hook
+   (lambda()
+     (setq indent-tabs-mode t)
+     )))
+
+
+(defvar pim-compilation-filenames '("Makefile" "makefile" "MakeFile" "makeFile"))
+
+(defun pim-get-dominating-compilation-dir ()
+  "Seeking a makefile recursively in directories higher"
+  (let ((dir nil)
+	(filenames pim-compilation-filenames)
+        (filename nil))
+    (while (and (not dir)
+                (setq filename (pop filenames)))
+      (setq dir (locate-dominating-file default-directory filename)))
+    dir))
+
+
+(defun pim-compile-above-makefile (&optional make-entry)
+  "Calls `compile' emacs command on \"make MAKE-ENTRY\""
+  (interactive "P")
+  (let* ((mkf (pim-get-dominating-compilation-dir))
+         (default-directory (directory-file-name mkf))
+         (mke (if make-entry (format " %s" (read-string "Make entry: ")) "")))
+    (if default-directory
+        (progn
+          (cd default-directory)
+          (compile (concat "[ -e ./.envrc ] && source .envrc; make" mke))))))
+
+(global-set-key (kbd "<f9>") 'pim-compile-above-makefile)
+
 
 (provide 'pimacs/lang-make)
 
