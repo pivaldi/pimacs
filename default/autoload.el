@@ -69,6 +69,41 @@ will return :
                          "\\\(/[A-Z][a-zA-Z0-9.-_]+\\\)+$" filename)
                         (- (length filename) offset)))))))
 
+;;;###autoload
+(defun pim-insert-current-time ()
+  "Insert the current date-time %Y-%m-%d %H:%M:%S at the current point"
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
+
+;;;###autoload
+(defun pim-surround-region-with-french-quotes ()
+  "Surround the active region with proper French quotation
+with non breaking spaces."
+  (interactive)
+  (when (region-active-p)
+    (save-excursion
+      (let ((beginning (region-beginning))
+            (end (region-end)))
+        ;; Insert the closing delimiter first
+        (goto-char end)
+        (insert " »")
+        ;; then the opening one
+        (goto-char beginning)
+        (insert "« ")))))
+
+;;;###autoload
+(defun pim-insert-or-surround-region-with-french-quotes ()
+  "Insert or surround the active region with proper French quotation
+with non breaking spaces depending if region is active."
+  (interactive)
+  (if (region-active-p)
+      (pim-surround-region-with-french-quotes)
+    (progn
+      (insert "« ")
+      (insert " »")
+      (backward-char 2))))
+
+
 (provide 'pimacs/default/autoload)
 ;;; autoload.el ends here
 
