@@ -33,7 +33,7 @@
 ;; Fix error: void-function (gcmh-set-high-threshold)
 ;; used in doom/modules/tools/lsp/config.el
 (use-package! gcmh
-   :defer nil)
+  :defer nil)
 
 (defvar-local pim--flycheck-local-checkers nil)
 (use-package! lsp
@@ -69,7 +69,10 @@
           lsp-signature-auto-activate t
           lsp-completion-show-kind t
           lsp-ui-doc-delay 0.33
-          lsp-ui-sideline-diagnostic-max-lines 10)
+          lsp-ui-sideline-diagnostic-max-lines 10
+          ;; Stop asking me at Emacs start up if I want to restart lsp !!
+          lsp-restart 'ignore
+          )
     (map!
      :map lsp-mode-map
      (:when pim-azertyp
