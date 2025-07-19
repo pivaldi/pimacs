@@ -110,6 +110,7 @@
      notmuch-message-headers-visible t)
 
     (add-hook 'notmuch-mua-send-hook 'notmuch-mua-attachment-check)
+    (add-hook 'notmuch-show-mode-hook (lambda nil (setq show-trailing-whitespace nil)))
 
     (map!
      :map notmuch-hello-mode-map

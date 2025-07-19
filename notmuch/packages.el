@@ -4,6 +4,7 @@
 (if (file-directory-p "/home/pi/code/pi/emacs/notmuch-multi/")
     (package! notmuch-multi
       :recipe (:local-repo "/home/pi/code/pi/emacs/notmuch-multi/"
+               :branch "private"
                :files ("*.el")))
   (package! notmuch-multi
     :recipe (:host github :repo "pivaldi/notmuch-multi")))
