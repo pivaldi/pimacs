@@ -7,7 +7,7 @@
   (authinfo--hide-passwords (point-min) (point-max))
   (reveal-mode))
 
-(defcustom pim-gen-password-length 12
+(defcustom pim-gen-password-length nil
   "The default length of password `pim-gen-password'"
   :type 'integer
   :group `pimacs)
