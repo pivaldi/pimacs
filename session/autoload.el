@@ -81,7 +81,7 @@ Called by the timer created in `pim--doom-session-auto-save-set-timer'."
          (integerp pim-doom-session-auto-save-timeout)
          (> pim-doom-session-auto-save-timeout 0)
          ;; Avoid desktop saving during lazy loading.
-         (not desktop-lazy-timer)
+         (if (fboundp 'desktop-lazy-timer) (not desktop-lazy-timer) t)
          ;; Save only to own desktop file.
          (eq (emacs-pid) (pim--doom-session-owner))
          desktop-dirname

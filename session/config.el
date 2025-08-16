@@ -30,7 +30,7 @@
   "Number of seconds of time before auto saving the Doom session.")
 
 (defvar pim-doom-session-auto-save-idle-seconds
-  (if (boundp 'pim-doom-session-auto-save-idle-seconds) pim-doom-session-auto-save-idle-seconds 5)
+  (if (boundp 'pim-doom-session-auto-save-idle-seconds) pim-doom-session-auto-save-idle-seconds 60)
   "Seconds' number of Emacs idle time needed to save the Doom session.")
 
 (defvar pim-doom-session-auto-save-timer nil)
@@ -47,33 +47,35 @@ retrieve his value.")
 (add-hook 'doom-init-ui-hook
           (lambda ()
             (require 'persp-mode)
-            (doom-load-session
-             (pim-latest-file
-              (file-name-directory (doom-session-file))
-              'full
-              (rx (or (group (eval pim-auto-save-fname) digit)
-                      (group (eval pim-persp-auto-save-fname) (? digit))))))))
+            (doom/quickload-session t)
+            ;; (doom-load-session
+            ;;  (pim-latest-file
+            ;;   (file-name-directory (doom-session-file))
+            ;;   'full
+            ;;   (rx (or (group (eval pim-auto-save-fname) digit)
+            ;;           (group (eval pim-persp-auto-save-fname) (? digit))))))
+            ))
 
-(use-package! desktop
-  :config
-  (setq desktop-buffers-not-to-save
-        (concat "\\("
-                "\\`/[^/:]*:"
-                "\\|^nn\\.a[0-9]+\\|\\.log\\|\\.gpg\\|(ftp)\\|^tags\\|^TAGS"
-                "\\|\\.el\\.gz\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
-                "\\)")
-        desktop-files-not-to-save desktop-buffers-not-to-save)
+;; (use-package! desktop
+;;   :config
+;;   (setq desktop-buffers-not-to-save
+;;         (concat "\\("
+;;                 "\\`/[^/:]*:"
+;;                 "\\|^nn\\.a[0-9]+\\|\\.log\\|\\.gpg\\|(ftp)\\|^tags\\|^TAGS"
+;;                 "\\|\\.el\\.gz\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
+;;                 "\\)")
+;;         desktop-files-not-to-save desktop-buffers-not-to-save)
 
-  ;; Do not reopen the following modes :
-  (add-to-list 'desktop-modes-not-to-save 'dired-mode)
-  (add-to-list 'desktop-modes-not-to-save 'Info-mode)
-  (add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
-  (add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
-  ;; (setq desktop-save nil)
-  ;; (setq desktop-auto-save-timeout nil)
-  (setq desktop-auto-save-timeout 30)
-  (desktop-save-mode 1)
-  )
+;;   ;; Do not reopen the following modes :
+;;   (add-to-list 'desktop-modes-not-to-save 'dired-mode)
+;;   (add-to-list 'desktop-modes-not-to-save 'Info-mode)
+;;   (add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
+;;   (add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
+;;   ;; (setq desktop-save nil)
+;;   ;; (setq desktop-auto-save-timeout nil)
+;;   (setq desktop-auto-save-timeout 30)
+;;   ;; (desktop-save-mode 1)
+;;   )
 
 (unless (modulep! +no-auto-save)
   (unless noninteractive
@@ -85,7 +87,7 @@ retrieve his value.")
   )
 
 (after! persp-mode
-  (setq persp-auto-save-fname pim-persp-auto-save-fname)
+  ;; (setq persp-auto-save-fname pim-persp-auto-save-fname)
   (setq persp-auto-save-num-of-backups 5)
   (setq persp-auto-resume-time 1)
 
@@ -94,7 +96,9 @@ retrieve his value.")
     (let* ((fname (with-current-buffer b (buffer-file-name)))
            (mmode (with-current-buffer b major-mode))
            (remote (or (file-remote-p (or fname "")) (equal "sudo" (file-remote-p (or fname "") 'method)))))
-      (or remote (not fname) (not (desktop-save-buffer-p fname b mmode)))))
+      (or remote (not fname)
+          ;; (not (desktop-save-buffer-p fname b mmode))
+          )))
 
   ;; there is also `persp-add-buffer-on-after-change-major-mode-filter-functions'
   ;; (add-hook 'persp-common-buffer-filter-functions
