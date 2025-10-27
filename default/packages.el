@@ -22,6 +22,14 @@
 ;;;###package boxquote
 (package! boxquote)
 
+(if (file-directory-p "/home/pi/code/pi/emacs/unaccent.el/")
+    (package! unaccent.el
+      :recipe (:local-repo "/home/pi/code/pi/emacs/unaccent.el/"
+               :branch "master"
+               :files ("*.el")))
+  (package! unaccent.el
+    :recipe (:host github :repo "pivaldi/unaccent.el")))
+
 ;; Local variables:
 ;; coding: utf-8
 ;; End:
