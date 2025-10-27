@@ -100,7 +100,6 @@ If there is a paired char at point use sp-unwrap-sexp."
      ;; :desc ". #pim" "C-M-k" sp-kill-sexp
      :desc "Kill the balanced expression preceding point. #pim" "M-k" #'sp-backward-kill-sexp
      :desc "Jump to beginning of the sexp the point is in then kill the sexp respecting delimiters. #pim" "C-M-w" #'pim-sp-kill-sexp
-     :desc "Rewrap the enclosing expression with a different pair. #pim" "C-S-M-r" #'sp-rewrap-sexp
 
      :desc "If word at point delete it and if paired char at point unwrap sexp. #pim" "C-<delete>" #'pim-sp-delete-word-or-unwrap-sexp
      ;; :desc ". #pim" "M-<delete>" #'sp-unwrap-sexp
@@ -109,13 +108,15 @@ If there is a paired char at point use sp-unwrap-sexp."
      ;; :desc ". #pim" [remap sp-backward-delete-word] backward-delete-word
      ;; :desc ". #pim" [remap sp-backward-kill-word] backward-kill-word
 
-     :desc "Wrap the following expression with parens. #pim" "C-c ("  #'pim-wrap-with-parens
-     :desc "Wrap the following expression with brackets. #pim" "C-c ["  #'pim-wrap-with-brackets
-     :desc "Wrap the following expression with braces. #pim" "C-c {"  #'pim-wrap-with-braces
-     :desc "Wrap the following expression with quotes. #pim" "C-c '"  #'pim-wrap-with-single-quotes
-     :desc "Wrap the following expression with double quotes. #pim" "C-c \"" #'pim-wrap-with-double-quotes
-     :desc "Wrap the following expression with underscores. #pim" "C-c _"  #'pim-wrap-with-underscores
-     :desc "Wrap the following expression with back quotes. #pim" "C-c `"  #'pim-wrap-with-back-quotes
+     :prefix ("C-c w" . "Wrap-Pairing #pim")
+     :desc "Rewrap the enclosing expression with a different pair. #pim" "w" #'sp-rewrap-sexp
+     :desc "Wrap the following expression with parens. #pim" "("  #'pim-wrap-with-parens
+     :desc "Wrap the following expression with brackets. #pim" "["  #'pim-wrap-with-brackets
+     :desc "Wrap the following expression with braces. #pim" "{"  #'pim-wrap-with-braces
+     :desc "Wrap the following expression with quotes. #pim" "'"  #'pim-wrap-with-single-quotes
+     :desc "Wrap the following expression with double quotes. #pim" "\"" #'pim-wrap-with-double-quotes
+     :desc "Wrap the following expression with underscores. #pim" "_"  #'pim-wrap-with-underscores
+     :desc "Wrap the following expression with back quotes. #pim" "`"  #'pim-wrap-with-back-quotes
      )
     )
 
