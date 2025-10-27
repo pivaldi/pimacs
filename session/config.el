@@ -47,13 +47,13 @@ retrieve his value.")
 (add-hook 'doom-init-ui-hook
           (lambda ()
             (require 'persp-mode)
-            (doom/quickload-session t)
-            ;; (doom-load-session
-            ;;  (pim-latest-file
-            ;;   (file-name-directory (doom-session-file))
-            ;;   'full
-            ;;   (rx (or (group (eval pim-auto-save-fname) digit)
-            ;;           (group (eval pim-persp-auto-save-fname) (? digit))))))
+            ;; (doom/quickload-session t)
+            (doom-load-session
+             (pim-latest-file
+              (file-name-directory (doom-session-file))
+              'full
+              (rx (or (group (eval pim-auto-save-fname) digit)
+                      (group (eval pim-persp-auto-save-fname) (? digit))))))
             ))
 
 ;; (use-package! desktop
