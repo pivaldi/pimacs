@@ -39,6 +39,7 @@
 (use-package! lsp
   :defer t
   :config
+  (setq  lsp-auto-guess-root t)
   (when (and (modulep! :checkers syntax)
              (not (modulep! :checkers syntax +flymake)))
     (defun +pim-flycheck-checker-get(fn checker property)
