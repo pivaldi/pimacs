@@ -57,7 +57,7 @@
 (after! (go-ts-mode flycheck-golangci-lint)
   (flycheck-define-checker pim-golangci-lint-ts
     "A Go syntax checker using golangci-lint for go-ts-mode."
-    :command ("golangci-lint" "run" "--out-format=checkstyle"
+    :command ("golangci-lint" "run" "--output.checkstyle.path=stdout"
               (option "--config=" flycheck-golangci-lint-config concat)
               (option "--timeout=" flycheck-golangci-lint-deadline concat)
               (option-flag "--tests" flycheck-golangci-lint-tests)
