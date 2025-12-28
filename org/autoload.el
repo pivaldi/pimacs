@@ -9,5 +9,5 @@
     (if (org-element-type-p elt 'link)
         (progn
           (kill-new url)
-          (message (concat "Copied link: " url)))
+          (message "Copied link: %s" url))
       (message "Not an Org Mode link…"))))
