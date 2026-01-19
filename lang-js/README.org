@@ -1,0 +1,59 @@
+#+TITLE: PIMacs lang-js Module
+#+AUTHOR: Philippe Ivaldi
+
+* Description
+
+Configuration for JavaScript programming language support in PIMacs.
+
+Supports both =js-mode= (traditional) and =js-ts-mode= (tree-sitter based, Emacs 29+).
+
+* Features
+
+- Automatic tree-sitter grammar installation when =:pimacs treesit= module is enabled
+- Automatic mode remapping from =js-mode= to =js-ts-mode= when tree-sitter is available
+- Graceful fallback to =js-mode= if tree-sitter parser is unavailable
+- Basic keybindings for JavaScript development
+
+* Installation
+
+Add to your Doom =init.el= within the =doom!= block:
+
+#+begin_src elisp
+(doom! :pimacs
+  ;; ...
+  treesit  ;; Required for js-ts-mode support
+  lang-js
+  ;; ...
+)
+#+end_src
+
+Then run =doom sync=.
+
+* Dependencies
+
+- Emacs 29+ for tree-sitter support
+- =:pimacs treesit= module for automatic =js-ts-mode= activation
+- =node= (optional) for running JavaScript files with =C-c C-c=
+
+* Key Bindings
+
+| Key       | Description              |
+|-----------+--------------------------|
+| =C-c C-c= | Compile/run with node    |
+
+* Module Flags
+
+This module does not currently have any flags.
+
+* Configuration
+
+The module sets:
+
+- =js-indent-level= to 2
+
+You can customize these in your =config.el=:
+
+#+begin_src elisp
+(after! js
+  (setq js-indent-level 4))
+#+end_src

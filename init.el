@@ -28,6 +28,7 @@
  lang-lisp
  (lang-go +lsp)
  (lang-ts +lsp)
+ lang-js
  lang-make
  notmuch ;; notmuch using notmuch-multi
  flyspell ;; flyspell configuration with two dictionaries switching.

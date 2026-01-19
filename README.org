@@ -98,6 +98,8 @@ You imperatively need these softwars installed :
   #+end_example
 - *pimacs/lang-go*: [[file:lang-go/README.org][Configuration for the Go programming language]].\\
   Support native =go-ts-mode= (Emacs 30+) and standart =go-mode=.
+- *pimacs/lang-js*: [[file:lang-js/README.org][Configuration for the JavaScript programming language]].\\
+  Support native =js-ts-mode= (Emacs 29+) and standard =js-mode=.
 - *pimacs/lang-php*: [[file:lang-php/README.org][Configuration for the PHP programming language]].\\
   Support native =php-ts-mode= (Emacs 29+) and standart =php-mode=.
 - *pimacs/lsp*: Complet/extend the default Doom configuration of the
