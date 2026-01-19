@@ -20,15 +20,25 @@
 
 ;;; Code:
 
+(defun pim--php-ts-mode-available-p ()
+  "Return non-nil if php-ts-mode can be used (all required parsers available)."
+  (and (treesit-available-p)
+       (treesit-language-available-p 'php)
+       (or (< emacs-major-version 30)
+           ;; Emacs 30+ php-ts-mode requires additional parsers
+           (and (treesit-language-available-p 'phpdoc)
+                (treesit-language-available-p 'html)
+                (treesit-language-available-p 'javascript)
+                (treesit-language-available-p 'jsdoc)
+                (treesit-language-available-p 'css)))))
+
 (after! treesit
   (if (< emacs-major-version 30)
       (progn  ;; emacs < 30
         (add-to-list 'treesit-language-source-alist
-                     '((php . ("https://github.com/tree-sitter/tree-sitter-php.git" "master" "php/src"))))
+                     '(php . ("https://github.com/tree-sitter/tree-sitter-php.git" "master" "php/src")))
 
         (unless (and (treesit-language-available-p 'php) (treesit-ready-p 'php))
-          ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
-          ;; (unless (treesit-ready-p 'php)
           (treesit-install-language-grammar 'php))
         (when (treesit-ready-p 'php)
           (add-hook
@@ -36,19 +46,28 @@
            (lambda nil
              (interactive)
              "Add tree sitter parser in the buffer"
-             (treesit-parser-create 'php)
-             ))))
+             (treesit-parser-create 'php)))))
     (progn  ;; emacs >= 30
-      (unless (and
-               (treesit-language-available-p 'php)
-               (treesit-language-available-p 'phpdoc)
-               (treesit-language-available-p 'html)
-               (treesit-language-available-p 'javascript)
-               (treesit-language-available-p 'jsdoc)
-               (treesit-language-available-p 'css))
-        (warn "php tree sitter parser are not installed. PIMacs is installing they for you…")
-        (php-ts-mode-install-parsers))
-      (pim--php-map t))))
+      (unless (pim--php-ts-mode-available-p)
+        ;; Try to install missing parsers
+        (require 'php-ts-mode nil t)
+        (when (fboundp 'php-ts-mode-install-parsers)
+          (condition-case err
+              (progn
+                (message "php-ts-mode parsers not installed. PIMacs is installing them for you…")
+                (php-ts-mode-install-parsers))
+            (error
+             (add-to-list 'pim-error-msgs
+                          (format "Failed to install php-ts-mode parsers: %s" (error-message-string err)))))))
+      ;; Check again after installation attempt
+      (if (pim--php-ts-mode-available-p)
+          (pim--php-map t)
+        ;; Still not available, fall back to php-mode
+        (add-to-list 'pim-error-msgs
+                     "php-ts-mode parsers unavailable. Falling back to php-mode.")
+        (setq auto-mode-alist (rassq-delete-all 'php-ts-mode auto-mode-alist))
+        (setq major-mode-remap-alist (assq-delete-all 'php-mode major-mode-remap-alist))
+        (pim--php-map nil)))))
 
 (provide 'pimacs/lang-php/+treesit)
 ;;; +treesit.el ends here
