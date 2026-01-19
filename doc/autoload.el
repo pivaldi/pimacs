@@ -262,7 +262,7 @@ User should use `pim-which-key-export-bindings-recursively-to-file' instead."
       ((fname "")
        (prefixes pim-doc-key-binding-prefixes-to-export))
     (dolist (prefix prefixes)
-      (setq fname (format "%s/doom-refcard-%s.org" (doom-module-locate-path :pimacs 'doc) prefix))
+      (setq fname (format "%s/doom-refcard-%s.org" (doom-module-locate-path '(:pimacs . doc)) prefix))
       (pim-which-key-export-bindings-recursively-to-file "" nil prefix fname))))
 
 ;;;###autoload
@@ -279,7 +279,7 @@ User should use `pim-which-key-export-bindings-recursively-to-file' instead."
       (setq module (cdr kalist))
       (when module (require module))
       (setq keymap (symbol-value (intern keymapname)))
-      (setq fname (format "%s/doom-refcard-%s.org" (doom-module-locate-path :pimacs 'doc) (s-replace-regexp "[^a-zA-Z0-1_.-]" "_" keymapname)))
+      (setq fname (format "%s/doom-refcard-%s.org" (doom-module-locate-path '(:pimacs . doc)) (s-replace-regexp "[^a-zA-Z0-1_.-]" "_" keymapname)))
       (pim-which-key-export-bindings-recursively-to-file keymapname keymap "" fname))))
 
 ;;;###autoload
@@ -299,7 +299,7 @@ User should use `pim-modules-key-bindings-to-refcard' instead."
          modulename (car km)
          keymapnames (cdr km)
          module (intern modulename)
-         fname (concat (doom-module-locate-path :pimacs module)
+         fname (concat (doom-module-locate-path (cons :pimacs module))
                        (format "/%s-key-bindings-refcard.org" modulename)))
         (with-temp-file fname
           (insert (pim-format-to-title

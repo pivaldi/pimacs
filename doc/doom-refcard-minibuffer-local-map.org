@@ -33,5 +33,5 @@ Default keymap to use when reading from the minibuffer.
 - =C-c C-e= : Export to writable buffer
 - =C-c C-l= calls =embark-collect= : create an Embark Collect buffer.
 ** Prefix =C-x= : +prefix
-- =C-x <down>= calls =minibuffer-complete-defaults= : complete minibuffer defaults as far as possible.
-- =C-x <up>= calls =minibuffer-complete-history= : complete the minibuffer history as far as possible.
+- =C-x <down>= calls =minibuffer-complete-defaults= : complete as far as possible using the minibuffer defaults.
+- =C-x <up>= calls =minibuffer-complete-history= : complete as far as possible using the minibuffer history.

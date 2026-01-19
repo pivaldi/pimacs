@@ -24,16 +24,20 @@ Keymap for Org mode.
 - =C-M-<return>= calls =org-insert-subheading= : insert a new subheading and demote it.
 - =C-S-<RET>= calls =+org/insert-item-above= : inserts a new heading, table cell or item above the current one.
 - =C-S-<down>= calls =org-shiftcontroldown= : change timestamps synchronously down in CLOCK log lines.
-- =C-S-<left>= calls =org-shiftcontrolleft= : switch to previous TODO set.
 - =C-S-<return>= calls =+org/insert-item-above= : inserts a new heading, table cell or item above the current one.
-- =C-S-<right>= calls =org-shiftcontrolright= : switch to next TODO set.
 - =C-S-<up>= calls =org-shiftcontrolup= : change timestamps synchronously up in CLOCK log lines.
 - =C-<return>= calls =+org/insert-item-below= : inserts a new heading, table cell or item below the current one.
 - =M-<RET>= : Like <RET> but enable continuing comment. #pim
+- =M-+= calls =org-shiftright= : act on the current element according to context.
+- =M--= calls =org-shiftleft= : act on current element according to context.
 - =M-h= calls =org-mark-element= : put point at beginning of this element, mark at end.
+- =M-n= calls =org-shiftdown= : act on current element according to context.
+- =M-p= calls =org-shiftup= : act on current element according to context.
 - =M-{= calls =org-backward-element= : move backward by one element.
 - =M-}= calls =org-forward-element= : move forward by one element.
 - =M-S-<RET>= calls =org-insert-todo-heading= : insert a new heading with the same level and TODO state as current heading.
+- =M-S-+= calls =org-shiftcontrolright= : switch to next TODO set.
+- =M-S--= calls =org-shiftcontrolleft= : switch to previous TODO set.
 - =M-S-<down>= calls =org-shiftmetadown= : drag the line at point down.
 - =M-S-<left>= calls =org-shiftmetaleft= : promote subtree or delete table column.
 - =M-S-<return>= calls =org-insert-todo-heading= : insert a new heading with the same level and TODO state as current heading.
@@ -45,14 +49,10 @@ Keymap for Org mode.
 - =M-<up>= calls =org-metaup= : move subtree up or move table row up.
 - =S-<RET>= calls =+org/shift-return= : insert a literal newline, or dwim in tables.
 - =S-<TAB>= calls =org-shifttab= : global visibility cycling or move to previous table field.
-- =S-<down>= calls =org-shiftdown= : act on current element according to context.
 - =S-<down>= calls =org-shiftmetadown= : drag the line at point down.
-- =S-<left>= calls =org-shiftleft= : act on current element according to context.
 - =S-<left>= calls =org-shiftmetaleft= : promote subtree or delete table column.
 - =S-<return>= calls =org-table-copy-down= : copy the value of the current field one row below.
-- =S-<right>= calls =org-shiftright= : act on the current element according to context.
 - =S-<right>= calls =org-shiftmetaright= : demote subtree or insert table column.
-- =S-<up>= calls =org-shiftup= : act on current element according to context.
 - =S-<up>= calls =org-shiftmetaup= : drag the line at point up.
 - =<backtab>= calls =org-shifttab= : global visibility cycling or move to previous table field.
 - =<down>= calls =org-metadown= : move subtree down or move table row down.
@@ -131,8 +131,8 @@ Keymap for Org mode.
 - =C-c l #= calls =org-update-statistics-cookies= : update the statistics cookie, either from TODO or from checkboxes.
 - =C-c l '= calls =org-edit-special= : call a special editor for the element at point.
 - =C-c l *= calls =org-ctrl-c-star= : compute table, or change heading status of lines.
-- =C-c l += calls =org-ctrl-c-minus= : insert separator line in table or modify bullet status of line.
 - =C-c l ,= calls =org-switchb= : switch between Org buffers.
+- =C-c l -= calls =org-ctrl-c-minus= : insert separator line in table or modify bullet status of line.
 - =C-c l .= calls =consult-org-heading= : jump to an Org heading.
 - =C-c l /= calls =consult-org-agenda= : jump to an Org agenda heading.
 - =C-c l @= calls =org-cite-insert= : insert a citation at point.
@@ -225,6 +225,7 @@ Keymap for Org mode.
 - =C-c l l s= calls =org-store-link= : store a link to the current location.
 - =C-c l l S= calls =org-insert-last-stored-link= : insert the last link stored in `org-stored-links'.
 - =C-c l l t= calls =org-toggle-link-display= : toggle the literal or descriptive display of links in current buffer.
+- =C-c l l w= : Extract URL from org-mode link and add it to kill ring. #pim
 - =C-c l l y= calls =+org/yank-link= : copy the url at point to the clipboard.
 **** Prefix =C-c l p= : +prefix
 - =C-c l p d= calls =org-priority-down= : decrease the priority of the current item.
@@ -354,7 +355,7 @@ Keymap for Org mode.
 - =C-c C-x C-v= calls =org-toggle-inline-images= : toggle the display of inline images.
 - =C-c C-x C-w= calls =org-cut-special= : cut region in table or cut current subtree.
 - =C-c C-x C-x= calls =org-clock-in-last= : clock in the last closed clocked item.
-- =C-c C-x C-y= calls =org-paste-special= : paste rectangular region into table, or past subtree relative to level.
+- =C-c C-x C-y= calls =org-paste-special= : paste rectangular region into table, or paste subtree relative to level.
 - =C-c C-x C-z= calls =org-resolve-clocks= : resolve all currently open Org clocks.
 - =C-c C-x C-M-v= calls =org-redisplay-inline-images= : assure display of inline images and refresh them.
 - =C-c C-x M-w= calls =org-copy-special= : copy region in table or copy current subtree.

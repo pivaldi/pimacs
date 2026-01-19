@@ -18,18 +18,21 @@ Keymap used for ‘smartparens-mode’.
 - =C-M-p= calls =sp-previous-sexp= : move backward to the end of previous balanced expression.
 - =C-M-u= calls =sp-up-sexp= : move forward out of one level of parentheses.
 - =C-M-w= : Jump to beginning of the sexp the point is in then kill the sexp respecting delimiters. #pim
-- =C-M-S-r= : Rewrap the enclosing expression with a different pair. #pim
 - =C-M-<backspace>= calls =sp-splice-sexp= : unwrap the current list.
+- =C-M-<left>= : Move backward across one balanced expression. #pim
+- =C-M-<right>= : Move forward across one balanced expression. #pim
 - =C-S-b= : Move point to the next position that is the begining of a symbol. #pim
 - =C-S-f= : Move point to the next position that is the end of a symbol. #pim
 - =C-<backspace>= : Delete a word backward, skipping over intervening delimiters. #pim
 - =C-<delete>= : If word at point delete it and if paired char at point unwrap sexp. #pim
 - =M-k= : Kill the balanced expression preceding point. #pim
 ** Prefix =C-c= : +prefix
-- =C-c '= : Wrap the following expression with quotes. #pim
-- =C-c (= : Wrap the following expression with parens. #pim
-- =C-c [= : Wrap the following expression with brackets. #pim
-- =C-c \= : Wrap the following expression with double quotes. #pim
-- =C-c _= : Wrap the following expression with underscores. #pim
-- =C-c `= : Wrap the following expression with back quotes. #pim
-- =C-c {= : Wrap the following expression with braces. #pim
+*** Prefix =C-c w= : +Wrap-Pairing #pim
+- =C-c w "= : Wrap the following expression with double quotes. #pim
+- =C-c w '= : Wrap the following expression with quotes. #pim
+- =C-c w (= : Wrap the following expression with parens. #pim
+- =C-c w [= : Wrap the following expression with brackets. #pim
+- =C-c w _= : Wrap the following expression with underscores. #pim
+- =C-c w `= : Wrap the following expression with back quotes. #pim
+- =C-c w w= : Rewrap the enclosing expression with a different pair. #pim
+- =C-c w {= : Wrap the following expression with braces. #pim

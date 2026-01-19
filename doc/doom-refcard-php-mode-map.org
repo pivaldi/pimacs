@@ -34,7 +34,6 @@ Keymap for ‘php-mode’.
 - =C-c <RET>= calls =php-browse-manual= : bring up manual for PHP.
 - =C-c .= calls =c-set-style= : set the current buffer to use the style STYLENAME.
 - =C-c C-<DEL>= calls =c-hungry-delete-backwards= : delete the preceding character or all preceding whitespace
-- =C-c C-$= calls =php-extras-insert-previous-variable= : insert previously used variable from buffer.
 - =C-c C-\= calls =c-backslash-region= : insert, align, or delete end-of-line backslashes on the lines in the region.
 - =C-c C-a= calls =c-toggle-auto-newline= : toggle auto-newline feature.
 - =C-c C-b= calls =c-submit-bug-report= : submit via mail a bug report on CC Mode.

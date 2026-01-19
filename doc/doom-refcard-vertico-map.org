@@ -12,12 +12,10 @@ Vertico minibuffer keymap derived from ‘minibuffer-local-map’.
 - =<DEL>= calls =vertico-directory-delete-char= : delete N directories or chars before point.
 - =<RET>= calls =exit-minibuffer= : terminate this minibuffer argument.
 - =<TAB>= calls =vertico-insert= : insert current candidate in minibuffer.
-- =?= calls =minibuffer-completion-help= : display a list of possible completions of the current minibuffer contents.
 - =C-;= calls =embark-act= : prompt the user for an action and perform it.
 - =C-g= calls =minibuffer-keyboard-quit= : abort recursive edit.
 - =C-j= calls =exit-minibuffer= : terminate this minibuffer argument.
 - =C-s= calls =consult-history= : insert string from HISTORY of current buffer.
-- =C-M-i= calls =minibuffer-complete= : complete the minibuffer contents as far as possible.
 - =C-S-<iso>-<lefttab>= : Switch to the next previous user buffer. #pim
 - =C-<tab>= : Switch to the previous user buffer. #pim
 - =M-<RET>= : Like <RET> but enable continuing comment. #pim
@@ -40,5 +38,5 @@ Vertico minibuffer keymap derived from ‘minibuffer-local-map’.
 ** Prefix =C-x= : +prefix
 - =C-x C-d= calls =consult-dir= : choose a directory and act on it.
 - =C-x C-j= calls =consult-dir-jump-file= : jump to file from the directory in the minibuffer prompt.
-- =C-x <down>= calls =minibuffer-complete-defaults= : complete minibuffer defaults as far as possible.
-- =C-x <up>= calls =minibuffer-complete-history= : complete the minibuffer history as far as possible.
+- =C-x <down>= calls =minibuffer-complete-defaults= : complete as far as possible using the minibuffer defaults.
+- =C-x <up>= calls =minibuffer-complete-history= : complete as far as possible using the minibuffer history.

@@ -61,11 +61,11 @@ Parent keymap for all keymaps of modes derived from ‘magit-mode’.
 - =Q= calls =+magit/quit-all= : kill all magit buffers for the current repository.
 - =r= calls =magit-rebase= : transplant commits and/or modify existing commits.
 - =R= calls =magit-file-rename= : rename or move FILE to NEWNAME.
-- =s= : symlinks
+- =s= calls =magit-stage-files= : read one or more files and stage all changes in those files.
 - =S= calls =magit-stage-modified= : stage all changes to files modified in the worktree.
 - =t= calls =magit-tag= : create or delete a tag.
 - =T= calls =magit-notes= : edit notes attached to commits.
-- =u= calls =magit-unstage-file= : read one or more files and unstage all changes to those files.
+- =u= calls =magit-unstage-files= : read one or more files and unstage all changes to those files.
 - =U= calls =magit-unstage-all= : remove all changes from the staging area.
 - =v= calls =magit-revert-no-commit= : revert COMMIT by applying it in reverse to the worktree.
 - =V= calls =magit-revert= : revert existing commits, with or without creating new commits.
@@ -73,7 +73,7 @@ Parent keymap for all keymaps of modes derived from ‘magit-mode’.
 - =W= calls =magit-patch= (not described)
 - =x= calls =magit-reset-quickly= : reset the `HEAD' and index to COMMIT, and possibly the working tree.
 - =X= calls =magit-reset= : reset the `HEAD', index and/or worktree to a previous state.
-- =y= calls =yank= : reinsert ("paste") the last stretch of killed text.
+- =y= calls =magit-show-refs= : list and compare references in a dedicated buffer.
 - =Y= calls =magit-cherry= : show commits in a branch that are not merged in the upstream branch.
 - =z= calls =magit-stash= : stash uncommitted changes.
 - =Z= calls =magit-worktree= : act on a worktree.
@@ -90,6 +90,7 @@ Parent keymap for all keymaps of modes derived from ‘magit-mode’.
 - =M-w= calls =magit-copy-buffer-revision= : save the revision of the current buffer for later use.
 - =M-<tab>= calls =magit-section-cycle-diffs= : cycle visibility of diff-related sections in the current buffer.
 - =S-<SPC>= calls =magit-diff-show-or-scroll-down= : update the commit or diff buffer for the thing at point.
+- =5..9= calls =digit-argument= : part of the numeric argument for the next command.
 - =<backtab>= calls =magit-section-cycle-global= : cycle visibility of all sections in the current buffer.
 - =<left>-<fringe>= : +prefix
 ** Prefix =C-c= : +prefix
@@ -97,4 +98,5 @@ Parent keymap for all keymaps of modes derived from ‘magit-mode’.
 - =C-c C-c= : Compile Php file or lint it if prefixed. #pim
 - =C-c C-e= calls =magit-edit-thing= : this is a placeholder command, which may signal an error if called.
 - =C-c C-o= calls =magit-browse-thing= : this is a placeholder command, which may signal an error if called.
+- =C-c C-r= calls =magit-next-reference= : move to the next Git reference appearing in the current buffer.
 - =C-c C-w= calls =magit-copy-thing= : this is a placeholder command, which signals an error if called.

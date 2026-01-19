@@ -14,4 +14,5 @@ Keymap used in Go mode, powered by tree-sitter
 - =M-?= : Find references of the symbol under point with LSP. #pim
 - =M-q= calls =prog-fill-reindent-defun= : refill or reindent the paragraph or defun that contains point.
 ** Prefix =C-c= : +prefix
+- =C-c C-c= : Run the current buffer filename with "go run". #pim
 - =C-c C-d= calls =go-ts-mode-docstring= : add a docstring comment for the current defun.

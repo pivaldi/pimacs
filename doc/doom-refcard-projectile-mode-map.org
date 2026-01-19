@@ -15,8 +15,8 @@ Keymap for Projectile mode.
 - =C-c p &= calls =projectile-run-async-shell-command-in-root= : invoke `async-shell-command' in the project's root.
 - =C-c p ?= calls =projectile-find-references= : find all references to SYMBOL in the current project.
 - =C-c p a= calls =projectile-find-other-file= : switch between files with the same name but different extensions.
+- =C-c p A= calls =projectile-add-known-project= : add PROJECT-ROOT to the list of known projects.
 - =C-c p b= calls =projectile-switch-to-buffer= : switch to a project buffer.
-- =C-c p c= calls =projectile-compile-project= : run project compilation command.
 - =C-c p C= calls =projectile-configure-project= : run project configure command.
 - =C-c p d= calls =projectile-find-dir= : jump to a project's directory using completion.
 - =C-c p D= calls =projectile-dired= : open `dired' at the root of the project.
@@ -65,6 +65,13 @@ Keymap for Projectile mode.
 - =C-c p 5 f= calls =projectile-find-file-other-frame= : jump to a project's file using completion and show it in another frame.
 - =C-c p 5 g= calls =projectile-find-file-dwim-other-frame= : jump to a project's files using completion based on context in other frame.
 - =C-c p 5 t= calls =projectile-find-implementation-or-test-other-frame= : open matching implementation or test file in other frame.
+**** Prefix =C-c p c= : +prefix
+- =C-c p c c= calls =projectile-compile-project= : run project compilation command.
+- =C-c p c i= calls =projectile-install-project= : run project install command.
+- =C-c p c o= calls =projectile-configure-project= : run project configure command.
+- =C-c p c p= calls =projectile-package-project= : run project package command.
+- =C-c p c r= calls =projectile-run-project= : run project run command.
+- =C-c p c t= calls =projectile-test-project= : run project test command.
 **** Prefix =C-c p s= : +Search project
 - =C-c p s g= calls =projectile-grep= : perform rgrep in the project.
 - =C-c p s r= calls =projectile-ripgrep= : run a ripgrep (rg) search with `SEARCH-TERM' at current project root.

@@ -55,6 +55,10 @@
   (when (fboundp 'go-ts-mode)
     (add-to-list 'pim-doc-keymaps-to-export '("go-ts-mode-map" . go-ts-mode))))
 
+(when (or (modulep! :pimacs lang-js) (modulep! :lang javascript))
+  (add-to-list 'pim-doc-keymaps-to-export '("js-mode-map" . js))
+  (when (fboundp 'js-ts-mode)
+    (add-to-list 'pim-doc-keymaps-to-export '("js-ts-mode-map" . js))))
 
 (provide `pimacs/doc/init)
 ;;; init.el ends here
