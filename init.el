@@ -42,12 +42,11 @@
  doc ;; Generated documentation, fundamental keys binding for example.
  )
 
-;; (when (file-directory-p (doom-module-locate-path '(:pi . notmuch))) ;; My private configurations
-(doom!
- :pi
- notmuch ;; My personnal notmuch overwrote data
- )
-                                        ; )
+(when (file-directory-p "/home/pi/.doom.d/modules/pi") ;; My private configurations
+  (doom!
+   :pi
+   notmuch ;; My personnal notmuch overwrote data
+   ))
 
 ;; Local variables:
 ;; coding: utf-8
