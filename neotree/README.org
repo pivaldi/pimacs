@@ -1,0 +1,12 @@
+#+title: PIMacs/Neotree Doom Emacs Module
+
+This Doom package provides ready to use configuration of the package [[https://github.com/jaypei/emacs-neotree][emacs-neotree]], an Emacs tree plugin like NerdTree for Vim.
+
+* Features
+- Install and load Neotree
+- Configure Neotree for [[https://docs.projectile.mx/projectile/index.html][Projectile]] when loaded.
+
+* Key Bindings
+These key bindings are defined only when the package Projectile is loaded/used:
+- ~<f7>~:  open or synchronize NeoTree to the current filename.
+- ~<S-f7>~: open NeoTree using the projectile root dir.
