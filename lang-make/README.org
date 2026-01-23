@@ -1,0 +1,34 @@
+#+title: PIMacs/lang-make Doom Module
+
+This module configures Makefile mode and provides smart compilation that
+automatically finds the nearest Makefile in parent directories.
+
+* Features
+
+- Forces =indent-tabs-mode= in =makefile-mode= (required by Make syntax)
+- =pim-compile-above-makefile= : Finds Makefile in parent directories and runs make
+- Supports sourcing =.envrc= before running make (direnv compatibility)
+
+* Key Bindings
+
+| Key     | Command                     | Description                          |
+|---------+-----------------------------+--------------------------------------|
+| =<f9>=  | ~pim-compile-above-makefile~ | Compile using nearest Makefile       |
+
+With prefix argument (=C-u <f9>=), prompts for a make target.
+
+* Configuration
+
+The variable =pim-compilation-filenames= defines which filenames are recognized
+as Makefiles. Default value:
+
+#+begin_src emacs-lisp
+'("Makefile" "makefile" "MakeFile" "makeFile")
+#+end_src
+
+* How It Works
+
+1. Searches upward from current directory for a file matching =pim-compilation-filenames=
+2. Changes to that directory
+3. Sources =.envrc= if present (for direnv users)
+4. Runs =make= (with optional target from prefix argument)

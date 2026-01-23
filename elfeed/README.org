@@ -1,0 +1,48 @@
+#+title: PIMacs/elfeed Doom Module
+
+This module extends the [[https://github.com/skeeto/elfeed][Elfeed]] RSS reader with custom key bindings,
+automatic feed updates, and [[https://github.com/remyhonig/elfeed-org][elfeed-org]] integration for managing feeds
+in an Org file.
+
+* Features
+
+- Default search filter: =@1-month-ago +unread=
+- Custom tag-based sorting via =pim-elfeed-tag-sort=
+- Automatic feed update when opening Elfeed
+- Elfeed-org integration for feed management
+
+* Key Bindings
+
+** Search Mode (=elfeed-search-mode-map=)
+
+| Key   | Command                       | Description                    |
+|-------+-------------------------------+--------------------------------|
+| =g=   | ~elfeed-update~               | Update all feeds               |
+| =u=   | ~elfeed-search-untag-all-unread~ | Mark as read                |
+| =r=   | ~elfeed-search-tag-all-unread~   | Mark as unread              |
+| =s=   | ~elfeed-search-live-filter~   | Live filter search             |
+| =S=   | ~elfeed-search-set-filter~    | Set search filter              |
+| =RET= | ~elfeed-search-show-entry~    | Show entry                     |
+| =b=   | ~elfeed-search-browse-url~    | Open in browser                |
+| =y=   | ~elfeed-search-yank~          | Copy URL                       |
+| =+=   | ~elfeed-search-tag-all~       | Add tag                        |
+| =-=   | ~elfeed-search-untag-all~     | Remove tag                     |
+| =p=   | ~elfeed-show-pdf~             | Show PDF                       |
+
+** Show Mode (=elfeed-show-mode-map=)
+
+| Key   | Command                       | Description                    |
+|-------+-------------------------------+--------------------------------|
+| =q=   | ~+rss/delete-pane~            | Close entry pane               |
+| =o=   | ~ace-link-elfeed~             | Jump to link with ace          |
+| =n=   | ~elfeed-show-next~            | Next entry                     |
+| =N=   | ~elfeed-show-prev~            | Previous entry                 |
+| =+=   | ~elfeed-show-tag~             | Add tag                        |
+| =-=   | ~elfeed-show-untag~           | Remove tag                     |
+| =s=   | ~elfeed-show-new-live-search~ | New search from entry          |
+| =y=   | ~elfeed-show-yank~            | Copy URL                       |
+
+* Configuration
+
+Feed sources are configured in =~/.emacs.d/elfeed.org= using elfeed-org format.
+See [[https://github.com/remyhonig/elfeed-org][elfeed-org documentation]] for the file format.

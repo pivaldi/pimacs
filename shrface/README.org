@@ -1,0 +1,46 @@
+#+title: PIMacs/shrface Doom Module
+
+This module provides key bindings for [[https://github.com/chenyanming/shrface][shrface]], which extends shr/eww with
+org-like features including outline cycling, headline navigation, and
+consult integration.
+
+* Features
+
+- Org-style outline cycling with TAB
+- Headline navigation with consult
+- Link browsing with consult
+- Bullet toggling
+
+* Supported Modes
+
+Key bindings are applied to these modes:
+- =shrface-mode=
+- =wallabag-entry-mode=
+- =nov-mode= (epub reader)
+- =eww-mode= (web browser)
+- =mu4e-view-mode= (email)
+- =elfeed-show-mode= (RSS)
+
+* Key Bindings
+
+| Key          | Command                      | Description                    |
+|--------------+------------------------------+--------------------------------|
+| =TAB=        | ~shrface-outline-cycle~      | Cycle outline visibility       |
+| =<backtab>=  | ~shrface-outline-cycle-buffer~ | Cycle all outlines in buffer |
+
+** Localleader Bindings
+
+| Key | Command                    | Description                    |
+|-----+----------------------------+--------------------------------|
+| =k= | ~shrface-previous-headline~ | Jump to previous headline      |
+| =j= | ~shrface-next-headline~    | Jump to next headline          |
+| =l= | ~shrface-links-consult~    | Browse links with consult      |
+| =h= | ~shrface-headline-consult~ | Browse headlines with consult  |
+| =o= | ~shrface-occur~            | Occur for headlines            |
+| =b= | ~shrface-toggle-bullets~   | Toggle bullet visibility       |
+| =i= | ~imenu-list~               | Show imenu list                |
+
+* See Also
+
+- [[https://github.com/chenyanming/shrface][shrface on GitHub]] for full documentation
+- Works well with =pimacs/elfeed= for RSS reading

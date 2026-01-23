@@ -1,0 +1,20 @@
+#+title: PIMacs/lang-c Doom Module
+
+This module provides custom indentation configuration for C and C++ modes.
+
+* Features
+
+- Custom C++ indentation setup via =pim-c-indent-setup= hook
+- Configured indent settings:
+  - =c-basic-offset= : 2
+  - =substatement-open= : 0
+  - =brace-list-open= : 0
+  - =arglist-close= : 0
+  - =statement-case-open= : 0
+  - =arglist-cont-nonempty= : 4
+  - =arglist-intro= : c-basic-offset
+
+* Usage
+
+The indentation setup is automatically applied to =c++-mode=.
+The =pim-c-indent-setup= function is defined in the =pimacs/functions= module.

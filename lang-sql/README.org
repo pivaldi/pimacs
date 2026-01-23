@@ -1,0 +1,20 @@
+#+title: PIMacs/lang-sql Doom Module
+
+This module automatically installs the SQL tree-sitter grammar for enhanced
+syntax highlighting in Emacs 29+.
+
+* Features
+
+- Auto-installs SQL tree-sitter grammar if not available
+- Enables tree-sitter based syntax highlighting for SQL files
+
+* Dependencies
+
+- Emacs 29+ compiled with tree-sitter support (=--with-tree-sitter=)
+- The =pimacs/treesit= module should be loaded for full tree-sitter support
+
+* Note
+
+This is a minimal module that ensures the SQL grammar is available. Future
+enhancements may include =sql-ts-mode= configuration once it becomes available
+in Emacs (see [[../README.org][PIMacs roadmap]]).

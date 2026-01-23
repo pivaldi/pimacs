@@ -1,0 +1,41 @@
+#+title: PIMacs/lang-ts Doom Module
+
+This module provides configuration for TypeScript development, including
+Angular (ng2-mode) support, LSP integration, and Deno compilation.
+
+* Features
+
+- TypeScript mode with LSP support (optional)
+- Angular development with [[https://github.com/AustinMahar/ng2-mode][ng2-mode]]
+- Deno-based TypeScript compilation
+- Tide fallback when LSP is disabled
+- Flycheck integration with typescript-tslint
+
+* Module Options
+
+- =+lsp= : Enable LSP integration for TypeScript and Angular modes.
+  Automatically added if =:pimacs lsp= module is loaded.
+
+* Key Bindings
+
+| Key             | Mode           | Command                  | Description            |
+|-----------------+----------------+--------------------------+------------------------|
+| =M-.=           | ng2-html-mode  | ~ng2-html-goto-binding~  | Go to binding in TS    |
+| =S-<iso-lefttab>= | ng2-ts-mode  | ~pim-ng-complete-filename~ | Complete filename    |
+| =C-c C-c=       | typescript-mode | ~pim-ts-compile~        | Compile with Deno      |
+
+* Dependencies
+
+- [[https://deno.land/][Deno]] : Required for TypeScript compilation
+  Install: =curl -fsSL https://deno.land/install.sh | sh=
+
+* Configuration
+
+| Variable                | Default  | Description                    |
+|-------------------------+----------+--------------------------------|
+| =pim-ts-compile-command= | ="deno"= | Command used for compilation   |
+| =pim-ng-app-filenames=  | =("app.component.ts")= | Angular app component files |
+
+* File Associations
+
+- =.page.ts= files are automatically opened in =ng2-ts-mode=

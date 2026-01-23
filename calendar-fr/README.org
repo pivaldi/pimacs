@@ -1,0 +1,27 @@
+#+title: PIMacs/calendar-fr Doom Module
+
+This module configures the Emacs calendar for French users, providing French
+translations for day and month names, French holidays, and European date
+conventions.
+
+* Features
+
+- French day names (lundi, mardi, mercredi, etc.)
+- French month names (janvier, février, mars, etc.)
+- European date style (day/month/year)
+- 24-hour time format
+- Week starts on Monday
+- French national holidays:
+  - 1er mai : Fête du travail
+  - 8 mai : Victoire 1945
+  - 14 juillet : Fête nationale
+  - 15 août : Assomption
+  - 1er novembre : Toussaint
+  - 11 novembre : Armistice 1918
+  - Fête des mères (2nd Sunday of May)
+  - Fête des pères (3rd Sunday of June)
+
+* Configuration
+
+The module disables non-French holidays (Hebrew, Islamic, Bahai, Oriental) and
+enables =mark-holidays-in-calendar= to highlight holidays in the calendar view.

@@ -1,0 +1,31 @@
+#+title: PIMacs/lang-lisp Doom Module
+
+This module enhances Emacs Lisp and Lisp modes with custom font-lock faces for
+comment sections and disables auto-fill in lisp-mode.
+
+* Features
+
+- Disables =auto-fill-mode= in =lisp-mode= for manual line wrapping
+- Adds custom font-lock highlighting for structured comment sections:
+  - =;; *===*= style section headers
+  - =;; *.text.*= style section markers
+  - =;; ---= / =;; *text*= sub-section headers
+
+* Dependencies
+
+Requires the =pimacs/theme= module to be loaded for the custom faces:
+- =pim-comment-section-face=
+- =pim-comment-sub-section-face=
+
+* Example
+
+#+begin_src emacs-lisp
+;; *===============================*
+;; Main Section Header
+
+;; *.Configuration.*
+;; Another section marker
+
+;; ---
+;; *Sub-section*
+#+end_src

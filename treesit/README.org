@@ -1,0 +1,37 @@
+#+title: PIMacs/treesit Doom Module
+
+This module configures Emacs' native tree-sitter support for enhanced syntax
+highlighting and code analysis in Emacs 29+.
+
+* Features
+
+- Maximum font-lock decoration level (=treesit-font-lock-level= set to 4)
+- Version checking with helpful error messages
+- Foundation for tree-sitter based language modules
+
+* Dependencies
+
+- Emacs 29 or later
+- Emacs must be compiled with tree-sitter support:
+  =./configure --with-tree-sitter=
+
+If requirements are not met, helpful error messages are added to =pim-error-msgs=.
+
+* Related Modules
+
+This module provides the foundation for tree-sitter support used by:
+- =pimacs/lang-go= : Go with =go-ts-mode=
+- =pimacs/lang-php= : PHP with =php-ts-mode=
+- =pimacs/lang-js= : JavaScript with =js-ts-mode=
+- =pimacs/lang-sql= : SQL grammar installation
+
+* Building Emacs with Tree-sitter
+
+See [[https://gist.github.com/pivaldi/116c22742040834316c90e938411c082][this gist]] for an example bash script to compile Emacs 29+ with
+tree-sitter support.
+
+* Configuration
+
+| Variable                  | Value | Description                         |
+|---------------------------+-------+-------------------------------------|
+| =treesit-font-lock-level= | 4     | Maximum syntax highlighting detail  |

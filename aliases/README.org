@@ -1,0 +1,21 @@
+#+title: PIMacs/aliases Doom Module
+
+This module defines short command aliases starting with =_= for frequently used
+Emacs commands, making them quicker to invoke via =M-x=.
+
+* Features
+
+- =_ll= : ~visual-line-mode~ - Toggle visual line mode for long lines.
+- =_rb= : ~revert-buffer~ - Revert the current buffer to its saved state.
+- =_ar= : ~align-regexp~ - Align text based on a regular expression.
+- =_gf= : ~grep-find~ - Search for a string in files recursively.
+- =_rg= : ~consult-ripgrep~ - Search with ripgrep using consult interface.
+- =_ff= : ~find-name-dired~ - Search for files by name recursively.
+- =_ib= : ~ibuffer-list-buffers~ - Display buffer list in another window.
+- =_sir= : ~string-insert-rectangle~ - Insert string on each line of rectangle.
+
+* Additional Configuration
+
+This module also replaces the default =yes-or-no-p= prompt with =y-or-n-p=,
+allowing you to answer confirmation prompts with just =y= or =n= instead of
+typing out =yes= or =no=.

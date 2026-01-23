@@ -1,0 +1,40 @@
+#+title: PIMacs/yasnippet Doom Module
+
+This module configures [[https://github.com/joaotavora/yasnippet][YASnippet]] with custom key bindings and enables
+stacked snippet expansions.
+
+* Features
+
+- Stacked expansions: snippets can trigger other snippets (=yas-triggers-in-field=)
+- Rebinds snippet expansion from TAB to F3 (unless =+no-keys= option is used)
+
+* Module Options
+
+- =+no-keys= : Keep the default TAB binding for snippet expansion instead of F3.
+
+* Key Bindings
+
+Default (without =+no-keys=):
+
+| Key     | Command       | Description              |
+|---------+---------------+--------------------------|
+| =<f3>=  | ~yas-expand~  | Expand snippet at point  |
+
+The default TAB binding is removed to avoid conflicts with completion and
+indentation.
+
+* Usage Example
+
+#+begin_src text
+;; In init.el:
+(doom! :pimacs
+       yasnippet          ;; Use F3 for expansion
+       ;; or
+       (yasnippet +no-keys) ;; Keep TAB for expansion
+       )
+#+end_src
+
+* See Also
+
+- [[https://github.com/joaotavora/yasnippet][YASnippet documentation]]
+- Doom's =:editor snippets= module for additional snippet collections
