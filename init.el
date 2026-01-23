@@ -36,7 +36,8 @@
  dockerfile
  shrface ;; Extends shr / eww with org features and analysis capability.
  elfeed
- neotree
+ ;; neotree
+ treemacs
  ;; hexo ;; Use Hexo in Emacs elegantly
  doc ;; Generated documentation, fundamental keys binding for example.
  )
@@ -46,8 +47,7 @@
  :pi
  notmuch ;; My personnal notmuch overwrote data
  )
-
-;; )
+                                        ; )
 
 ;; Local variables:
 ;; coding: utf-8

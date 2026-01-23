@@ -118,6 +118,7 @@ You imperatively need these softwars installed :
   authentication using =SSH=, =SFTP=, or other protocols.
 - *pimacs/treesit*: Automatically install and use tree-sitter major
   modes in Emacs 29+.
+- *pimacs/treemacs*: slightly adds to the default [[https://docs.doomemacs.org/v21.12/modules/ui/treemacs/][Doom Treemacs package]].
 - *pimacs/shrface*: This package extends ~shr / eww~ with org features and
   analysis capability. It can be used in dash-docs, eww, nov.el, mu/mu4e,
   anki.el, elfeed, wallabag.el, etc. [[https://github.com/chenyanming/shrface][More information]].

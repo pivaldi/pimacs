@@ -6,4 +6,4 @@ Enhanced configuration of smartparens with extended features.
 
 ## Features
 
-The features added by this module are bind to a key shortcut, see
+The features added by this module are bind to a key shortcut, see [pairing-key-bindings-refcard.org](pairing/pairing-key-bindings-refcard.org).

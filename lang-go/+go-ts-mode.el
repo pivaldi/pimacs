@@ -30,6 +30,8 @@
   (map! :map go-ts-mode-map
         :desc "Run the current buffer filename with \"go run\". #pim" "C-c C-c" #'pim-go-run)
 
+  (setq go-ts-mode-indent-offset 2)
+
   (if (modulep! +lsp)
       (progn
         (after! lsp

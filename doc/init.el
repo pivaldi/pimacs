@@ -60,6 +60,13 @@
   (when (fboundp 'js-ts-mode)
     (add-to-list 'pim-doc-keymaps-to-export '("js-ts-mode-map" . js))))
 
+(when (modulep! :pimacs neotree)
+  (add-to-list 'pim-doc-keymaps-to-export '("neotree-mode-map" . neotree-mode)))
+
+(when (modulep! :ui treemacs)
+  (add-to-list 'pim-doc-keymaps-to-export '("treemacs-mode-map" . treemacs-mode)))
+
+
 (provide `pimacs/doc/init)
 ;;; init.el ends here
 

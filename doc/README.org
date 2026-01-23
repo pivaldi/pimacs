@@ -14,7 +14,10 @@
 - [[doom-refcard-dired-mode-map.org][Key Bindings of Keymap dired-mode-map]]
 - [[doom-refcard-doom-leader-workspaces_windows-map.org][Key Bindings of Keymap workspaces_windows-map]]
 - [[doom-refcard-emacs-lisp-mode-map.org][Key Bindings of Keymap emacs-lisp-mode-map]]
-- [[doom-refcard-go-mode-map.org][Key Bindings of Keymap go-mode-mappemonde]]
+- [[doom-refcard-js-mode-map.org][Key Bindings of Keymap js-mode-map]]
+- [[doom-refcard-js-ts-mode-map.org][Key Bindings of Keymap js-ts-mode-map]]
+- [[doom-refcard-go-mode-map.org][Key Bindings of Keymap go-mode-map]]
+- [[doom-refcard-go-ts-mode-map.org][Key Bindings of Keymap go-ts-mode-map]]
 - [[doom-refcard-isearch-mode-map.org][Key Bindings of Keymap isearch-mode-map]]
 - [[doom-refcard-lsp-mode-map.org][Key Bindings of Keymap lsp-mode-map]]
 - [[doom-refcard-magit-mode-map.org][Key Bindings of Keymap magit-mode-map]]
@@ -22,6 +25,7 @@
 - [[doom-refcard-org-mode-map.org][Key Bindings of Keymap org-mode-map]]
 - [[doom-refcard-php-mode-map.org][Key Bindings of Keymap php-mode-map]]
 - [[doom-refcard-projectile-mode-map.org][Key Bindings of Keymap projectile-mode-map]]
+- [[doom-refcard-treemacs-mode-map.org][Key Bindings of Keymap treemacs-mode-map]]
 - [[doom-refcard-smartparens-mode-map.org][Key Bindings of Keymap smartparens-mode-map]]
 
 * Autoloaded Functions
