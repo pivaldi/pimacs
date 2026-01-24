@@ -52,7 +52,7 @@ You imperatively need these softwars installed :
  default ;; PIMacs default Emacs configuration on top of Doom.
  ;; aliases ;; Define aliases starting with `_`. The most useful are `_rb`, `_sir`, `_gf`.
  ;; (theme +no-font) ;; Define some faces and load Zenburn Theme.
-                   ;;;; See the `README.md` in the directory `pimacs/theme`
+                   ;;;; See the `README.org` in the directory `pimacs/theme`
  ;; (keys +azerty) ;; Define the PIMacs keys binding.
  ;; session ;; Auto reload the last session at startup through
           ;;;; `doom/quickload-session` (no desktop bad practice in Doom)
@@ -75,7 +75,7 @@ You imperatively need these softwars installed :
 - *pimacs/calendar-fr*: Configure the calendar for French support.
 - *pimacs/corfu*: [[file:corfu/README.org][Extra configuration of the package COmpletion in Region FUnction]].
 - *pimcas/crypt*: [[file:crypt/README.org][PIMacs extra encrypting configuration and features]].
-- *pimacs/default*: [[file:default/README.md][PIMacs default configuration]].
+- *pimacs/default*: [[file:default/README.org][PIMacs default configuration]].
 - *pimacs/dired*: [[file:dired/README.org][Dired mode specific configuration]]. See also the auto-generated
   [[file:dired/all-key-bindings-refcard.org][dired-mode-map key bindings refcard]] and the [[file:dired/pimacs-key-bindings-refcard.org][dired-mode-map PIMacs key bindings refcard]].
 - *pimacs/doc*: [[file:doc/README.org][Generated PIMacs Documentation]].
@@ -83,8 +83,8 @@ You imperatively need these softwars installed :
   classed by key bindings prefixes.
 - *pimacs/docker*: [[file:dockerfile/README.org][Installs and configures Docker Mode]].
 - *pimcas/flyspell*: [[file:flyspell/README.org][Dictionary switching between two dictionaries with Flyspell]].
-- *pimacs/functions*: [[file:functions/README.md][Define useful functions used under the hood by PIMacs]].
-- *pimacs/keys*: [[file:keys/README.md][PIMacs global-map configuration]]. See also the auto-generated
+- *pimacs/functions*: [[file:functions/README.org][Define useful functions used under the hood by PIMacs]].
+- *pimacs/keys*: [[file:keys/README.org][PIMacs global-map configuration]]. See also the auto-generated
   [[file:keys/all-key-bindings-refcard.org][global-map key bindings refcard]] and the [[file:keys/pimacs-key-bindings-refcard.org][global-map PIMacs key bindings refcard]].
 - *pimacs/lang-c*: Configuration of =C= mode and derived.
   #+begin_example
@@ -110,9 +110,9 @@ You imperatively need these softwars installed :
 - *pimacs/origami*: [[file:origami/README.org][Provide/configure the Origami text folding minor mode]].
 - *pimacs/org*: [[file:org/README.org][Configure the Org mode and add Latex templating]].
 - *pimacs/pairing*: [[file:pairing/README.org][Enhanced configuration of smartparens with extended features]].
-- *pimacs/session*: [[file:session/README.md][Workspace/Session Persistence and Auto Restore Last Session]].
-- *pimacs/theme*: [[file:theme/README.md][Slight customization of the Emacs theme depending the module options used]].
-- *pimacs/tramp*: [[file:tramp/README.md][Slight configuration of TRAMP]].\\
+- *pimacs/session*: [[file:session/README.org][Workspace/Session Persistence and Auto Restore Last Session]].
+- *pimacs/theme*: [[file:theme/README.org][Slight customization of the Emacs theme depending the module options used]].
+- *pimacs/tramp*: [[file:tramp/README.org][Slight configuration of TRAMP]].\\
   =TRAMP= is a built-in Emacs feature that enables you to access and
   edit files on remote systems, including those that require
   authentication using =SSH=, =SFTP=, or other protocols.

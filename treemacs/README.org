@@ -3,6 +3,6 @@
 This Doom package provides slightly adds to the default [[https://docs.doomemacs.org/v21.12/modules/ui/treemacs/][Doom Treemacs package]].
 
 - For AZERTY keyboard, add the keybinding ~M-à~ to mimic the default  ~M-0~ (bound to ~treemacs-select-window~).
-- Enable by default ~treemacs-follow-mode~ and ~treemacs-filewatch-mode~.
+- Enable by default ~treemacs-follow-mode~, ~treemacs-project-follow-mode~ and ~treemacs-filewatch-mode~.
 
 That's all…

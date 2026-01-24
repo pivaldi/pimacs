@@ -1,0 +1,4 @@
+#+title: PIMacs -- etc Directory
+
+The Elisp code that lives here are not Doom modules but configuration scripts
+intended to be loaded in the Doom =config.el= file.

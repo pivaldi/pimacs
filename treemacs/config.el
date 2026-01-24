@@ -22,12 +22,14 @@
 
 (use-package! treemacs
   :init
-  (setq treemacs-buffer-name-prefix "Treemacs-Buffer-")
   (when pim-azertyp (map! :desc "Select/Unselect the treemacs window if it is visible. #pim" "M-à" #'treemacs-select-window))
 
   :config
   (treemacs-follow-mode 1)
   (treemacs-filewatch-mode 1)
+  (when (modulep! :tools lsp)
+    (lsp-treemacs-sync-mode 1)
+    )
   )
 
 (provide 'pimacs/treemacs)

@@ -1,0 +1,23 @@
+#+title: PIMacs/theme Doom Module
+
+Slight customization of the Emacs theme depending on the module options used.
+
+* Features
+
+- Uses the first font found in this order:
+  1. [[https://github.com/microsoft/cascadia-code][Cascadia Code]] with [[https://github.com/mickeynp/ligature.el][ligatures]] enabled in =prog-mode=
+  2. [[https://github.com/adobe-fonts/source-code-pro][Source Code Pro]]
+  3. [[https://terminus-font.sourceforge.net/][Terminus]]
+  4. [[https://github.com/source-foundry/Hack][Hack]]
+  5. [[https://dejavu-fonts.github.io/][DejaVu Sans Mono]]
+  6. System default
+- (Re)defines some faces, =trailing-whitespace= for example
+- Loads a slightly customized [[https://github.com/bbatsov/zenburn-emacs][Zenburn Theme]]
+- Disables =hl-line= in non-special modes
+- Removes line numbering (already in mode-line)
+
+* Module Options
+
+- =+no-font= : Do not modify the default font
+- =+no-zenburn-theme= : Do not use Zenburn Theme
+- =+no-whitespace-style= : Do not modify the default whitespace style

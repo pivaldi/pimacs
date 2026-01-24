@@ -1,0 +1,26 @@
+#+title: PIMacs/functions Doom Module
+
+Useful interactive functions used by PIMacs.
+See the docstrings of each function for further information.
+
+* Features
+
+- =pim-make-script-executable= : If file starts with a shebang, make it executable
+- =pim-kill-and-join-forward= : If at end of line, join with following; otherwise kill line
+- =pim-buffer-file-name= : Show buffer file name and optionally add to kill ring
+- =pim-backward-delete-word= : Delete characters backward until beginning of word
+- =pim-delete-sexp= : Delete the sexp following point
+- =pim-backward-delete-sexp= : Delete the sexp preceding point
+- =pim-kill-window-and-buffer= : Delete current window and buffer
+- =pim-indent-whole-html-buffer= : Indent whole buffer except =<pre>= parts in HTML mode
+- =pim-indent-whole-buffer= : Indent the whole buffer
+- =pim-find-file-root= : Find file as root
+- =pim-home= : Move cursor to beginning of line or first non-blank character
+- =pim-?comment= : Comment/uncomment the entire line and optionally indent
+- =pim-insert-comment-section= : Insert a section comment
+- =pim-insert-comment-sub-section= : Insert a sub-section comment
+- =pim-fill= : Use fill line or region as =auto-fill-mode= does
+- =pim-insert-semicol-at-end-of-line= : Smartly insert semicolon at end of line
+- =pim-insert-comma-at-end-of-line= : Smartly insert comma at end of line
+- =pim-next-user-buffer= : Switch to the next real buffer
+- =pim-previous-user-buffer= : Switch to the previous real buffer

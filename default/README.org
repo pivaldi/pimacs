@@ -1,0 +1,97 @@
+#+title: PIMacs/default Doom Module
+
+The default minimal configuration of Emacs by PIMacs.
+
+*This module must be loaded with your keyboard configuration*, =+azerty= and
+=+qwerty= are supported for now. All other PIMacs modules will consider this
+option when making the best ergonomic key bindings depending on the keyboard
+disposition.
+
+* Important Note
+
+Currently only Emacs (not Evil) key bindings are supported.
+*Pull request is needed to support Evil key bindings.*
+
+* Features
+
+** Setting Variables
+
+- Fix missing =warning-suppress-types= function
+- Draw block cursor as wide as the glyph under it
+- Custom title format
+- Replace the bell by visible blink
+- Don't use graphic dialog
+- Increase the number of macro recursions
+- Ignore the case in completion mode
+- Highlight the region when the mark is active
+- Save everything before compiling
+- Resize the compilation window
+- Scrolling by default the =*compilation*= buffer window as output appears
+- Enable local variables
+- Controls if scroll commands move point to keep its screen line unchanged
+- Maximum number of lines to keep in the message log buffer set to 1000
+- =apropos= command search all
+- Fill bulleted and indented lines (adaptive fill mode enabled)
+- Do not add a new string to =kill-ring= when it is the same as the last one
+- Preferred split window horizontally
+- Increase the number of bytes of consing between garbage collections
+- Disable Global Auto-Revert Mode for flexibility to choose to revert or not
+- =M-x proced= shows all processes, without filter by default
+- Show trailing whitespace and leading whitespace
+- Show non-breaking characters
+- Force Emacs to indent with spaces by default (customized for languages like Go)
+- Activate maximum coloration
+- Remove the line numbers in the margin (distraction-less)
+- Natively compile packages as part of their installation
+- Configure the fill column indicator
+- Prefer UTF-8 encoding system and language
+- Show contextual function in the modeline (toggle with =M-x which-function-mode=)
+- Reconfigure =grep-find-command= depending on [[https://github.com/BurntSushi/ripgrep][ripgrep]] availability
+- Enable matching whitespace literally (disable lax space matching)
+- Add Workspace name in the Doom modeline
+- Increase the default length of =which-key= description to 50
+- Suppress compilation warning messages
+
+** Hooks
+
+- Ask for creating the directory when saving a buffer in a nonexistent directory
+- Abort the minibuffer when using the mouse
+- Enable =auto-fill-mode= in modes listed in =pim-auto-fill-mode-hooks=
+- Reconfigure =fill-nobreak-predicate= to ensure better breaks
+
+** Modes Enabled
+
+- =global-subword-mode= : Move cursor by camelCase
+- =delete-selection-mode= : Selecting a region and inserting overwrites it
+- =line-number-mode= and =column-number-mode= : Show line/column in mode line
+- =auto-compression-mode= : Read =.gz= and =.zip= files automatically
+- =auto-image-file-mode= : Read images by default
+- =global-whitespace-mode= : Enable whitespace visualization globally
+- =global-font-lock-mode= : Enable coloring in all modes
+- =global-display-fill-column-indicator-mode= : Display fill column indicator
+
+** Doom Customizations
+
+- Make only the minibuffer unreal (use =C-x B= to see all buffers)
+- Add Persp Workspace name in the Doom modeline
+- Disable the Doom management of the mode-line in popups
+
+** Advises
+
+Filter unwanted Emacs warnings by message regexps via advise on =display-warning=.
+Customize =pim-warning-suppress-message-regexps= to add filters.
+
+* Interactive Functions
+
+- =pim-scissor= : Insert a line of =pim-scissor-pattern= in the buffer
+
+* Packages
+
+- =htmlize-view= : Convert buffer/region/file to HTML preserving colors
+- =tramp= : Access functions for (s)sh-like connections
+- =boxquote= : Text quoting style with partial box on left side (=M-x boxquote-...=)
+
+* CLI
+
+PIMacs provides useful command line tools. Run =./bin/doom help +pimacs= to see
+the documentation.

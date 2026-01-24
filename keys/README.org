@@ -1,0 +1,19 @@
+#+title: PIMacs/keys Doom Module
+
+This module configures useful key bindings in =global-map=.
+See [[file:keys-key-bindings-refcard.org][the key bindings refcard]] for =+azerty= keyboard bindings.
+
+* Features
+
+- Removes the Doom advice on =newline-and-indent= for continuing comments;
+  use =M-<RET>= instead for this feature
+- Remaps =dabbrev-expand= to =hippie-expand=
+  (see [[https://www.masteringemacs.org/article/text-expansion-hippie-expand][Text Expansion with Hippie Expand]])
+
+* Notes
+
+- Generate the refcard of all PIMacs key bindings with =pim-keys-bindings-to-refcard=
+- With a /qwerty/ keyboard, the key bindings will be different
+
+*Pull request is welcome to provide other keyboard support, Evil support, or
+improve the existing.*
