@@ -51,7 +51,7 @@
         (toml . ("https://github.com/tree-sitter/tree-sitter-toml" "v0.5.1"))
         (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.21.2" "tsx/src"))
         (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "typescript/src"))
-        (yaml . ("https://github.com/tree-sitter-grammars/tree-sitter-yaml" "v0.5.1"))))
+        (yaml . ("https://github.com/tree-sitter-grammars/tree-sitter-yaml" "v0.6.1"))))
 
 (defun pim-treesit-install-all-grammars ()
   "Install all tree-sitter grammars defined in `treesit-language-source-alist'.
@@ -66,34 +66,35 @@ Useful for pre-installing grammars in Docker or fresh installations."
           (error
            (message "Failed to install %s: %s" lang (error-message-string err))))))))
 
-(use-package! treesit
-  :config
-  (setq treesit-font-lock-level 4) ;; Maximum treesit font decoration
-  ;; Add default tree-sitter directory to load path (for batch-installed grammars)
-  (add-to-list 'treesit-extra-load-path
-               (expand-file-name "tree-sitter" user-emacs-directory))
-  (pim-treesit-install-all-grammars)
-  (dolist (mapping
-           '((python-mode . python-ts-mode)
-             (php-mode . php-ts-mode)
-             (css-mode . css-ts-mode)
-             (typescript-mode . typescript-ts-mode)
-             (js2-mode . js-ts-mode)
-             (bash-mode . bash-ts-mode)
-             (conf-toml-mode . toml-ts-mode)
-             (go-mode . go-ts-mode)
-             (css-mode . css-ts-mode)
-             (json-mode . json-ts-mode)
-             (yaml-mode . yaml-ts-mode)
-             (js-json-mode . json-ts-mode)))
-    (add-to-list 'major-mode-remap-alist mapping))
-  )
+(when (fboundp 'use-package!)
+  (use-package! treesit
+    :config
+    (setq treesit-font-lock-level 4) ;; Maximum treesit font decoration
+    ;; Add default tree-sitter directory to load path (for batch-installed grammars)
+    (add-to-list 'treesit-extra-load-path
+                 (expand-file-name "tree-sitter" user-emacs-directory))
+    (pim-treesit-install-all-grammars)
+    (dolist (mapping
+             '((python-mode . python-ts-mode)
+               (php-mode . php-ts-mode)
+               (css-mode . css-ts-mode)
+               (typescript-mode . typescript-ts-mode)
+               (js2-mode . js-ts-mode)
+               (bash-mode . bash-ts-mode)
+               (conf-toml-mode . toml-ts-mode)
+               (go-mode . go-ts-mode)
+               (css-mode . css-ts-mode)
+               (json-mode . json-ts-mode)
+               (yaml-mode . yaml-ts-mode)
+               (js-json-mode . json-ts-mode)))
+      (add-to-list 'major-mode-remap-alist mapping))
+    ))
 
-(use-package! combobulate
-  :custom
-  (combobulate-key-prefix "C-c b")
-  :hook (prog-mode . combobulate-mode)
-  )
+;; (use-package! combobulate
+;;   :custom
+;;   (combobulate-key-prefix "C-c b")
+;;   :hook (prog-mode . combobulate-mode)
+;;   )
 
 (provide 'pimacs/treesit)
 ;; config.el ends here.

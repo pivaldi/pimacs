@@ -64,6 +64,26 @@ You imperatively need these softwars installed :
 
 *Remember to run =doom sync= after modifying =init.el= !*
 
+** Docker Testing Environment
+   :PROPERTIES:
+   :CUSTOM_ID: docker-testing-environment
+   :END:
+You can run PIMacs in a Docker container for interactive testing with X11 GUI support.
+
+#+begin_src bash
+# Build the image
+docker build -t pimacs:latest -f docker/Dockerfile .
+
+# Run Emacs (GUI)
+./docker/run.sh
+
+# Run Emacs (terminal mode)
+./docker/run.sh -nw
+#+end_src
+
+The Docker image includes Ubuntu 24.04, Emacs 30, Doom Emacs, and PIMacs modules.
+See [[file:docker/README.org][docker/README.org]] for detailed documentation, usage examples, and troubleshooting.
+
 ** Modules
    :PROPERTIES:
    :CUSTOM_ID: modules

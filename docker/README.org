@@ -1,0 +1,85 @@
+#+title: PIMacs Docker Testing Environment
+
+Run PIMacs in a Docker container for interactive testing with X11 GUI support.
+
+* Prerequisites
+
+- Docker installed and running
+- Linux host with X11 (for GUI mode)
+- =xhost= command available (usually in =x11-xserver-utils= package)
+
+* Quick Start
+
+#+begin_src bash
+# Build the image
+docker build -t pimacs:latest -f docker/Dockerfile .
+
+# Run Emacs (GUI)
+./docker/run.sh
+
+# Run Emacs (terminal mode)
+./docker/run.sh -nw
+#+end_src
+
+* What's Included
+
+The Docker image contains:
+
+- Ubuntu 24.04
+- Emacs 30 (from ubuntuhandbook1 PPA)
+- Doom Emacs (latest)
+- PIMacs modules (25 modules, excluding =lang-*= and =notmuch=)
+
+* Modules Loaded
+
+[[file:~/.doom.d/modules/pimacs/my.el][All the modules that I use currently]]
+
+* Usage Examples
+
+#+begin_src bash
+# Open a specific file living in your home directory
+./docker/run.sh /home/pimacs/host-home/.emacs.d/init.el
+
+# Run doom sync after modifying PIMacs
+docker run -it --rm \
+    -v $(pwd):/home/pimacs/.doom.d/modules/pimacs \
+    pimacs:latest ~/.emacs.d/bin/doom sync
+
+# Get a shell inside the container
+docker run -it --rm \
+    -v $(pwd):/home/pimacs/.doom.d/modules/pimacs \
+    pimacs:latest /bin/bash
+#+end_src
+
+* Verification
+
+Once Emacs opens, verify PIMacs is working:
+
+1. Theme should be Zenburn (dark theme with muted colors)
+2. Run =M-x pim-scissor= - should insert a scissor line
+3. Check =*Messages*= buffer for any errors
+4. Run =M-x doom/info= to see loaded modules
+
+* Troubleshooting
+
+** X11 Display Issues
+
+If you get display errors:
+
+#+begin_src bash
+# Ensure xhost allows local Docker
+xhost +local:docker
+
+# Check DISPLAY is set
+echo $DISPLAY
+#+end_src
+
+** Rebuilding After Changes
+
+To rebuild the image after modifying PIMacs:
+
+#+begin_src bash
+docker build --no-cache -t pimacs:latest -f docker/Dockerfile .
+#+end_src
+
+Or simply use =run.sh= which mounts PIMacs as a volume for live changes.
