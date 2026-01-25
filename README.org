@@ -116,8 +116,7 @@ You imperatively need these softwars installed :
   =TRAMP= is a built-in Emacs feature that enables you to access and
   edit files on remote systems, including those that require
   authentication using =SSH=, =SFTP=, or other protocols.
-- *pimacs/treesit*: Automatically install and use tree-sitter major
-  modes in Emacs 29+.
+- *pimacs/treesit*: Configure and use *the native tree-sitter major modes in Emacs 29+* and install a batch of grammars.
 - *pimacs/treemacs*: slightly adds to the default [[https://docs.doomemacs.org/v21.12/modules/ui/treemacs/][Doom Treemacs package]].
 - *pimacs/shrface*: This package extends ~shr / eww~ with org features and
   analysis capability. It can be used in dash-docs, eww, nov.el, mu/mu4e,

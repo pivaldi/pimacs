@@ -20,7 +20,7 @@
  pairing ;; Enhanced configuration of smartparens (this module need Doom default module loaded whith +smartparens)
  (org +lang-fr) ;; Org mode specific configuration.
  dired ;; Dired mode specific configuration.
- treesit ;; Automatically install and use tree-sitter major modes in Emacs 29+
+ treesit ;; use native tree-sitter major modes in Emacs 29+ and install a batch of grammars.
  corfu ;; Configure Corfu : remove automatic completion, remove TAB key for next candidate.
  (lsp +doc) ;; Configures lsp and lsp-ui-doc (option +doc)
  lang-c
