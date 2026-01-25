@@ -25,30 +25,25 @@
   (and (treesit-available-p)
        (treesit-language-available-p 'javascript)))
 
-(after! treesit
-  (add-to-list 'treesit-language-source-alist
-               '(javascript . ("https://github.com/tree-sitter/tree-sitter-javascript")))
+;; Deferred setup - only runs when opening a JS file
+(defvar pim--js-treesit-setup-done nil
+  "Non-nil if JavaScript tree-sitter setup has been performed.")
 
-  (unless (pim--js-ts-mode-available-p)
-    ;; Try to install missing parser
-    (condition-case err
+(defun pim--js-treesit-setup ()
+  "Setup tree-sitter for JavaScript. Called lazily on first JS file."
+  (unless pim--js-treesit-setup-done
+    (setq pim--js-treesit-setup-done t)
+    (if (pim--js-ts-mode-available-p)
         (progn
-          (message "javascript tree-sitter parser not installed. PIMacs is installing it for you...")
-          (treesit-install-language-grammar 'javascript))
-      (error
-       (add-to-list 'pim-error-msgs
-                    (format "Failed to install javascript tree-sitter grammar: %s" (error-message-string err))))))
+          ;; Remap js-mode to js-ts-mode
+          (add-to-list 'major-mode-remap-alist '(js-mode . js-ts-mode))
+          (pim--js-map t))
+      ;; Not available, use js-mode
+      (pim--js-map nil))))
 
-  ;; Check again after installation attempt
-  (if (pim--js-ts-mode-available-p)
-      (progn
-        ;; Remap js-mode to js-ts-mode
-        (add-to-list 'major-mode-remap-alist '(js-mode . js-ts-mode))
-        (pim--js-map t))
-    ;; Still not available, fall back to js-mode
-    (add-to-list 'pim-error-msgs
-                 "js-ts-mode parser unavailable. Falling back to js-mode.")
-    (pim--js-map nil)))
+;; Run setup when js-mode or js-ts-mode is loaded
+(after! js (pim--js-treesit-setup))
+(after! js-ts-mode (pim--js-treesit-setup))
 
 (provide 'pimacs/lang-js/+treesit)
 ;;; +treesit.el ends here
