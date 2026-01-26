@@ -55,26 +55,23 @@
 (use-package! ace-window
   :preface
   (map!
-   :desc "Select another window in cyclic ordering of windows (with `ace-window` if featured). #pim" "<C-next>"
+   :desc "Next window (C-u => ace-window). #pim" "<C-next>"
    (lambda (arg)
-     (interactive "p")
-     (if (and arg (functionp 'ace-window))
+     (interactive "P")
+     (if arg
          (let ((aw-ignore-current-orig aw-ignore-current))
            (setq aw-ignore-current t)
-           (ace-window arg)
-           (setq aw-ignore-current aw-ignore-current-orig)
-           )
-       (other-window 1 nil))))
+           (ace-window 1)
+           (setq aw-ignore-current aw-ignore-current-orig))
+       (other-window 1))))
 
   (map!
-   :desc "Select another window in reverse cyclic ordering of windows or with `ace-window` if C-u prefix. #pim" "<C-prior>"
+   :desc "Prev window (C-u => ace-window). #pim" "<C-prior>"
    (lambda (arg)
-     "Select another window in reverse cyclic."
      (interactive "P")
-     (if (and arg (functionp 'ace-window))
-         (ace-window arg)
-       (other-window -1 nil)))))
-
+     (if arg
+         (ace-window 1)
+       (other-window -1)))))
 
 ;; -------------------------------------------
 ;; * Filename completion anywhere with S-Tab *
@@ -131,38 +128,6 @@
       :desc "Increment the number forward from point by ARG. #pim" "C-c +" #'pim-increment-number-decimal
       :desc "Decrement the number forward from point by ARG. #pim"  "C-c -" #'pim-decrement-number-decimal)
 
-
-;; ;; Todo : enable this !
-;; (if (require 'move-text nil t)
-;;     (move-text-default-bindings)
-;;   (progn
-;;     (defun move-line-up (&optional n)
-;;       "Moves current line up leaving point in place.  With a prefix
-;; argument, moves up N lines."
-;;       (interactive "p")
-;;       (if (null n) (setq n 1))
-;;       (let ((col (current-column)))
-;;         (beginning-of-line)
-;;         (next-line 1)
-;;         (transpose-lines (- n))
-;;         (previous-line 2)
-;;         (forward-char col)))
-;;     (global-set-key (kbd "<M-up>") 'move-line-up)
-
-;;     (defun move-line-down (&optional n)
-;;       "Moves current line down leaving point in place.  With a prefix
-;; argument, moves down N lines."
-;;       (interactive "p")
-;;       (if (null n) (setq n 1))
-;;       (let ((col (current-column)))
-;;         (beginning-of-line)
-;;         (next-line 1)
-;;         (transpose-lines  n)
-;;         (previous-line 1)
-;;         (forward-char col)))
-;;     (global-set-key [(meta down)] 'move-line-down)
-;;     )
-;;   )
 
 (map! :desc "Find file as root. #pim" "C-x C-r" #'doom/sudo-find-file)
 (map! :desc "Jump/switch between the indentation column and the beginning of the line. #pim" "<home>" #'doom/backward-to-bol-or-indent)
