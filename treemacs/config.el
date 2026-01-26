@@ -20,17 +20,53 @@
 
 (doom! :ui treemacs)
 
+;; (setq +treemacs-git-mode 'simple)  ;; or 'none if you want zero git decoration
+
 (use-package! treemacs
   :init
-  (when pim-azertyp (map! :desc "Select/Unselect the treemacs window if it is visible. #pim" "M-à" #'treemacs-select-window))
+  ;; Keybinding
+  (when pim-azertyp
+    (map! :desc "Select/Unselect the treemacs window if it is visible. #pim"
+          "M-à" #'treemacs-select-window))
+
+  ;; Open at startup, but keep focus where it was
+  (unless (modulep! +no-open)
+    (defun pim/treemacs-open-no-focus ()
+      (run-at-time
+       0 nil
+       (lambda ()
+         (let ((win (selected-window)))
+           (unless (eq (treemacs-current-visibility) 'visible)
+             ;; Add current directory as project if workspace is empty (avoids prompt)
+             (let ((ws (treemacs-current-workspace)))
+               (when (or (null ws)
+                         (null (treemacs-workspace->projects ws)))
+                 (treemacs-do-add-project-to-workspace
+                  default-directory
+                  (file-name-nondirectory (directory-file-name default-directory)))))
+             (treemacs))
+           (when (window-live-p win)
+             (select-window win))))))
+
+    (add-hook! 'window-setup-hook #'pim/treemacs-open-no-focus))
 
   :config
   (treemacs-follow-mode 1)
   (treemacs-filewatch-mode 1)
+
   (when (modulep! :tools lsp)
-    (lsp-treemacs-sync-mode 1)
-    )
+    (lsp-treemacs-sync-mode 1))
+
+  ;; ;; Make Treemacs workspaces/perspectives aware
+  ;; (when (modulep! :ui workspaces)
+  ;;   ;; ensure treemacs-persp is available before setting scope
+  ;;   (use-package! treemacs-persp
+  ;;     :after (treemacs persp-mode)
+  ;;     :config
+  ;;     (treemacs-set-scope-type 'Frames)
+  ;;     ))
   )
+
 
 (provide 'pimacs/treemacs)
 

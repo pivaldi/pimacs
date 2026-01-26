@@ -9,6 +9,10 @@ all: help
 docker-build: ## Build PIMacs Docker image.
 	docker build -t pimacs:latest -f docker/Dockerfile .
 
+.PHONY: docker-rebuild
+docker-rebuild: ## ReBuild PIMacs Docker image disabling cache.
+	docker build --no-cache -t pimacs:latest -f docker/Dockerfile .
+
 .PHONY: docker-run
 docker-run: ## Run PIMacs in Docker with X11 GUI.
 	./docker/run.sh

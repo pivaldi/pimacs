@@ -49,7 +49,9 @@ COPY --chown=pimacs:pimacs . /home/pimacs/.doom.d/modules/pimacs
 RUN ~/.emacs.d/bin/doom sync
 
 # Pre-install tree-sitter grammars
-RUN emacs --batch \
+# Create the cache directory first so grammars install to the correct location
+RUN mkdir -p /home/pimacs/.emacs.d/.local/cache/tree-sitter && \
+    emacs --batch \
     -l .doom.d/modules/pimacs/treesit/config.el \
     --eval "(pim-treesit-install-all-grammars)"
 

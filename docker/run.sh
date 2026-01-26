@@ -13,6 +13,8 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 IMAGE_NAME="pimacs:latest"
 
+touch ~/.projectile
+
 cleanup() {
     xhost -local:docker 2>/dev/null || true
 }
@@ -39,4 +41,4 @@ docker run -it --rm \
     -v "$HOME:/home/pimacs/host-home" \
     -w /home/pimacs/host-home \
     "$IMAGE_NAME" \
-    emacs "$@" \
+    emacs "$@"

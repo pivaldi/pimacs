@@ -1,5 +1,5 @@
-;;; Package pimacs/treesit --- PIMacs tree-sitter config
-;;; pimacs/treesit/config.el -*- lexical-binding: t; -*-
+;;; Package pimacs/treesit --- PIMacs tree-sitter config -*- lexical-binding: t; -*-
+;;; pimacs/treesit/config.el
 ;; Copyright (c) 2024, Philippe Ivaldi <www.piprime.fr>
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,17 @@
     (add-to-list
      'pim-error-msgs
      "Native treesit module *not* found.  Complie Emacs with configuration option --with-tree-sitter")))
+
+;; Set up tree-sitter load paths (needed for both batch install and runtime)
+;; In Doom, user-emacs-directory is ~/.doom.d/ but grammars are in ~/.emacs.d/
+;; Use doom-emacs-dir when available (runtime), fall back to ~/.emacs.d (batch mode)
+(let ((emacs-dir (if (boundp 'doom-emacs-dir)
+                     doom-emacs-dir
+                   (expand-file-name "~/.emacs.d/"))))
+  (add-to-list 'treesit-extra-load-path
+               (expand-file-name "tree-sitter" emacs-dir))
+  (add-to-list 'treesit-extra-load-path
+               (expand-file-name ".local/cache/tree-sitter" emacs-dir)))
 
 ;; Define all tree-sitter grammar sources
 ;; Using tags compatible with Emacs 30 tree-sitter ABI (version 14)
@@ -70,9 +81,7 @@ Useful for pre-installing grammars in Docker or fresh installations."
   (use-package! treesit
     :config
     (setq treesit-font-lock-level 4) ;; Maximum treesit font decoration
-    ;; Add default tree-sitter directory to load path (for batch-installed grammars)
-    (add-to-list 'treesit-extra-load-path
-                 (expand-file-name "tree-sitter" user-emacs-directory))
+    ;; Install missing grammars if needed (paths already set at top of file)
     (pim-treesit-install-all-grammars)
     (dolist (mapping
              '((python-mode . python-ts-mode)
@@ -88,13 +97,14 @@ Useful for pre-installing grammars in Docker or fresh installations."
                (yaml-mode . yaml-ts-mode)
                (js-json-mode . json-ts-mode)))
       (add-to-list 'major-mode-remap-alist mapping))
-    ))
+    )
 
-;; (use-package! combobulate
-;;   :custom
-;;   (combobulate-key-prefix "C-c b")
-;;   :hook (prog-mode . combobulate-mode)
-;;   )
+  (use-package! combobulate
+    :init
+    (setq combobulate-key-prefix "C-c b")
+    :config
+    (add-hook! 'prog-mode-hook #'combobulate-mode))
+  )
 
 (provide 'pimacs/treesit)
 ;; config.el ends here.
