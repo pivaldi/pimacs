@@ -6,6 +6,9 @@ LABEL description="PIMacs - Extended Doom Emacs configuration for testing"
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
+# Mise: auto-accept prompts and trust config paths (including host-home mount)
+ENV MISE_YES=1
+ENV MISE_TRUSTED_CONFIG_PATHS=/home/pimacs/.doom.d/modules/pimacs:/home/pimacs/host-home
 
 # Install Emacs and dependencies
 RUN apt-get update && apt-get install -y \
@@ -56,8 +59,9 @@ COPY --chown=pimacs:pimacs . /home/pimacs/.doom.d/modules/pimacs
 # Run doom sync to install packages
 RUN ~/.emacs.d/bin/doom sync
 
-# Pre-install mise tools for language modules
-RUN mise trust /home/pimacs/.doom.d/modules/pimacs/lang-go/mise.toml \
+# Trust all mise configs in PIMacs modules and pre-install tools
+RUN mise settings set trusted_config_paths /home/pimacs/.doom.d/modules/pimacs \
+    && mise trust /home/pimacs/.doom.d/modules/pimacs/lang-go/mise.toml \
     && cd /home/pimacs/.doom.d/modules/pimacs/lang-go && mise install
 
 # Pre-install tree-sitter grammars
