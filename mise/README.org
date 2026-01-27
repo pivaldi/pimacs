@@ -1,0 +1,51 @@
+#+title: PIMacs/mise Doom Emacs Module
+
+This module integrates [[https://mise.jdx.dev/][Mise]] with PIMacs for automatic
+development tool management.
+
+* Features
+
+- Automatic tool installation via =mise.toml= files in language modules
+- Per-buffer environment variables using [[https://github.com/eki3z/mise.el][mise.el]]
+- Graceful fallback when Mise is not installed
+
+* Requirements
+
+- Mise CLI installed: https://mise.jdx.dev/getting-started.html
+- Emacs 29.1+
+
+* Installation (Debian/Ubuntu)
+
+#+begin_src bash
+sudo apt update -y && sudo apt install -y curl
+sudo install -dm 755 /etc/apt/keyrings
+curl -fSs https://mise.jdx.dev/gpg-key.pub | sudo tee /etc/apt/keyrings/mise-archive-keyring.asc > /dev/null
+echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.asc] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
+sudo apt update -y
+sudo apt install -y mise
+#+end_src
+
+* Usage
+
+Enable this module in your =init.el=:
+
+#+begin_src elisp
+(doom! :pimacs
+       mise  ; Enable mise integration
+       (lang-go +lsp))  ; Language modules will auto-install tools
+#+end_src
+
+When a language module with a =mise.toml= is loaded, tools are automatically
+installed if missing.
+
+* For Module Developers
+
+To add mise support to a language module:
+
+1. Create =mise.toml= in the module directory
+2. Add to =config.el=:
+
+#+begin_src elisp
+(when (modulep! :pimacs mise)
+  (pim-mise-ensure-tools (file-name-directory load-file-name)))
+#+end_src

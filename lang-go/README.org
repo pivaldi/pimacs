@@ -15,6 +15,22 @@ based on the native support of [[https://tree-sitter.github.io/tree-sitter/][Tre
   without modifying the default Doom key bindings.
 - Realtime documentation [[../lsp/lsp-key-bindings-refcard.org][with mouse or key bindings]] if the =+lsp= option is passed.
 
+* Automatic Tool Installation
+
+If the =:pimacs mise= module is enabled, all required Go tools are
+automatically installed on first load:
+
+- =go= (latest version)
+- =gopls= (LSP server)
+- =goimports=
+- =callgraph=
+- =godef=
+- =gocode=
+- =go-enum=
+- =golangci-lint=
+
+See [[../mise/README.org][pimacs/mise README]] for setup instructions.
+
 * Module Options
 - =lsp= (recommended) : provide =LSP= integration with =go-mode= and =go-ts-mode=.
   If the module =:pimacs lsp= is loaded this option is automatically added.

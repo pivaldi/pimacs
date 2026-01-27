@@ -1,0 +1,13 @@
+[tools.go]
+version = "latest"
+postinstall = """
+go install golang.org/x/tools/gopls@latest
+go install golang.org/x/tools/cmd/goimports@latest
+go install golang.org/x/tools/cmd/callgraph@latest
+go install github.com/rogpeppe/godef@latest
+go install github.com/nsf/gocode@latest
+go install github.com/abice/go-enum@latest
+"""
+
+[tools]
+golangci-lint = "latest"

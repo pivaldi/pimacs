@@ -24,6 +24,14 @@ RUN apt-get update && apt-get install -y \
     aspell-en \
     && rm -rf /var/lib/apt/lists/*
 
+# Install mise for tool version management
+RUN install -dm 755 /etc/apt/keyrings \
+    && curl -fsSL https://mise.jdx.dev/gpg-key.pub | tee /etc/apt/keyrings/mise-archive-keyring.asc > /dev/null \
+    && echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.asc] https://mise.jdx.dev/deb stable main" | tee /etc/apt/sources.list.d/mise.list \
+    && apt-get update \
+    && apt-get install -y mise \
+    && rm -rf /var/lib/apt/lists/*
+
 # Create non-root user
 RUN useradd -m -s /bin/bash pimacs
 USER pimacs
@@ -47,6 +55,10 @@ COPY --chown=pimacs:pimacs . /home/pimacs/.doom.d/modules/pimacs
 
 # Run doom sync to install packages
 RUN ~/.emacs.d/bin/doom sync
+
+# Pre-install mise tools for language modules
+RUN mise trust /home/pimacs/.doom.d/modules/pimacs/lang-go/mise.toml \
+    && cd /home/pimacs/.doom.d/modules/pimacs/lang-go && mise install
 
 # Pre-install tree-sitter grammars
 # Create the cache directory first so grammars install to the correct location
