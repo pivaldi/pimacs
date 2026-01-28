@@ -28,6 +28,7 @@ automatically installed on first load:
 - =gocode=
 - =go-enum=
 - =golangci-lint=
+- =golangci-lint-langserver= (LSP wrapper for golangci-lint)
 
 See [[../mise/README.org][pimacs/mise README]] for setup instructions.
 

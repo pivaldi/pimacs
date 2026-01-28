@@ -6,9 +6,16 @@ LABEL description="PIMacs - Extended Doom Emacs configuration for testing"
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
-# Mise: auto-accept prompts and trust config paths (including host-home mount)
+
+# Mise configuration (following https://mise.jdx.dev/mise-cookbook/docker.html)
+ENV MISE_DATA_DIR="/mise"
+ENV MISE_CONFIG_DIR="/mise"
+ENV MISE_CACHE_DIR="/mise/cache"
+ENV MISE_INSTALL_PATH="/usr/local/bin/mise"
 ENV MISE_YES=1
 ENV MISE_TRUSTED_CONFIG_PATHS=/home/pimacs/.doom.d/modules/pimacs:/home/pimacs/host-home
+# Add mise shims to PATH (before other paths for priority)
+ENV PATH="/mise/shims:${PATH}"
 
 # Install Emacs and dependencies
 RUN apt-get update && apt-get install -y \
@@ -27,19 +34,16 @@ RUN apt-get update && apt-get install -y \
     aspell-en \
     && rm -rf /var/lib/apt/lists/*
 
-# Install mise for tool version management
-RUN install -dm 755 /etc/apt/keyrings \
-    && curl -fsSL https://mise.jdx.dev/gpg-key.pub | tee /etc/apt/keyrings/mise-archive-keyring.asc > /dev/null \
-    && echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.asc] https://mise.jdx.dev/deb stable main" | tee /etc/apt/sources.list.d/mise.list \
-    && apt-get update \
-    && apt-get install -y mise \
-    && rm -rf /var/lib/apt/lists/*
+# Install mise
+RUN curl https://mise.run | sh
+
+# Create mise directories with proper permissions
+RUN mkdir -p /mise/cache && chmod -R 777 /mise
 
 # Create non-root user
 RUN useradd -m -s /bin/bash pimacs
 USER pimacs
 WORKDIR /home/pimacs
-
 
 # Install Doom Emacs
 RUN git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d \
@@ -59,10 +63,12 @@ COPY --chown=pimacs:pimacs . /home/pimacs/.doom.d/modules/pimacs
 # Run doom sync to install packages
 RUN ~/.emacs.d/bin/doom sync
 
-# Trust all mise configs in PIMacs modules and pre-install tools
-RUN mise settings set trusted_config_paths /home/pimacs/.doom.d/modules/pimacs \
-    && mise trust /home/pimacs/.doom.d/modules/pimacs/lang-go/mise.toml \
-    && cd /home/pimacs/.doom.d/modules/pimacs/lang-go && mise install
+# Trust and install mise tools for language modules
+RUN mise trust /home/pimacs/.doom.d/modules/pimacs/lang-go/mise.toml \
+    && cd /home/pimacs/.doom.d/modules/pimacs/lang-go && mise install \
+    && mise use -g go@latest \
+    && mise use -g golangci-lint@latest \
+    && mise reshim
 
 # Pre-install tree-sitter grammars
 # Create the cache directory first so grammars install to the correct location

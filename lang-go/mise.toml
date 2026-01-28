@@ -3,14 +3,24 @@ version = "latest"
 postinstall = """
 # LSP
 go install golang.org/x/tools/gopls@latest
+
+# LSP warapper for golangci-lint
+go install github.com/nametake/golangci-lint-langserver@latest
+
 # Formatting
 go install golang.org/x/tools/cmd/goimports@latest
+
 # Find symbol information in Go source
 go install github.com/rogpeppe/godef@latest
+
 # Static analysis
 go install honnef.co/go/tools/cmd/staticcheck@latest
+
 # Debugger
 go install github.com/go-delve/delve/cmd/dlv@latest
+
+# Unclutter your .profile
+go install github.com/direnv/direnv@latest
 """
 
 [tools.golangci-lint]
