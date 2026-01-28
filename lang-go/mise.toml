@@ -1,13 +1,17 @@
 [tools.go]
 version = "latest"
 postinstall = """
+# LSP
 go install golang.org/x/tools/gopls@latest
+# Formatting
 go install golang.org/x/tools/cmd/goimports@latest
-go install golang.org/x/tools/cmd/callgraph@latest
+# Find symbol information in Go source
 go install github.com/rogpeppe/godef@latest
-go install github.com/nsf/gocode@latest
-go install github.com/abice/go-enum@latest
+# Static analysis
+go install honnef.co/go/tools/cmd/staticcheck@latest
+# Debugger
+go install github.com/go-delve/delve/cmd/dlv@latest
 """
 
-[tools]
-golangci-lint = "latest"
+[tools.golangci-lint]
+version = "latest"
