@@ -12,7 +12,7 @@ programming oriented with special attention to French keyboard.
 - *This is a work in progress* but I use daily this configuration for
   professional programming and administration system works.\\
   See the roadmap at the end of this file and the [[file:TODO.org][to-do list]].
-- This is a huge refactoring of [[https://github.com/pivaldi/pi-emacs-configuration][~pi-emacs-configuration~]]
+- This is a huge refactoring of [[https://github.com/pivaldi/pi-emacs-configuration][pi-emacs-configuration]]
   using [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
 
 ** Dependencies
@@ -33,7 +33,7 @@ You imperatively need these softwars installed :
    :CUSTOM_ID: installation
    :END:
 - Clone this repository into your ~USERDOOMDIR/modules~
-  (~~/.doom.d/modules~ on Linux) :\\
+  (~/.doom.d/modules~ on Linux) :\\
   ~cd ~/.doom.d/modules && git clone https://github.com/pivaldi/pimacs.git~
 - You can enable PIMacs in two ways :
   1. *Full featured PIMacs as it satisfy MY daily coding needs*\\
@@ -62,7 +62,7 @@ You imperatively need these softwars installed :
  )
 #+end_src
 
-*Remember to run ~doom sync~ after modifying ~init.el~ !*
+*Remember to run "doom sync" after modifying init.el !*
 
 ** Docker Testing Environment
    :PROPERTIES:
@@ -88,7 +88,7 @@ See [[file:docker/README.org][docker/README.org]] for detailed documentation, us
    :PROPERTIES:
    :CUSTOM_ID: modules
    :END:
-- *pimacs/aliases*: [[file:aliases/config.el][Define useful aliases starting by ~_~]].
+- *pimacs/aliases*: [[file:aliases/config.el][Define useful aliases starting by "_"]].
 - *pimacs/avy*: [[file:avy/README.org][Create key bindings for avy with prefix (Doom does not provide them)]].
 - *pimacs/bm*: [[file:bm/README.org][Visible local bookmarks in buffer]]
   is a simple and useful complement to the native Emacs bookmark system.
