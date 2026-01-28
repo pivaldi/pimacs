@@ -12,7 +12,7 @@ programming oriented with special attention to French keyboard.
 - *This is a work in progress* but I use daily this configuration for
   professional programming and administration system works.\\
   See the roadmap at the end of this file and the [[file:TODO.org][to-do list]].
-- This is a huge refactoring of [[https://github.com/pivaldi/pi-emacs-configuration][=pi-emacs-configuration=]]
+- This is a huge refactoring of [[https://github.com/pivaldi/pi-emacs-configuration][~pi-emacs-configuration~]]
   using [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
 
 ** Dependencies
@@ -32,18 +32,18 @@ You imperatively need these softwars installed :
    :PROPERTIES:
    :CUSTOM_ID: installation
    :END:
-- Clone this repository into your =USERDOOMDIR/modules=
-  (=~/.doom.d/modules= on Linux) :\\
-  =cd ~/.doom.d/modules && git clone https://github.com/pivaldi/pimacs.git=
+- Clone this repository into your ~USERDOOMDIR/modules~
+  (~~/.doom.d/modules~ on Linux) :\\
+  ~cd ~/.doom.d/modules && git clone https://github.com/pivaldi/pimacs.git~
 - You can enable PIMacs in two ways :
   1. *Full featured PIMacs as it satisfy MY daily coding needs*\\
-     In your Doom file =init.el=, at the end of the file, after the
-     =(doom! …)=\\
-     part, add the code =(load! "modules/pimacs/init")=.\\
+     In your Doom file ~init.el~, at the end of the file, after the
+     ~(doom! …)~\\
+     part, add the code ~(load! "modules/pimacs/init")~.\\
      This will load /all the PIMacs modules/ at once.
   2. *Partially featured PIMacs as it satisfy YOUR needs*\\
-     In your Doom file =init.el=, at the end of the file, after the
-     =(doom! …)=\\
+     In your Doom file ~init.el~, at the end of the file, after the
+     ~(doom! …)~\\
      part, add the following code uncommenting the module you want to
      enabled :
 
@@ -62,7 +62,7 @@ You imperatively need these softwars installed :
  )
 #+end_src
 
-*Remember to run =doom sync= after modifying =init.el= !*
+*Remember to run ~doom sync~ after modifying ~init.el~ !*
 
 ** Docker Testing Environment
    :PROPERTIES:
@@ -88,7 +88,7 @@ See [[file:docker/README.org][docker/README.org]] for detailed documentation, us
    :PROPERTIES:
    :CUSTOM_ID: modules
    :END:
-- *pimacs/aliases*: [[file:aliases/config.el][Define useful aliases starting by =_=]].
+- *pimacs/aliases*: [[file:aliases/config.el][Define useful aliases starting by ~_~]].
 - *pimacs/avy*: [[file:avy/README.org][Create key bindings for avy with prefix (Doom does not provide them)]].
 - *pimacs/bm*: [[file:bm/README.org][Visible local bookmarks in buffer]]
   is a simple and useful complement to the native Emacs bookmark system.
@@ -106,7 +106,7 @@ See [[file:docker/README.org][docker/README.org]] for detailed documentation, us
 - *pimacs/functions*: [[file:functions/README.org][Define useful functions used under the hood by PIMacs]].
 - *pimacs/keys*: [[file:keys/README.org][PIMacs global-map configuration]]. See also the auto-generated
   [[file:keys/all-key-bindings-refcard.org][global-map key bindings refcard]] and the [[file:keys/pimacs-key-bindings-refcard.org][global-map PIMacs key bindings refcard]].
-- *pimacs/lang-c*: Configuration of =C= mode and derived.
+- *pimacs/lang-c*: Configuration of ~C~ mode and derived.
   #+begin_example
   (setq-default c-basic-offset 2)
   (c-set-offset 'substatement-open '0)
@@ -117,11 +117,11 @@ See [[file:docker/README.org][docker/README.org]] for detailed documentation, us
   (c-set-offset 'arglist-intro 'c-basic-offset)
   #+end_example
 - *pimacs/lang-go*: [[file:lang-go/README.org][Configuration for the Go programming language]].\\
-  Support native =go-ts-mode= (Emacs 30+) and standart =go-mode=.
+  Support native ~go-ts-mode~ (Emacs 30+) and standart ~go-mode~.
 - *pimacs/lang-js*: [[file:lang-js/README.org][Configuration for the JavaScript programming language]].\\
-  Support native =js-ts-mode= (Emacs 29+) and standard =js-mode=.
+  Support native ~js-ts-mode~ (Emacs 29+) and standard ~js-mode~.
 - *pimacs/lang-php*: [[file:lang-php/README.org][Configuration for the PHP programming language]].\\
-  Support native =php-ts-mode= (Emacs 29+) and standart =php-mode=.
+  Support native ~php-ts-mode~ (Emacs 29+) and standart ~php-mode~.
 - *pimacs/lsp*: Complet/extend the default Doom configuration of the
   [[https://microsoft.github.io/language-server-protocol/][Langage Server Protocol]].
 - *pimacs/notmuch*: [[file:notmuch/README.org][This package]] provides
@@ -133,9 +133,9 @@ See [[file:docker/README.org][docker/README.org]] for detailed documentation, us
 - *pimacs/session*: [[file:session/README.org][Workspace/Session Persistence and Auto Restore Last Session]].
 - *pimacs/theme*: [[file:theme/README.org][Slight customization of the Emacs theme depending the module options used]].
 - *pimacs/tramp*: [[file:tramp/README.org][Slight configuration of TRAMP]].\\
-  =TRAMP= is a built-in Emacs feature that enables you to access and
+  ~TRAMP~ is a built-in Emacs feature that enables you to access and
   edit files on remote systems, including those that require
-  authentication using =SSH=, =SFTP=, or other protocols.
+  authentication using ~SSH~, ~SFTP~, or other protocols.
 - *pimacs/treesit*: Configure and use *the native tree-sitter major modes in Emacs 29+* and install a batch of grammars.
 - *pimacs/treemacs*: slightly adds to the default [[https://docs.doomemacs.org/v21.12/modules/ui/treemacs/][Doom Treemacs package]].
 - *pimacs/shrface*: This package extends ~shr / eww~ with org features and

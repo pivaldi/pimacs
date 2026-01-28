@@ -7,34 +7,34 @@ based on the native support of [[https://tree-sitter.github.io/tree-sitter/][Tre
 * Features
 
 - Handle and extand properly the Emacs V29.1+ [[https://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/progmodes/go-ts-mode.el][native support of Go]]
-  of =go-ts-mode= with native [[https://tree-sitter.github.io/tree-sitter/][Tree Sitter]] Emacs integration.
-- Inherit and extand the Doom Emacs =go-mode= configuration by default.
-- Provide a solid programming bundle with =go-[ts-]mode=, =LSP= and
-  =[[https://github.com/golangci/golangci-lint][Golangci-lint]]= working together.
+  of ~go-ts-mode~ with native [[https://tree-sitter.github.io/tree-sitter/][Tree Sitter]] Emacs integration.
+- Inherit and extand the Doom Emacs ~go-mode~ configuration by default.
+- Provide a solid programming bundle with ~go-[ts-]mode~, ~LSP~ and
+  ~[[https://github.com/golangci/golangci-lint][Golangci-lint]]~ working together.
 - Rapid key access for "Find definitions", "Find references" and "Go back"
   without modifying the default Doom key bindings.
-- Realtime documentation [[../lsp/lsp-key-bindings-refcard.org][with mouse or key bindings]] if the =+lsp= option is passed.
+- Realtime documentation [[../lsp/lsp-key-bindings-refcard.org][with mouse or key bindings]] if the ~+lsp~ option is passed.
 
 * Automatic Tool Installation
 
-If the =:pimacs mise= module is enabled, all required Go tools are
+If the ~:pimacs mise~ module is enabled, all required Go tools are
 automatically installed on first load:
 
-- =go= (latest version)
-- =gopls= (LSP server)
-- =goimports=
-- =callgraph=
-- =godef=
-- =gocode=
-- =go-enum=
-- =golangci-lint=
-- =golangci-lint-langserver= (LSP wrapper for golangci-lint)
+- ~go~ (latest version)
+- ~gopls~ (LSP server)
+- ~goimports~
+- ~callgraph~
+- ~godef~
+- ~gocode~
+- ~go-enum~
+- ~golangci-lint~
+- ~golangci-lint-langserver~ (LSP wrapper for golangci-lint)
 
 See [[../mise/README.org][pimacs/mise README]] for setup instructions.
 
 * Module Options
-- =lsp= (recommended) : provide =LSP= integration with =go-mode= and =go-ts-mode=.
-  If the module =:pimacs lsp= is loaded this option is automatically added.
+- ~lsp~ (recommended) : provide ~LSP~ integration with ~go-mode~ and ~go-ts-mode~.
+  If the module ~:pimacs lsp~ is loaded this option is automatically added.
   See the [[../lsp/README.org][pimacs/lsp README]] for futher informations.
 
 * TODO Use goimports on save
@@ -51,9 +51,9 @@ Use [[https://github.com/purcell/emacs-reformatter?tab=readme-ov-file][ purcell/
 
 * Pull Request Needed
 
-The support of =Golangci-lint= is done with
+The support of ~Golangci-lint~ is done with
 [[https://github.com/weijiangan/flycheck-golangci-lint][flycheck-golangci-lint]]
-only if the Doom module =:checkers syntax= is loaded and without the option
-=+flymake= !
+only if the Doom module ~:checkers syntax~ is loaded and without the option
+~+flymake~ !
 
-Pull request is needed to support =Golangci-lint= with =flymake= or [[https://github.com/nametake/golangci-lint-langserver][golangci-lint-langserver]].
+Pull request is needed to support ~Golangci-lint~ with ~flymake~ or [[https://github.com/nametake/golangci-lint-langserver][golangci-lint-langserver]].
