@@ -1,0 +1,12 @@
+[tools.node]
+version = "latest"
+postinstall = """
+# TypeScript language server
+npm install -g typescript typescript-language-server
+
+# Formatting
+npm install -g prettier
+
+# Package manager
+npm install -g pnpm
+"""

@@ -1,1 +1,4 @@
 .worktrees/
+CLAUDE.md
+.claude/**
+docs/**

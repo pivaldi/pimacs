@@ -20,7 +20,6 @@
 ;;; Code:
 
 (use-package! go-ts-mode
-  :defer t
   :init
   (when (or (modulep! +lsp) (modulep! :pimacs lsp))
     (add-hook 'go-ts-mode-hook #'lsp-deferred))
@@ -56,28 +55,38 @@
       (setf (alist-get 'go-ts-mode apheleia-mode-alist) '(goimports))))
   )
 
-(after! (go-ts-mode flycheck-golangci-lint)
-  (flycheck-define-checker pim-golangci-lint-ts
-    "A Go syntax checker using golangci-lint for go-ts-mode."
-    :command ("golangci-lint" "run" "--output.checkstyle.path=stdout"
-              (option "--config=" flycheck-golangci-lint-config concat)
-              (option "--timeout=" flycheck-golangci-lint-deadline concat)
-              (option-flag "--tests" flycheck-golangci-lint-tests)
-              (option-flag "--fast" flycheck-golangci-lint-fast)
-              (option-flag "--allow-parallel-runners" flycheck-golangci-allow-parallel-runners)
-              (option-flag "--allow-serial-runners" flycheck-golangci-allow-serial-runners)
-              (option-flag "--disable-all" flycheck-golangci-lint-disable-all)
-              (option-flag "--enable-all" flycheck-golangci-lint-enable-all)
-              (option-list "--disable=" flycheck-golangci-lint-disable-linters concat)
-              (option-list "--enable=" flycheck-golangci-lint-enable-linters concat)
-              ".")
-    :error-parser flycheck-parse-checkstyle
-    :error-patterns
-    ((error line-start (file-name) ":" line ":" column ": " (message) line-end)
-     (error line-start (file-name) ":" line ":" (message) line-end))
-    :modes go-ts-mode)
+(after! (flycheck go-ts-mode flycheck-golangci-lint)
+  ;; (flycheck-define-checker pim-golangci-lint-ts
+  ;;   "A Go syntax checker using golangci-lint for go-ts-mode."
+  ;;   :command ("golangci-lint" "run" "--output.checkstyle.path=stdout"
+  ;;             (option "--config=" flycheck-golangci-lint-config concat)
+  ;;             (option "--timeout=" flycheck-golangci-lint-deadline concat)
+  ;;             (option-flag "--tests" flycheck-golangci-lint-tests)
+  ;;             (option-flag "--fast" flycheck-golangci-lint-fast)
+  ;;             (option-flag "--allow-parallel-runners" flycheck-golangci-allow-parallel-runners)
+  ;;             (option-flag "--allow-serial-runners" flycheck-golangci-allow-serial-runners)
+  ;;             (option-flag "--disable-all" flycheck-golangci-lint-disable-all)
+  ;;             (option-flag "--enable-all" flycheck-golangci-lint-enable-all)
+  ;;             (option-list "--disable=" flycheck-golangci-lint-disable-linters concat)
+  ;;             (option-list "--enable=" flycheck-golangci-lint-enable-linters concat)
+  ;;             (eval (let ((root (locate-dominating-file default-directory "go.mod")))
+  ;;                     (if root
+  ;;                         (concat "./" (file-relative-name default-directory root))
+  ;;                       "."))))
+  ;;   :error-parser flycheck-parse-checkstyle
+  ;;   :modes go-ts-mode
+  ;;   :working-directory (lambda (_checker)
+  ;;                        (or (locate-dominating-file default-directory "go.mod")
+  ;;                            default-directory)))
 
-  (add-hook 'flycheck-mode-hook #'pim-flycheck-golangci-lint-ts-setup-maybe)
+  ;; (add-hook 'flycheck-mode-hook #'pim-flycheck-golangci-lint-ts-setup-maybe)
+  (add-hook! 'flycheck-mode-hook #'flycheck-golangci-lint-setup)
+
+  ;; (add-hook 'lsp-managed-mode-hook
+  ;;           (lambda ()
+  ;;             (when (derived-mode-p 'go-mode)
+  ;;               (setq flycheck-local-checkers '((lsp . ((next-checkers . (golangci-lint)))))))
+  ;;             ))
 
   (after! pimacs/lsp
     (add-hook 'lsp-managed-mode-hook

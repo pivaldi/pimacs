@@ -55,7 +55,8 @@
   (treemacs-filewatch-mode 1)
 
   (when (modulep! :tools lsp)
-    (lsp-treemacs-sync-mode 1))
+    (lsp-treemacs-sync-mode 1)
+    (setq lsp-treemacs-error-list-expand-depth 1000))
 
   ;; ;; Make Treemacs workspaces/perspectives aware
   ;; (when (modulep! :ui workspaces)

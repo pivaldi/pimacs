@@ -1,0 +1,25 @@
+[tools.node]
+version = "latest"
+postinstall = "npm install -g @prettier/plugin-php prettier"
+
+[tools.composer]
+version = "latest"
+postinstall = """
+# LSP Server
+composer global require phpactor/phpactor --no-progress
+
+# Static analysis
+composer global require phpstan/phpstan --dev -W --no-progress
+composer global require phpactor/language-server-phpstan-extension -W --no-progress
+composer global require vimeo/psalm -W --no-progress
+
+# Formatting & linting
+composer global require friendsofphp/php-cs-fixer -W --no-progress
+composer global require squizlabs/php_codesniffer=* --dev -W --no-progress
+
+# Testing
+composer global require phpunit/phpunit -W --no-progress
+
+# Tags
+composer global require techlivezheng/phpctags -W --no-progress
+"""

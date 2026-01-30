@@ -20,6 +20,10 @@
 
 ;;; Code:
 
+;; Auto-install tools if mise module is available
+(when (modulep! :pimacs mise)
+  (pim-mise-ensure-tools (file-name-directory load-file-name) t))
+
 (defun pim--js-map (is-for-js-ts-mode-p)
   "Setup keybindings for js-mode or js-ts-mode depending on IS-FOR-JS-TS-MODE-P."
   (map!

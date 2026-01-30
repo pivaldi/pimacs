@@ -22,7 +22,7 @@
 
 ;; Auto-install tools if mise module is available
 (when (modulep! :pimacs mise)
-  (pim-mise-ensure-tools (file-name-directory load-file-name)))
+  (pim-mise-ensure-tools (file-name-directory load-file-name) t))
 
 (if (not (executable-find "goimports"))
     (add-to-list 'pim-error-msgs "Please install goimports : https://godoc.org/golang.org/x/tools/cmd/goimports"))
@@ -32,6 +32,9 @@
     (add-to-list 'pim-error-msgs "Please install godef : go install github.com/rogpeppe/godef@latest"))
 (if (not (executable-find "gocode"))
     (add-to-list 'pim-error-msgs "Please install gocode : go install github.com/nsf/gocode@latest"))
+
+(after! projectile
+  (add-to-list 'projectile-project-root-files "go.mod"))
 
 (use-package! flycheck-golangci-lint
   :defer t

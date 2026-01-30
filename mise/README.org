@@ -47,5 +47,5 @@ To add mise support to a language module:
 
 #+begin_src elisp
 (when (modulep! :pimacs mise)
-  (pim-mise-ensure-tools (file-name-directory load-file-name)))
+  (pim-mise-ensure-tools (file-name-directory load-file-name) t))
 #+end_src

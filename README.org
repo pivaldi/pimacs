@@ -2,15 +2,15 @@
   :PROPERTIES:
   :CUSTOM_ID: pimacs
   :END:
-** Extended Configuration of Emacs on Top of Doom Emacs
+** Extended Configuration and Automation of Emacs on Top of Doom Emacs
    :PROPERTIES:
    :CUSTOM_ID: extended-configuration-of-emacs-on-top-of-doom-emacs
    :END:
 Here an extended configuration of Emacs 29+ on Top of Doom Emacs
-programming oriented with special attention to French keyboard.
+programming oriented with special attention to French keyboard and automation of
+installation of needed external tools handled by [[https://mise.jdx.dev/][MISE-EN-PLACE]].
 
-- *This is a work in progress* but I use daily this configuration for
-  professional programming and administration system works.\\
+- I use daily this configuration for professional programming, [[https://blog.piprime.fr/][bloging]] and Linux administration system works.\\
   See the roadmap at the end of this file and the [[file:TODO.org][to-do list]].
 - This is a huge refactoring of [[https://github.com/pivaldi/pi-emacs-configuration][pi-emacs-configuration]]
   using [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
@@ -19,14 +19,12 @@ programming oriented with special attention to French keyboard.
    :PROPERTIES:
    :CUSTOM_ID: dependencies
    :END:
-You imperatively need these softwars installed :
-
+You imperatively need these software installed :
 - The last stable [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
-- [[https://www.gnu.org/software/emacs/manual/html_node/efaq/New-in-Emacs-29.html][Emacs 29+]] compiled with
-  [[https://tree-sitter.github.io/tree-sitter/][Tree-sitter]] support.\\
-  [[https://gist.github.com/pivaldi/116c22742040834316c90e938411c082][Here]]
-  a bash script example to compile and install an optimized Emacs 29+
-  version with Tree-sitter support.
+- [[https://www.gnu.org/software/emacs/manual/html_node/efaq/New-in-Emacs-29.html][Emacs 29+]] compiled with  [[https://tree-sitter.github.io/tree-sitter/][Tree-sitter]] support.
+  
+*** Optional  dependency 
+In order to support automation of installation of the needed external tools (LSP, Linters, Deboger etc), you need to [[https://mise.jdx.dev/getting-started.html][install Mise]] and enable the [[file:mise/README.org][Pimacs module Mise]].
 
 ** Installation
    :PROPERTIES:
@@ -152,11 +150,9 @@ See [[file:docker/README.org][docker/README.org]] for detailed documentation, us
 - Templating
 - Support of Go html template https://github.com/a-h/templ. See
   https://drshapeless.com/blog/posts/writing-go-templ-with-emacs.html
-- Hide password on some files (gpg, authinfo, etc)
 - Improve dired experience
 - Make a module for direnv support
 - Use easy-kill https://github.com/leoliu/easy-kill
-- elfeed
 - lang-lua
 - lang-rust
 - lang-asy

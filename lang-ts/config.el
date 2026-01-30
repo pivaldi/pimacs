@@ -20,6 +20,10 @@
 
 ;;; Code:
 
+;; Auto-install tools if mise module is available
+(when (modulep! :pimacs mise)
+  (pim-mise-ensure-tools (file-name-directory load-file-name) t))
+
 (after! typescript-mode
   (defvar pim-ng-app-filenames '("app.component.ts"))
   (defvar pim-ts-compile-command "deno")

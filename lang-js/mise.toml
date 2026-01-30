@@ -1,0 +1,6 @@
+[tools.node]
+version = "latest"
+postinstall = """
+# Formatting
+npm install -g prettier
+"""
