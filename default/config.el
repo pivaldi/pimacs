@@ -39,7 +39,8 @@
  ;; I don't want graphic dialog.
  use-dialog-box nil
  use-file-dialog nil
- tab-width 4
+ ;; tab-width 4
+ ;; go-ts-mode-indent-offset 4
  buffers-menu-max-size nil
  history-length 200
  scroll-step 1
