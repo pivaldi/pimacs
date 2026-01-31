@@ -31,5 +31,14 @@ Returns t if tools were installed successfully, nil otherwise."
       (when trusted (call-process "mise" nil nil nil "trust"))
       (= 0 (call-process "mise" nil nil nil "install")))))
 
+;;;###autoload
+(defun pim-mise-use-global (tool)
+  "Run `mise use -g TOOL' if mise is available.
+Returns t if operation succeed, nil otherwise."
+  (when (executable-find "mise")
+    (message "PIMacs: Using %s globaly..." tool)
+    (when (= 0 (call-process "mise" nil nil nil "use" "-g" tool))
+      (exec-path-from-shell-initialize))))
+
 (provide 'pimacs/mise/autoload)
 ;;; autoload.el ends here

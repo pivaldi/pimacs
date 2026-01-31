@@ -22,7 +22,11 @@
 
 ;; Auto-install tools if mise module is available
 (when (modulep! :pimacs mise)
-  (pim-mise-ensure-tools (file-name-directory load-file-name) t))
+  (pim-mise-ensure-tools (file-name-directory load-file-name) t)
+  (unless (executable-find "go")
+    (pim-mise-use-global "go@latest"))
+  (unless (executable-find "golangci-lint")
+    (pim-mise-use-global "golangci-lint@latest")))
 
 (if (not (executable-find "goimports"))
     (add-to-list 'pim-error-msgs "Please install goimports : https://godoc.org/golang.org/x/tools/cmd/goimports"))
@@ -32,6 +36,11 @@
     (add-to-list 'pim-error-msgs "Please install godef : go install github.com/rogpeppe/godef@latest"))
 (if (not (executable-find "gocode"))
     (add-to-list 'pim-error-msgs "Please install gocode : go install github.com/nsf/gocode@latest"))
+(if (not (executable-find "golangci-lint"))
+    (add-to-list 'pim-error-msgs "Please install golangci-lint. See https://golangci-lint.run/docs/welcome/install/local/
+If you use pimacs/mise for the frist time, restarting emacs is needed."))
+(if (not (executable-find "golangci-lint-langserver"))
+    (add-to-list 'pim-error-msgs "Please install golangci-lint-langserver: go install github.com/nametake/golangci-lint-langserver@latest"))
 
 (after! projectile
   (add-to-list 'projectile-project-root-files "go.mod"))

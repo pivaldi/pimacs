@@ -40,29 +40,36 @@
                (expand-file-name ".local/cache/tree-sitter" emacs-dir)))
 
 ;; Define all tree-sitter grammar sources
-;; Using tags compatible with Emacs 30 tree-sitter ABI (version 14)
+;; Using tags compatible with Emacs tree-sitter ABI version 14
+;; ABI 15 was introduced in tree-sitter v0.25.0 - grammars with v0.25.x are incompatible
+;; Sources:
+;; - https://github.com/doomemacs/doomemacs/issues/8503
+;; - https://lists.gnu.org/archive/html/emacs-devel/2025-04/msg00508.html
+;; - https://github.com/tree-sitter/tree-sitter/releases
+;; - https://github.com/zed-industries/zed/issues/24632
 (setq treesit-language-source-alist
-      '((bash . ("https://github.com/tree-sitter/tree-sitter-bash" "v0.21.0"))
-        (c . ("https://github.com/tree-sitter/tree-sitter-c" "v0.21.4"))
-        (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "v0.22.3"))
-        (css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.20.0"))
+      '((bash . ("https://github.com/tree-sitter/tree-sitter-bash" "v0.23.3"))
+        (c . ("https://github.com/tree-sitter/tree-sitter-c" "v0.23.6"))
+        (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "v0.22.0"))
+        (css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.23.2"))
         (dockerfile . ("https://github.com/camdencheek/tree-sitter-dockerfile" "v0.2.0"))
         (go . ("https://github.com/tree-sitter/tree-sitter-go" "v0.20.0"))
-        (gomod . ("https://github.com/camdencheek/tree-sitter-go-mod" "v1.0.2"))
+        (gomod . ("https://github.com/camdencheek/tree-sitter-go-mod" "v1.1.0"))
+        ;; (gowork . ("https://github.com/camdencheek/tree-sitter-go-mod" "v1.1.0"))
         (html . ("https://github.com/tree-sitter/tree-sitter-html" "v0.20.1"))
-        (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.20.1"))
-        (jsdoc . ("https://github.com/tree-sitter/tree-sitter-jsdoc" "v0.21.0"))
-        (json . ("https://github.com/tree-sitter/tree-sitter-json" "v0.20.2"))
+        (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.23.1"))
+        (jsdoc . ("https://github.com/tree-sitter/tree-sitter-jsdoc" "v0.23.0"))
+        (json . ("https://github.com/tree-sitter/tree-sitter-json" "v0.24.8"))
         (make . ("https://github.com/tree-sitter-grammars/tree-sitter-make" "v1.1.0"))
         (markdown . ("https://github.com/ikatyang/tree-sitter-markdown" "v0.7.1"))
-        (php . ("https://github.com/tree-sitter/tree-sitter-php" "v0.22.8" "php/src"))
-        (phpdoc . ("https://github.com/claytonrcarter/tree-sitter-phpdoc" "master"))
-        (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.20.4"))
-        (rust . ("https://github.com/tree-sitter/tree-sitter-rust" "v0.21.2"))
+        (php . ("https://github.com/tree-sitter/tree-sitter-php" "v0.23.12" "php/src"))
+        (phpdoc . ("https://github.com/claytonrcarter/tree-sitter-phpdoc" "v0.1.5"))
+        (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.23.6"))
+        (rust . ("https://github.com/tree-sitter/tree-sitter-rust" "v0.23.3"))
         (toml . ("https://github.com/tree-sitter/tree-sitter-toml" "v0.5.1"))
-        (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.21.2" "tsx/src"))
-        (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "typescript/src"))
-        (yaml . ("https://github.com/tree-sitter-grammars/tree-sitter-yaml" "v0.6.1"))))
+        (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "tsx/src"))
+        (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src"))
+        (yaml . ("https://github.com/tree-sitter-grammars/tree-sitter-yaml" "v0.7.2"))))
 
 (defun pim-treesit-install-all-grammars ()
   "Install all tree-sitter grammars defined in `treesit-language-source-alist'.
@@ -70,12 +77,15 @@ Useful for pre-installing grammars in Docker or fresh installations."
   (interactive)
   (dolist (grammar treesit-language-source-alist)
     (let ((lang (car grammar)))
-      (unless (treesit-language-available-p lang)
-        (message "Installing tree-sitter grammar: %s" lang)
-        (condition-case err
-            (treesit-install-language-grammar lang)
-          (error
-           (message "Failed to install %s: %s" lang (error-message-string err))))))))
+      (if (treesit-language-available-p lang)
+          (message "tree-sitter grammar %s already installed" lang)
+        (progn
+          (message "Installing tree-sitter grammar: %s" lang)
+          (condition-case err
+              (treesit-install-language-grammar lang)
+            (error
+             (message "Failed to install %s: %s" lang (error-message-string err)))))
+        ))))
 
 (when (fboundp 'use-package!)
   (use-package! treesit

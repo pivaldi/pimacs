@@ -22,6 +22,9 @@
 
 (if (executable-find "mise")
     (use-package! mise
+      :init
+      (when (memq window-system '(mac ns x))
+        (exec-path-from-shell-initialize))
       :hook (after-init . global-mise-mode)
       :config
       (setq mise-auto-propagate-commands '(lsp lsp-deferred)))

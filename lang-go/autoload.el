@@ -20,7 +20,6 @@
 ;;;###autoload
 (defun pim-go-ts-mode-hook nil
   "`go-ts-mode' and `go-mode' common hook."
-  (setq tab-width 2)
   (make-local-variable 'skeleton-pair-alist)
   (setq skeleton-pair-alist '((?` _ ?`)))
   )
