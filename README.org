@@ -38,7 +38,7 @@ In order to support automation of installation of the needed external tools (LSP
      In your Doom file ~init.el~, at the end of the file, after the
      ~(doom! …)~\\
      part, add the code ~(load! "modules/pimacs/init")~.\\
-     This will load /all the PIMacs modules/ at once.
+     This will load /all the PIMacs modules/ at once. See the file [[init.el]].
   2. *Partially featured PIMacs as it satisfy YOUR needs*\\
      In your Doom file ~init.el~, at the end of the file, after the
      ~(doom! …)~\\
@@ -60,7 +60,7 @@ In order to support automation of installation of the needed external tools (LSP
  )
 #+end_src
 
-*Remember to run "doom sync" after modifying init.el !*
+See the file [[init.el]] and *remember to run "doom sync" after modifying init.el !*
 
 ** Docker Testing Environment
    :PROPERTIES:

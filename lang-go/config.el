@@ -20,14 +20,6 @@
 
 (setenv "GO111MODULE" "on")
 
-;; Auto-install tools if mise module is available
-(when (modulep! :pimacs mise)
-  (pim-mise-ensure-tools (file-name-directory load-file-name) t)
-  (unless (executable-find "go")
-    (pim-mise-use-global "go@latest"))
-  (unless (executable-find "golangci-lint")
-    (pim-mise-use-global "golangci-lint@latest")))
-
 (if (not (executable-find "goimports"))
     (add-to-list 'pim-error-msgs "Please install goimports : https://godoc.org/golang.org/x/tools/cmd/goimports"))
 (if (not (executable-find "gofmt"))

@@ -20,7 +20,9 @@
 
 ;; Auto-install tools if mise module is available
 (when (modulep! :pimacs mise)
-  (pim-mise-ensure-tools (file-name-directory load-file-name) t))
+  (pim-mise-install (file-name-directory load-file-name) t)
+  (unless (executable-find "node")
+    (pim-mise-use-global "node@latest")))
 
 ;; TODO : key bindings collision whit M-<tab> calls php-complete-function :
 ;; perform function completion on the text around point.

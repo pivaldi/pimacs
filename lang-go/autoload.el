@@ -18,6 +18,20 @@
 ;;; Code:
 
 ;;;###autoload
+(defun pim-go-tools-install-globally (&optional trusted)
+  "Install globally Go tools if pimacs/mise module is available.
+If TRUSTED is t, auto-trust the mise.toml file else ask to the user."
+  (interactive)
+  (if (modulep! :pimacs mise)
+      (let ((installed (pim-mise-install (doom-module-expand-path '(:pimacs . lang-go)) trusted)))
+        (unless (executable-find "go")
+          (pim-mise-use-global "go@latest"))
+        (unless (executable-find "golangci-lint")
+          (pim-mise-use-global "golangci-lint@latest"))
+        (message (if installed "done" "failed")))
+    (warn "pimacs/mise is not loaded so Go tools can not be installed.")))
+
+;;;###autoload
 (defun pim-go-ts-mode-hook nil
   "`go-ts-mode' and `go-mode' common hook."
   (make-local-variable 'skeleton-pair-alist)
@@ -39,7 +53,7 @@ Add `pim-golangci-lint-ts' for `go-ts-mode' to `flycheck-checkers'."
   (interactive)
   (compile (concat "go run " (buffer-file-name))))
 
-
+(provide 'pimacs/lang-go/autoload)
 ;;; autoload.el ends here
 
 ;; Local variables:

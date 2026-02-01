@@ -55,7 +55,6 @@
         (dockerfile . ("https://github.com/camdencheek/tree-sitter-dockerfile" "v0.2.0"))
         (go . ("https://github.com/tree-sitter/tree-sitter-go" "v0.20.0"))
         (gomod . ("https://github.com/camdencheek/tree-sitter-go-mod" "v1.1.0"))
-        ;; (gowork . ("https://github.com/camdencheek/tree-sitter-go-mod" "v1.1.0"))
         (html . ("https://github.com/tree-sitter/tree-sitter-html" "v0.20.1"))
         (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.23.1"))
         (jsdoc . ("https://github.com/tree-sitter/tree-sitter-jsdoc" "v0.23.0"))

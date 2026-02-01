@@ -19,9 +19,71 @@
 
 ;;; Code:
 
+(defvar mise-modulep (modulep! :pimacs mise))
+
+(when mise-modulep
+  (load (doom-module-expand-path '(:pimacs . mise) "autoload.el")
+        nil 'nomessage)
+  )
+
+(defun pim--go-tools-install-globally nil
+  (if (modulep! :pimacs lang-go)
+      (progn
+        (load (doom-module-expand-path '(:pimacs . lang-go) "autoload.el")
+              nil 'nomessage)
+        (print! (item (format "Installing Go Tools: %s" (pim-go-tools-install-globally)))))
+    (print! (item "Go Tools not installed because pimacs/lang-go is not loaded…" ))))
+
+(defun pim--ts-tools-install-globally nil
+  (if (modulep! :pimacs lang-ts)
+      (progn
+        (load (doom-module-expand-path '(:pimacs . lang-ts) "autoload.el")
+              nil 'nomessage)
+        (print! (item (format "Installing Typescript Tools: %s" (pim-ts-tools-install-globally)))))
+    (print! (item "Typescript Tools not installed because pimacs/lang-ts is not loaded…" ))))
+
+(add-hook!
+ 'doom-after-sync-hook
+ (progn
+   (print! (start "PIMacs Doom after sync hook"))
+   (print-group!
+     (when mise-modulep
+       (print! (start "pimacs/mise is loaded"))
+       (print-group!
+         (pim--go-tools-install-globally)
+         (pim--ts-tools-install-globally)
+         )))))
+
 (defcli!
  (:root doom +pimacs) () "The Doom PIMacs CLI"
- (require 'doom-start))
+ (message "This the Doom PIMacs CLI. Try doom +pimacs --help"))
+
+(defcli! (:root doom +pimacs mise) ()
+         "Mise commands."
+         (require 'doom)
+         (require 'doom-start)
+         (unless (hash-table-p (bound-and-true-p doom-modules))
+           (doom-modules-initialize))
+         (when (modulep! :pimacs mise)
+           (print! "@@@@@@@@@@@ Mise is loaded")))
+
+(defcli! (:root doom +pimacs mise install) ()
+         "Install with Mise the tools needed by your config."
+         (require 'doom)
+         (require 'doom-start)
+         (unless (hash-table-p (bound-and-true-p doom-modules))
+           (doom-modules-initialize))
+         (when (modulep! :pimacs mise)
+           (print! "@@@@@@@@@@@ Mise is loaded")))
+
+(defcli! (:root doom +pimacs mise update) ()
+         "Update with Mise the tools needed by your config."
+         (require 'doom)
+         (require 'doom-start)
+         (unless (hash-table-p (bound-and-true-p doom-modules))
+           (doom-modules-initialize))
+         (when (modulep! :pimacs mise)
+           (print! "@@@@@@@@@@@ Mise is loaded")))
 
 (provide 'pimacs/default/cli)
 

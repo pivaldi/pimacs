@@ -20,13 +20,12 @@
 ;;; Code:
 
 ;;;###autoload
-(defun pim-mise-ensure-tools (mise-toml-dir &optional trusted)
+(defun pim-mise-install (mise-toml-dir &optional trusted)
   "Run `mise install' in MISE-TOML-DIR if mise is available.
 if TRUSTED run `mise trust' before the install command.
 Returns t if tools were installed successfully, nil otherwise."
   (when (and (executable-find "mise")
              (file-exists-p (expand-file-name "mise.toml" mise-toml-dir)))
-    (message "PIMacs: Installing tools from %s/mise.toml..." mise-toml-dir)
     (let ((default-directory mise-toml-dir))
       (when trusted (call-process "mise" nil nil nil "trust"))
       (= 0 (call-process "mise" nil nil nil "install")))))
@@ -42,3 +41,8 @@ Returns t if operation succeed, nil otherwise."
 
 (provide 'pimacs/mise/autoload)
 ;;; autoload.el ends here
+
+;; Local variables:
+;; coding: utf-8
+;; eval: (rename-buffer "pimacs/mise/autoload.el")
+;; End:

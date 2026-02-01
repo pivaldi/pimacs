@@ -1,5 +1,16 @@
 ;;; pimacs/lang-ts/autoload.el -*- lexical-binding: t; -*-
 
+;;;###autoload
+(defun pim-ts-tools-install-globally  (&optional trusted)
+  "Install globally Typescript tools if pimacs/mise module is available.
+If TRUSTED is t, auto-trust the mise.toml file else ask to the user."
+  (interactive)
+  (when (modulep! :pimacs mise)
+    (let ((installed (pim-mise-install (doom-module-expand-path '(:pimacs . lang-ts)) trusted)))
+      (unless (executable-find "node")
+        (pim-mise-use-global "node@latest"))
+      (message (if installed "done" "failed")))))
+
 (defun pim-ng-get-app-dir ()
   "Search for the `pim-ng-app-filenames` file traversing up the
 directory tree. Return the directory."
@@ -62,3 +73,11 @@ directory tree. Return the directory."
   (compile (concat
             pim-ts-compile-command
             " " (buffer-file-name))))
+
+(provide 'pimacs/lang-ts/autoload)
+;;; autoload.el ends here
+
+;; Local variables:
+;; coding: utf-8
+;; eval: (rename-buffer "pimacs/lang-ts/autoload.el")
+;; End:
