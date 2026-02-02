@@ -18,6 +18,18 @@
 
 ;;; Code:
 
+;;;###autoload
+(defun pim-php-tools-install-globally (&optional trusted)
+  "Install globally PHP tools if pimacs/mise module is available.
+If TRUSTED is t, auto-trust the mise.toml file else ask to the user."
+  (interactive)
+  (if (modulep! :pimacs mise)
+      (let ((installed (pim-mise-install (doom-module-expand-path '(:pimacs . lang-php)) trusted)))
+        (unless (executable-find "node")
+          (pim-mise-use-global "node@latest"))
+        (message (if installed "done" "failed")))
+    (warn "pimacs/mise is not loaded so PHP tools can not be installed.")))
+
 (defun pim--php-get-element (re-pattern)
   "Return forward from the beginig of the buffer the matched element by
 RE-PATTERN."

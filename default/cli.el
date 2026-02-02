@@ -42,6 +42,22 @@
         (print! (item (format "Installing Typescript Tools: %s" (pim-ts-tools-install-globally)))))
     (print! (item "Typescript Tools not installed because pimacs/lang-ts is not loaded…" ))))
 
+(defun pim--js-tools-install-globally nil
+  (if (modulep! :pimacs lang-js)
+      (progn
+        (load (doom-module-expand-path '(:pimacs . lang-js) "autoload.el")
+              nil 'nomessage)
+        (print! (item (format "Installing JavaScript Tools: %s" (pim-js-tools-install-globally)))))
+    (print! (item "JavaScript Tools not installed because pimacs/lang-js is not loaded…" ))))
+
+(defun pim--php-tools-install-globally nil
+  (if (modulep! :pimacs lang-php)
+      (progn
+        (load (doom-module-expand-path '(:pimacs . lang-php) "autoload.el")
+              nil 'nomessage)
+        (print! (item (format "Installing PHP Tools: %s" (pim-php-tools-install-globally)))))
+    (print! (item "PHP Tools not installed because pimacs/lang-php is not loaded…" ))))
+
 (add-hook!
  'doom-after-sync-hook
  (progn
@@ -52,6 +68,8 @@
        (print-group!
          (pim--go-tools-install-globally)
          (pim--ts-tools-install-globally)
+         (pim--js-tools-install-globally)
+         (pim--php-tools-install-globally)
          )))))
 
 (defcli!
