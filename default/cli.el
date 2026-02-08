@@ -27,36 +27,36 @@
   )
 
 (defun pim--go-tools-install-globally nil
-  (if (modulep! :pimacs lang-go)
+  (if (modulep! :pimacs lang-go +tools)
       (progn
         (load (doom-module-expand-path '(:pimacs . lang-go) "autoload.el")
               nil 'nomessage)
         (print! (item (format "Installing Go Tools: %s" (pim-go-tools-install-globally)))))
-    (print! (item "Go Tools not installed because pimacs/lang-go is not loaded…" ))))
+    (print! (item "Go Tools not installed because pimacs/lang-go is not loaded with +tools option…" ))))
 
 (defun pim--ts-tools-install-globally nil
-  (if (modulep! :pimacs lang-ts)
+  (if (modulep! :pimacs lang-ts +tools)
       (progn
         (load (doom-module-expand-path '(:pimacs . lang-ts) "autoload.el")
               nil 'nomessage)
         (print! (item (format "Installing Typescript Tools: %s" (pim-ts-tools-install-globally)))))
-    (print! (item "Typescript Tools not installed because pimacs/lang-ts is not loaded…" ))))
+    (print! (item "Typescript Tools not installed because pimacs/lang-ts is not loaded with +tools option…" ))))
 
 (defun pim--js-tools-install-globally nil
-  (if (modulep! :pimacs lang-js)
+  (if (modulep! :pimacs lang-js +tools)
       (progn
         (load (doom-module-expand-path '(:pimacs . lang-js) "autoload.el")
               nil 'nomessage)
         (print! (item (format "Installing JavaScript Tools: %s" (pim-js-tools-install-globally)))))
-    (print! (item "JavaScript Tools not installed because pimacs/lang-js is not loaded…" ))))
+    (print! (item "JavaScript Tools not installed because pimacs/lang-js is not loaded with +tools option…" ))))
 
 (defun pim--php-tools-install-globally nil
-  (if (modulep! :pimacs lang-php)
+  (if (modulep! :pimacs lang-php +tools)
       (progn
         (load (doom-module-expand-path '(:pimacs . lang-php) "autoload.el")
               nil 'nomessage)
         (print! (item (format "Installing PHP Tools: %s" (pim-php-tools-install-globally)))))
-    (print! (item "PHP Tools not installed because pimacs/lang-php is not loaded…" ))))
+    (print! (item "PHP Tools not installed because pimacs/lang-php is not loaded with +tools option…" ))))
 
 (add-hook!
  'doom-after-sync-hook

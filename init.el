@@ -25,11 +25,11 @@
  corfu ;; Configure Corfu : remove automatic completion, remove TAB key for next candidate.
  (lsp +doc) ;; Configures lsp and lsp-ui-doc (option +doc)
  lang-c
- (lang-php +php-cs-fixer) ;; Configuration for PHP coding.
+ (lang-php +php-cs-fixer +tools) ;; Configuration for PHP coding.
  lang-lisp
- (lang-go +lsp)
- (lang-ts +lsp)
- lang-js
+ (lang-go +lsp +tools)
+ (lang-ts +lsp +tools)
+ (lang-js +tools)
  lang-make
  notmuch ;; notmuch using notmuch-multi
  flyspell ;; flyspell configuration with two dictionaries switching.

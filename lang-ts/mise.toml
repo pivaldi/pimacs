@@ -1,5 +1,5 @@
 [tools.node]
-version = "latest"
+version = "lts"
 postinstall = """
 # TypeScript language server
 npm install -g typescript typescript-language-server

@@ -1,5 +1,5 @@
 [tools.node]
-version = "latest"
+version = "lts"
 postinstall = """
 # Formatting
 npm install -g prettier

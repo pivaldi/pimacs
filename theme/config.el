@@ -43,7 +43,7 @@
                   :background "#3F3F3F" :foreground "#DCDCCC"
                   :inverse-video nil :box nil :strike-through nil
                   :overline nil :underline nil :slant 'normal
-                  :weight 'regular :height 115 :width 'normal
+                  :weight 'regular :height 120 :width 'normal
                   :foundry "SAJA" :family "Cascadia Code NF")
                (load! "+ligature-cascadia")))
             ((find-font (font-spec :name "Source Code Pro"))

@@ -8,7 +8,7 @@ If TRUSTED is t, auto-trust the mise.toml file else ask to the user."
   (when (modulep! :pimacs mise)
     (let ((installed (pim-mise-install (doom-module-expand-path '(:pimacs . lang-ts)) trusted)))
       (unless (executable-find "node")
-        (pim-mise-use-global "node@latest"))
+        (pim-mise-use-global "node@lts"))
       (message (if installed "done" "failed")))))
 
 (defun pim-ng-get-app-dir ()
