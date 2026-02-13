@@ -29,6 +29,14 @@
   (when (modulep! :ui popup)
     (remove-hook '+popup-buffer-mode-hook #'+popup-set-modeline-on-enable-h)))
 
+(unless (modulep! +auto-refresh)
+  ;; Disable focus-based auto-revert (after-focus-change-function replaced
+  ;; the obsolete focus-in-hook in Emacs 27.1)
+  (remove-function after-focus-change-function #'doom-auto-revert-buffers-h)
+  (remove-hook 'after-save-hook #'doom-auto-revert-buffers-h)
+  (remove-hook 'doom-switch-buffer-hook #'doom-auto-revert-buffer-h)
+  (remove-hook 'doom-switch-window-hook #'doom-auto-revert-buffer-h))
+
 ;; Local variables:
 ;; coding: utf-8
 ;; eval: (rename-buffer "pimacs/default/+doom.el")

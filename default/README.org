@@ -76,6 +76,21 @@ Currently only Emacs (not Evil) key bindings are supported.
 - Add Persp Workspace name in the Doom modeline
 - Disable the Doom management of the mode-line in popups
 
+*** Module Flag: =+auto-refresh=
+
+By default, Doom's automatic buffer revert on focus, save, and buffer/window
+switch is *disabled*. This gives you full control over when to revert buffers.
+
+To re-enable Doom's auto-refresh behavior, add the =+auto-refresh= flag:
+
+#+begin_src elisp
+;; In init.el
+(doom! ...
+       :pimacs
+       (default +azerty +auto-refresh)
+       ...)
+#+end_src
+
 ** Advises
 
 Filter unwanted Emacs warnings by message regexps via advise on =display-warning=.

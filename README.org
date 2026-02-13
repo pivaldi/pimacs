@@ -156,7 +156,7 @@ See [[file:docker/README.org][docker/README.org]] for detailed documentation, us
 - lang-lua
 - lang-rust
 - lang-asy
-- Configure org-mode and markdown support for my needs
+- Better configuration of org-mode and markdown
 
 * If you appreciate this project
 [[https://buymeacoffee.com/pivaldi][☕ Buy Me a Coffee]]
