@@ -28,7 +28,10 @@
 
 (after! org
   (add-hook 'org-mode-hook 'variable-pitch-mode)
-  (add-hook 'org-mode-hook 'visual-line-mode)
+  ;; visual-line-mode provided by visual-fill-column when +writing-modes is set
+  (unless (and (modulep! :pimacs visual-fill-column)
+               (modulep! :pimacs visual-fill-column +writing-modes))
+    (add-hook 'org-mode-hook 'visual-line-mode))
 
   (setq org-link-descriptive t
         org-export-with-creator t

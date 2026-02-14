@@ -1,0 +1,25 @@
+#+TITLE: Visual Fill Column
+
+Soft-wraps text at a specified column width without modifying file contents.
+
+* Flags
+- =+writing-modes= :: Activate for org-mode, markdown-mode, text-mode
+- =+visual-line= :: Hook into visual-line-mode-hook globally (takes precedence over +writing-modes)
+- =+center= :: Enable text centering with =visual-fill-column-center-text=
+
+* Configuration
+Set =pim-visual-fill-column-width= to customize the column width (default: uses =fill-column=).
+
+#+begin_src elisp
+(setq pim-visual-fill-column-width 100)
+#+end_src
+
+* Usage Examples
+#+begin_src elisp
+;; In init.el:
+(visual-fill-column +writing-modes +center)  ; writing modes with centering
+(visual-fill-column +visual-line)             ; all visual-line buffers
+#+end_src
+
+* Integration
+This module automatically enables =visual-line-mode= and =visual-wrap-prefix-mode= alongside =visual-fill-column-mode= for proper soft-wrapping with preserved indentation.

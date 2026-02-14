@@ -39,7 +39,8 @@
  elfeed
  ;; neotree
  treemacs
- ;; hexo ;; Use Hexo in Emacs elegantly
+ ;; hexo ;; Use Hexo in Emacs elegantly (work in progress)
+ (visual-fill-column  +writing-modes +center)
  doc ;; Generated documentation, fundamental keys binding for example.
  )
 
