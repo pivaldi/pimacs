@@ -61,6 +61,10 @@ If you use pimacs/mise with +tools, restarting emacs is needed."))
   :defer t
   :mode "\\.proto\\'"
   :hook (protobuf-ts-mode . pim-protobuf-ts-mode-setup)
+  :init
+  (after! yasnippet
+    (add-to-list 'yas-snippet-dirs
+                 (expand-file-name "snippets" (doom-module-expand-path '(:pimacs . lang-protobuf)))))
   :config
   (defun pim-protobuf-ts-mode-setup ()
     "Setup hook for protobuf-ts-mode."
