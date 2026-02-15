@@ -120,6 +120,9 @@ See [[file:docker/README.org][docker/README.org]] for detailed documentation, us
   Support native ~js-ts-mode~ (Emacs 29+) and standard ~js-mode~.
 - *pimacs/lang-php*: [[file:lang-php/README.org][Configuration for the PHP programming language]].\\
   Support native ~php-ts-mode~ (Emacs 29+) and standart ~php-mode~.
+- *pimacs/lang-protobuf*: [[file:lang-protobuf/README.org][Configuration for Protocol Buffers]].\\
+  Support ~protobuf-ts-mode~ with full [[https://buf.build/][Buf]] toolchain integration
+  (lint, format, build, breaking, generate) and Buf LSP.
 - *pimacs/lsp*: Complet/extend the default Doom configuration of the
   [[https://microsoft.github.io/language-server-protocol/][Langage Server Protocol]].
 - *pimacs/notmuch*: [[file:notmuch/README.org][This package]] provides

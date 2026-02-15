@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: rpc
+# key: rpc
+# --
+rpc ${1:MethodName}(${2:Request}) returns (${3:Response});$0

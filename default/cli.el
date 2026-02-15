@@ -58,6 +58,14 @@
         (print! (item (format "Installing PHP Tools: %s" (pim-php-tools-install-globally)))))
     (print! (item "PHP Tools not installed because pimacs/lang-php is not loaded with +tools option…" ))))
 
+(defun pim--protobuf-tools-install-globally nil
+  (if (modulep! :pimacs lang-protobuf +tools)
+      (progn
+        (load (doom-module-expand-path '(:pimacs . lang-protobuf) "autoload.el")
+              nil 'nomessage)
+        (print! (item (format "Installing Protobuf Tools: %s" (pim-protobuf-tools-install-globally)))))
+    (print! (item "Protobuf Tools not installed because pimacs/lang-protobuf is not loaded with +tools option…" ))))
+
 (add-hook!
  'doom-after-sync-hook
  (progn
@@ -70,6 +78,7 @@
          (pim--ts-tools-install-globally)
          (pim--js-tools-install-globally)
          (pim--php-tools-install-globally)
+         (pim--protobuf-tools-install-globally)
          )))))
 
 (defcli!

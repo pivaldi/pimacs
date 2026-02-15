@@ -77,7 +77,7 @@ Keymap for Projectile mode.
 - =C-c p s r= calls =projectile-ripgrep= : run a ripgrep (rg) search with `SEARCH-TERM' at current project root.
 - =C-c p s s= calls =projectile-ag= : run an ag search with SEARCH-TERM in the project.
 - =C-c p s x= calls =projectile-find-references= : find all references to SYMBOL in the current project.
-**** Prefix =C-c p x= : +Open project scratch buffer
+**** Prefix =C-c p x= : +Toggle project scratch buffer
 - =C-c p x e= calls =projectile-run-eshell= : invoke `eshell' in the project's root.
 - =C-c p x g= calls =projectile-run-gdb= : invoke `gdb' in the project's root.
 - =C-c p x i= calls =projectile-run-ielm= : invoke `ielm' in the project's root.

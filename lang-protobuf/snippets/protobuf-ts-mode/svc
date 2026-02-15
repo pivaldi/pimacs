@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: service
+# key: svc
+# --
+service ${1:ServiceName} {
+  $0
+}

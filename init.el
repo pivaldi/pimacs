@@ -31,6 +31,7 @@
  (lang-ts +lsp +tools)
  (lang-js +tools)
  lang-make
+ (lang-protobuf +lsp +tools)
  notmuch ;; notmuch using notmuch-multi
  flyspell ;; flyspell configuration with two dictionaries switching.
  yasnippet ;; Little yas/snippet config with key binding if +no-key is not set.
@@ -40,7 +41,7 @@
  ;; neotree
  treemacs
  ;; hexo ;; Use Hexo in Emacs elegantly (work in progress)
- (visual-fill-column  +writing-modes +center)
+ (visual-fill-column +writing-modes)
  doc ;; Generated documentation, fundamental keys binding for example.
  )
 

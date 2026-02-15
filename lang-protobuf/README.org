@@ -1,0 +1,72 @@
+#+title: PIMacs/lang-protobuf Doom Emacs Module
+
+This Doom package provides ready to use configuration of ~protobuf-ts-mode~
+for editing [[https://protobuf.dev/][Protocol Buffers]] files with full [[https://buf.build/][Buf]] toolchain integration.
+
+* Features
+
+- Native ~protobuf-ts-mode~ with [[https://tree-sitter.github.io/tree-sitter/][Tree Sitter]] syntax highlighting.
+- Full [[https://buf.build/][Buf]] toolchain integration (lint, format, build, breaking, generate).
+- Automatic format on save using ~buf format~.
+- [[https://buf.build/docs/bsr/remote-plugins/usage#buf-lsp][Buf LSP]] support for completions, go-to-definition, and diagnostics.
+- Yasnippet templates for common protobuf patterns.
+
+* Automatic Tool Installation
+
+If the ~:pimacs mise~ module is enabled with ~+tools~ option, ~buf~ is
+automatically installed on first load.
+
+See [[../mise/README.org][pimacs/mise README]] for setup instructions.
+
+* Module Options
+
+- ~+lsp~ : Enable Buf LSP integration for completions, go-to-definition,
+  find references, and diagnostics.
+- ~+tools~ : Enable automatic installation of ~buf~ via mise on ~doom sync~.
+
+* Key Bindings
+
+All key bindings are under the local leader (~SPC m~ or ~,~):
+
+| Key | Command              | Description                          |
+|-----+----------------------+--------------------------------------|
+| l   | ~pim-buf-lint~       | Run ~buf lint~ on project            |
+| f   | ~pim-buf-format~     | Run ~buf format -w~ on current file  |
+| b   | ~pim-buf-build~      | Run ~buf build~ to validate protos   |
+| B   | ~pim-buf-breaking~   | Check breaking changes against main  |
+| g   | ~pim-buf-generate~   | Run ~buf generate~ for code gen      |
+| u   | ~pim-buf-mod-update~ | Update buf module dependencies       |
+
+* Yasnippet Templates
+
+| Key  | Expansion                                  |
+|------+--------------------------------------------|
+| svc  | ~service ServiceName { }~                  |
+| msg  | ~message MessageName { }~                  |
+| enum | ~enum EnumName { UNKNOWN = 0; }~           |
+| rpc  | ~rpc Method(Request) returns (Response);~  |
+| fld  | ~string field_name = 1;~                   |
+| rep  | ~repeated string field_name = 1;~          |
+| opt  | ~optional string field_name = 1;~          |
+| imp  | ~import "path/to/file.proto";~             |
+| pkg  | ~package name;~                            |
+
+* Format on Save
+
+Format on save is enabled by default. Every time you save a ~.proto~ file,
+~buf format -w~ is automatically run to ensure consistent formatting.
+
+* Tree-sitter Grammar
+
+The ~proto~ tree-sitter grammar must be installed. If using PIMacs treesit module,
+run ~M-x pim-treesit-install-all-grammars~ or ~M-x treesit-install-language-grammar RET proto~.
+
+* Usage Example
+
+#+begin_src elisp
+;; In your init.el
+(doom!
+ :pimacs
+ (lang-protobuf +lsp +tools)  ; Enable LSP and auto-install buf
+ )
+#+end_src

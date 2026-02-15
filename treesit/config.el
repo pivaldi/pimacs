@@ -63,6 +63,7 @@
         (markdown . ("https://github.com/ikatyang/tree-sitter-markdown" "v0.7.1"))
         (php . ("https://github.com/tree-sitter/tree-sitter-php" "v0.23.12" "php/src"))
         (phpdoc . ("https://github.com/claytonrcarter/tree-sitter-phpdoc" "v0.1.5"))
+        (proto . ("https://github.com/treywood/tree-sitter-proto"))
         (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.23.6"))
         (rust . ("https://github.com/tree-sitter/tree-sitter-rust" "v0.23.3"))
         (toml . ("https://github.com/tree-sitter/tree-sitter-toml" "v0.5.1"))

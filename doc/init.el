@@ -66,6 +66,9 @@
 (when (modulep! :ui treemacs)
   (add-to-list 'pim-doc-keymaps-to-export '("treemacs-mode-map" . treemacs-mode)))
 
+(when (modulep! :pimacs lang-protobuf)
+  (add-to-list 'pim-doc-keymaps-to-export '("protobuf-ts-mode-map" . protobuf-ts-mode)))
+
 
 (provide `pimacs/doc/init)
 ;;; init.el ends here

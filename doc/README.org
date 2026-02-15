@@ -4,6 +4,7 @@
 - [[doom-refcard-.org][All Fundamental Key Bindings]]
 - [[doom-refcard-C-c.org][Fundamental Key Bindings Prefixed by C-c (Doom leader prefix)]]
 - [[doom-refcard-C-x.org][Fundamental Key Bindings Prefixed by C-x]]
+- [[doom-refcard-ctl-x-map.org][Key Bindings of Keymap ctl-x-map]]
 - [[doom-refcard-C-h.org][Fundamental Key Bindings Prefixed by C-h (help)]]
 - [[doom-refcard-M-g.org][Fundamental Key Bindings Prefixed by M-g (goto map)]]
 - [[doom-refcard-M-s.org][Fundamental Key Bindings Prefixed by M-S (isearch map)]]
@@ -24,9 +25,11 @@
 - [[doom-refcard-minibuffer-local-map.org][Key Bindings of Keymap minibuffer-local-map]]
 - [[doom-refcard-org-mode-map.org][Key Bindings of Keymap org-mode-map]]
 - [[doom-refcard-php-mode-map.org][Key Bindings of Keymap php-mode-map]]
+- [[doom-refcard-protobuf-ts-mode-map.org][Key Bindings of Keymap protobuf-ts-mode-map]]
 - [[doom-refcard-projectile-mode-map.org][Key Bindings of Keymap projectile-mode-map]]
 - [[doom-refcard-treemacs-mode-map.org][Key Bindings of Keymap treemacs-mode-map]]
 - [[doom-refcard-smartparens-mode-map.org][Key Bindings of Keymap smartparens-mode-map]]
+- [[doom-refcard-vertico-map.org][Key Bindings of Keymap vertico-map]]
 
 * Autoloaded Functions
 See the file [[autoload.el]].

@@ -23,7 +23,7 @@ All commands in ‘lisp-mode-shared-map’ are inherited by this map.
 - =C-c C-e= calls =elisp-eval-region-or-buffer= : evaluate the forms in the active region or the whole current buffer.
 - =C-c C-f= : fold
 *** Prefix =C-c l= : +<localleader>
-- =C-c l b= calls =+emacs-lisp/change-working-buffer= : change what buffer to run `+emacs-lisp-eval' in.
+- =C-c l b= calls =+emacs-lisp/change-working-buffer= : change what buffer to run `+emacs-lisp-eval-fn' in.
 - =C-c l m= calls =macrostep-expand= : expand the macro form following point by one step.
 **** Prefix =C-c l d= : +prefix
 - =C-c l d f= calls =+emacs-lisp/edebug-instrument-defun-on= : toggle on instrumentalisation for the function under `defun'.
