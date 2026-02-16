@@ -1,7 +1,6 @@
 #+title: PIMacs/lang-protobuf Doom Emacs Module
 
-This Doom package provides ready to use configuration of ~protobuf-ts-mode~
-for editing [[https://protobuf.dev/][Protocol Buffers]] files with full [[https://buf.build/][Buf]] toolchain integration.
+This Doom package provides ready to use configuration of ~protobuf-ts-mode~ for editing [[https://protobuf.dev/][Protocol Buffers]] files with full [[https://buf.build/][Buf]] toolchain integration.
 
 * Features
 
