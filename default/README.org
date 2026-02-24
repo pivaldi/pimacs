@@ -16,6 +16,7 @@ Currently only Emacs (not Evil) key bindings are supported.
 
 ** Setting Variables
 
+- Set =completion-styles= to =(partial-completion basic)=: explanations in the Reddit post [[https://www.reddit.com/r/emacs/comments/1raxx0b/stop_typing_full_directory_paths/][Stop typing full directory paths — partial-completion has been in Emacs this whole time]].
 - Fix missing =warning-suppress-types= function
 - Draw block cursor as wide as the glyph under it
 - Custom title format

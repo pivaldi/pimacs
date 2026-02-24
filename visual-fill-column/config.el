@@ -44,7 +44,7 @@ When nil, uses `fill-column'. Set to an integer for a fixed width."
   (setq visual-fill-column-enable-sensible-window-split t))
 
 ;; visual-fill-column needs visual-line-mode for proper soft-wrapping
-(add-hook 'visual-fill-column-mode-hook #'visual-line-mode)
+(add-hook! 'visual-fill-column-mode-hook (visual-line-mode 1))
 
 ;; Enable visual-wrap-prefix-mode for proper indentation of wrapped lines (Emacs 29+)
 (add-hook 'visual-fill-column-mode-hook #'visual-wrap-prefix-mode)

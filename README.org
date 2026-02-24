@@ -22,8 +22,8 @@ installation of needed external tools handled by [[https://mise.jdx.dev/][MISE-E
 You imperatively need these software installed :
 - The last stable [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
 - [[https://www.gnu.org/software/emacs/manual/html_node/efaq/New-in-Emacs-29.html][Emacs 29+]] compiled with  [[https://tree-sitter.github.io/tree-sitter/][Tree-sitter]] support.
-  
-*** Optional  dependency 
+
+*** Optional  dependency
 In order to support automation of installation of the needed external tools (LSP, Linters, Deboger etc), you need to [[https://mise.jdx.dev/getting-started.html][install Mise]] and enable the [[file:mise/README.org][Pimacs module Mise]].
 
 ** Installation

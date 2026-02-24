@@ -41,7 +41,7 @@
  ;; neotree
  treemacs
  ;; hexo ;; Use Hexo in Emacs elegantly (work in progress)
- (visual-fill-column +writing-modes)
+ ;; (visual-fill-column +writing-modes)
  doc ;; Generated documentation, fundamental keys binding for example.
  )
 

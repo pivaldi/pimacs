@@ -20,6 +20,9 @@
 
 ;;; Code:
 
+
+(global-word-wrap-whitespace-mode)
+
 (unless (and (fboundp 'native-comp-available-p)
              (native-comp-available-p))
   (add-to-list
@@ -27,6 +30,8 @@
    "Native complation is *not* available. Please compile Emacs with the configure option --with-native-compilation"))
 
 (setq-default
+ completion-styles '(partial-completion basic)
+ visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)
  ;; Fix missing warning-suppress-types function
  warning-suppress-types nil
  ;; Draw block cursor as wide as the glyph under it

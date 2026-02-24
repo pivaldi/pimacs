@@ -68,6 +68,8 @@
   ;;     ))
   )
 
+(after! treemacs
+  (add-hook! 'treemacs-mode-hook (visual-line-mode -1)))
 
 (provide 'pimacs/treemacs)
 
