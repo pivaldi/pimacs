@@ -1,0 +1,48 @@
+#+TITLE: PIMacs lang-typst Module
+
+* Description
+
+Configuration for Typst code support in PIMacs.
+
+Typst is a markup-based typesetting system that is designed to be as powerful as LaTeX while being much easier to learn and use.
+This module uses =typst-ts-mode= for editing and formatting.
+
+* Features
+
+- Syntax highlighting via Tree-sitter (=typst-ts-mode=).
+- LSP support via =tinymist= (when =+lsp= flag is provided).
+- Live previewing via =typst-preview.el= using =tinymist=.
+
+* Installation
+
+Add to your Doom =init.el= within the =doom!= block:
+
+#+begin_src elisp
+(doom! :pimacs
+  ;; ...
+  treesit  ;; Recommended for tree-sitter support globally
+  (lang-typst +lsp +tools)
+  ;; ...
+)
+#+end_src
+
+Then run =doom sync=.
+
+* Dependencies
+
+- =typst= CLI (for compiling documents).
+- =tinymist= (for LSP features and live preview).
+- =websocket= Emacs package (dependency of =typst-preview=).
+
+These can be automatically installed using the PIMacs =mise= module (managed via =mise.toml= in this directory).
+
+* Key Bindings
+
+| Key         | Description          |
+|-------------+----------------------|
+| =<localleader> p= | Toggle Typst preview |
+
+* Module Flags
+
+- =+lsp=: Enable Language Server Protocol support using =tinymist=.
+- =+tools=: Automatically install =typst= and =tinymist= using =mise= after =doom sync=.

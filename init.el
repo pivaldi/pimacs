@@ -30,6 +30,7 @@
  (lang-go +lsp +tools)
  (lang-ts +lsp +tools)
  (lang-js +tools)
+ (lang-typst +lsp +tools)
  lang-make
  (lang-protobuf +lsp +tools)
  notmuch ;; notmuch using notmuch-multi

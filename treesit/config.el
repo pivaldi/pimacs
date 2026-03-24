@@ -69,6 +69,7 @@
         (toml . ("https://github.com/tree-sitter/tree-sitter-toml" "v0.5.1"))
         (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "tsx/src"))
         (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src"))
+        (typst . ("https://github.com/uben0/tree-sitter-typst"))
         (yaml . ("https://github.com/tree-sitter-grammars/tree-sitter-yaml" "v0.7.2"))))
 
 (defun pim-treesit-install-all-grammars ()

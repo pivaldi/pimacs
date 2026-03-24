@@ -66,6 +66,14 @@
         (print! (item (format "Installing Protobuf Tools: %s" (pim-protobuf-tools-install-globally)))))
     (print! (item "Protobuf Tools not installed because pimacs/lang-protobuf is not loaded with +tools option…" ))))
 
+(defun pim--typst-tools-install-globally nil
+  (if (modulep! :pimacs lang-typst +tools)
+      (progn
+        (load (doom-module-expand-path '(:pimacs . lang-typst) "autoload.el")
+              nil 'nomessage)
+        (print! (item (format "Installing Typst Tools: %s" (pim-typst-tools-install-globally)))))
+    (print! (item "Typst Tools not installed because pimacs/lang-typst is not loaded with +tools option…" ))))
+
 (add-hook!
  'doom-after-sync-hook
  (progn
@@ -79,6 +87,7 @@
          (pim--js-tools-install-globally)
          (pim--php-tools-install-globally)
          (pim--protobuf-tools-install-globally)
+         (pim--typst-tools-install-globally)
          )))))
 
 (defcli!

@@ -1,0 +1,5 @@
+[tools.typst]
+version = "latest"
+
+[tools.tinymist]
+version = "latest"
