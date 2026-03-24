@@ -35,7 +35,18 @@ If you use pimacs/mise for the frist time, restarting emacs is needed."))
     (add-to-list 'pim-error-msgs "Please install golangci-lint-langserver: go install github.com/nametake/golangci-lint-langserver@latest"))
 
 (after! projectile
-  (add-to-list 'projectile-project-root-files "go.mod"))
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]modules\\'")
+  (setq lsp-go-use-gofumpt t)
+  ;; Override workspace root detection: walk up to find go.work
+  ;; Recognize go.work as project root
+  (defun pim/project-find-go-module (dir)
+    (when-let ((root (or (locate-dominating-file dir "go.work")
+                         (locate-dominating-file dir "go.mod"))))
+      (cons 'go-module root)))
+
+  (cl-defmethod project-root ((project (head go-module)))
+    (cdr project))
+  (add-hook 'project-find-functions #'pim/project-find-go-module))
 
 (use-package! flycheck-golangci-lint
   :defer t

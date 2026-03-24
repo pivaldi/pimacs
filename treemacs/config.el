@@ -69,7 +69,9 @@
   )
 
 (after! treemacs
-  (add-hook! 'treemacs-mode-hook (visual-line-mode -1)))
+  (add-hook! 'treemacs-mode-hook (visual-line-mode -1))
+  (unbind-key "<next>" treemacs-mode-map)
+  (unbind-key "<prior>" treemacs-mode-map))
 
 (provide 'pimacs/treemacs)
 

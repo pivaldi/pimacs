@@ -26,8 +26,7 @@
   ;; (map! :desc "Show documentation of current candidate." "M-h" corfu-info-documentation)
   (map! :desc "" "M-<SPC>" #'completion-at-point)
   (setq corfu-auto nil)
-  ;; Emacs 30 and newer: Disable Ispell completion function. As an alternative,
-  ;; try `cape-dict'.
+  (setq corfu-preselect 'first)
   (setq
    text-mode-ispell-word-completion nil
    corfu-auto-delay 0.5

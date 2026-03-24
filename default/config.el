@@ -123,7 +123,7 @@
 ;; Fix bug in current projectile (check if needed later)
 (after! projectile
   (setq projectile-project-root-files-top-down-recurring
-        '("go.mod" "go.wok" ".git" ".projectile" ".hg" ".svn" "Makefile" ".svn" "CVS")))
+        '("go.mod" "go.work" ".git" ".projectile" ".hg" ".svn" "Makefile" ".svn" "CVS")))
 
 (when (modulep! :lang markdown)
   (after! markdown-mode

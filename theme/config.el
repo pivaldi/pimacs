@@ -43,7 +43,7 @@
                   :background "#3F3F3F" :foreground "#DCDCCC"
                   :inverse-video nil :box nil :strike-through nil
                   :overline nil :underline nil :slant 'normal
-                  :weight 'regular :height 120 :width 'normal
+                  :weight 'regular :height 115 :width 'normal
                   :foundry "SAJA" :family "Cascadia Code NF")
                (load! "+ligature-cascadia")))
             ((find-font (font-spec :name "Source Code Pro"))
@@ -59,8 +59,8 @@
       (setq doom-font-increment 1
             doom-font used-font
             line-spacing 0)
-      (set-frame-font doom-font nil t))
-    ))
+      (set-frame-font doom-font nil t)
+      (set-face-attribute 'default nil :font doom-font))))
 
 
 (unless (modulep! +no-zenburn-theme)
