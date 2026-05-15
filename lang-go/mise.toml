@@ -9,7 +9,8 @@ go install github.com/nametake/golangci-lint-langserver@latest
 
 # Formatting
 go install golang.org/x/tools/cmd/goimports@latest
-
+go install mvdan.cc/gofumpt@latest
+  
 # Find symbol information in Go source
 go install github.com/rogpeppe/godef@latest
 
