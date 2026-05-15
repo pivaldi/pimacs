@@ -51,8 +51,9 @@
     (add-hook! 'window-setup-hook #'pim/treemacs-open-no-focus))
 
   :config
-  (treemacs-follow-mode 1)
-  (treemacs-filewatch-mode 1)
+  ;; ;; Make emacs becomes unresponsible when deleting file from shell.
+  ;; (treemacs-follow-mode 1)
+  ;; (treemacs-filewatch-mode 1)
 
   (when (modulep! :tools lsp)
     (lsp-treemacs-sync-mode 1)
