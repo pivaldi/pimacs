@@ -2,6 +2,9 @@
   :PROPERTIES:
   :CUSTOM_ID: pimacs
   :END:
+
+#+html: <p align="center"><img src="./assets/pimacs-1280.webp" alt="Logo pimacs" width="1280" /></p>
+
 ** Extended Configuration and Automation of Emacs on Top of Doom Emacs
    :PROPERTIES:
    :CUSTOM_ID: extended-configuration-of-emacs-on-top-of-doom-emacs
