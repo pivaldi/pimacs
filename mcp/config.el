@@ -7,28 +7,28 @@
 
   :config
   (when (modulep! +gitnexus)
-    (defcustom mcp-gitnexus-enable-docker t
+    (defcustom pim-mcp-gitnexus-enable-docker t
       "If non-nil, run GitNexus inside a Docker container.
 If nil, run it locally via npx."
       :type 'boolean
       :group 'mcp)
 
-    (defcustom mcp-gitnexus-docker-image "ai-sandbox:latest"
+    (defcustom pim-mcp-gitnexus-docker-image "ai-sandbox:latest"
       "The Docker image to use for the GitNexus MCP server."
       :type 'string
       :group 'mcp)
 
-    (defcustom mcp-gitnexus-docker-workspace "/workspace"
+    (defcustom pim-mcp-gitnexus-docker-workspace "/workspace"
       "The internal mounting path for the Docker container."
       :type 'string
       :group 'mcp)
 
-    (defcustom mcp-gitnexus-env-vars '("GEMINI_API_KEY" "ANTHROPIC_API_KEY")
+    (defcustom pim-mcp-gitnexus-env-vars '("GEMINI_API_KEY" "ANTHROPIC_API_KEY")
       "List of host environment variables to pass to the container."
       :type '(repeat string)
       :group 'mcp)
 
-    (defcustom mcp-gitnexus-docker-volumes
+    (defcustom pim-mcp-gitnexus-docker-volumes
       '("~/.gemini:/home/gemini/.gemini"
         "~/.claude:/home/gemini/.claude"
         "~/.claude.json:/home/gemini/.claude.json"
@@ -63,15 +63,15 @@ File paths starting with `~` or `/` will be automatically expanded."
     (defun pim/mcp-gitnexus-server-entry ()
       "Return the mcp-hub-servers entry for GitNexus for the current project."
       (let ((project-dir (or (doom-project-root) default-directory)))
-        (if mcp-gitnexus-enable-docker
+        (if pim-mcp-gitnexus-enable-docker
             `("gitnexus" .
               (:command "docker"
                :args ,(append (list "run" "-i" "--rm"
-                                    "-v" (format "%s:%s" project-dir mcp-gitnexus-docker-workspace)
-                                    "-w" mcp-gitnexus-docker-workspace)
-                              (pim/mcp-format-volume-args mcp-gitnexus-docker-volumes)
-                              (pim/mcp-format-env-args mcp-gitnexus-env-vars)
-                              (list mcp-gitnexus-docker-image "gitnexus" "mcp"))))
+                                    "-v" (format "%s:%s" project-dir pim-mcp-gitnexus-docker-workspace)
+                                    "-w" pim-mcp-gitnexus-docker-workspace)
+                              (pim/mcp-format-volume-args pim-mcp-gitnexus-docker-volumes)
+                              (pim/mcp-format-env-args pim-mcp-gitnexus-vars-env)
+                              (list pim-mcp-gitnexus-docker-image "gitnexus" "mcp"))))
           '("gitnexus" . (:command "gitnexus" :args ("mcp"))))))
 
     ;; Refresh the gitnexus entry with the current project root each time mcp-hub starts.
