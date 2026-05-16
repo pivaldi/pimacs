@@ -1,0 +1,39 @@
+#+TITLE:   mcp
+#+DATE:    May 2026
+
+* Description
+This module integrates =[[https://github.com/lizqwerscott/mcp.el][mcp.el]]= into Doom Emacs, providing a bridge to Model Context Protocol (MCP) servers. It optionally supports the [[https://github.com/abhigyanpatwari/GitNexus][GitNexus]] code intelligence engine (=+gitnexus=), configurable to run locally or inside a Docker sandbox.
+
+* Flags
+- =+gitnexus= — Enable the GitNexus code intelligence MCP server (disabled by default).
+
+Enable it in =init.el=:
+#+begin_src elisp
+(mcp +gitnexus)
+#+end_src
+
+* Configuration
+The following variables are only defined when =+gitnexus= is enabled.
+
+** Docker Settings
+By default, GitNexus runs inside a Docker container. If you use a custom sandbox (like =[[https://github.com/pivaldi/ai-sandbox][ai-sandbox]]=), you can override the default image, workspace mount point, and injected environment variables:
+
+#+begin_src elisp
+(setq mcp-gitnexus-docker-image "my-custom-sandbox:latest"
+      mcp-gitnexus-docker-workspace "/app"
+      mcp-gitnexus-env-vars '("GEMINI_API_KEY" "ANTHROPIC_API_KEY"))
+#+end_src
+
+** Running Locally (Without Docker)
+If you prefer to run GitNexus directly on your host machine via Node.js, simply disable the Docker wrapper:
+
+#+begin_src elisp
+(setq mcp-gitnexus-enable-docker nil)
+#+end_src
+
+Do not forget to install Gitnexus on your host machine: `npm install -g gitnexus`.
+
+* Usage
+1. Open a project.
+2. Press =SPC c m= to open =mcp-hub=.
+3. Select the server to start (e.g. =gitnexus= if =+gitnexus= is enabled).

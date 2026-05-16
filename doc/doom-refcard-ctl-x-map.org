@@ -64,7 +64,7 @@ keymap.
 - =m= : notmuch-mua-new-mail
 - =o= calls =other-window= : select another window in cyclic ordering of windows.
 - =q= calls =kbd-macro-query= : query user during kbd macro execution.
-- =s= : symlinks
+- =s= calls =save-some-buffers= : save some modified file-visiting buffers.  Asks user about each one.
 - =u= calls =undo= : undo some previous changes.
 - =z= calls =repeat= : repeat most recently executed command.
 - ={= calls =shrink-window-horizontally= : make selected window DELTA columns narrower.

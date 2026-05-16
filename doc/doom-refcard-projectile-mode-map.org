@@ -84,5 +84,7 @@ Keymap for Projectile mode.
 - =C-c p x s= calls =projectile-run-shell= : invoke `shell' in the project's root.
 - =C-c p x t= calls =projectile-run-term= : invoke `term' in the project's root.
 - =C-c p x v= calls =projectile-run-vterm= : invoke `vterm' in the project's root.
+- =C-c p x x= calls =projectile-run-eat= : invoke `eat' in the project's root.
 ***** Prefix =C-c p x 4= : +prefix
 - =C-c p x 4 v= calls =projectile-run-vterm-other-window= : invoke `vterm' in the project's root.
+- =C-c p x 4 x= calls =projectile-run-eat-other-window= : invoke `eat' in the project's root.

@@ -2,3 +2,5 @@
 CLAUDE.md
 .claude/**
 docs/**
+assets/*.png
+assets/*.xcf

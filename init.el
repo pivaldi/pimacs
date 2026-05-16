@@ -39,6 +39,7 @@
  dockerfile
  shrface ;; Extends shr / eww with org features and analysis capability.
  elfeed
+ (mcp +gitnexus) ;; integrates =mcp.el= providing a bridge to Model Context Protocol (MCP) servers. Use +gitnexus to enable the GitNexus server.
  ;; neotree
  treemacs
  ;; hexo ;; Use Hexo in Emacs elegantly (work in progress)

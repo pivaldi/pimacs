@@ -128,6 +128,7 @@ See [[file:docker/README.org][docker/README.org]] for detailed documentation, us
   (lint, format, build, breaking, generate) and Buf LSP.
 - *pimacs/lsp*: Complet/extend the default Doom configuration of the
   [[https://microsoft.github.io/language-server-protocol/][Langage Server Protocol]].
+- *pimacs/mcp*: [[mcp/README.org][This module integrates]] integrates =[[https://github.com/lizqwerscott/mcp.el][mcp.el]]= into Doom Emacs, providing a bridge to Model Context Protocol (MCP) servers. It optionally supports the [[https://github.com/abhigyanpatwari/GitNexus][GitNexus]] code intelligence engine (=+gitnexus=), configurable to run locally or inside a Docker sandbox.
 - *pimacs/notmuch*: [[file:notmuch/README.org][This package]] provides
   extra configurations of the default Doom Emacs configuration for
   [[file:Notmuch][https://notmuchmail.org/]] using [[file:Notmuch-Multi%20to%20manage%20smartly%20multiple%20mail%20accounts][https://github.com/pivaldi/notmuch-multi]].
