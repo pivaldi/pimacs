@@ -29,7 +29,9 @@ If nil, run it locally via npx."
       :group 'mcp)
 
     (defcustom pim-mcp-gitnexus-docker-volumes
-      '("~/.gemini:/home/gemini/.gemini"
+      '("gemini-mise-config:/home/gemini/.config/mise"
+        "gemini-mise-cache:/home/gemini/.local/share/mise"
+        "~/.gemini:/home/gemini/.gemini"
         "~/.claude:/home/gemini/.claude"
         "~/.claude.json:/home/gemini/.claude.json"
         "~/.gitnexus:/home/gemini/.gitnexus")
@@ -70,7 +72,7 @@ File paths starting with `~` or `/` will be automatically expanded."
                                     "-v" (format "%s:%s" project-dir pim-mcp-gitnexus-docker-workspace)
                                     "-w" pim-mcp-gitnexus-docker-workspace)
                               (pim/mcp-format-volume-args pim-mcp-gitnexus-docker-volumes)
-                              (pim/mcp-format-env-args pim-mcp-gitnexus-vars-env)
+                              (pim/mcp-format-env-args pim-mcp-gitnexus-env-vars)
                               (list pim-mcp-gitnexus-docker-image "gitnexus" "mcp"))))
           '("gitnexus" . (:command "gitnexus" :args ("mcp"))))))
 

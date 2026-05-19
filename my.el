@@ -105,6 +105,7 @@
        ;;tmux              ; an API for interacting with tmux
        ;; tree-sitter         ; syntax and parsing, sitting in a tree...
        ;;upload            ; map local to remote projects via ssh/ftp
+       llm ;LLMs into Emacs for analyzing or generating code and text, powered by the gptel package
 
        :os
        (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS

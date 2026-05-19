@@ -40,6 +40,7 @@
  shrface ;; Extends shr / eww with org features and analysis capability.
  elfeed
  (mcp +gitnexus) ;; integrates =mcp.el= providing a bridge to Model Context Protocol (MCP) servers. Use +gitnexus to enable the GitNexus server.
+ (gptel +claude) ;; Configure gptel with Claude.
  ;; neotree
  treemacs
  ;; hexo ;; Use Hexo in Emacs elegantly (work in progress)
