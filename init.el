@@ -39,7 +39,7 @@
  dockerfile
  shrface ;; Extends shr / eww with org features and analysis capability.
  elfeed
- (mcp +gitnexus) ;; integrates =mcp.el= providing a bridge to Model Context Protocol (MCP) servers. Use +gitnexus to enable the GitNexus server.
+ (mcp +gitnexus +filesystem +context7) ;; integrates =mcp.el= providing a bridge to Model Context Protocol (MCP) servers. Flags: +gitnexus, +filesystem, +github, +context7.
  (gptel +claude) ;; Configure gptel with Claude.
  ;; neotree
  treemacs

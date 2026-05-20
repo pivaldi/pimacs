@@ -61,7 +61,7 @@ Keymap for Org mode.
 - =<up>= calls =org-metaup= : move subtree up or move table row up.
 ** Prefix =C-c= : +prefix
 - =C-c <RET>= calls =org-ctrl-c-ret= : call `org-table-hline-and-move' or `org-insert-heading'.
-- =C-c <TAB>= calls =org-toggle-inline-images= : toggle the display of inline images.
+- =C-c <TAB>= calls =org-ctrl-c-tab= : toggle columns width in a table, or show children.
 - =C-c != : checkers
 - =C-c #= calls =org-update-statistics-cookies= : update the statistics cookie, either from TODO or from checkboxes.
 - =C-c $= calls =org-archive-subtree= : move the current subtree to the archive.
@@ -124,6 +124,7 @@ Keymap for Org mode.
 - =C-c M-f= calls =org-next-block= : jump to the next block.
 - =C-c M-l= calls =org-insert-last-stored-link= : insert the last link stored in `org-stored-links'.
 - =C-c M-w= calls =org-refile-copy= : like `org-refile', but preserve the refiled subtree.
+- =C-c C-i= calls =org-link-preview-refresh= : assure display of link previews in buffer and refresh them.
 *** Prefix =C-c "= : +prefix
 - =C-c " a= calls =orgtbl-ascii-plot= : draw an ASCII bar plot in a column.
 - =C-c " g= calls =org-plot/gnuplot= : plot table using gnuplot.  Gnuplot options can be specified with PARAMS.
@@ -352,12 +353,12 @@ Keymap for Org mode.
 - =C-c C-x C-s= calls =org-archive-subtree= : move the current subtree to the archive.
 - =C-c C-x C-t= calls =org-toggle-timestamp-overlays= : toggle the use of custom time stamp formats.
 - =C-c C-x C-u= calls =org-dblock-update= : user command for updating dynamic blocks.
-- =C-c C-x C-v= calls =org-toggle-inline-images= : toggle the display of inline images.
+- =C-c C-x C-v= calls =org-link-preview= : toggle display of link previews in the buffer.
 - =C-c C-x C-w= calls =org-cut-special= : cut region in table or cut current subtree.
 - =C-c C-x C-x= calls =org-clock-in-last= : clock in the last closed clocked item.
 - =C-c C-x C-y= calls =org-paste-special= : paste rectangular region into table, or paste subtree relative to level.
 - =C-c C-x C-z= calls =org-resolve-clocks= : resolve all currently open Org clocks.
-- =C-c C-x C-M-v= calls =org-redisplay-inline-images= : assure display of inline images and refresh them.
+- =C-c C-x C-M-v= calls =org-link-preview-refresh= : assure display of link previews in buffer and refresh them.
 - =C-c C-x M-w= calls =org-copy-special= : copy region in table or copy current subtree.
 ** Prefix =C-x= : +prefix
 *** Prefix =C-x n= : +prefix

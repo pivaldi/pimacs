@@ -52,7 +52,7 @@ Keymap for Projectile mode.
 - =C-c p 4 a= calls =projectile-find-other-file-other-window= : switch between files with different extensions in other window.
 - =C-c p 4 b= calls =projectile-switch-to-buffer-other-window= : switch to a project buffer and show it in another window.
 - =C-c p 4 d= calls =projectile-find-dir-other-window= : jump to a project's directory in other window using completion.
-- =C-c p 4 D= calls =projectile-dired-other-window= : open `dired'  at the root of the project in another window.
+- =C-c p 4 D= calls =projectile-dired-other-window= : open `dired' at the root of the project in another window.
 - =C-c p 4 f= calls =projectile-find-file-other-window= : jump to a project's file using completion and show it in another window.
 - =C-c p 4 g= calls =projectile-find-file-dwim-other-window= : jump to a project's files using completion based on context in other window.
 - =C-c p 4 t= calls =projectile-find-implementation-or-test-other-window= : open matching implementation or test file in other window.

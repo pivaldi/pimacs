@@ -1,0 +1,59 @@
+#+TITLE:   gptel
+#+DATE:    May 2026
+
+* Description
+This module configures [[https://github.com/karthink/gptel][gptel]] — a simple LLM client for Emacs — and wires it up
+with the =:pimacs mcp= module so the model can call MCP server tools (e.g.
+GitNexus, filesystem, GitHub) and a small set of local in-process tools.
+
+This module declares =gptel= itself in =packages.el=, so enabling Doom's =:tools llm= is optional.
+
+* Flags
+| Flag      | Backend         | Default |
+|-----------+-----------------+---------|
+| =+claude= | Anthropic       | off     |
+| =+gemini= | Google Gemini   | off     |
+
+Enable in =init.el= (one or both):
+#+begin_src elisp
+(gptel +claude +gemini)
+#+end_src
+
+If both flags are on, =+claude= wins =setq-default= and Gemini stays selectable
+via =gptel-menu=. Reverse the order in =gptel/config.el= if you'd rather have
+Gemini as the default.
+
+* Setup
+** Anthropic key (=+claude=)
+The backend reads =ANTHROPIC_API_KEY= lazily.
+
+** Google Gemini key (=+gemini=)
+The backend reads =GEMINI_API_KEY= lazily.
+
+* Features
+** Local tools (always loaded)
+The file =+tools.el= registers four in-process tools that any backend with tool-calling support can use. They live in =gptel/+tools.el=:
+
+| Tool           | Purpose                                           | Confirm? |
+|----------------+---------------------------------------------------+----------|
+| =eval_elisp=   | Evaluate an Emacs Lisp form, return printed value | yes      |
+| =read_buffer=  | Return full contents of a named buffer            | no       |
+| =list_buffers= | List buffer names + backing file                  | no       |
+| =project_grep= | Search the project with ripgrep (or grep)         | no       |
+
+These complement the MCP servers exposed via =gptel-mcp=: local tools are fast (no Docker round-trip), MCP tools are richer (cross-process integrations).
+
+** MCP bridge
+The =gptel-mcp= package ([[https://github.com/lizqwerscott/gptel-mcp.el][lizqwerscott/gptel-mcp.el]]) is used under the hood =:after (gptel mcp)= and exposes MCP servers as tools gptel can call. The flow is explicit:
+
+1. Open the hub with =SPC c m= and start the server(s) you need (e.g. GitNexus, filesystem) pressing =s=.
+2. Invoke =SPC c M= (=gptel-mcp-dispatch=) to register the running server's tools into gptel or call =gptel-mcp-start-all-server-and-register= to do both steps for every server declared in =mcp-hub-servers=.
+3. Inside a gptel chat buffer, the registered tools are now available via =gptel-menu= alongside the local in-process tools from =+tools.el=.
+
+* Usage
+1. =M-x gptel= to open a chat buffer.
+2. =M-x gptel-send= (or =C-c RET= inside a chat buffer) to send the prompt.
+3. =C-u M-x gptel-send= opens =gptel-menu= where you can pick model, system prompt, and which tools to expose for the next call.
+4. =M-x gptel-add= adds the active region (or buffer/file) to the chat context.
+
+See the auto-generated [[file:gptel-key-bindings-refcard.org][refcard]] for the full key list.

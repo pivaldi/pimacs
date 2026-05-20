@@ -2,38 +2,107 @@
 #+DATE:    May 2026
 
 * Description
-This module integrates =[[https://github.com/lizqwerscott/mcp.el][mcp.el]]= into Doom Emacs, providing a bridge to Model Context Protocol (MCP) servers. It optionally supports the [[https://github.com/abhigyanpatwari/GitNexus][GitNexus]] code intelligence engine (=+gitnexus=), configurable to run locally or inside a Docker sandbox.
+This module integrates =[[https://github.com/lizqwerscott/mcp.el][mcp.el]]= into Doom Emacs, providing a bridge to [[https://modelcontextprotocol.io/][Model Context Protocol]] (MCP) servers.
+
+It ships a small per-server factory so adding a new MCP server is just a flag + a few lines of config. Each server can run as a plain command (stdio) or wrapped in a Docker container.
 
 * Flags
-- =+gitnexus= — Enable the GitNexus code intelligence MCP server (disabled by default).
+| Flag            | Server                          | Default |
+|-----------------+---------------------------------+---------|
+| =+gitnexus=     | [[https://github.com/abhigyanpatwari/GitNexus][GitNexus]] code intelligence       | off     |
+| =+filesystem=   | [[https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem][MCP filesystem]] (project-scoped) | off     |
+| =+github=       | [[https://github.com/github/github-mcp-server][GitHub MCP server]]               | off     |
+| =+context7=     | [[https://github.com/upstash/context7][Context7]] up-to-date library docs | off     |
 
-Enable it in =init.el=:
+Enable any combination in =init.el=:
 #+begin_src elisp
-(mcp +gitnexus)
+(mcp +gitnexus +filesystem +github +context7)
 #+end_src
 
-* Configuration
-The following variables are only defined when =+gitnexus= is enabled.
+* Usage
+1. Open a project.
+2. Press =SPC c m= to open =mcp-hub=.
+3. Select the server to start.
 
-** Docker Settings
-By default, GitNexus runs inside a Docker container. If you use a custom sandbox (like =[[https://github.com/pivaldi/ai-sandbox][ai-sandbox]]=), you can override the default image, workspace mount point, and injected environment variables:
+If =pim-mcp-auto-start-on-project-switch= is non-nil (default), project-aware servers whose detector matches will be started automatically when you switch project via projectile. See [[*Per-project auto-start][Per-project auto-start]].
 
+* Architecture
+** Generic helpers
+- =pim/mcp-format-env-args VARS= — turns a list of env-var names into Docker =-e= args.
+- =pim/mcp-format-volume-args VOLUMES= — turns volume specs into =-v= args (=~= and =/= prefixes are expanded; everything else is treated as a named volume).
+- =pim/mcp-project-root= — current project root, falls back to =default-directory=.
+
+** Server entry factories
+=pim/mcp-make-docker-server NAME IMAGE &key args volumes env-vars mount-project workspace extra-docker-args=
+  Build an =mcp-hub-servers= entry running =docker run -i --rm … IMAGE …=.
+
+=pim/mcp-make-stdio-server NAME COMMAND &key args=
+  Build an entry that runs =COMMAND= directly via stdio (used for =npx=-based servers).
+
+** Project-aware registry
+=pim/mcp-register-server ENTRY &optional REBUILD-THUNK=
+  Add =ENTRY= to =mcp-hub-servers=. If =REBUILD-THUNK= is non-nil, it is re-evaluated before each =mcp-hub= call so project-relative paths track the active project.
+
+** Per-project auto-start
+=pim/mcp-register-project-detector NAME PREDICATE=
+  When projectile switches project, every registered =PREDICATE= is called inside the new project root. If it returns non-nil, =NAME= is started via =pim-mcp-start-server-function= (default ='mcp-hub-start-server=).
+
+Defcustoms:
+- =pim-mcp-auto-start-on-project-switch= (default =t=) — disable to opt out globally.
+- =pim-mcp-start-server-function= — override if your =mcp.el= build uses a different entry point (e.g. ='mcp-connect-server=).
+
+* Server reference
+** =+gitnexus=
+Code intelligence over the current repository. Runs in Docker by default; falls back to the host =gitnexus= binary if =pim-mcp-gitnexus-enable-docker= is nil.
+
+Defcustoms:
+- =pim-mcp-gitnexus-enable-docker= — Docker wrapper toggle.
+- =pim-mcp-gitnexus-docker-image= — image name (default =ai-sandbox:latest=).
+- =pim-mcp-gitnexus-docker-workspace= — container mount point for the project (default =/workspace=).
+- =pim-mcp-gitnexus-env-vars= — host env vars forwarded with =-e=.
+- =pim-mcp-gitnexus-docker-volumes= — additional volume mappings.
+- =pim-mcp-gitnexus-project-markers= — files signalling that GitNexus has indexed the project (default =.gitnexus=, =gitnexus.config.json=). The auto-start detector also matches if =~/.gitnexus/<repo-name>/= exists.
+
+Example custom configuration:
 #+begin_src elisp
 (setq pim-mcp-gitnexus-docker-image "my-custom-sandbox:latest"
       pim-mcp-gitnexus-docker-workspace "/app"
       pim-mcp-gitnexus-env-vars '("GEMINI_API_KEY" "ANTHROPIC_API_KEY"))
 #+end_src
 
-** Running Locally (Without Docker)
-If you prefer to run GitNexus directly on your host machine via Node.js, simply disable the Docker wrapper:
-
+Running locally (no Docker):
 #+begin_src elisp
 (setq pim-mcp-gitnexus-enable-docker nil)
 #+end_src
+Install on the host first: =npm install -g gitnexus=.
 
-Do not forget to install Gitnexus on your host machine: `npm install -g gitnexus`.
+** =+filesystem=
+Exposes the current project root to the LLM via the official [[https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem][MCP filesystem server]]. Requires =npx= (and therefore Node) on =PATH=.
 
-* Usage
-1. Open a project.
-2. Press =SPC c m= to open =mcp-hub=.
-3. Select the server to start (e.g. =gitnexus= if =+gitnexus= is enabled).
+Project-aware: the path passed to the server is rebuilt on every =mcp-hub= invocation.
+
+Defcustoms:
+- =pim-mcp-filesystem-npx-package= — package name (default =@modelcontextprotocol/server-filesystem=).
+
+** =+github=
+GitHub issues, PRs, code search. Defaults to running [[https://github.com/github/github-mcp-server][ghcr.io/github/github-mcp-server]] in Docker, forwarding =GITHUB_PERSONAL_ACCESS_TOKEN= from the host environment.
+
+Defcustoms:
+- =pim-mcp-github-enable-docker= — Docker wrapper toggle.
+- =pim-mcp-github-docker-image= — image (default =ghcr.io/github/github-mcp-server=).
+- =pim-mcp-github-env-vars= — env vars forwarded (default =GITHUB_PERSONAL_ACCESS_TOKEN=).
+
+Local mode runs the =github-mcp-server stdio= binary if installed on the host.
+
+** =+context7=
+[[https://github.com/upstash/context7][Context7]] retrieves up-to-date documentation for popular libraries. Runs via =npx -y @upstash/context7-mcp=.
+
+Defcustoms:
+- =pim-mcp-context7-npx-package= — package name.
+
+* Key bindings
+| Binding   | Action                  |
+|-----------+-------------------------|
+| =SPC c m= | Open =mcp-hub=          |
+
+See [[file:mcp-key-bindings-refcard.org][mcp-key-bindings-refcard.org]] for the auto-generated full refcard.
