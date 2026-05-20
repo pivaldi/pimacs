@@ -298,7 +298,7 @@ PREFIX should be a string suitable for `kbd'."
                       ""
                     (format " Prefixed by %s" (pim-format-to-inline-code prefix "org"))))
        (title "")
-       (coding-system-for-write 'utf-8-unix))
+       (coding-system-for-write 'utf-8-with-signature-unix))
     (with-temp-file file-name
       (point-max)
       (save-excursion
@@ -356,7 +356,7 @@ User should use `pim-modules-key-bindings-to-refcard' instead."
         (keymapnames nil)
         (modulename nil)
         (module nil)
-        (coding-system-for-write 'utf-8-unix))
+        (coding-system-for-write 'utf-8-with-signature-unix))
     (general-override-mode +1)
     (dolist (km pim-keymapname-alist)
       ;; Isolate each module so a single broken entry (missing feature, wrong
