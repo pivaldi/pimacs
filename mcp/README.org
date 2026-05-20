@@ -1,8 +1,8 @@
-#+TITLE:   mcp
+#+TITLE:   PIMacs/mcp
 #+DATE:    May 2026
 
 * Description
-This module integrates =[[https://github.com/lizqwerscott/mcp.el][mcp.el]]= into Doom Emacs, providing a bridge to [[https://modelcontextprotocol.io/][Model Context Protocol]] (MCP) servers.
+This module integrates [[https://github.com/lizqwerscott/mcp.el][mcp.el]] into Doom Emacs, providing a bridge to [[https://modelcontextprotocol.io/][Model Context Protocol]] (MCP) servers.
 
 It ships a small per-server factory so adding a new MCP server is just a flag + a few lines of config. Each server can run as a plain command (stdio) or wrapped in a Docker container.
 
@@ -19,12 +19,14 @@ Enable any combination in =init.el=:
 (mcp +gitnexus +filesystem +github +context7)
 #+end_src
 
+#+html: <p align="center"><img src="./assets/mcp.webp" alt="mcp hub in Emacs" width="759" /></p>
+
 * Usage
 1. Open a project.
 2. Press =SPC c m= to open =mcp-hub=.
-3. Select the server to start.
+3. Select the server to start and press =s=.
 
-If =pim-mcp-auto-start-on-project-switch= is non-nil (default), project-aware servers whose detector matches will be started automatically when you switch project via projectile. See [[*Per-project auto-start][Per-project auto-start]].
+If =pim-mcp-auto-start-on-project-switch= is non-nil, project-aware servers whose detector matches will be started automatically when you switch project via projectile. See [[*Per-project auto-start][Per-project auto-start]].
 
 * Architecture
 ** Generic helpers
@@ -48,12 +50,12 @@ If =pim-mcp-auto-start-on-project-switch= is non-nil (default), project-aware se
   When projectile switches project, every registered =PREDICATE= is called inside the new project root. If it returns non-nil, =NAME= is started via =pim-mcp-start-server-function= (default ='mcp-hub-start-server=).
 
 Defcustoms:
-- =pim-mcp-auto-start-on-project-switch= (default =t=) — disable to opt out globally.
+- =pim-mcp-auto-start-on-project-switch= (default =nil=).
 - =pim-mcp-start-server-function= — override if your =mcp.el= build uses a different entry point (e.g. ='mcp-connect-server=).
 
 * Server reference
 ** =+gitnexus=
-Code intelligence over the current repository. Runs in Docker by default; falls back to the host =gitnexus= binary if =pim-mcp-gitnexus-enable-docker= is nil.
+Code intelligence over the current repository. Runs in [[https://github.com/pivaldi/ai-sandbox][the Docker ai-sandbox]] is =t=; falls back to the host =gitnexus= binary if =pim-mcp-gitnexus-enable-docker= is nil (default).
 
 Defcustoms:
 - =pim-mcp-gitnexus-enable-docker= — Docker wrapper toggle.
@@ -106,3 +108,7 @@ Defcustoms:
 | =SPC c m= | Open =mcp-hub=          |
 
 See [[file:mcp-key-bindings-refcard.org][mcp-key-bindings-refcard.org]] for the auto-generated full refcard.
+
+* AI use disclaimer
+
+=PIMacs/mcp= was mostly written by Claude Sonnet 4.

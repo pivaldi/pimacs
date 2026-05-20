@@ -138,7 +138,7 @@ projects; if it returns non-nil, SERVER-NAME is started via
   ;;; ── +gitnexus ──────────────────────────────────────────────────────────
 
   (when (modulep! +gitnexus)
-    (defcustom pim-mcp-gitnexus-enable-docker t
+    (defcustom pim-mcp-gitnexus-enable-docker nil
       "If non-nil, run GitNexus inside a Docker container.
 If nil, run it locally via npx."
       :type 'boolean
