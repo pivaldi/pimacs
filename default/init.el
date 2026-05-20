@@ -37,7 +37,25 @@ Only azerty and qwerty are supported for now.")
 (defvar pim-qwertyp (equal pim-keyboard-type "qwerty"))
 
 (defvar pim-keymapname-alist (list)
-  "List (\"module name\" . '((keymapname1 . provided-by1) (keymapname2 . provided-by2) etc)  configured by PIMacs.")
+  "Refcard registry for PIMacs modules.
+
+Entries have the shape:
+  (\"module name\" . ((KEYMAPNAME FEATURE :KEY VALUE ...) ...))
+
+FEATURE is the feature symbol `require'd before resolving KEYMAPNAME, or
+nil when the keymap is already in core (e.g. `global-map').
+
+Supported keyword options:
+  :warmup FN — function to call in a temporary buffer before the
+               generator enumerates bindings. Use this when bindings
+               are installed inside a `define-derived-mode' body or
+               otherwise only after the mode has run at least once.
+               Pass the mode function itself, e.g. `mcp-hub-mode'.
+
+Every generated refcard now contains two sections — \"PIMacs Added Key
+Bindings\" (only entries whose description ends in `#pim') and \"Default
+Mode Key Bindings\" (every upstream binding) — so the previous opt-in
+`:all' flag is no longer needed.")
 
 (defcustom pim-auto-fill-mode-hooks
   '(text-mode-hook)

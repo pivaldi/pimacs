@@ -19,9 +19,9 @@
 ;;; Code:
 
 (if (modulep! :pimacs treesit)
-    (add-to-list ' pim-keymapname-alist '("lang-php" . (("php-ts-mode-map" . php-ts-mode)
-                                                        ("php-mode-map" . php-mode))))
-  (add-to-list 'pim-keymapname-alist '("lang-php" . (("php-mode-map" . php-mode)))))
+    (add-to-list 'pim-keymapname-alist '("lang-php" . (("php-ts-mode-map" php-ts-mode)
+                                                       ("php-mode-map" php-mode))))
+  (add-to-list 'pim-keymapname-alist '("lang-php" . (("php-mode-map" php-mode)))))
 
 (provide 'pimacs/lang-php/init)
 ;;; init.el ends here

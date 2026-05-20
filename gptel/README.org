@@ -56,4 +56,4 @@ The =gptel-mcp= package ([[https://github.com/lizqwerscott/gptel-mcp.el][lizqwer
 3. =C-u M-x gptel-send= opens =gptel-menu= where you can pick model, system prompt, and which tools to expose for the next call.
 4. =M-x gptel-add= adds the active region (or buffer/file) to the chat context.
 
-See the auto-generated [[file:gptel-key-bindings-refcard.org][refcard]] for the full key list.
+There is no module-local refcard: PIMacs adds no bindings to =gptel-mode-map=. Leader bindings (=SPC c M= for =gptel-mcp-dispatch=) appear in the =:pimacs keys= refcard.

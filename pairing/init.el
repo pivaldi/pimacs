@@ -1,7 +1,7 @@
 ;;; pimacs/pairing/init.el -*- lexical-binding: t; -*-
 
 (add-to-list 'pim-keymapname-alist
-             '("pairing" . (("smartparens-mode-map" . smartparens))))
+             '("pairing" . (("smartparens-mode-map" smartparens))))
 
 (provide 'pimacs/pairing/init)
 ;;; init.el ends here

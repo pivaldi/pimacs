@@ -18,15 +18,15 @@
 
 (add-to-list 'pim-keymapname-alist
              '("keys" .
-               (("global-map" . nil)
-                ("general-override-mode-map" . general)
-                ("which-key-C-h-map" . which-key)
-                ("minibuffer-local-map" . nil)
-                ("prog-mode-map" . prog-mode))))
+               (("global-map")
+                ("general-override-mode-map" general)
+                ("which-key-C-h-map" which-key)
+                ("minibuffer-local-map")
+                ("prog-mode-map" prog-mode))))
 
 ;; (setq pim-keymapname-alist
-;;       (list '("keys" . (("global-map" . nil) ("general-override-mode-map" . general)))
-;;             '("default" . (("go-mode-map" . go-mode)))))
+;;       (list '("keys" . (("global-map") ("general-override-mode-map" general)))
+;;             '("default" . (("go-mode-map" go-mode)))))
 
 (provide 'pimacs/keys/init)
 ;;; init.el ends here

@@ -1,6 +1,6 @@
 ;;; pimacs/lang-protobuf/init.el -*- lexical-binding: t; -*-
 
-(add-to-list 'pim-keymapname-alist '("lang-protobuf" . (("protobuf-ts-mode-map" . protobuf-ts-mode))))
+(add-to-list 'pim-keymapname-alist '("lang-protobuf" . (("protobuf-ts-mode-map" protobuf-ts-mode))))
 
 (provide 'pimacs/lang-protobuf/init)
 

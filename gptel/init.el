@@ -1,6 +1,8 @@
 ;;; pimacs/gptel/init.el -*- lexical-binding: t; -*-
 
-;; `gptel-menu' is a transient command, not a keymap variable, so it is
-;; intentionally NOT registered here.
-(add-to-list 'pim-keymapname-alist
-             '("gptel" . (("gptel-mode-map" . gptel))))
+;; This module deliberately does NOT register `gptel-mode-map' in
+;; `pim-keymapname-alist': PIMacs adds no bindings to it (the main entry point
+;; is the `gptel-menu' transient, not a keymap variable), so the generated
+;; refcard would always be empty. Leader-level bindings — `SPC c M' for
+;; `gptel-mcp-dispatch' — are tagged with `#pim' and surface in the keys module
+;; refcard instead.

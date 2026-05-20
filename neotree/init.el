@@ -18,7 +18,7 @@
 
 ;;; Code:
 
-(add-to-list 'pim-keymapname-alist '("neotree" . (("neotree-mode-map" . neotree-mode))))
+(add-to-list 'pim-keymapname-alist '("neotree" . (("neotree-mode-map" neotree-mode))))
 
 (provide 'pimacs/neotree/init)
 ;;; init.el ends here

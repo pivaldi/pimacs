@@ -19,7 +19,7 @@
 
 ;;; Code:
 
-(add-to-list 'pim-keymapname-alist '("dired" . (("dired-mode-map" . dired))))
+(add-to-list 'pim-keymapname-alist '("dired" . (("dired-mode-map" dired))))
 
 (provide 'pimacs/dired/init)
 ;;; init.el ends here

@@ -18,10 +18,11 @@
 
 ;;; Code:
 
+;; Both `js-mode-map' and `js-ts-mode-map' live in js.el, which `(provide 'js)'.
 (if (modulep! :pimacs treesit)
-    (add-to-list 'pim-keymapname-alist '("lang-js" . (("js-ts-mode-map" . js-ts-mode)
-                                                      ("js-mode-map" . js-mode))))
-  (add-to-list 'pim-keymapname-alist '("lang-js" . (("js-mode-map" . js-mode)))))
+    (add-to-list 'pim-keymapname-alist '("lang-js" . (("js-ts-mode-map" js)
+                                                      ("js-mode-map" js))))
+  (add-to-list 'pim-keymapname-alist '("lang-js" . (("js-mode-map" js)))))
 
 (provide 'pimacs/lang-js/init)
 ;;; init.el ends here

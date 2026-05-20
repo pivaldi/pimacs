@@ -18,7 +18,9 @@
 
 ;;; Code:
 
-(add-to-list 'pim-keymapname-alist '("elfeed" . (("elfeed-search-mode-map" . elfeed-mode))))
+;; `elfeed-search-mode-map' is defined in elfeed-search.el, not in the top-level
+;; `elfeed' feature, so require that file directly.
+(add-to-list 'pim-keymapname-alist '("elfeed" . (("elfeed-search-mode-map" elfeed-search))))
 
 (provide 'pimacs/elfeed/init)
 ;;; init.el ends here
