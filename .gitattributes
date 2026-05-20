@@ -1,0 +1,8 @@
+# Force UTF-8 for Org files so GitHub's blob viewer doesn't
+# mis-detect mostly-ASCII refcards as Latin-1.
+*.org             text working-tree-encoding=UTF-8 eol=lf
+*-refcard.org     text working-tree-encoding=UTF-8 eol=lf
+
+# Same for elisp sources (mostly cosmetic — they rarely contain
+# non-ASCII, but consistent normalisation never hurts).
+*.el              text working-tree-encoding=UTF-8 eol=lf
