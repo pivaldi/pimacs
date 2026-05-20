@@ -31,6 +31,20 @@ Edit it here; every refcard writer pulls from this constant.")
   "Default Mode Key Bindings"
   "Title of the section dumping every binding upstream installs.")
 
+(defun pim--escape-eight-bit (str)
+  "Return STR with every eight-bit char (raw byte 0x80..0xFF in Emacs's
+internal multibyte representation, codepoints #x3FFF80..#x3FFFFF)
+replaced by a printable `\\\\xNN' literal. Used to keep key descriptors
+like the isearch range `\\x80..\\xFF' writable as plain UTF-8 — a raw
+0xFF byte on its own is not valid UTF-8 and prevents the refcard from
+being saved."
+  (mapconcat
+   (lambda (c)
+     (if (and (>= c #x3FFF80) (<= c #x3FFFFF))
+         (format "\\x%02X" (- c #x3FFF00))
+       (string c)))
+   str ""))
+
 (defun pim--linkify-docstring-symbols (str)
   "Convert curly-quoted symbol references in STR into Org `help:' links.
 Each `‘NAME’' (or the ASCII fallback `\\=`NAME\\='') becomes
@@ -245,18 +259,21 @@ RESTRICT-TO-PIM filters the emitted bindings:
          (prefixf (if (equal prefix "") "" (format "Prefix =%s=" prefix)))
          (prekeymapf (if (equal prefix "") "" " on "))
          (keymapdoc (pim--linkify-docstring-symbols
-                     (or (documentation-property (intern keymapname) 'variable-documentation) "")))
+                     (pim--escape-eight-bit
+                      (or (documentation-property (intern keymapname) 'variable-documentation) ""))))
          (keymapf (if keymap (format "%sKeymap =%s=" prekeymapf keymapname) ""))
          (level1part ""))
     (when (and (equal prefix "") (not keymap)) (setq prefixf "No Prefix on No Keymap"))
     (setq level1part (if (or nil (eq 1 level)) (format "\n* %s%s\n%s\n\n" prefixf keymapf keymapdoc) ""))
     (and (not (listp keys)) (error "%s %s" prefix (symbol-name keymap)))
     (dolist (key keys)
-      (let* ((prefixn (s-trim (format "%s %s" prefix (pim-keystring-kbd-consolidate (pop key)))))
+      (let* ((prefixn (s-trim (format "%s %s" prefix
+                                       (pim-keystring-kbd-consolidate
+                                        (pim--escape-eight-bit (pop key))))))
              (sub-keys (which-key--get-bindings (kbd prefixn) keymap))
              (isSubKeyPrefix (not (null sub-keys)))
              (section-s (if isSubKeyPrefix (make-string (+ 1 level) ?*) "-"))
-             (keydesc (apply #'format "%s" (cdr key)))
+             (keydesc (pim--escape-eight-bit (apply #'format "%s" (cdr key))))
              (callable (and (not (string-match " " keydesc)) (pim-function-check (intern keydesc))))
              (docstring "")
              (line "")
@@ -268,8 +285,9 @@ RESTRICT-TO-PIM filters the emitted bindings:
                 (setq docstring
                       (format " : %s"
                               (pim--linkify-docstring-symbols
-                               (pim-downcase-first-char
-                                (s-replace-regexp "\n.*" "" docstring)))))
+                               (pim--escape-eight-bit
+                                (pim-downcase-first-char
+                                 (s-replace-regexp "\n.*" "" docstring))))))
               (setq docstring " (not described)"))
             (setq keydesc (format "=%s=" keydesc))
             (setq separator " calls ")))

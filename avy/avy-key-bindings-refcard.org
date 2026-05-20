@@ -85,7 +85,7 @@ Keymap for [[help:isearch-mode][isearch-mode]].
 - =<backspace>= calls =undefined= : beep to tell the user this binding is undefined.
 - =<return>= calls =isearch-exit= : exit search normally.
 - =<xterm>-<paste>= calls =isearch-xterm-paste= : pull terminal paste into search string.
-- =..�= calls =isearch-printing-char= : add this ordinary printing CHAR to the search string and search.
+- =..\<xFF>= calls =isearch-printing-char= : add this ordinary printing CHAR to the search string and search.
 *** Prefix =<ESC>= calls =isearch-cancel= : terminate the search and go back to the starting point.
 - =<ESC> C-M-%= calls =isearch-query-replace-regexp= : start [[help:query-replace-regexp][query-replace-regexp]] with string to replace from last search string.
 - =<ESC> C-M-d= calls =isearch-del-char= : delete character from end of search string and search again.
