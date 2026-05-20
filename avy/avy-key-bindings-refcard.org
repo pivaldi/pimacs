@@ -10,7 +10,7 @@ Default global keymap mapping Emacs keyboard input into commands.
 The value is a keymap that is usually (but not necessarily) Emacs’s
 global map.
 
-See also ‘current-global-map’.
+See also [[help:current-global-map][current-global-map]].
 
 *** Prefix =M-g a c= : +Avy goto char. #pim
 - =M-g a c 1= : Jump to the visible CHAR. #pim
@@ -36,7 +36,7 @@ See also ‘current-global-map’.
 - =M-g a w l= : Jump to the visible CHAR at a word start. #pim
 
 ** Keymap =isearch-mode-map=
-Keymap for ‘isearch-mode’.
+Keymap for [[help:isearch-mode][isearch-mode]].
 
 - =C-a= : Jump to one of the current isearch candidates. #pim
 
@@ -48,11 +48,11 @@ Default global keymap mapping Emacs keyboard input into commands.
 The value is a keymap that is usually (but not necessarily) Emacs’s
 global map.
 
-See also ‘current-global-map’.
+See also [[help:current-global-map][current-global-map]].
 
 
 ** Keymap =isearch-mode-map=
-Keymap for ‘isearch-mode’.
+Keymap for [[help:isearch-mode][isearch-mode]].
 
 - =<DEL>= calls =isearch-delete-char= : undo last input item during a search.
 - =<RET>= calls =isearch-exit= : exit search normally.
@@ -66,7 +66,7 @@ Keymap for ‘isearch-mode’.
 - =C-s= calls =isearch-repeat-forward= : repeat incremental search forwards.
 - =C-w= calls =isearch-yank-word-or-char= : pull next character or word from buffer into search string.
 - =C-y= calls =isearch-yank-kill= : pull string from kill ring into search string.
-- =C-M-%= calls =isearch-query-replace-regexp= : start `query-replace-regexp' with string to replace from last search string.
+- =C-M-%= calls =isearch-query-replace-regexp= : start [[help:query-replace-regexp][query-replace-regexp]] with string to replace from last search string.
 - =C-M-d= calls =isearch-del-char= : delete character from end of search string and search again.
 - =C-M-i= calls =isearch-complete= : complete the search string from the strings on the search ring.
 - =C-M-r= calls =isearch-repeat-backward= : repeat incremental search backwards.
@@ -74,7 +74,7 @@ Keymap for ‘isearch-mode’.
 - =C-M-w= calls =isearch-yank-symbol-or-char= : pull next character or symbol from buffer into search string.
 - =C-M-y= calls =isearch-yank-char= : pull next character from buffer into search string.
 - =C-M-z= calls =isearch-yank-until-char= : pull everything until next instance of CHAR from buffer into search string.
-- =M-%= calls =isearch-query-replace= : start `query-replace' with string to replace from last search string.
+- =M-%= calls =isearch-query-replace= : start [[help:query-replace][query-replace]] with string to replace from last search string.
 - =M-c= calls =isearch-toggle-case-fold= : toggle case-fold searching on or off.
 - =M-e= calls =isearch-edit-string= : edit the search string in the minibuffer.
 - =M-n= calls =isearch-ring-advance= : advance to the next search string in the ring.
@@ -87,7 +87,7 @@ Keymap for ‘isearch-mode’.
 - =<xterm>-<paste>= calls =isearch-xterm-paste= : pull terminal paste into search string.
 - =..�= calls =isearch-printing-char= : add this ordinary printing CHAR to the search string and search.
 *** Prefix =<ESC>= calls =isearch-cancel= : terminate the search and go back to the starting point.
-- =<ESC> C-M-%= calls =isearch-query-replace-regexp= : start `query-replace-regexp' with string to replace from last search string.
+- =<ESC> C-M-%= calls =isearch-query-replace-regexp= : start [[help:query-replace-regexp][query-replace-regexp]] with string to replace from last search string.
 - =<ESC> C-M-d= calls =isearch-del-char= : delete character from end of search string and search again.
 - =<ESC> C-M-i= calls =isearch-complete= : complete the search string from the strings on the search ring.
 - =<ESC> C-M-r= calls =isearch-repeat-backward= : repeat incremental search backwards.
@@ -95,7 +95,7 @@ Keymap for ‘isearch-mode’.
 - =<ESC> C-M-w= calls =isearch-yank-symbol-or-char= : pull next character or symbol from buffer into search string.
 - =<ESC> C-M-y= calls =isearch-yank-char= : pull next character from buffer into search string.
 - =<ESC> C-M-z= calls =isearch-yank-until-char= : pull everything until next instance of CHAR from buffer into search string.
-- =<ESC> M-%= calls =isearch-query-replace= : start `query-replace' with string to replace from last search string.
+- =<ESC> M-%= calls =isearch-query-replace= : start [[help:query-replace][query-replace]] with string to replace from last search string.
 - =<ESC> M-c= calls =isearch-toggle-case-fold= : toggle case-fold searching on or off.
 - =<ESC> M-e= calls =isearch-edit-string= : edit the search string in the minibuffer.
 - =<ESC> M-n= calls =isearch-ring-advance= : advance to the next search string in the ring.
@@ -136,15 +136,15 @@ Keymap for ‘isearch-mode’.
 - =M-s c= calls =isearch-toggle-case-fold= : toggle case-fold searching on or off.
 - =M-s e= calls =isearch-edit-string= : edit the search string in the minibuffer.
 - =M-s i= calls =isearch-toggle-invisible= : toggle invisible searching on or off.
-- =M-s o= calls =isearch-occur= : run `occur' using the last search string as the regexp.
+- =M-s o= calls =isearch-occur= : run [[help:occur][occur]] using the last search string as the regexp.
 - =M-s r= calls =isearch-toggle-regexp= : toggle regexp searching on or off.
 - =M-s w= calls =isearch-toggle-word= : toggle word searching on or off.
 - =M-s C-e= calls =isearch-yank-line= : pull rest of line from buffer into search string.
 - =M-s M-<= calls =isearch-beginning-of-buffer= : go to the first occurrence of the current search string.
 - =M-s M->= calls =isearch-end-of-buffer= : go to the last occurrence of the current search string.
 **** Prefix =M-s h= : +prefix
-- =M-s h l= calls =isearch-highlight-lines-matching-regexp= : exit Isearch mode and call `highlight-lines-matching-regexp'.
-- =M-s h r= calls =isearch-highlight-regexp= : exit Isearch mode and call `highlight-regexp'.
+- =M-s h l= calls =isearch-highlight-lines-matching-regexp= : exit Isearch mode and call [[help:highlight-lines-matching-regexp][highlight-lines-matching-regexp]].
+- =M-s h r= calls =isearch-highlight-regexp= : exit Isearch mode and call [[help:highlight-regexp][highlight-regexp]].
 *** Prefix =<help>= : +prefix
 - =<help> ?= calls =isearch-help-for-help= : display Isearch help menu.
 - =<help> b= : bindings

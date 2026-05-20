@@ -31,6 +31,18 @@ Edit it here; every refcard writer pulls from this constant.")
   "Default Mode Key Bindings"
   "Title of the section dumping every binding upstream installs.")
 
+(defun pim--linkify-docstring-symbols (str)
+  "Convert curly-quoted symbol references in STR into Org `help:' links.
+Each `‘NAME’' (or the ASCII fallback `\\=`NAME\\='') becomes
+`[[help:NAME][NAME]]', so visiting the generated refcard inside Emacs
+and pressing `C-c C-o' on a symbol pops the usual help buffer.
+Captures stop at whitespace and at the closing quote, so multi-word
+phrases like `‘not described’' are left as plain text."
+  (replace-regexp-in-string
+   "[‘`]\\([^’'`\n[:space:]]+\\)[’']"
+   "[[help:\\1][\\1]]"
+   str t))
+
 (defun pim--demote-org-headings (str)
   "Return STR with every Org heading line demoted by one level.
 Lines starting with one or more `*' followed by a space gain an extra
@@ -232,7 +244,8 @@ RESTRICT-TO-PIM filters the emitted bindings:
          (result "")
          (prefixf (if (equal prefix "") "" (format "Prefix =%s=" prefix)))
          (prekeymapf (if (equal prefix "") "" " on "))
-         (keymapdoc (or (documentation-property  (intern  keymapname) 'variable-documentation) ""))
+         (keymapdoc (pim--linkify-docstring-symbols
+                     (or (documentation-property (intern keymapname) 'variable-documentation) "")))
          (keymapf (if keymap (format "%sKeymap =%s=" prekeymapf keymapname) ""))
          (level1part ""))
     (when (and (equal prefix "") (not keymap)) (setq prefixf "No Prefix on No Keymap"))
@@ -253,7 +266,10 @@ RESTRICT-TO-PIM filters the emitted bindings:
             (setq docstring (helpful--docstring (intern keydesc) t) )
             (if docstring
                 (setq docstring
-                      (format " : %s" (pim-downcase-first-char (s-replace-regexp "\n.*" "" docstring))))
+                      (format " : %s"
+                              (pim--linkify-docstring-symbols
+                               (pim-downcase-first-char
+                                (s-replace-regexp "\n.*" "" docstring)))))
               (setq docstring " (not described)"))
             (setq keydesc (format "=%s=" keydesc))
             (setq separator " calls ")))

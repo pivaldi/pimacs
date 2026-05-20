@@ -11,21 +11,21 @@ Keymap for Projectile mode.
 ** Prefix =C-c= : +prefix
 *** Prefix =C-c p= : +project
 - =C-c p <ESC>= calls =projectile-project-buffers-other-buffer= : switch to the most recently selected buffer project buffer.
-- =C-c p != calls =projectile-run-shell-command-in-root= : invoke `shell-command' in the project's root.
-- =C-c p &= calls =projectile-run-async-shell-command-in-root= : invoke `async-shell-command' in the project's root.
+- =C-c p != calls =projectile-run-shell-command-in-root= : invoke [[help:shell-command][shell-command]] in the project's root.
+- =C-c p &= calls =projectile-run-async-shell-command-in-root= : invoke [[help:async-shell-command][async-shell-command]] in the project's root.
 - =C-c p ?= calls =projectile-find-references= : find all references to SYMBOL in the current project.
 - =C-c p a= calls =projectile-find-other-file= : switch between files with the same name but different extensions.
 - =C-c p A= calls =projectile-add-known-project= : add PROJECT-ROOT to the list of known projects.
 - =C-c p b= calls =projectile-switch-to-buffer= : switch to a project buffer.
 - =C-c p C= calls =projectile-configure-project= : run project configure command.
 - =C-c p d= calls =projectile-find-dir= : jump to a project's directory using completion.
-- =C-c p D= calls =projectile-dired= : open `dired' at the root of the project.
+- =C-c p D= calls =projectile-dired= : open [[help:dired][dired]] at the root of the project.
 - =C-c p e= calls =projectile-recentf= : show a list of recently visited files in a project.
 - =C-c p E= calls =projectile-edit-dir-locals= : edit or create a .dir-locals.el file of the project.
 - =C-c p f= calls =projectile-find-file= : jump to a project's file using completion.
 - =C-c p F= : Find file in other project
 - =C-c p g= calls =projectile-find-file-dwim= : jump to a project's files using completion based on context.
-- =C-c p i= calls =projectile-invalidate-cache= : remove the current project's files from `projectile-projects-cache'.
+- =C-c p i= calls =projectile-invalidate-cache= : remove the current project's files from [[help:projectile-projects-cache][projectile-projects-cache]].
 - =C-c p I= calls =projectile-ibuffer= : open an IBuffer window showing all buffers in the current project.
 - =C-c p j= calls =projectile-find-tag= : find tag in project.
 - =C-c p k= calls =projectile-kill-buffers= : kill project buffers.
@@ -33,17 +33,17 @@ Keymap for Projectile mode.
 - =C-c p l= calls =projectile-find-file-in-directory= : jump to a file in a (maybe regular) DIRECTORY.
 - =C-c p L= calls =projectile-install-project= : run project install command.
 - =C-c p m= calls =projectile-commander= : execute a Projectile command with a single letter.
-- =C-c p o= calls =projectile-multi-occur= : do a `multi-occur' in the project's buffers.
+- =C-c p o= calls =projectile-multi-occur= : do a [[help:multi-occur][multi-occur]] in the project's buffers.
 - =C-c p p= calls =projectile-switch-project= : switch to a project we have visited before.
 - =C-c p P= calls =projectile-test-project= : run project test command.
 - =C-c p q= calls =projectile-switch-open-project= : switch to a project we have currently opened.
-- =C-c p r= calls =projectile-replace= : replace literal string in project using non-regexp `tags-query-replace'.
+- =C-c p r= calls =projectile-replace= : replace literal string in project using non-regexp [[help:tags-query-replace][tags-query-replace]].
 - =C-c p R= calls =projectile-regenerate-tags= : regenerate the project's [e|g]tags.
 - =C-c p S= calls =projectile-save-project-buffers= : save all project buffers.
 - =C-c p t= calls =projectile-toggle-between-implementation-and-test= : toggle between an implementation file and its test file.
 - =C-c p T= calls =projectile-find-test-file= : jump to a project's test file using completion.
 - =C-c p u= calls =projectile-run-project= : run project run command.
-- =C-c p v= calls =projectile-vc= : open `vc-dir' at the root of the project.
+- =C-c p v= calls =projectile-vc= : open [[help:vc-dir][vc-dir]] at the root of the project.
 - =C-c p V= calls =projectile-browse-dirty-projects= : browse dirty version controlled projects.
 - =C-c p z= calls =projectile-cache-current-file= : add the currently visited file to the cache.
 - =C-c p <left>= calls =projectile-previous-project-buffer= : in selected window switch to the previous project buffer.
@@ -52,7 +52,7 @@ Keymap for Projectile mode.
 - =C-c p 4 a= calls =projectile-find-other-file-other-window= : switch between files with different extensions in other window.
 - =C-c p 4 b= calls =projectile-switch-to-buffer-other-window= : switch to a project buffer and show it in another window.
 - =C-c p 4 d= calls =projectile-find-dir-other-window= : jump to a project's directory in other window using completion.
-- =C-c p 4 D= calls =projectile-dired-other-window= : open `dired' at the root of the project in another window.
+- =C-c p 4 D= calls =projectile-dired-other-window= : open [[help:dired][dired]] at the root of the project in another window.
 - =C-c p 4 f= calls =projectile-find-file-other-window= : jump to a project's file using completion and show it in another window.
 - =C-c p 4 g= calls =projectile-find-file-dwim-other-window= : jump to a project's files using completion based on context in other window.
 - =C-c p 4 t= calls =projectile-find-implementation-or-test-other-window= : open matching implementation or test file in other window.
@@ -61,7 +61,7 @@ Keymap for Projectile mode.
 - =C-c p 5 a= calls =projectile-find-other-file-other-frame= : switch between files with different extensions in other frame.
 - =C-c p 5 b= calls =projectile-switch-to-buffer-other-frame= : switch to a project buffer and show it in another frame.
 - =C-c p 5 d= calls =projectile-find-dir-other-frame= : jump to a project's directory in other frame using completion.
-- =C-c p 5 D= calls =projectile-dired-other-frame= : open `dired' at the root of the project in another frame.
+- =C-c p 5 D= calls =projectile-dired-other-frame= : open [[help:dired][dired]] at the root of the project in another frame.
 - =C-c p 5 f= calls =projectile-find-file-other-frame= : jump to a project's file using completion and show it in another frame.
 - =C-c p 5 g= calls =projectile-find-file-dwim-other-frame= : jump to a project's files using completion based on context in other frame.
 - =C-c p 5 t= calls =projectile-find-implementation-or-test-other-frame= : open matching implementation or test file in other frame.
@@ -74,17 +74,17 @@ Keymap for Projectile mode.
 - =C-c p c t= calls =projectile-test-project= : run project test command.
 **** Prefix =C-c p s= : +Search project
 - =C-c p s g= calls =projectile-grep= : perform rgrep in the project.
-- =C-c p s r= calls =projectile-ripgrep= : run a ripgrep (rg) search with `SEARCH-TERM' at current project root.
+- =C-c p s r= calls =projectile-ripgrep= : run a ripgrep (rg) search with [[help:SEARCH-TERM][SEARCH-TERM]] at current project root.
 - =C-c p s s= calls =projectile-ag= : run an ag search with SEARCH-TERM in the project.
 - =C-c p s x= calls =projectile-find-references= : find all references to SYMBOL in the current project.
 **** Prefix =C-c p x= : +Toggle project scratch buffer
-- =C-c p x e= calls =projectile-run-eshell= : invoke `eshell' in the project's root.
-- =C-c p x g= calls =projectile-run-gdb= : invoke `gdb' in the project's root.
-- =C-c p x i= calls =projectile-run-ielm= : invoke `ielm' in the project's root.
-- =C-c p x s= calls =projectile-run-shell= : invoke `shell' in the project's root.
-- =C-c p x t= calls =projectile-run-term= : invoke `term' in the project's root.
-- =C-c p x v= calls =projectile-run-vterm= : invoke `vterm' in the project's root.
-- =C-c p x x= calls =projectile-run-eat= : invoke `eat' in the project's root.
+- =C-c p x e= calls =projectile-run-eshell= : invoke [[help:eshell][eshell]] in the project's root.
+- =C-c p x g= calls =projectile-run-gdb= : invoke [[help:gdb][gdb]] in the project's root.
+- =C-c p x i= calls =projectile-run-ielm= : invoke [[help:ielm][ielm]] in the project's root.
+- =C-c p x s= calls =projectile-run-shell= : invoke [[help:shell][shell]] in the project's root.
+- =C-c p x t= calls =projectile-run-term= : invoke [[help:term][term]] in the project's root.
+- =C-c p x v= calls =projectile-run-vterm= : invoke [[help:vterm][vterm]] in the project's root.
+- =C-c p x x= calls =projectile-run-eat= : invoke [[help:eat][eat]] in the project's root.
 ***** Prefix =C-c p x 4= : +prefix
-- =C-c p x 4 v= calls =projectile-run-vterm-other-window= : invoke `vterm' in the project's root.
-- =C-c p x 4 x= calls =projectile-run-eat-other-window= : invoke `eat' in the project's root.
+- =C-c p x 4 v= calls =projectile-run-vterm-other-window= : invoke [[help:vterm][vterm]] in the project's root.
+- =C-c p x 4 x= calls =projectile-run-eat-other-window= : invoke [[help:eat][eat]] in the project's root.

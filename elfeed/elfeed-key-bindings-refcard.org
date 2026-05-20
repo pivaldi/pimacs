@@ -30,16 +30,16 @@ Keymap for elfeed-search-mode.
 - =9= calls =digit-argument= : part of the numeric argument for the next command.
 - =<= calls =elfeed-search-first-entry= : place point on first entry.
 - =>= calls =elfeed-search-last-entry= : place point on last entry.
-- =b= calls =elfeed-search-browse-url= : visit the current entry in your browser using `browse-url'.
-- =c= calls =elfeed-search-clear-filter= : reset the search filter to the default value of `elfeed-search-filter'.
-- =g= calls =elfeed-update= : update all the feeds in `elfeed-feeds'.
-- =G= calls =elfeed-search-fetch= : update all feeds via `elfeed-update', or only visible feeds with PREFIX.
+- =b= calls =elfeed-search-browse-url= : visit the current entry in your browser using [[help:browse-url][browse-url]].
+- =c= calls =elfeed-search-clear-filter= : reset the search filter to the default value of [[help:elfeed-search-filter][elfeed-search-filter]].
+- =g= calls =elfeed-update= : update all the feeds in [[help:elfeed-feeds][elfeed-feeds]].
+- =G= calls =elfeed-search-fetch= : update all feeds via [[help:elfeed-update][elfeed-update]], or only visible feeds with PREFIX.
 - =h= calls =describe-mode= : display documentation of current major mode and minor modes.
 - =n= calls =next-line= : move cursor vertically down ARG lines.
 - =p= calls =previous-line= : move cursor vertically up ARG lines.
-- =q= calls =elfeed-search-quit-window= : save the database, then `quit-window'.
-- =r= calls =elfeed-search-untag-all-unread= : remove the `unread' tag from all selected entries.
+- =q= calls =elfeed-search-quit-window= : save the database, then [[help:quit-window][quit-window]].
+- =r= calls =elfeed-search-untag-all-unread= : remove the [[help:unread][unread]] tag from all selected entries.
 - =s= calls =elfeed-search-live-filter= : filter the elfeed-search buffer as the filter is written.
 - =S= calls =elfeed-search-set-filter= : set a new search filter for the elfeed-search buffer.
-- =u= calls =elfeed-search-tag-all-unread= : add the `unread' tag to all selected entries.
+- =u= calls =elfeed-search-tag-all-unread= : add the [[help:unread][unread]] tag to all selected entries.
 - =y= calls =elfeed-search-yank= : copy the selected feed items to clipboard and kill-ring.

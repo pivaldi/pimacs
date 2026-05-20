@@ -14,8 +14,8 @@ Keymap for Org mode.
 - =|= calls =org-force-self-insert= : needed to enforce self-insert under remapping.
 - =C-<RET>= calls =+org/insert-item-below= : inserts a new heading, table cell or item below the current one.
 - =C-#= calls =org-table-rotate-recalc-marks= : rotate the recalculation mark in the first column.
-- =C-'= calls =org-cycle-agenda-files= : cycle through the files in `org-agenda-files'.
-- =C-,= calls =org-cycle-agenda-files= : cycle through the files in `org-agenda-files'.
+- =C-'= calls =org-cycle-agenda-files= : cycle through the files in [[help:org-agenda-files][org-agenda-files]].
+- =C-,= calls =org-cycle-agenda-files= : cycle through the files in [[help:org-agenda-files][org-agenda-files]].
 - =C-j= calls =org-return-and-maybe-indent= : goto next table row, or insert a newline, maybe indented.
 - =C-M-<RET>= calls =org-insert-subheading= : insert a new subheading and demote it.
 - =C-M-t= : #pim
@@ -60,7 +60,7 @@ Keymap for Org mode.
 - =<right>= calls =org-metaright= : demote heading, list item at point or move table column right.
 - =<up>= calls =org-metaup= : move subtree up or move table row up.
 ** Prefix =C-c= : +prefix
-- =C-c <RET>= calls =org-ctrl-c-ret= : call `org-table-hline-and-move' or `org-insert-heading'.
+- =C-c <RET>= calls =org-ctrl-c-ret= : call [[help:org-table-hline-and-move][org-table-hline-and-move]] or [[help:org-insert-heading][org-insert-heading]].
 - =C-c <TAB>= calls =org-ctrl-c-tab= : toggle columns width in a table, or show children.
 - =C-c != : checkers
 - =C-c #= calls =org-update-statistics-cookies= : update the statistics cookie, either from TODO or from checkboxes.
@@ -83,8 +83,8 @@ Keymap for Org mode.
 - =C-c @= calls =org-mark-subtree= : mark the current subtree.
 - =C-c [= calls =org-agenda-file-to-front= : move/add the current file to the top of the agenda file list.
 - =C-c \= calls =org-match-sparse-tree= : create a sparse tree according to tags string MATCH.
-- =C-c ]= calls =org-remove-file= : remove current file from the list of files in variable `org-agenda-files'.
-- =C-c ^= calls =org-sort= : call `org-sort-entries', `org-table-sort-lines' or `org-sort-list'.
+- =C-c ]= calls =org-remove-file= : remove current file from the list of files in variable [[help:org-agenda-files][org-agenda-files]].
+- =C-c ^= calls =org-sort= : call [[help:org-sort-entries][org-sort-entries]], [[help:org-table-sort-lines][org-table-sort-lines]] or [[help:org-sort-list][org-sort-list]].
 - =C-c `= calls =org-table-edit-field= : edit table field in a different window.
 - =C-c {= calls =org-table-toggle-formula-debugger= : toggle the formula debugger in tables.
 - =C-c |= calls =org-table-create-or-convert-from-region= : convert region to table, or create an empty table.
@@ -116,14 +116,14 @@ Keymap for Org mode.
 - =C-c C-w= calls =org-refile= : move the entry or entries at point to another heading.
 - =C-c C-y= calls =org-evaluate-time-range= : evaluate a time range by computing the difference between start and end.
 - =C-c C-z= calls =org-add-note= : add a note to the current entry.
-- =C-c C-M-l= calls =org-insert-all-links= : insert all links in `org-stored-links'.
-- =C-c C-M-w= calls =org-refile-reverse= : refile while temporarily toggling `org-reverse-note-order'.
+- =C-c C-M-l= calls =org-insert-all-links= : insert all links in [[help:org-stored-links][org-stored-links]].
+- =C-c C-M-w= calls =org-refile-reverse= : refile while temporarily toggling [[help:org-reverse-note-order][org-reverse-note-order]].
 - =C-c C-S-l= calls =+org/remove-link= : unlink the text at point.
 - =C-c C-<tab>= calls =org-cycle-force-archived= : cycle subtree even if it is archived.
 - =C-c M-b= calls =org-previous-block= : jump to the previous block.
 - =C-c M-f= calls =org-next-block= : jump to the next block.
-- =C-c M-l= calls =org-insert-last-stored-link= : insert the last link stored in `org-stored-links'.
-- =C-c M-w= calls =org-refile-copy= : like `org-refile', but preserve the refiled subtree.
+- =C-c M-l= calls =org-insert-last-stored-link= : insert the last link stored in [[help:org-stored-links][org-stored-links]].
+- =C-c M-w= calls =org-refile-copy= : like [[help:org-refile][org-refile]], but preserve the refiled subtree.
 - =C-c C-i= calls =org-link-preview-refresh= : assure display of link previews in buffer and refresh them.
 *** Prefix =C-c "= : +prefix
 - =C-c " a= calls =orgtbl-ascii-plot= : draw an ASCII bar plot in a column.
@@ -155,7 +155,7 @@ Keymap for Org mode.
 - =C-c l a a= calls =org-attach= : the dispatcher for attachment commands.
 - =C-c l a d= calls =org-attach-delete-one= (not described)
 - =C-c l a D= calls =org-attach-delete-all= (not described)
-- =C-c l a f= calls =+org/find-file-in-attachments= : open a file from `org-attach-id-dir'.
+- =C-c l a f= calls =+org/find-file-in-attachments= : open a file from [[help:org-attach-id-dir][org-attach-id-dir]].
 - =C-c l a l= calls =+org/attach-file-and-insert-link= : downloads the file at PATH and insert an org link at point.
 - =C-c l a n= calls =org-attach-new= (not described)
 - =C-c l a o= calls =org-attach-open= (not described)
@@ -195,7 +195,7 @@ Keymap for Org mode.
 - =C-c l c e= calls =org-clock-modify-effort-estimate= : add to or set the effort estimate of the item currently being clocked.
 - =C-c l c E= calls =org-set-effort= : set the effort property of the current entry.
 - =C-c l c g= calls =org-clock-goto= : go to the currently clocked-in entry, or to the most recently clocked one.
-- =C-c l c G= calls =function= : like `quote', but preferred for objects which are functions.
+- =C-c l c G= calls =function= : like [[help:quote][quote]], but preferred for objects which are functions.
 - =C-c l c i= calls =org-clock-in= : start the clock on the current item.
 - =C-c l c I= calls =org-clock-in-last= : clock in the last closed clocked item.
 - =C-c l c l= calls =+org/toggle-last-clock= : toggles last clocked item.
@@ -210,7 +210,7 @@ Keymap for Org mode.
 - =C-c l d T= calls =org-time-stamp-inactive= : insert an inactive time stamp.
 **** Prefix =C-c l g= : +prefix
 - =C-c l g c= calls =org-clock-goto= : go to the currently clocked-in entry, or to the most recently clocked one.
-- =C-c l g C= calls =function= : like `quote', but preferred for objects which are functions.
+- =C-c l g C= calls =function= : like [[help:quote][quote]], but preferred for objects which are functions.
 - =C-c l g g= calls =consult-org-heading= : jump to an Org heading.
 - =C-c l g G= calls =consult-org-agenda= : jump to an Org agenda heading.
 - =C-c l g i= calls =org-id-goto= : switch to the buffer containing the entry with id ID.
@@ -222,9 +222,9 @@ Keymap for Org mode.
 - =C-c l l d= calls =+org/remove-link= : unlink the text at point.
 - =C-c l l i= calls =org-id-store-link= : store a link to the current entry, using its ID.
 - =C-c l l l= calls =org-insert-link= : insert a link.  At the prompt, enter the link.
-- =C-c l l L= calls =org-insert-all-links= : insert all links in `org-stored-links'.
+- =C-c l l L= calls =org-insert-all-links= : insert all links in [[help:org-stored-links][org-stored-links]].
 - =C-c l l s= calls =org-store-link= : store a link to the current location.
-- =C-c l l S= calls =org-insert-last-stored-link= : insert the last link stored in `org-stored-links'.
+- =C-c l l S= calls =org-insert-last-stored-link= : insert the last link stored in [[help:org-stored-links][org-stored-links]].
 - =C-c l l t= calls =org-toggle-link-display= : toggle the literal or descriptive display of links in current buffer.
 - =C-c l l w= : Extract URL from org-mode link and add it to kill ring. #pim
 - =C-c l l y= calls =+org/yank-link= : copy the url at point to the clipboard.
@@ -246,7 +246,7 @@ Keymap for Org mode.
 - =C-c l r o= calls =+org/refile-to-other-window= : refile current heading to an org buffer visible in another window.
 - =C-c l r O= calls =+org/refile-to-other-buffer= : refile current heading to another, living org buffer.
 - =C-c l r r= calls =org-refile= : move the entry or entries at point to another heading.
-- =C-c l r R= calls =org-refile-reverse= : refile while temporarily toggling `org-reverse-note-order'.
+- =C-c l r R= calls =org-refile-reverse= : refile while temporarily toggling [[help:org-reverse-note-order][org-reverse-note-order]].
 - =C-c l r v= calls =+org/refile-to-visible= : refile current heading as first child of visible heading selected with Avy.
 **** Prefix =C-c l s= : +prefix
 - =C-c l s a= calls =org-toggle-archive-tag= : toggle the archive tag for the current headline.
@@ -262,7 +262,7 @@ Keymap for Org mode.
 - =C-c l s N= calls =widen= : remove restrictions (narrowing) from current buffer.
 - =C-c l s r= calls =org-refile= : move the entry or entries at point to another heading.
 - =C-c l s s= calls =org-sparse-tree= : create a sparse tree, prompt for the details.
-- =C-c l s S= calls =org-sort= : call `org-sort-entries', `org-table-sort-lines' or `org-sort-list'.
+- =C-c l s S= calls =org-sort= : call [[help:org-sort-entries][org-sort-entries]], [[help:org-table-sort-lines][org-table-sort-lines]] or [[help:org-sort-list][org-sort-list]].
 *** Prefix =C-c C-v= : +prefix
 - =C-c C-v <TAB>= calls =org-babel-view-src-block-info= : display information on the current source block.
 - =C-c C-v a= calls =org-babel-sha1-hash= : generate a sha1 hash based on the value of INFO.
@@ -272,8 +272,8 @@ Keymap for Org mode.
 - =C-c C-v e= calls =org-babel-execute-maybe= : execute src block or babel call at point.
 - =C-c C-v f= calls =org-babel-tangle-file= : extract the bodies of source code blocks in FILE.
 - =C-c C-v g= calls =org-babel-goto-named-src-block= : go to a source-code block with NAME.
-- =C-c C-v h= calls =org-babel-describe-bindings= : describe all keybindings behind `org-babel-key-prefix'.
-- =C-c C-v i= calls =org-babel-lob-ingest= : add all named source blocks defined in FILE to `org-babel-library-of-babel'.
+- =C-c C-v h= calls =org-babel-describe-bindings= : describe all keybindings behind [[help:org-babel-key-prefix][org-babel-key-prefix]].
+- =C-c C-v i= calls =org-babel-lob-ingest= : add all named source blocks defined in FILE to [[help:org-babel-library-of-babel][org-babel-library-of-babel]].
 - =C-c C-v I= calls =org-babel-view-src-block-info= : display information on the current source block.
 - =C-c C-v j= calls =org-babel-insert-header-arg= : insert a header argument and its value.
 - =C-c C-v k= calls =org-babel-remove-result-one-or-many= : remove the result of the current source block.
@@ -318,7 +318,7 @@ Keymap for Org mode.
 - =C-c C-x <= calls =org-agenda-set-restriction-lock= : set restriction lock for agenda to current subtree or file.
 - =C-c C-x >= calls =org-agenda-remove-restriction-lock= : remove agenda restriction lock.
 - =C-c C-x @= calls =org-cite-insert= : insert a citation at point.
-- =C-c C-x [= calls =org-reftex-citation= : use `reftex-citation' to insert a citation into the buffer.
+- =C-c C-x [= calls =org-reftex-citation= : use [[help:reftex-citation][reftex-citation]] to insert a citation into the buffer.
 - =C-c C-x \= calls =org-toggle-pretty-entities= : toggle the composition display of entities as UTF8 characters.
 - =C-c C-x _= calls =org-timer-stop= : stop the relative or countdown timer.
 - =C-c C-x a= calls =org-toggle-archive-tag= : toggle the archive tag for the current headline.
@@ -329,7 +329,7 @@ Keymap for Org mode.
 - =C-c C-x e= calls =org-set-effort= : set the effort property of the current entry.
 - =C-c C-x E= calls =org-inc-effort= : increment the value of the effort property in the current entry.
 - =C-c C-x f= calls =org-footnote-action= : do the right thing for footnotes.
-- =C-c C-x g= calls =org-feed-update-all= : get inbox items from all feeds in `org-feed-alist'.
+- =C-c C-x g= calls =org-feed-update-all= : get inbox items from all feeds in [[help:org-feed-alist][org-feed-alist]].
 - =C-c C-x G= calls =org-feed-goto-inbox= : go to the inbox that captures the feed named FEED.
 - =C-c C-x I= calls =org-info-find-node= : find Info documentation NODENAME or Org documentation according context.
 - =C-c C-x o= calls =org-toggle-ordered-property= : toggle the ORDERED property of the current entry.

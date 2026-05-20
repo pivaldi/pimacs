@@ -72,7 +72,7 @@ Keymap for "notmuch search" buffers.
 - =?= calls =notmuch-help= : display help for the current notmuch mode.
 - =a= calls =notmuch-search-archive-thread= : archive the currently selected thread or region.
 - =b= calls =notmuch-search-scroll-down= : move backward through the search results by one window's worth.
-- =G= calls =notmuch-poll-and-refresh-this-buffer= : invoke `notmuch-poll' to import mail, then refresh the current buffer.
+- =G= calls =notmuch-poll-and-refresh-this-buffer= : invoke [[help:notmuch-poll][notmuch-poll]] to import mail, then refresh the current buffer.
 - =i= calls =notmuch-search-toggle-hide-excluded= : toggle whether to hide excluded messages.
 - =j= calls =notmuch-jump-search= : jump to a saved search by shortcut key.
 - =k= calls =notmuch-tag-jump= : create a jump menu for tagging operations.
@@ -89,7 +89,7 @@ Keymap for "notmuch search" buffers.
 - =x= calls =notmuch-bury-or-kill-this-buffer= : undisplay the current buffer.
 - =z= calls =notmuch-tree= : display threads matching QUERY in tree view.
 - =Z= calls =notmuch-tree-from-search-current-query= : tree view of current query.
-- =M-== calls =notmuch-refresh-all-buffers= : invoke `notmuch-refresh-this-buffer' on all notmuch major-mode buffers.
+- =M-== calls =notmuch-refresh-all-buffers= : invoke [[help:notmuch-refresh-this-buffer][notmuch-refresh-this-buffer]] on all notmuch major-mode buffers.
 *** Prefix =c= : +notmuch-search-stash-map
 - =c ?= calls =notmuch-subkeymap-help= : show help for a subkeymap.
 - =c i= calls =notmuch-search-stash-thread-id= : copy thread ID of current thread to kill-ring.
@@ -111,14 +111,14 @@ Keymap for "notmuch tree" buffers.
 - =<TAB>= calls =notmuch-tree-next-message-button= : (In message window) Advance point to the next button in the buffer.
 - =$= calls =notmuch-tree-toggle-message-process-crypto= : (In message window) Toggle the processing of cryptographic MIME parts.
 - =*= calls =notmuch-tree-tag-thread= : tag all messages in the current thread.
-- =+= calls =notmuch-tree-add-tag= : same as `notmuch-tree-tag' but sets initial input to '+'.
-- =-= calls =notmuch-tree-remove-tag= : same as `notmuch-tree-tag' but sets initial input to '-'.
+- =+= calls =notmuch-tree-add-tag= : same as [[help:notmuch-tree-tag][notmuch-tree-tag]] but sets initial input to '+'.
+- =-= calls =notmuch-tree-remove-tag= : same as [[help:notmuch-tree-tag][notmuch-tree-tag]] but sets initial input to '-'.
 - === calls =notmuch-refresh-this-buffer= : refresh the current buffer.
 - =?= calls =notmuch-help= : display help for the current notmuch mode.
 - =a= calls =notmuch-tree-archive-message-then-next= : archive the current message and move to next matching message.
 - =b= calls =notmuch-show-resend-message= : resend the current message.
 - =f= calls =notmuch-tree-forward-message= : (Close message pane and) Forward the current message.
-- =G= calls =notmuch-poll-and-refresh-this-buffer= : invoke `notmuch-poll' to import mail, then refresh the current buffer.
+- =G= calls =notmuch-poll-and-refresh-this-buffer= : invoke [[help:notmuch-poll][notmuch-poll]] to import mail, then refresh the current buffer.
 - =i= calls =notmuch-tree-toggle-hide-excluded= : toggle whether to hide excluded messages.
 - =j= calls =notmuch-jump-search= : jump to a saved search by shortcut key.
 - =k= calls =notmuch-tag-jump= : create a jump menu for tagging operations.
@@ -142,7 +142,7 @@ Keymap for "notmuch tree" buffers.
 - =Z= calls =notmuch-tree-from-unthreaded-current-query= : switch from unthreaded view to tree view.
 - =|= calls =notmuch-show-pipe-message= : pipe the contents of the current message (or thread) to COMMAND.
 - =C-M-i= calls =notmuch-tree-previous-message-button= : (In message window) Move point back to the previous button in the buffer.
-- =M-== calls =notmuch-refresh-all-buffers= : invoke `notmuch-refresh-this-buffer' on all notmuch major-mode buffers.
+- =M-== calls =notmuch-refresh-all-buffers= : invoke [[help:notmuch-refresh-this-buffer][notmuch-refresh-this-buffer]] on all notmuch major-mode buffers.
 - =M-n= calls =notmuch-tree-next-thread= : move to the next thread in the current tree or parent search results.
 - =M-p= calls =notmuch-tree-prev-thread= : move to the previous thread in the current tree or parent search results.
 - =<backtab>= calls =notmuch-tree-previous-message-button= : (In message window) Move point back to the previous button in the buffer.
@@ -154,7 +154,7 @@ Keymap for "notmuch tree" buffers.
 - =c F= calls =notmuch-show-stash-filename= : copy filename of current message to kill-ring.
 - =c G= calls =notmuch-show-stash-git-send-email= : copy From/To/Cc/Message-Id of current message to kill-ring.
 - =c i= calls =notmuch-show-stash-message-id= : copy id: query matching the current message to kill-ring.
-- =c I= calls =notmuch-show-stash-message-id-stripped= : copy message ID of current message (sans `id:' prefix) to kill-ring.
+- =c I= calls =notmuch-show-stash-message-id-stripped= : copy message ID of current message (sans [[help:id:][id:]] prefix) to kill-ring.
 - =c l= calls =notmuch-show-stash-mlarchive-link= : copy an ML Archive URI for the current message to the kill-ring.
 - =c L= calls =notmuch-show-stash-mlarchive-link-and-go= : copy an ML Archive URI for the current message to the
 - =c s= calls =notmuch-show-stash-subject= : copy Subject field of current message to kill-ring.
@@ -190,7 +190,7 @@ Keymap for "notmuch show" buffers.
 - =f= calls =notmuch-show-forward-message= : forward the current message.
 - =F= calls =notmuch-show-forward-open-messages= : forward the currently open messages.
 - =g= calls =notmuch-refresh-this-buffer= : refresh the current buffer.
-- =G= calls =notmuch-poll-and-refresh-this-buffer= : invoke `notmuch-poll' to import mail, then refresh the current buffer.
+- =G= calls =notmuch-poll-and-refresh-this-buffer= : invoke [[help:notmuch-poll][notmuch-poll]] to import mail, then refresh the current buffer.
 - =h= calls =notmuch-show-toggle-visibility-headers= : toggle the visibility of the current message headers.
 - =j= calls =notmuch-jump-search= : jump to a saved search by shortcut key.
 - =k= calls =notmuch-tag-jump= : create a jump menu for tagging operations.
@@ -214,7 +214,7 @@ Keymap for "notmuch show" buffers.
 - =Z= calls =notmuch-tree-from-show-current-query= : call notmuch tree with the current query.
 - =|= calls =notmuch-show-pipe-message= : pipe the contents of the current message (or thread) to COMMAND.
 - =C-M-i= calls =notmuch-show-previous-button= : move point back to the previous button in the buffer.
-- =M-== calls =notmuch-refresh-all-buffers= : invoke `notmuch-refresh-this-buffer' on all notmuch major-mode buffers.
+- =M-== calls =notmuch-refresh-all-buffers= : invoke [[help:notmuch-refresh-this-buffer][notmuch-refresh-this-buffer]] on all notmuch major-mode buffers.
 - =M-n= calls =notmuch-show-next-thread-show= : show the next thread in the search results, if any.
 - =M-p= calls =notmuch-show-previous-thread-show= : show the previous thread in the search results, if any.
 - =<backtab>= calls =notmuch-show-previous-button= : move point back to the previous button in the buffer.
@@ -233,7 +233,7 @@ Keymap for "notmuch show" buffers.
 - =c F= calls =notmuch-show-stash-filename= : copy filename of current message to kill-ring.
 - =c G= calls =notmuch-show-stash-git-send-email= : copy From/To/Cc/Message-Id of current message to kill-ring.
 - =c i= calls =notmuch-show-stash-message-id= : copy id: query matching the current message to kill-ring.
-- =c I= calls =notmuch-show-stash-message-id-stripped= : copy message ID of current message (sans `id:' prefix) to kill-ring.
+- =c I= calls =notmuch-show-stash-message-id-stripped= : copy message ID of current message (sans [[help:id:][id:]] prefix) to kill-ring.
 - =c l= calls =notmuch-show-stash-mlarchive-link= : copy an ML Archive URI for the current message to the kill-ring.
 - =c L= calls =notmuch-show-stash-mlarchive-link-and-go= : copy an ML Archive URI for the current message to the
 - =c s= calls =notmuch-show-stash-subject= : copy Subject field of current message to kill-ring.

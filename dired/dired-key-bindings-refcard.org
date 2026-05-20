@@ -40,11 +40,11 @@ Local keymap for Dired mode buffers.
 - =8= calls =digit-argument= : part of the numeric argument for the next command.
 - =9= calls =digit-argument= : part of the numeric argument for the next command.
 - =<= calls =dired-prev-dirline= : goto ARGth previous directory file line.
-- === calls =dired-diff= : compare file at point with FILE using `diff'.
+- === calls =dired-diff= : compare file at point with FILE using [[help:diff][diff]].
 - =>= calls =dired-next-dirline= : goto ARGth next directory file line.
 - =?= calls =dired-summary= : summarize basic Dired commands and show recent Dired errors.
 - =^= calls =dired-up-directory= : run Dired on parent directory of current directory.
-- =a= calls =dired-find-alternate-file= : in Dired, visit file or directory on current line via `find-alternate-file'.
+- =a= calls =dired-find-alternate-file= : in Dired, visit file or directory on current line via [[help:find-alternate-file][find-alternate-file]].
 - =A= calls =dired-do-find-regexp= : find all matches for REGEXP in all marked files.
 - =B= calls =dired-do-byte-compile= : byte compile marked (or next ARG) Emacs Lisp files.
 - =c= calls =dired-do-compress-to= : compress selected files and directories to an archive.
@@ -57,7 +57,7 @@ Local keymap for Dired mode buffers.
 - =h= calls =describe-mode= : display documentation of current major mode and minor modes.
 - =H= calls =dired-do-hardlink= : add names (hard links) current file or all marked (or next ARG) files.
 - =i= calls =dired-maybe-insert-subdir= : insert this subdirectory into the same Dired buffer.
-- =I= calls =dired-do-info= : in Dired, run `info' on this file.
+- =I= calls =dired-do-info= : in Dired, run [[help:info][info]] on this file.
 - =j= calls =dired-goto-file= : go to line describing file FILE in this Dired buffer.
 - =k= calls =dired-do-kill-lines= : remove all marked lines, or the next ARG lines.
 - =l= calls =dired-do-redisplay= : redisplay all marked (or next ARG) files.
@@ -65,7 +65,7 @@ Local keymap for Dired mode buffers.
 - =m= calls =dired-mark= : mark the file at point in the Dired buffer.
 - =M= calls =dired-do-chmod= : change the mode of the marked (or next ARG) files.
 - =n= calls =dired-next-line= : move down ARG lines, then position at filename.
-- =N= calls =dired-do-man= : in Dired, run `man' on this file.
+- =N= calls =dired-do-man= : in Dired, run [[help:man][man]] on this file.
 - =o= calls =dired-find-file-other-window= : in Dired, visit this file or directory in another window.
 - =O= calls =dired-do-chown= : change the owner of the marked (or next ARG) files.
 - =p= calls =dired-previous-line= : move up ARG lines, then position at filename.
@@ -82,10 +82,10 @@ Local keymap for Dired mode buffers.
 - =W= calls =browse-url-of-dired-file= : in Dired, ask a WWW browser to display the file named on this line.
 - =x= calls =dired-do-flagged-delete= : in Dired, delete the files flagged for deletion.
 - =X= calls =dired-do-shell-command= : run a shell command COMMAND on the marked files.
-- =y= calls =dired-show-file-type= : print the type of FILE, according to the `file' command.
+- =y= calls =dired-show-file-type= : print the type of FILE, according to the [[help:file][file]] command.
 - =Y= calls =dired-do-relsymlink= : relative symlink all marked (or next ARG) files into a directory.
 - =Z= calls =dired-do-compress= : compress or uncompress marked (or next ARG) files.
-- =~= calls =dired-flag-backup-files= : flag all backup files (names ending with `~') for deletion.
+- =~= calls =dired-flag-backup-files= : flag all backup files (names ending with [[help:~][~]]) for deletion.
 - =C-o= calls =dired-display-file= : in Dired, display this file or directory in another window.
 - =C-M-d= calls =dired-tree-down= : go down in the Dired tree.
 - =C-M-n= calls =dired-next-subdir= : go to next subdirectory, regardless of level.
@@ -98,10 +98,10 @@ Local keymap for Dired mode buffers.
 - =M-}= calls =dired-next-marked-file= : move to the ARGth next marked file.
 - =S-<SPC>= calls =dired-previous-line= : move up ARG lines, then position at filename.
 - =<follow>-<link>= : mouse-face
-- =<touchscreen>-<hold>= calls =dired-enable-click-to-select-mode= : enable `dired-click-to-select-mode' and mark the file under EVENT.
+- =<touchscreen>-<hold>= calls =dired-enable-click-to-select-mode= : enable [[help:dired-click-to-select-mode][dired-click-to-select-mode]] and mark the file under EVENT.
 - =e..f= calls =dired-find-file= : in Dired, visit the file or directory named on this line.
 *** Prefix =%= : +prefix
-- =% &= calls =dired-flag-garbage-files= : flag for deletion all files that match `dired-garbage-files-regexp'.
+- =% &= calls =dired-flag-garbage-files= : flag for deletion all files that match [[help:dired-garbage-files-regexp][dired-garbage-files-regexp]].
 - =% C= calls =dired-do-copy-regexp= : copy selected files whose names match REGEXP to NEWNAME.
 - =% d= calls =dired-flag-files-regexp= : in Dired, flag all files containing the specified REGEXP for deletion.
 - =% g= calls =dired-mark-files-containing-regexp= : mark all files with contents containing REGEXP for use in later commands.
@@ -118,13 +118,13 @@ Local keymap for Dired mode buffers.
 - =* != calls =dired-unmark-all-marks= : remove all marks from all files in the Dired buffer.
 - =* %= calls =dired-mark-files-regexp= : mark all files matching REGEXP for use in later commands.
 - =* *= calls =dired-mark-executables= : mark all executable files.
-- =* /= calls =dired-mark-directories= : mark all directory file lines except `.' and `..'.
+- =* /= calls =dired-mark-directories= : mark all directory file lines except [[help:.][.]] and [[help:..][..]].
 - =* ?= calls =dired-unmark-all-files= : remove a specific mark (or any mark) from every file.
 - =* @= calls =dired-mark-symlinks= : mark all symbolic links.
 - =* c= calls =dired-change-marks= : change all OLD marks to NEW marks.
 - =* m= calls =dired-mark= : mark the file at point in the Dired buffer.
 - =* N= calls =dired-number-of-marked-files= : display the number and total size of the marked files.
-- =* s= calls =dired-mark-subdir-files= : mark all files except `.' and `..' in current subdirectory.
+- =* s= calls =dired-mark-subdir-files= : mark all files except [[help:.][.]] and [[help:..][..]] in current subdirectory.
 - =* t= calls =dired-toggle-marks= : toggle marks: marked files become unmarked, and vice versa.
 - =* u= calls =dired-unmark= : unmark the file at point in the Dired buffer.
 - =* C-n= calls =dired-next-marked-file= : move to the ARGth next marked file.
@@ -138,10 +138,10 @@ Local keymap for Dired mode buffers.
 - =C-c C-e= calls =wdired-change-to-wdired-mode= : put a Dired buffer in Writable Dired (WDired) mode.
 - =C-c C-r= calls =dirvish-rsync= : rsync marked files to DEST, prompt for DEST if not called with.
 *** Prefix =C-t= : +prefix
-- =C-t .= calls =image-dired-display-thumb= : shorthand for `image-dired-display-thumbs' with prefix argument.
-- =C-t a= calls =image-dired-display-thumbs-append= : append thumbnails to `image-dired-thumbnail-buffer'.
+- =C-t .= calls =image-dired-display-thumb= : shorthand for [[help:image-dired-display-thumbs][image-dired-display-thumbs]] with prefix argument.
+- =C-t a= calls =image-dired-display-thumbs-append= : append thumbnails to [[help:image-dired-thumbnail-buffer][image-dired-thumbnail-buffer]].
 - =C-t c= calls =image-dired-dired-comment-files= : add comment to current or marked files in Dired.
-- =C-t d= calls =image-dired-display-thumbs= : display thumbnails of all marked files, in `image-dired-thumbnail-buffer'.
+- =C-t d= calls =image-dired-display-thumbs= : display thumbnails of all marked files, in [[help:image-dired-thumbnail-buffer][image-dired-thumbnail-buffer]].
 - =C-t e= calls =image-dired-dired-edit-comment-and-tags= : edit comment and tags of current or marked image files.
 - =C-t f= calls =image-dired-mark-tagged-files= : mark files whose tag matches REGEXP.
 - =C-t i= calls =image-dired-dired-display-image= : display current image file.
