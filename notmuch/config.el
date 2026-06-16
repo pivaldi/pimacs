@@ -22,8 +22,6 @@
   (use-package! notmuch-multi
     :defer nil
     :config
-    ;; (load! "+notmuch")
-    ;; (remove-hook! 'notmuch-show-hook '+notmuch-show-expand-only-unread-h)
 
     ;; General UI
     (setq
@@ -113,9 +111,14 @@
     (add-hook 'notmuch-show-mode-hook (lambda nil (setq show-trailing-whitespace nil)))
 
     (map!
+
      :map notmuch-hello-mode-map
-     :desc "Move point to the previous field or button." "S-<tab>" #'widget-backward
-     :desc "Move point to the previous field or button." "S-<iso-lefttab>" #'widget-backward
+     :desc "Fetch mail for the account at point in the hello screen. #pim" "M-g" #'notmuch-multi-get-mail-at-point
+     :desc "Move point to the previous field or button. #pim" "S-<iso-lefttab>" #'widget-backward
+     :desc "Move point to the previous field or button. #pim" "S-<tab>" #'widget-backward
+
+     :map notmuch-message-mode-map
+     :desc "Address completion scoped to the sending account. #pim" "C-c TAB" #'notmuch-multi-address-complete
 
      :map notmuch-search-mode-map
      ;; :desc "Replace a by A. #pim" "a" nil ;; the default archive keybinding is too easy to hit accidentally
