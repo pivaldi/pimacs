@@ -23,6 +23,14 @@
 (defvar pim-flyspell-secondary-dictionary "american")
 (defvar pim-flyspell-prog-mode-dictionary "american")
 
+;; Enable spell-checking in every text buffer, including plain `.txt' files
+;; (`text-mode').  This is registered at module load — outside `after!' — on
+;; purpose: `flyspell-mode' is autoloaded, so the hook bootstraps flyspell even
+;; when the first buffer opened in a session is a plain text file.  (Doom's
+;; `:checkers spell' only hooks specific prose modes such as `org-mode' and
+;; `markdown-mode', not generic `text-mode', so plain `.txt' needs this.)
+(add-hook 'text-mode-hook #'flyspell-mode)
+
 (after! flyspell
   ;; I don't want to use M-TAB to correct, M-$ is enough for me.
   (setq flyspell-use-meta-tab nil)
@@ -35,10 +43,6 @@
               ;;     (ispell-change-dictionary pim-flyspell-prog-mode-dictionary))
               (flyspell-mode -1)
               ))
-
-  (when (modulep! :checkers spell +everywhere)
-    (add-hook! '(text-mode-hook)
-               #'flyspell-mode))
 
   ;; Don't spellcheck org blocks
   ;; (pushnew! ispell-skip-region-alist

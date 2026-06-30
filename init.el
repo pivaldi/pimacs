@@ -4,6 +4,9 @@
 ;; order they load in.
 
 (doom!
+ :checkers
+ (spell +flyspell) ;; Spell-checking foundation (flyspell + ispell + flyspell-correct). The :pimacs flyspell module builds on this.
+
  :pimacs
  (default +azerty) ;; PIMacs default Emacs configuration on top of Doom with azerty keyboard type.
  functions ;; Useful functions. Must be loaded for the keys module/

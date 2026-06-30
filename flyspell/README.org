@@ -2,11 +2,19 @@
 
 * Features
 
-- This module provide dictionary switching between the two dictionaries defined in
+- Spell-checking (~flyspell-mode~) is enabled by default in every text buffer,
+  including plain ~.txt~ files (~text-mode~), and disabled in ~prog-mode~.
+- The module is self-sufficient: it declares its own ~flyspell-correct~
+  dependency (used by ~M-$~).  Doom's ~:checkers spell~ module (enabled as
+  ~(spell +flyspell)~ in PIMacs' ~init.el~) is optional but recommended — it adds
+  ~ispell~ backend detection, a personal dictionary and skip-regions.
+- A spell-checking backend (~aspell~ or ~hunspell~) with the relevant
+  dictionaries must be installed on the system.
+- This module provides dictionary switching between the two dictionaries defined in
   the variables ~pim-flyspell-default-dictionary~ and
-  ~pim-flyspell-default-dictionary~.
+  ~pim-flyspell-secondary-dictionary~.
 - The dictionary ~pim-flyspell-default-dictionary~ is initialized to "french"
-  and the second dictionary ~pim-flyspell-default-dictionary~ is initialized to
+  and the second dictionary ~pim-flyspell-secondary-dictionary~ is initialized to
   "american".
 - The variable ~pim-flyspell-prog-mode-dictionary~ allows to configure the default
   dictionary used in ~prog-mode~.
@@ -14,7 +22,7 @@
 * Key Binding
 
 The key "F6" allows to switch between ~pim-flyspell-default-dictionary~ and
-  ~pim-flyspell-default-dictionary~ trough the function ~pim-ispell-dictionary-switch~.
+  ~pim-flyspell-secondary-dictionary~ through the function ~pim-ispell-dictionary-switch~.
 
 * Customization
 You can customize three variables for your need with :
